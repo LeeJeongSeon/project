@@ -10,8 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   from book
  </select>
  
-  <select id="listAll" 
- resultType="com.example.project.model.book.dto.bookDTO">
+  <select id="listAll" resultType="com.example.project.model.book.dto.bookDTO">
  select *
   from (
     select rownum as rn, A.* 
@@ -19,9 +18,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  select book_id,book_name,book_img,book_genre,book_content,
 		  book_publisher,book_author,book_counter,book_check
 		  from book
-		  ) A
+		  <choose>
+		   <when test="search_option != 'all' ">
+		    where  ${search_option} like #{keyword}
+		   </when>
+		   <otherwise>
+		    where (book_name like #{keyword} 
+		       or book_author like #{keyword}
+		       or book_publisher like #{keyword})
+		   </otherwise>
+  			</choose>
+  			 ) A
   ) where rn between #{start} and #{end}
  </select>
+ 
+ <sql id="search">
+  <choose>
+   <when test="search_option != 'all' ">
+    where  ${search_option} like #{keyword}
+   </when>
+   <otherwise>
+    where (book_name like #{keyword} 
+       or book_author like #{keyword}
+       or book_publisher like #{keyword})
+   </otherwise>
+  </choose>
+ </sql>
+ 
+  <sql id="paging_footer">
+    ) A
+  ) where rn between #{start} and #{end}
+ </sql>
  
   <select id="read" 
  resultType="com.example.project.model.book.dto.bookDTO">
@@ -30,6 +57,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   from book
   where book_id=#{book_id}
  </select>
+ 
+ <!-- 체크박스 누름 -->
+  <select id="check" resultType="com.example.project.model.book.dto.bookDTO" > 
+  select book_id,book_name,book_img,book_genre,book_content,
+		  book_publisher,book_author,book_counter,book_check
+   from book
+   where
+        <if test="checklist!=null">
+         book_genre in <foreach item="check" index="index" collection="checklist" open="(" separator="," close=")" >
+         #{check}
+         </foreach>
+        </if>
+</select>
 </mapper>
 
 

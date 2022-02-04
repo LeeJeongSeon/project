@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.project.model.book.VO.book_check;
 import com.example.project.model.book.dto.bookDTO;
 
 @Repository
@@ -37,6 +38,11 @@ public class bookDAOImpl implements bookDAO {
 	@Override
 	public bookDTO read(int book_id) {
 		return sqlSession.selectOne("book.read", book_id);
+	}
+
+	@Override
+	public List<bookDTO> list_checkbox(book_check check) {
+		return sqlSession.selectList("book.check",check);
 	}
 	
 	

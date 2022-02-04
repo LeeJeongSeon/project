@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.example.project.model.book.VO.book_check;
 import com.example.project.model.book.dao.bookDAO;
 import com.example.project.model.book.dto.bookDTO;
 
@@ -28,6 +29,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public bookDTO read(int book_id) {
 		return bookDao.read(book_id);
+	}
+
+	@Override
+	public List<bookDTO> list_checkbox(book_check check) {
+		return bookDao.list_checkbox(check);
 	}
 
 	

@@ -17,6 +17,38 @@ function list(page){
 <%@ include file="../include/menu.jsp" %>
 <h2>게시판</h2>
 
+<!-- 검색폼 -->
+<form name="form1" method="post" action="${path}/book/list.do">
+	<select name="search_option">
+		<option value="book_name"
+			<c:if test="${map.search_option == 'book_name'}">selected</c:if>
+		>제목</option>
+		<option value="book_author" 
+		<c:if test="${map.search_option == 'book_author'}">selected</c:if>
+		>지은이</option>
+		<option value="book_content" 
+		<c:if test="${map.search_option == 'book_publisher'}">selected</c:if>
+		>출판사</option>
+		<option value="all" 
+		<c:if test="${map.search_option == 'all'}">selected</c:if>
+		>제목+지은이+출판사</option> <!-- 통합검색 -->
+	</select>
+	<input name="keyword" value="${map.keyword}">
+	<input type="submit" value="검색">
+</form>
+
+<!-- 체크박스폼 -->
+<%-- <div>
+ <form action="${path}/book/checkbox.do">
+  <input type="checkbox"  name="check" value="소설/시/희곡">소설/시/희곡
+  <input type="checkbox"  name="check" value="사회/정치">사회/정치
+  <input type="checkbox"  name="check" value="인문">인문
+  <input type="checkbox"  name="check" value="경제/경영">경제/경영
+  <input type="checkbox"  name="check" value="자연과학">자연과학
+  <input type="submit" value="메뉴분류">
+ </form>
+</div>  --%> 
+
 <table border="1">
  <tr>
   <th>제목</th>
