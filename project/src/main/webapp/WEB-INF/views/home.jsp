@@ -3,8 +3,11 @@
 <html>
 <head>
 	<title>Home</title>
+<%@ include file="include/header.jsp" %>	
 </head>
 <body>
+<%@ include file="include/menu.jsp" %>
+
 <h1>
 	Hello world!  
 </h1>
