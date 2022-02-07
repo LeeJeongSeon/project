@@ -26,7 +26,7 @@
 				<td>${dto.e_num}</td>
 				<td>${dto.e_agency}</td>
 				<td>${dto.e_instr}</td>
-				<td>${dto.e_name}</td>
+                <td>${dto.e_name}</td>
 				<td><fmt:formatDate value="${dto.e_start_d}" pattern="yyyy-MM-dd"/></td>
 				<td><fmt:formatDate value="${dto.e_finish_d}" pattern="yyyy-MM-dd"/></td>
 				<td>${dto.e_read_cnt}</td>
