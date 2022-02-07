@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	<typeAliases>
+		<typeAlias type="com.example.project.model.event.dto.EventDTO" alias="eventDTO"/>
+	</typeAliases>
 
 </configuration>
-
