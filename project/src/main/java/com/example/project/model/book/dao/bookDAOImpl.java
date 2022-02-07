@@ -18,22 +18,13 @@ public class bookDAOImpl implements bookDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public int countArticle(String search_option, String keyword) {
-		Map<String,String> map=new HashMap<>();
+	public int countArticle(String search_option, String keyword,book_check check) {
+		Map<String,Object> map=new HashMap<>();
 		map.put("search_option", search_option);
 		map.put("keyword", "%"+keyword+"%");
+		map.put("checklist", check.getChecklist());
 		return sqlSession.selectOne("book.countArticle",map);
 	}
-
-//	@Override
-//	public List<bookDTO> listAll(String search_option, String keyword, int start, int end) {
-//		Map<String,Object> map=new HashMap<>();
-//		map.put("search_option", search_option);
-//		map.put("keyword", "%"+keyword+"%");
-//		map.put("start", start);
-//		map.put("end", end);
-//		return sqlSession.selectList("book.listAll", map);
-//	}
 
 	@Override
 	public bookDTO read(int book_id) {
@@ -62,7 +53,6 @@ public class bookDAOImpl implements bookDAO {
 		map.put("start", start);
 		map.put("end", end);
 		map.put("checklist", check.getChecklist());
-		System.out.print("임시:"+map);
 		return sqlSession.selectList("book.popularity_listAll",map);
 	}
 

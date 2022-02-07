@@ -17,14 +17,9 @@ public class BookServiceImpl implements BookService {
 	bookDAO bookDao;
 	
 	@Override
-	public int countArticle(String search_option, String keyword) throws Exception {
-		return bookDao.countArticle(search_option,keyword);
+	public int countArticle(String search_option, String keyword,book_check check) throws Exception {
+		return bookDao.countArticle(search_option,keyword,check);
 	}
-
-//	@Override
-//	public List<bookDTO> listAll(String search_option, String keyword, int start, int end) {
-//		return bookDao.listAll(search_option, keyword, start, end);
-//	}
 
 	@Override
 	public bookDTO read(int book_id) {
@@ -43,7 +38,6 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<bookDTO> popularity_listAll(int start, int end, book_check check) {
-		System.out.print("service 체크박스:"+check);
 		return bookDao.popularity_listAll(start, end,check);
 	}
 

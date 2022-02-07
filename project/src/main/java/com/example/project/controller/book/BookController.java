@@ -38,11 +38,11 @@ public class BookController {
 		String checklist[]=checkbox.toArray(new String[checkbox.size()]);
 		book_check check=new book_check();
 		check.setChecklist(checklist);
-		//List<bookDTO> list=bookService.list_checkbox(check);
 			
 		//레코드 갯수 계산
-		int count=bookService.countArticle(search_option,keyword);
-		System.out.print("게시물결과:"+count);
+		int count=bookService.countArticle(search_option,keyword,check);
+		System.out.println("레코드 갯수:"+count);
+		
 		//페이지 관련 설정
 		Pager pager=new Pager(count, curPage);
 		int start=pager.getPageBegin();
@@ -57,8 +57,8 @@ public class BookController {
 		map.put("pager", pager);
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
-		
-		mav.setViewName("book_list/book_list");//포워딩
+			
+		mav.setViewName("book_list/book_list");
 		mav.addObject("map", map); 
 		return mav;
 	}
@@ -101,10 +101,8 @@ public class BookController {
 		String checklist[]=checkbox.toArray(new String[checkbox.size()]);
 		book_check check=new book_check();
 		check.setChecklist(checklist);
-		System.out.print("체크박스:"+check);
-		//List<bookDTO> list=bookService.list_checkbox(check);
 			
-		//레코드 갯수 100개로 설정 계산
+		//레코드 갯수 10개로 설정 계산
 		int count=10;
 		//페이지 관련 설정
 		Pager pager=new Pager(count, curPage);
@@ -112,14 +110,13 @@ public class BookController {
 		int end=pager.getPageEnd();
 		
 		List<bookDTO> list=bookService.popularity_listAll(start,end,check);
-		System.out.print("list:"+list);
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> map=new HashMap<>();
 		map.put("list", list);
 		map.put("count", count);
 		map.put("pager", pager);
 		
-		mav.setViewName("book_list/popularity_list");//포워딩
+		mav.setViewName("book_list/popularity_list");
 		mav.addObject("map", map); 
 		return mav;
 	}

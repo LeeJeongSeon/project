@@ -24,7 +24,6 @@ function list(page){
   <input type="checkbox"  name="check" value="인문">인문
   <input type="checkbox"  name="check" value="경제/경영">경제/경영
   <input type="checkbox"  name="check" value="자연과학">자연과학
-  <!-- <input type="submit" value="메뉴분류"> -->
   <input type="submit" value="검색">
  </form>
 
@@ -39,7 +38,7 @@ function list(page){
  <c:forEach var="row" items="${map.list}">
  <tr>
   <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
-  <td><img src="../images/${row.book_img}" width="100px" height="100px">${row.book_img}</td>
+  <td><img src="../images/${row.book_img}" width="100px" height="100px"></td>
   <td>${row.book_author}</td>
   <td>${row.book_content}</td>
   <td>${row.book_publisher}</td>
@@ -56,7 +55,7 @@ function list(page){
 				[이전]</a>
 			</c:if>
 			<c:forEach var="num" 
-				begin="${map.pager.blockStart}"
+				begin="${map.pager.blockBegin}"
 				end="${map.pager.blockEnd}">
 				<c:choose>
 					<c:when test="${num == map.pager.curPage}">

@@ -8,6 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="countArticle" resultType="int">
   select count(*)
   from book
+  <choose>
+	<when test="search_option != 'all' ">
+	where  ${search_option} like #{keyword}
+	</when>
+	<otherwise>
+	where (book_name like #{keyword} 
+	or book_author like #{keyword}
+	or book_publisher like #{keyword})
+	</otherwise>
+  	</choose>
+  	<if test="checklist.length!=0">
+     and book_genre in <foreach item="check" index="index" collection="checklist" open="(" separator="," close=")" >
+     #{check}
+     </foreach>
+     </if>
  </select>
  
   <select id="listAll" resultType="com.example.project.model.book.dto.bookDTO">

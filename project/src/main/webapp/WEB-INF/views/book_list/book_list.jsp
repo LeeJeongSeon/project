@@ -68,13 +68,15 @@ ${map.count}개의 도서가 있습니다.
  <c:forEach var="row" items="${map.list}">
  <tr>
   <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
-  <td><img src="../images/${row.book_img}" width="100px" height="100px">${row.book_img}</td>
+  <td><img src="../images/${row.book_img}" width="100px" height="100px"></td>
   <td>${row.book_author}</td>
   <td>${row.book_content}</td>
   <td>${row.book_publisher}</td>
  </tr>
  </c:forEach>
-	<!-- 페이지 네비게이션 출력 -->	
+ 
+ 
+<!-- 페이지 네비게이션 출력 -->	
 	<tr>
 		<td colspan="6" align="center">
 			<c:if test="${map.pager.curBlock > 1}">
