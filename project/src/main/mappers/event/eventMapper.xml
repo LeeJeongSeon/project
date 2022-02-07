@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="event">
+	<select id="eventList" resultType="eventDTO"> 
+		select * from event
+	</select>
+	
+	<update id="updateEReadCount">
+		update event
+		set e_read_cnt=e_read_cnt+1
+		where e_num=#{e_num}
+	</update>
+	
+	<select id="eventViewDetail" resultType="eventDTO">
+		select * from event
+		where e_num=#{e_num}
+	</select>
+	
+	<insert id="insert">
+		insert into event(e_num, e_agency, e_name, e_intro, e_start_d, e_finish_d)
+		values (event_seq.nextval, #{e_agency}, #{e_name}, #{e_intro}, #{e_start_d}, #{e_finish_d}
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
