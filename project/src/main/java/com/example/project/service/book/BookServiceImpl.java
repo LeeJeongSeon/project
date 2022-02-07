@@ -1,4 +1,4 @@
-package com.example.project.service;
+package com.example.project.service.book;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ public class BookServiceImpl implements BookService {
 		return bookDao.countArticle(search_option,keyword);
 	}
 
-	@Override
-	public List<bookDTO> listAll(String search_option, String keyword, int start, int end) {
-		return bookDao.listAll(search_option, keyword, start, end);
-	}
+//	@Override
+//	public List<bookDTO> listAll(String search_option, String keyword, int start, int end) {
+//		return bookDao.listAll(search_option, keyword, start, end);
+//	}
 
 	@Override
 	public bookDTO read(int book_id) {
@@ -35,6 +35,18 @@ public class BookServiceImpl implements BookService {
 	public List<bookDTO> list_checkbox(book_check check) {
 		return bookDao.list_checkbox(check);
 	}
+
+	@Override
+	public List<bookDTO> listAll(String search_option, String keyword, int start, int end, book_check check) {
+		return bookDao.listAll(search_option, keyword, start, end,check);
+	}
+
+	@Override
+	public List<bookDTO> popularity_listAll(int start, int end, book_check check) {
+		System.out.print("service 체크박스:"+check);
+		return bookDao.popularity_listAll(start, end,check);
+	}
+
 
 	
 }

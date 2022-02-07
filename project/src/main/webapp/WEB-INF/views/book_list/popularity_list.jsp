@@ -8,45 +8,17 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 function list(page){
-	if($("#keyword").val()){
-		location.href="${path}/book/list.do?curPage="+page
-		+"&keyword="+$("#keyword").val()
-		+"&search_option="+$("#search_option").val();
-	}else{
-	location.href="${path}/book/list.do?curPage="+page;
-}
+	location.href="${path}/book/popularity_list.do.do?curPage="+page;
 }
 
 </script>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>게시판</h2>
+<h2>대출이 많은 도서 top 10</h2>
 
 <!-- 검색폼 -->
-<form name="form1" method="post" action="${path}/book/list.do">
-	<select name="search_option">
-		<option value="book_name"
-			<c:if test="${map.search_option == 'book_name'}">selected</c:if>
-		>제목</option>
-		<option value="book_author" 
-		<c:if test="${map.search_option == 'book_author'}">selected</c:if>
-		>지은이</option>
-		<option value="book_content" 
-		<c:if test="${map.search_option == 'book_publisher'}">selected</c:if>
-		>출판사</option>
-		<option value="all" 
-		<c:if test="${map.search_option == 'all'}">selected</c:if>
-		>제목+지은이+출판사</option> <!-- 통합검색 -->
-	</select>
-	<!-- <input type="submit" value="검색"> -->
-	<input name="keyword" value="${map.keyword}">
-	
-<%-- </form>
-
-<!-- 체크박스폼 -->
-<div>
- <form action="${path}/book/checkbox.do"> --%>
+<form name="form1" method="post" action="${path}/book/popularity_list.do">
   <input type="checkbox"  name="check" value="소설/시/희곡">소설/시/희곡
   <input type="checkbox"  name="check" value="사회/정치">사회/정치
   <input type="checkbox"  name="check" value="인문">인문
@@ -55,7 +27,6 @@ function list(page){
   <!-- <input type="submit" value="메뉴분류"> -->
   <input type="submit" value="검색">
  </form>
-${map.count}개의 도서가 있습니다.
 
 <table border="1">
  <tr>
@@ -85,7 +56,7 @@ ${map.count}개의 도서가 있습니다.
 				[이전]</a>
 			</c:if>
 			<c:forEach var="num" 
-				begin="${map.pager.blockBegin}"
+				begin="${map.pager.blockStart}"
 				end="${map.pager.blockEnd}">
 				<c:choose>
 					<c:when test="${num == map.pager.curPage}">
@@ -110,8 +81,5 @@ ${map.count}개의 도서가 있습니다.
 
  
 </table>
-<input type="hidden" value="${map.keyword}" id="keyword">
-<input type="hidden" value="${map.search_option}" id="search_option">
-
 </body>
 </html>

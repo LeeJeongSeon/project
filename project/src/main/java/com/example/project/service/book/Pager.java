@@ -1,4 +1,4 @@
-package com.example.project.service;
+package com.example.project.service.book;
 
 public class Pager {
 	public static final int PAGE_SCALE=10;//페이지당 게시물수(10개)

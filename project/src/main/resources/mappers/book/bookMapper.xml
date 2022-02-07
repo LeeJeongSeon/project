@@ -28,6 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       or book_publisher like #{keyword})
 		   </otherwise>
   			</choose>
+  			<if test="checklist.length!=0">
+         	and book_genre in <foreach item="check" index="index" collection="checklist" open="(" separator="," close=")" >
+         	#{check}
+         	</foreach>
+        	</if>
   			 ) A
   ) where rn between #{start} and #{end}
  </select>
@@ -59,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
  <!-- 체크박스 누름 -->
-  <select id="check" resultType="com.example.project.model.book.dto.bookDTO" > 
+<!--   <select id="check" resultType="com.example.project.model.book.dto.bookDTO" > 
   select book_id,book_name,book_img,book_genre,book_content,
 		  book_publisher,book_author,book_counter,book_check
    from book
@@ -69,7 +74,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          #{check}
          </foreach>
         </if>
-</select>
+</select> -->
+
+<!-- 인기순 정렬 검색 -->
+  <select id="popularity_listAll" resultType="com.example.project.model.book.dto.bookDTO">
+ select *
+  from (
+    select rownum as rn, A.* 
+    from(
+		  select book_id,book_name,book_img,book_genre,book_content,
+		  book_publisher,book_author,book_counter,book_check
+		  from book
+  			<if test="checklist.length!=0">
+         	where book_genre in <foreach item="check" index="index" collection="checklist" open="(" separator="," close=")" >
+         	#{check}
+         	</foreach>
+        	</if>
+          order by book_counter desc	
+  			 ) A
+  ) where rn between #{start} and #{end}
+ </select>
 </mapper>
 
 

@@ -9,10 +9,14 @@ public interface bookDAO {
 
 	public int countArticle(String search_option, String keyword);
 
-	public List<bookDTO> listAll(String search_option, String keyword, int start, int end);
+	//public List<bookDTO> listAll(String search_option, String keyword, int start, int end);
 
 	public bookDTO read(int book_id);
 
 	public List<bookDTO> list_checkbox(book_check check);
+
+	public List<bookDTO> listAll(String search_option, String keyword, int start, int end, book_check check);
+
+	public List<bookDTO> popularity_listAll(int start, int end, book_check check);
 
 }
