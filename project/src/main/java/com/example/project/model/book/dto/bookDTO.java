@@ -1,5 +1,7 @@
 package com.example.project.model.book.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class bookDTO {
 
 	private String book_id;
@@ -11,12 +13,20 @@ public class bookDTO {
 	private String  book_author;
 	private int  book_counter;
 	private int book_check;
+	private MultipartFile file; //첨부파일
+	
 	@Override
 	public String toString() {
 		return "bookDTO [book_id=" + book_id + ", book_name=" + book_name + ", book_img=" + book_img + ", book_genre="
 				+ book_genre + ", book_content=" + book_content + ", book_publisher=" + book_publisher
 				+ ", book_author=" + book_author + ", book_counter=" + book_counter + ", book_check=" + book_check
-				+ "]";
+				+ ", file=" + file + "]";
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public String getBook_id() {
 		return book_id;

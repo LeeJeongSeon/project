@@ -22,6 +22,10 @@ function list(page){
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>게시판</h2>
+<!-- 
+<img src="C:\images\1.jpg" width="100px" height="100px">
+절대경로로 이미지출력 안됨 -->
+
 
 <!-- 검색폼 -->
 <form name="form1" method="post" action="${path}/book/list.do">
@@ -68,7 +72,9 @@ ${map.count}개의 도서가 있습니다.
  <c:forEach var="row" items="${map.list}">
  <tr>
   <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
-  <td><img src="../images/${row.book_img}" width="100px" height="100px"></td>
+  <td><img src="../images/${row.book_img}" width="100px" height="100px">
+  <!-- <td><img src="C:\book_images\${row.book_img}" width="100px" height="100px"> -->
+  </td>
   <td>${row.book_author}</td>
   <td>${row.book_content}</td>
   <td>${row.book_publisher}</td>

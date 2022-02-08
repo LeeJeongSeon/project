@@ -41,6 +41,12 @@ public class BookServiceImpl implements BookService {
 		return bookDao.popularity_listAll(start, end,check);
 	}
 
+	@Override
+	public void insertBook(bookDTO dto) {
+		bookDao.insertBook(dto);
+		
+	}
+
 
 	
 }

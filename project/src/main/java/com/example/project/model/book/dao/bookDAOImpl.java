@@ -56,6 +56,11 @@ public class bookDAOImpl implements bookDAO {
 		return sqlSession.selectList("book.popularity_listAll",map);
 	}
 
+	@Override
+	public void insertBook(bookDTO dto) {
+		sqlSession.selectList("book.book_insert",dto);
+	}
+
 
 	
 	

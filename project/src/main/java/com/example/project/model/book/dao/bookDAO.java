@@ -17,4 +17,6 @@ public interface bookDAO {
 
 	public List<bookDTO> popularity_listAll(int start, int end, book_check check);
 
+	public void insertBook(bookDTO dto);
+
 }
