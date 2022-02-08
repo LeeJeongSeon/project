@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function list(num) {
+		for(var i=0; i<3; i++) {
+			document.getParameterById("list"+i).style.display="none";
+		}
+		documnet.getParameterById("list"+num).style.display="block";
+	}
+</script>
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
@@ -12,7 +20,7 @@
 <input type="button" value="신청대기" onclick="list(0)">
 <input type="button" value="확인완료" onclick="list(1)"> 
 <input type="button" value="전체열람" onclick="list(2)">
-<div>
+<div id="list0">
 	<table>
 		<tr>
 			<th>번호</th>
@@ -39,7 +47,7 @@
 		</c:forEach>
 	</table>
 </div>
-<div>
+<div id="list1">
 	<table>
 		<tr>
 			<th>번호</th>
@@ -66,7 +74,7 @@
 		</c:forEach>
 	</table>
 </div>
-	<div>
+<div id="list2">
 	<table>
 		<tr>
 			<th>번호</th>
