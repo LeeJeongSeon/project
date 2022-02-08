@@ -17,11 +17,11 @@ $(function() {
 			alert("강사명을 입력해주세요.");
 			$("#e_instr").focus();
 			
-		}else if($("#e_name").val()=="") {
+		}else if($("#e_email").val()=="") {
 			alert("이메일이 입력되지 않았거나 올바른 형식이 아닙니다.");
 			$("#e_email").focus();
 			
-		}else if($("#e_email").val()=="") {
+		}else if($("#e_name").val()=="") {
 			alert("행사명을 입력해주세요.");
 			$("#e_name").focus();
 			
@@ -36,23 +36,54 @@ $(function() {
 		}else if($("#e_finish_d").val()=="") {
 			alert("행사 마감일을 입력해주세요.");
 			$("#e_finish_d").focus();
+			
+		}else {
+			if(checkDate()) {
+				document.form1.action="${path}/event/insert.do";
+				document.form1.submit();
+				alert("신청이 완료되었습니다.\n이메일을 확인해주세요!");
+			}
 		}
-		checkDate();
-		document.form1.commit();
-		alert("신청이 완료되었습니다.\n이메일을 확인해주세요!");
 	});
 });
 
 function checkDate() {
-	var start=$("#e_start_d").val();
-	var finish=$("#e_finish_d").val();
+	/* 현재년월일 */
+	var currentDate=new Date();
 	
+	/* 시작년월일 */
+	var start=$("#e_start_d").val();
+	var s_Year=start.substr(0,4);
+	var s_Month=start.substr(5,2);
+	var s_Date=start.substr(8);
+	var startDate=new Date(s_Year, s_Month-1, s_Date);
+
+	/* 마감년월일 */
+	var finish=$("#e_finish_d").val();
+	var f_Year=finish.substr(0,4);
+	var f_Month=finish.substr(5,2);
+	var f_Date=finish.substr(8);
+	var finishDate=new Date(f_Year, f_Month-1, f_Date);
+
+	if(currentDate > startDate) {
+		alert("시작일이 잘못 입력되었습니다.");
+	} else if(currentDate < startDate) {
+		if(confirm(s_Year+"년 "+s_Month+"월 "+s_Date+"일에 시작하는 행사가 맞습니까?")) {
+			if(startDate > finishDate) {
+				alert("행사 마감일을 행사 시작일보다 늦게 입력할 수 없습니다.");
+			}else if(startDate < finishDate) {
+				if(confirm(f_Year+"년 "+f_Month+"월 "+f_Date+"일에 마감하는 행사가 맞습니까?")) {
+					return true;
+				}
+			}
+		}
+	}
 }
 </script>
 </head>
 <body>
 행사신청 페이지
-<form method="post" name="form1" action="${path}/event/insert.do">
+<form method="post" name="form1">
 	<table>
 		<tr>
 			<th>주최 기관명</th>
