@@ -51,4 +51,21 @@ public class EventController {
 		eventService.insert(dto);
 		return "redirect:/event/list.do";
 	}
+	
+	/* 행사 관리 페이지로 이동 & 행사리스트 출력 */
+	@RequestMapping("listAdmin.do")
+	public String listAdmin(Model model) throws Exception {
+		List<EventDTO> list=eventService.eventList();
+		model.addAttribute("list", list);
+		return "event/listAdmin";
+	}
+	
+	/* 행사 관리 상세보기 페이지로 이동 */
+	@RequestMapping("viewAdmin.do")
+	public ModelAndView viewAdmin(int e_num) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", eventService.eventViewDetail(e_num));
+		mav.setViewName("event/viewAdmin");
+		return mav;
+	}
 } 
