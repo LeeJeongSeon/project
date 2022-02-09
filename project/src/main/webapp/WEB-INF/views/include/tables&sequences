@@ -36,16 +36,16 @@ adminCk number default 0
 - 대출회수 : book_counter
 - 대출여부 : book_check
 
-create table book(
-book_id varchar2(50) not null primary key,
-book_name varchar2(50) not null,
-book_img varchar2(50),
+create table book (
+book_id number not null primary key,
+book_name varchar2(500) not null,
+book_img varchar2(500),
 book_genre varchar2(50) not null,
-book_content varchar2(500) not null,
+book_content clob,
 book_publisher varchar2(50),
 book_author varchar2(50),
-book_counter number default 0,
-book_check number default 0 
+book_counter number default 0, -- 대출횟수
+book_check number default 0 -- 대출중인지 체크
 );
 
 ++ 책번호용 시퀀스 book_seq
@@ -53,7 +53,23 @@ create sequence book_seq
 start with 1
 increment by 1;
 
+희망도서게시판 테이블: hope_book
+- 희망도서게시판번호: hope_book_id 
+- 도서이름: book_name
+- 아이디: userid
+- 신청사유: content
 
+create table hope_book(
+hope_book_id number not null primary key, 
+book_name varchar2(500) not null,
+userid varchar2(50) references member(userid), 
+content clob 
+);
+
+++ 희망도서게시판번호 시퀀스 HopeBook_seq
+create sequence HopeBook_seq
+start with 1
+increment by 1;
 
 3. 도서대출테이블 : rent (임종민)------------------------------
 - 아이디 : id
