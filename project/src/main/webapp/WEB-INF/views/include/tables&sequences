@@ -1,0 +1,217 @@
+1. 회원테이블 : member (김준성)-----------------------
+- 아이디 : userid 
+- 비밀번호 : passwd
+- 이름 : name
+- 전화번호 : phone 
+- 우편번호 : zipcode
+- 주소 : address1
+- 상세주소 : address2
+- 이메일 : email
+- 가입일자 : join_date 
+- 관리자여부 : adminCk 
+
+create table member (
+userid varchar2(50) not null primary key,
+passwd varchar2(50) not null, 
+name varchar2(50) not null,
+phone varchar2(20) not null,
+zipcode varchar2(10), 
+address1 varchar2(200),
+address2 varchar2(200),
+email varchar2(50),
+join_date date default sysdate,
+adminCk number default 0
+);
+
+
+
+2. 도서테이블 : book (박종이)----------------------------
+- 책번호 : book_id
+- 책제목 : book_name
+- 책이미지 : book_img
+- 책분류 : book_genre
+- 책설명 : book_content
+- 출판사 : book_publisher
+- 지은이 : book_author
+- 대출회수 : book_counter
+- 대출여부 : book_check
+
+create table book(
+book_id varchar2(50) not null primary key,
+book_name varchar2(50) not null,
+book_img varchar2(50),
+book_genre varchar2(50) not null,
+book_content varchar2(500) not null,
+book_publisher varchar2(50),
+book_author varchar2(50),
+book_counter number default 0,
+book_check number default 0 
+);
+
+++ 책번호용 시퀀스 book_seq
+create sequence book_seq
+start with 1
+increment by 1;
+
+
+
+3. 도서대출테이블 : rent (임종민)------------------------------
+- 아이디 : id
+- 책번호 : bno
+- 유저 아이디 : id
+- 책제목 : bname
+- 대여일 : aday
+- 반납일 : bday
+
+create table rent(
+bnum varchar2(50) not null primary key,
+id varchar2(50) not null,
+bname varchar2(50) not null,
+aday  date default sysdate,
+bday date
+);
+
+++ 시퀀스 rent_seq
+create sequence rent_seq
+start with 1
+increment by 1;
+
+
+
+4. 공지사항/QnA 테이블 (홍성범)---------------------------
+- 게시판테이블 : notice_qna
+= 카테고리 : category
+= 글번호 : num
+= 제목 : subject
+= 작성자 아이디 : id
+= 작성일 : reg_date
+= 본문 내용 : content
+= 첨부 파일 : filename
+= 조회수 : readcount
+
+create table notice_qna (
+num number not null primary key,
+category varchar2(50) not null, 
+id varchar2(50) not null , 
+subject varchar2(50) not null, 
+reg_date  date default sysdate, 
+readcount number default 0,  
+content varchar2(4000) , 
+filename varchar2(200) 
+);
+
+++ 글번호용 시퀀스 notice_qna_seq
+create sequence notice_qna_seq
+start with 1
+increment by 1;
+
+
+-댓글테이블 : comment
+= 댓글번호 : comment_num
+= 게시물 번호 : qna_num
+= 작성자 아이디 : id
+= 작성일 : reg_date
+= 내용 : comment_content
+= 수정일 : re_date
+= 비공개 : secret_re
+
+create table comment(
+comment_num number not null primary key,
+qna_num number not null references notice_qna(num),
+id varchar2(50) not null,
+reg_date date default sysdate, 
+comment_content varchar2(500),
+re_date date default sysdate,
+secret_re char(1) default 'y'
+);
+
+++ 댓글번호용 시퀀스 comment_seq
+create sequence comment_seq
+start with 1
+increment by 1;
+
+
+
+5. 리뷰 테이블 (고인수)---------------------------------------
+- 게시판테이블 : review
+= 글번호 : review_bno 
+= 제목 : review_title 
+= 작성자 아이디 : review_writer 
+= 작성일 : review_regdate 
+= 본문 내용 : review_content 
+= 조회수 : review_viewcnt 
+= 삭제시 화면 표시 여부 : review_show 
+
+create table review (
+review_bno number not null, 
+review_title varchar2(200) not null,
+review_content clob, 
+review_writer varchar2(50) not null, 
+review_regdate date default sysdate, 
+review_viewcnt number default 0, 
+review_show char(1) default 'Y',
+primary key(review_bno)
+);
+
+++ 리뷰 글번호용 시퀀스 seq_review
+create sequence seq_review
+start with 1
+increment by 1;
+
+
+-댓글테이블 : review_reply
+= 댓글번호 : review_rno 
+= 게시물 번호 : review_bno 
+= 작성자 아이디 : review_replyer 
+= 작성일 : review_regdate 
+= 내용 : review_replytext 
+= 수정일 : review_updatedate 
+
+create table review_reply (
+review_rno number not null primary key,
+review_bno number default 0, 
+review_replytext varchar2(1000) not null, 
+review_replyer varchar2(50) not null,
+review_regdate date default sysdate, 
+review_updatedate date default sysdate
+);
+
+++ 리뷰 댓글번호용 시퀀스 review_seq
+create sequence seq_review_reply
+start with 1
+increment by 1;
+
+
+6. 행사 테이블 : event (이정선)--------------------------------------
+- 행사 번호 : e_num
+- 이메일 : e_email
+- 주최 기관 : e_agency
+- 강사 : e_instr
+- 행사명 : e_name
+- 행사소개 : e_intro
+- 행사시작일 : e_start_d
+- 행사시작시간 : e_start_t
+- 행사마감일 : e_finish_d
+- 행사장소 : e_place
+- 조회수 : e_read_cnt
+- 신청결과 : e_result
+
+create table event(
+e_num number not null primary key,
+e_email varchar2(100) not null,
+e_agency varchar2(100) not null,
+e_instr varchar2(50) not null,
+e_name varchar2(300) not null,
+e_intro clob,
+e_start_d date,
+e_start_t varchar2(10),
+e_finish_d date,
+e_place varchar2(50),
+e_read_cnt number default 0,
+e_result number default 0
+);
+
+++ 행사 번호용 시퀀스 event_seq
+create sequence event_seq
+start with 1
+increment by 1;
