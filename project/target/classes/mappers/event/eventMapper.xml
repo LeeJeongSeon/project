@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="event">
 	<select id="eventList" resultType="eventDTO"> 
 		select * from event
-		where e_start_d > sysdate 
+		where e_finish_d > sysdate 
 		order by e_start_d
 	</select>
 	
