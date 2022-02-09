@@ -28,10 +28,16 @@
 			<td colspan="4">${dto.e_intro}</td>
 		</tr>
 		<tr>
+			<th>행사 장소</th>
+			<td>${dto.e_place}</td>
+			<th>시작 시간</th>
+			<td>${dto.e_start_t}</td>
+		</tr>
+		<tr>
 			<th>행사시작일</th>
-			<td><fmt:formatDate value="${dto.e_start_d}" pattern="yyyy-MM-dd"/></td>
+			<td>${dto.e_start_d}</td>
 			<th>행사마감일</th>
-			<td><fmt:formatDate value="${dto.e_finish_d}" pattern="yyyy-MM-dd"/></td>
+			<td>${dto.e_finish_d}</td>
 		</tr>
 	</table>
 </body>

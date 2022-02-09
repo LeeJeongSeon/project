@@ -1,7 +1,5 @@
 package com.example.project.model.event.dto;
 
-import java.util.Date;
-
 public class EventDTO {
 	private int e_num;
 	private String e_email;
@@ -9,16 +7,35 @@ public class EventDTO {
 	private String e_instr;
 	private String e_name;
 	private String e_intro;
-	private Date e_start_d;
-	private Date e_finish_d;
+	private String e_start_d;
+	private String e_start_t;
+	private String e_finish_d;
+	private String e_place;
 	private int e_read_cnt;
 	private int e_result;
 
 	@Override
 	public String toString() {
 		return "EventDTO [e_num=" + e_num + ", e_email=" + e_email + ", e_agency=" + e_agency + ", e_instr=" + e_instr
-				+ ", e_name=" + e_name + ", e_intro=" + e_intro + ", e_start_d=" + e_start_d + ", e_finish_d="
-				+ e_finish_d + ", e_read_cnt=" + e_read_cnt + ", e_result=" + e_result + "]";
+				+ ", e_name=" + e_name + ", e_intro=" + e_intro + ", e_start_d=" + e_start_d + ", e_start_t="
+				+ e_start_t + ", e_finish_d=" + e_finish_d + ", e_place=" + e_place + ", e_read_cnt=" + e_read_cnt
+				+ ", e_result=" + e_result + "]";
+	}
+
+	public String getE_start_t() {
+		return e_start_t;
+	}
+
+	public void setE_start_t(String e_start_t) {
+		this.e_start_t = e_start_t;
+	}
+
+	public String getE_place() {
+		return e_place;
+	}
+
+	public void setE_place(String e_place) {
+		this.e_place = e_place;
 	}
 
 	public int getE_num() {
@@ -69,20 +86,20 @@ public class EventDTO {
 		this.e_intro = e_intro;
 	}
 
-	public Date getE_start_d() {
+	public String getE_start_d() {
 		return e_start_d;
 	}
 
-	public void setE_start_d(Date e_start_d) {
-		this.e_start_d = e_start_d;
+	public void setE_start_d(String e_start_d) {
+		this.e_start_d = e_start_d.substring(0, 10);
 	}
 
-	public Date getE_finish_d() {
+	public String getE_finish_d() {
 		return e_finish_d;
 	}
 
-	public void setE_finish_d(Date e_finish_d) {
-		this.e_finish_d = e_finish_d;
+	public void setE_finish_d(String e_finish_d) {
+		this.e_finish_d = e_finish_d.substring(0, 10);
 	}
 
 	public int getE_read_cnt() {

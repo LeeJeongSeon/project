@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert">
-		insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_finish_d)
-		values (event_seq.nextval, #{e_email}, #{e_agency}, #{e_instr}, #{e_name}, #{e_intro}, #{e_start_d}, #{e_finish_d}
+		insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
+		values (event_seq.nextval, #{e_email}, #{e_agency}, #{e_instr}, #{e_name}, #{e_intro}, #{e_start_d}, #{e_start_t}, #{e_finish_d}, #{e_place})
 	</insert>
 </mapper>
