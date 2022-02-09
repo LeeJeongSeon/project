@@ -8,4 +8,5 @@
 <a href="${path}/book/popularity_list.do">책목록(인기순)</a> | 
 <a href="${path}/book/book_write.do">도서 추가</a> |
 <a href="${path}/event/list.do">행사 페이지로 이동</a> | 
+<a href="${path}/event/listAdmin.do">행사관리 페이지로 이동</a> | 
 </div>
