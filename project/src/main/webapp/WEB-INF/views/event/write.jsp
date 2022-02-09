@@ -86,6 +86,7 @@ function checkDate() {
 </head>
 <body>
 <%@ include file="../include/eventMenu.jsp" %>
+행사신청 페이지
 	<form action="${path}/event/insert.do" name="form1" >
 		<table>
 			<tr>
