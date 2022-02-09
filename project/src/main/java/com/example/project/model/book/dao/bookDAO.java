@@ -19,4 +19,8 @@ public interface bookDAO {
 
 	public void insertBook(bookDTO dto);
 
+	public void updateBook(bookDTO dto);
+
+	public void deleteBook(int book_id);
+
 }

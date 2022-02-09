@@ -115,6 +115,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  insert into book(book_id,book_name,book_img,book_genre,book_content,book_publisher,book_author) 
  values(BOOK_SEQ.nextval,#{book_name},#{book_img},#{book_genre},#{book_content},#{book_publisher},#{book_author})
  </insert>
+ 
+ <!--도서수정  -->
+ <update id="book_update">
+  update book set 
+  book_name=#{book_name},
+  book_img=#{book_img},
+  book_genre=#{book_genre},
+  book_content=#{book_content},
+  book_publisher=#{book_publisher},
+  book_author=#{book_author},
+  book_check=#{book_check}
+  where book_id=#{book_id}
+ </update>
+ 
+ <!-- 도서삭제 -->
+ <delete id="book_delete">
+ delete from book
+ where book_id=#{book_id}
+ </delete>
 </mapper>
 
 

@@ -6,6 +6,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<script type="text/javascript">
+$(function(){
+	$("#updatebtn").click(function(){
+ 		var param="id="+$("#book_id").val(); //String으로 인식됨 
+		console.log(param);
+ 		
+		$.ajax({
+			type: "post",
+			url: "${path}/book/book_edit.do",
+			data: param
+		}); 
+	});
+});
+</script>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -42,6 +56,9 @@
      <c:when test="${dto.book_check==0}">
       대출가능
      </c:when>
+     <c:when test="${dto.book_check==-1}">
+      분실
+     </c:when>
      <c:otherwise>
       대출불가능 
      </c:otherwise>
@@ -51,5 +68,9 @@
   </td>
  </tr>
 </table>
+<!-- admin만 접근하도록 추후수정 -->
+<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
+<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
+<button type="button" id="updatebtn">수정</button>
 </body>
 </html>

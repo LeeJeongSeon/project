@@ -47,6 +47,18 @@ public class BookServiceImpl implements BookService {
 		
 	}
 
+	@Override
+	public void updateBook(bookDTO dto) {
+		bookDao.updateBook(dto);
+	}
+
+	@Override
+	public void deleteBook(int book_id) {
+		bookDao.deleteBook(book_id);
+		
+	}
+
+
 
 	
 }

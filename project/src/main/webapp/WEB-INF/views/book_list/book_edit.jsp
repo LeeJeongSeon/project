@@ -6,14 +6,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
-<style type="text/css">
+<style>
+input{
+	width:500px;
+	height:50px;
+}
 .fileDrop {
 	width: 100%;
 	height: 200px;
 	border: 1px dotted blue;
 }
 </style>
-<script>
+<script type="text/javascript">
 function checkImageType(fileName){
 	var pattern=/jpg|png|gif/i; //정규표현식(i는 대소문자 무시)
 	return fileName.match(pattern);// 규칙에 맞으면 true가 리턴
@@ -52,6 +56,7 @@ function getFileInfo(fullName){
 	return {fileName: fileName, imgsrc: imgsrc,
 			getLink: getLink, fullName:fullName };
 }
+
 $(function(){
 	//드래그알때 기본효과를 막음
 	//dragenter: 마우스가 대상 객체의 위로 처음 진입할 때,
@@ -113,82 +118,114 @@ $(function(){
 		});
 	});
 	
-	$("#btnSave").click(function(){
-		var book_name=$("#book_name").val();
-		var book_genre=$("#book_genre").val();
-		var book_content=$("#book_content").val();
-		var book_publisher=$("#book_publisher").val();
-		var book_author=$("#book_author").val();
-
-		if(book_name==""){
-			alert("도서이름 입력하세요");
-			$("#book_name").focus();
-			return;
-		}
-		if(book_genre==""){
-			alert("도서장르를 입력하세요");
-			$("#book_genre").focus();
-			return;
-		}
-		if(book_content==""){
-			alert("도서내용을 입력하세요");
-			$("#book_content").focus();
-			return;
-		}
-		if(book_publisher==""){
-			alert("도서출판사를 입력하세요");
-			$("#book_publisher").focus();
-			return;
-		}
-		if(book_author==""){
-			alert("작가를 입력하세요");
-			$("#book_author").focus();
-			return;
-		}
-		
-		document.form1.submit();
-	});
-	
+	console.log("체크박스값:"+$("#book_ck").val());
+	if($("#book_ck").val()==-1){
+		$("#book_check").prop("checked", true);
+	}
 });
+//상품 삭제
+function book_delete() {
+	if(confirm("삭제하시겠습니까?")){
+		document.form1.action="${path}/book/book_delete.do";;
+		document.form1.submit();
+	} 
+	
+}
+
+//상품 수정
+function book_update(){
+	var book_name=$("#book_name").val();
+	var book_genre=$("#book_genre").val();
+	var book_content=$("#book_content").val();
+	var book_publisher=$("#book_publisher").val();
+	var book_author=$("#book_author").val();
+
+	if(book_name==""){
+		alert("도서이름 입력하세요");
+		$("#book_name").focus();
+		return;
+	}
+	if(book_genre==""){
+		alert("도서장르를 입력하세요");
+		$("#book_genre").focus();
+		return;
+	}
+	if(book_content==""){
+		alert("도서내용을 입력하세요");
+		$("#book_content").focus();
+		return;
+	}
+	if(book_publisher==""){
+		alert("도서출판사를 입력하세요");
+		$("#book_publisher").focus();
+		return;
+	}
+	if(book_author==""){
+		alert("작가를 입력하세요");
+		$("#book_author").focus();
+		return;
+	}
+	
+	document.form1.action="${path}/book/book_update.do";
+	document.form1.submit();
+}
+
 </script>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<!-- admin계정만 접근하도록 추후 수정 -->
-<!-- C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\project\WEB-INF\views\images에 이미지저장 -->
-<h2>도서추가 </h2>
-<form method="post" name="form1" action="${path}/book/book_insert.do" enctype="multipart/form-data">
-	<table style="width:100%; text-align: center;">
-		<tr>
-			<th>도서명</th>
-			<td colspan="3"><input name="book_name" id="book_name"></td>
-		</tr>
-		<tr>
-			<th>도서이미지</th>
-			<td><input type="file" id="file" name="file"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><div class="fileDrop"></div></td>
-			<td colspan="2"><div class="uploadedList"></div></td>
-		</tr>
-		<tr>
-			<th>장르</th>
-			<td colspan="3"><input name="book_genre" id="book_genre"></td>
-		</tr>
-		<tr>
-			<th>설명</th>
-			<td colspan="3"><input name="book_content" id="book_content"></td>
-		</tr>
-		<tr>
-			<th>출판사</th>
-			<td colspan="3"><input name="book_publisher" id="book_publisher"></td>
-		</tr>
-		<tr>
-			<th>지은이</th>
-			<td colspan="3"><input name="book_author" id="book_author"></td>
-		</tr>
-	</table>
-	<button type="button" id="btnSave">확인</button>
+<h2>도서 수정페이지</h2>
+<form name="form1" method="post" enctype="multipart/form-data">
+<table>
+ <tr>
+  <td>${dto.book_img}</td>
+  <td><input type="file" id="file" name="file" width="300px" height="300px"></td>
+ </tr>
+ <tr>
+  <td colspan="2"><div class="fileDrop"></div></td>
+  <td colspan="2"><div class="uploadedList"></div></td>
+  </tr>
+    <tr>
+     <td width="width:30%;">제목</td>
+     <td><input name="book_name" id="book_name" value="${dto.book_name}"></td>
+    </tr>
+    <tr>
+     <td>장르</td>
+     <td><input name="book_genre" id="book_genre" value="${dto.book_genre}"></td>
+    </tr>
+    <tr>
+     <td>저자</td>
+     <td><input name="book_author" id="book_author" value="${dto.book_author}"></td>
+    </tr>
+     <tr>
+     <td>출판사</td>
+     <td><input name="book_publisher" id="book_publisher" value="${dto.book_publisher}"> </td>
+    </tr>
+    <tr>
+     <td>내용</td>
+     <td><input name="book_content" id="book_content" value="${dto.book_content}" style="height:200px;"> </td>
+    </tr>
+    <tr>
+     <td>대출가능여부</td>
+     <td>
+     <input type="checkbox" name="book_check" id="book_check" value="-1" style="width:20px;">분실시 체크
+<%--      
+	<c:choose>
+     <c:when test="${dto.book_check==0}">
+      대출가능
+     </c:when>
+     <c:otherwise>
+      대출불가능 
+     </c:otherwise>
+     </c:choose> --%>
+    </tr>
+    <tr>
+	<td><input type="hidden" id="book_ck" value="${dto.book_check}"></td>
+    <td><input type="hidden" name="book_id" id="book_id" value="${dto.book_id}"></td>
+	<td><input type="button" value="수정" onclick="book_update()"></td>
+	<td><input type="button" value="삭제" onclick="book_delete()"></td>
+    </tr>
+</table>
 </form>
 </body>
 </html>

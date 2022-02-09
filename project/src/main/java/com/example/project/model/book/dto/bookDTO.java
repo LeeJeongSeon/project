@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class bookDTO {
 
-	private String book_id;
+	private int book_id;
 	private String  book_name;
 	private String  book_img;
 	private String  book_genre;
@@ -28,10 +28,10 @@ public class bookDTO {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public String getBook_id() {
+	public int getBook_id() {
 		return book_id;
 	}
-	public void setBook_id(String book_id) {
+	public void setBook_id(int book_id) {
 		this.book_id = book_id;
 	}
 	public String getBook_name() {

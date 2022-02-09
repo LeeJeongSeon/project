@@ -91,24 +91,6 @@ public class BookController {
 		
 	}
 	
-	//체크박스로 장르검색
-	@RequestMapping("checkbox.do")
-	@ResponseBody
-	public void checkbox(@RequestParam(value="check",required=true) List<String> checkbox) {
-		String checklist[]=checkbox.toArray(new String[checkbox.size()]);
-		book_check check=new book_check();
-		check.setChecklist(checklist);
-		
-		List<bookDTO> list=bookService.list_checkbox(check);
-		//ModelAndView mav=new ModelAndView();
-		//mav.setViewName("book_list/search");//포워딩
-		//mav.addObject("list", list); 
-		
-		//ModelAndView
-		//return mav;
-		
-	}
-	
 	//도서목록 인기순
 	@RequestMapping("popularity_list.do")
 	public ModelAndView popularity_list(
@@ -144,15 +126,7 @@ public class BookController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("book_list/book_insert");
 		return mav;
-		//return "redirect:/book_list/book_insert"; //후에 redirect로 수정
-	}
-	
-	//임시
-	@RequestMapping("example.do")
-	public String example(HttpServletRequest request) {
-		String uploadpath=request.getServletContext().getRealPath("WEB-INF/views/images");
-		System.out.print("경로:"+uploadpath);
-		return uploadpath;
+		//return "redirect:/book_list/book_insert";
 	}
 	
 	//이미지 ajax로 받음
@@ -226,13 +200,13 @@ public class BookController {
 		//uploadAjax.jsp의 if(result=="deleted"){와 연결
 	}
 	
-	//도서목록추가
+	//도서추가
 	@RequestMapping("book_insert.do")
 	public String insert(@ModelAttribute bookDTO dto,HttpServletRequest request) {
 		//String uploadPath="C:\\work\\project\\project\\src\\main\\webapp\\WEB-INF\\views\\images"; //개발디렉토리
-		//컴퓨터마다 실행환경에 다르기때문에 베포디렉토리에서 실행, 다만 베포디렉토리는 컴퓨터마다 이미지폴더가 초기화됨. 
+		//베포디렉토리는 컴퓨터마다 이미지폴더가 초기화됨. 
 		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
-		System.out.println("임시:"+dto+"\n");
+
 		if(dto.getBook_img()=="") {
 			String filename="-";
 			dto.setBook_img(filename);
@@ -248,8 +222,68 @@ public class BookController {
 			}
 		}
 		dto.setBook_img(filename);
-		System.out.print("임시:"+dto);
+
 		bookService.insertBook(dto);
-		return "redirect:/book_list/book_list";
+		return "redirect:/book/list.do";
+	}
+	
+	//도서수정페이지로 이동
+	@RequestMapping("book_edit.do")
+	public ModelAndView book_edit(@RequestParam String id) throws Exception{
+		int book_id=Integer.parseInt(id);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("book_list/book_edit");
+		mav.addObject("dto", bookService.read(book_id));
+		System.out.println("임시:"+mav);
+		return mav;		
+	}
+	
+	//도서수정
+	@RequestMapping("book_update.do")
+	public String book_update(@ModelAttribute bookDTO dto,HttpServletRequest request) throws Exception{
+		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
+		System.out.println("임시:"+dto+"\n");
+		
+		String filename="-";
+		//첨부파일이 있으면
+		if(!dto.getFile().isEmpty()) { //파일첨부로 이미지를 받아옴
+			filename=dto.getFile().getOriginalFilename();
+			try {
+				new File(uploadPath).mkdir();
+				dto.getFile().transferTo(new File(uploadPath+filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dto.setBook_img(filename);
+		}else if(dto.getBook_img()!=null){ //ajax로 이미지를 받아옴 
+			System.out.println("실행중입니다.");
+		}
+		else {//새로운 첨부 파일이 없을 때
+			//기존에 첨부한 파일 정보를 가져옴
+			bookDTO dto2=bookService.read(dto.getBook_id());
+			dto.setBook_img(dto2.getBook_img());
+		}
+		bookService.updateBook(dto);
+
+		return "redirect:/book/list.do";		
+	}
+	
+	@RequestMapping("book_delete.do")
+	public String book_delete(HttpServletRequest request,@RequestParam int book_id) {
+		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
+		System.out.println("삭제넘버:"+book_id);
+		//첨부파일 삭제
+		bookDTO dto=bookService.read(book_id);
+		String filename=dto.getBook_img();
+		if(filename != null && !filename.equals("-")) {
+			File f=new File(uploadPath+filename);
+			System.out.println("파일존재여부 :"+f.exists());
+			if(f.exists()) {//파일이 존재하면
+				f.delete();//파일 목록 삭제
+				System.out.println("삭제되었습니다.");
+			}
+		}
+		bookService.deleteBook(book_id);
+		return "redirect:/book/list.do";	
 	}
 }

@@ -61,6 +61,18 @@ public class bookDAOImpl implements bookDAO {
 		sqlSession.selectList("book.book_insert",dto);
 	}
 
+	@Override
+	public void updateBook(bookDTO dto) {
+		sqlSession.update("book.book_update",dto);
+		
+	}
+
+	@Override
+	public void deleteBook(int book_id) {
+		sqlSession.delete("book.book_delete",book_id);
+		
+	}
+
 
 	
 	
