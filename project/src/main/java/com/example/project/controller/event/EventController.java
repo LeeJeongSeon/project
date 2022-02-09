@@ -52,7 +52,7 @@ public class EventController {
 		return "redirect:/event/list.do";
 	}
 	
-	/* 행사 관리 페이지로 이동 & 행사리스트 출력 */
+	/* 행사관리 페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("listAdmin.do")
 	public String listAdmin(Model model) throws Exception {
 		List<EventDTO> list=eventService.eventList();
@@ -60,7 +60,7 @@ public class EventController {
 		return "event/listAdmin";
 	}
 	
-	/* 행사 관리 상세보기 페이지로 이동 */
+	/* 행사관리 상세보기 페이지로 이동 */
 	@RequestMapping("viewAdmin.do")
 	public ModelAndView viewAdmin(int e_num) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -69,6 +69,7 @@ public class EventController {
 		return mav;
 	}
 	
+	/* 행사신청 승인처리 후 행사관리 페이지로 이동*/
 	@RequestMapping("approve.do")
 	public String approve(int e_num) throws Exception {
 		eventService.approve(e_num);
