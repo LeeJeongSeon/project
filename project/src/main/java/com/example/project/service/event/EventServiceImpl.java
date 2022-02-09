@@ -45,8 +45,14 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
+	public List<EventDTO> eventListForAdmin() throws Exception {
+		return eventDao.eventListForAdmin();
+	}
+	
+	@Override
 	public void approve(int e_num) throws Exception {
 		eventDao.approve(e_num);
 	}
+
 
 }

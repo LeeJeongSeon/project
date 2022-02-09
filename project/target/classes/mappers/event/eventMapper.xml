@@ -6,6 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="event">
 	<select id="eventList" resultType="eventDTO"> 
 		select * from event
+		where e_start_d > sysdate 
+		order by e_start_d
 	</select>
 	
 	<update id="updateEReadCount">
@@ -23,6 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
 		values (event_seq.nextval, #{e_email}, #{e_agency}, #{e_instr}, #{e_name}, #{e_intro}, #{e_start_d}, #{e_start_t}, #{e_finish_d}, #{e_place})
 	</insert>
+	
+	<select id="eventListForAdmin" resultType="eventDTO"> 
+		select * from event
+	</select>
 	
 	<update id="approve">
 		update event

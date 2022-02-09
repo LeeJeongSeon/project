@@ -55,7 +55,7 @@ public class EventController {
 	/* 행사관리 페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("listAdmin.do")
 	public String listAdmin(Model model) throws Exception {
-		List<EventDTO> list=eventService.eventList();
+		List<EventDTO> list=eventService.eventListForAdmin();
 		model.addAttribute("list", list);
 		return "event/listAdmin";
 	}

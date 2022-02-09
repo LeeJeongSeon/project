@@ -36,8 +36,14 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
+	public List<EventDTO> eventListForAdmin() {
+		return sqlSession.selectList("event.eventListForAdmin");
+	}
+	
+	@Override
 	public void approve(int e_num) {
 		sqlSession.update("event.approve", e_num);
 	}
+
 
 }
