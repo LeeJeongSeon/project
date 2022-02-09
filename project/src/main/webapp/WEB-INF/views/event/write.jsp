@@ -74,7 +74,7 @@ function checkDate() {
 		if(confirm(s_Year+"년 "+s_Month+"월 "+s_Date+"일 "+$('#e_start_t').val()+"에 시작하는 행사가 맞습니까?")) {
 			if(startDate > finishDate) {
 				alert("행사 마감일을 행사 시작일보다 늦게 입력할 수 없습니다.");
-			}else if(startDate < finishDate) {
+			}else {
 				if(confirm(f_Year+"년 "+f_Month+"월 "+f_Date+"일에 마감하는 행사가 맞습니까?")) {
 					return true;
 				}
@@ -127,7 +127,7 @@ function checkDate() {
 						<%
 						for(int i=8; i<20; i++) {
 						%>
-						<option value="<%=i%>:00"><%=i%>:00
+						<option value="<%=i%>:00"><%=i%>:00</option>
 						<%
 						}
 						%>
