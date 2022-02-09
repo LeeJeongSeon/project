@@ -68,4 +68,11 @@ public class EventController {
 		mav.setViewName("event/viewAdmin");
 		return mav;
 	}
+	
+	@RequestMapping("approve.do")
+	public String approve(int e_num) throws Exception {
+		eventService.approve(e_num);
+		return "redirect:/event/listAdmin.do";
+	}
+	
 } 

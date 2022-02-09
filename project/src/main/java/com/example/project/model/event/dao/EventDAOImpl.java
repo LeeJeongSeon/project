@@ -35,4 +35,9 @@ public class EventDAOImpl implements EventDAO {
 		sqlSession.insert("event.insert", dto);
 	}
 
+	@Override
+	public void approve(int e_num) {
+		sqlSession.update("event.approve", e_num);
+	}
+
 }

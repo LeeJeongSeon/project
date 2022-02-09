@@ -12,5 +12,6 @@ public interface EventService {
 	public void updateEReadCount(int e_num, HttpSession session) throws Exception;
 	public EventDTO eventViewDetail(int e_num) throws Exception;
 	public void insert(EventDTO dto) throws Exception;
+	public void approve(int e_num) throws Exception;
 
 }

@@ -10,5 +10,6 @@ public interface EventDAO {
 	public void updateEReadCount(int e_num);
 	public EventDTO eventViewDetail(int e_num);
 	public void insert(EventDTO dto);
+	public void approve(int e_num);
 
 }

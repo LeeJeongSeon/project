@@ -44,4 +44,9 @@ public class EventServiceImpl implements EventService {
 		eventDao.insert(dto);
 	}
 
+	@Override
+	public void approve(int e_num) throws Exception {
+		eventDao.approve(e_num);
+	}
+
 }
