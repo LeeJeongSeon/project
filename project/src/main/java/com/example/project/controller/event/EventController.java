@@ -51,4 +51,4 @@ public class EventController {
 		eventService.insert(dto);
 		return "redirect:/event/list.do";
 	}
-}
+} 
