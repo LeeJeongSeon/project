@@ -18,6 +18,7 @@
 		<th>행사명</th>
 		<th>시작일</th>
 		<th>마감일</th>
+		<th>장소</th>
 		<th>조회수</th>
 	</tr>
 	<c:forEach var="dto" items="${list}">
@@ -27,8 +28,9 @@
 				<td>${dto.e_agency}</td>
 				<td>${dto.e_instr}</td>
 				<td>${dto.e_name}</td>
-				<td><fmt:formatDate value="${dto.e_start_d}" pattern="yyyy-MM-dd"/></td>
-				<td><fmt:formatDate value="${dto.e_finish_d}" pattern="yyyy-MM-dd"/></td>
+				<td>${dto.e_start_d}</td>
+				<td>${dto.e_finish_d}</td>
+				<td>${dto.e_place }</td>
 				<td>${dto.e_read_cnt}</td>
 				<td><input type="button" onclick="location.href='${path}/event/view.do?e_num=${dto.e_num}'" value="이동"></td>
 			</tr>
