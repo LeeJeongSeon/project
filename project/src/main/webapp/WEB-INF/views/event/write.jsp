@@ -85,6 +85,7 @@ function checkDate() {
 </script>
 </head>
 <body>
+<%@ include file="../include/eventMenu.jsp" %>
 	<form action="${path}/event/insert.do" name="form1" >
 		<table>
 			<tr>

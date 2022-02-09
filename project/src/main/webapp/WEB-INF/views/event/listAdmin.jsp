@@ -8,6 +8,7 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/eventMenu.jsp" %>
 행사 관리 페이지 <br>
 신청상태 <select name="target">
 	<option value="all">전체</option>

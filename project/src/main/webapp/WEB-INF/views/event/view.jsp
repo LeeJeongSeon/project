@@ -8,6 +8,7 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/eventMenu.jsp" %>
 	행사 상세보기 페이지
 	<table> 
 		<tr>

@@ -8,8 +8,8 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/eventMenu.jsp" %>
 행사 페이지
-<input type="button" id="btnWrite" value="신청하기" onclick="location.href='${path}/event/write.do'">
 <table>
 	<tr>
 		<th>번호</th>
