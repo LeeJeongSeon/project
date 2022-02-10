@@ -1,6 +1,8 @@
 package com.example.project.controller.event;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.event.dto.EventDTO;
+import com.example.project.service.event.EventPager;
 import com.example.project.service.event.EventService;
 
 @Controller
@@ -23,10 +27,26 @@ public class EventController {
 	
 	/* 행사페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("list.do")
-	public String list(Model model) throws Exception {
-		List<EventDTO> list=eventService.eventList();
-		model.addAttribute("list", list);
-		return "event/list";
+	public ModelAndView list(
+				@RequestParam(defaultValue = "all") String search_option,
+				@RequestParam(defaultValue = "") String keyword,
+				@RequestParam(defaultValue = "1") int curPage) throws Exception {
+		int count=eventService.countEvent(search_option, keyword);
+		EventPager pager=new EventPager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<EventDTO> list=eventService.eventList(search_option, keyword, start, end);
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+		map.put("pager", pager);
+		mav.setViewName("event/list");
+		mav.addObject("map", map);
+		System.out.println(list.get(1));
+		return mav;
 	}
 	
 	/* 행사 상세보기 페이지로 이동 */

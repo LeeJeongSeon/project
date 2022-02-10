@@ -1,6 +1,8 @@
 package com.example.project.model.event.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,8 +18,21 @@ public class EventDAOImpl implements EventDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public List<EventDTO> eventList() {
-		return sqlSession.selectList("event.eventList");
+	public int countEvent(String search_option, String keyword) {
+		Map<String,String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectOne("event.countEvent", map);
+	}
+	
+	@Override
+	public List<EventDTO> eventList(String search_option, String keyword, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("event.eventList", map);
 	}
 
 	@Override
@@ -44,6 +59,5 @@ public class EventDAOImpl implements EventDAO {
 	public void approve(int e_num) {
 		sqlSession.update("event.approve", e_num);
 	}
-
 
 }
