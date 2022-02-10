@@ -12,6 +12,6 @@ public interface EventDAO {
 	public EventDTO eventViewDetail(int e_num);
 	public void insert(EventDTO dto);
 	public List<EventDTO> eventListForAdmin();
-	public void approve(int e_num);
+	public void result(int e_num, int e_result);
 
 }

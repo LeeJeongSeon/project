@@ -55,8 +55,8 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
-	public void approve(int e_num) throws Exception {
-		eventDao.approve(e_num);
+	public void result(int e_num, int e_result) throws Exception {
+		eventDao.result(e_num, e_result);
 	}
 
 	

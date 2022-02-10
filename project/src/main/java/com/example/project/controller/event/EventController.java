@@ -89,10 +89,10 @@ public class EventController {
 		return mav;
 	}
 	
-	/* 행사신청 승인처리 후 행사관리 페이지로 이동*/
-	@RequestMapping("approve.do")
-	public String approve(int e_num) throws Exception {
-		eventService.approve(e_num);
+	/* 행사신청 승인/반려 처리 후 행사관리 페이지로 이동*/
+	@RequestMapping("result.do")
+	public String result(int e_num, int e_result) throws Exception {
+		eventService.result(e_num, e_result);
 		return "redirect:/event/listAdmin.do";
 	}
 	

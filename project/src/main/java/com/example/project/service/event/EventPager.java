@@ -2,7 +2,7 @@ package com.example.project.service.event;
 
 public class EventPager {
 	//페이징 처리 한 페이지에 10개 게시글, 한 단락에 5페이지
-	public static final int PAGE_SCALE = 5;
+	public static final int PAGE_SCALE = 10;
 	public static final int BLOCK_SCALE = 5;
 	private int curPage;
 	private int prevPage;

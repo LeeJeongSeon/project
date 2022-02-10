@@ -65,9 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by e_num
 	</select>
 	
-	<update id="approve">
+	<update id="result">
 		update event
-		set e_result=1
+		set e_result=#{e_result}
 		where e_num=#{e_num}
 	</update>
 </mapper>

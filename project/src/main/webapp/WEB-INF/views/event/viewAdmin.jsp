@@ -6,6 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<script type="text/javascript">
+function result (e_num, r_num) {
+	location.href="${path}/event/result.do?e_num="+e_num+"&e_result="+r_num;
+}
+</script>
+<style type="text/css">
+fieldset {
+	margin: 10px;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/eventMenu.jsp" %>
@@ -38,17 +48,22 @@
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td>${dto.e_email}</td>
+			<td colspan="3">${dto.e_email}</td>
+		</tr>
+		<tr align="center">
+			<td colspan="4">
+				<input type="button" value="승인" onclick="result(${dto.e_num}, 1)">
+				<input type="button" value="반려" onclick="result(${dto.e_num}, 2)">
+			</td>
 		</tr>
 	</table>
+	<fieldset>
 	<div>
 	이메일 보내기
-	<textarea>안녕하세요 OO도서관입니다.
+	<textarea rows="5">안녕하세요 OO도서관입니다.
 신청하신 행사는...</textarea> <br>
 	<input type="button" onclick="send()" value="보내기">
 	</div>
-	<div>
-		<input type="button" value="행사 승인처리" onclick="location.href='${path}/event/approve.do?e_num=${dto.e_num}'">
-	</div>
+	</fieldset>
 </body>
 </html>

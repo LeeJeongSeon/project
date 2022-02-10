@@ -56,8 +56,11 @@ public class EventDAOImpl implements EventDAO {
 	}
 	
 	@Override
-	public void approve(int e_num) {
-		sqlSession.update("event.approve", e_num);
+	public void result(int e_num, int e_result) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("e_num", e_num);
+		map.put("e_result", e_result);
+		sqlSession.update("event.result", map);
 	}
 
 }

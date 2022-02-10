@@ -14,6 +14,6 @@ public interface EventService {
 	public EventDTO eventViewDetail(int e_num) throws Exception;
 	public void insert(EventDTO dto) throws Exception;
 	public List<EventDTO> eventListForAdmin() throws Exception;
-	public void approve(int e_num) throws Exception;
+	public void result(int e_num, int e_result) throws Exception;
 
 }

@@ -11,19 +11,26 @@ function list(page) {
 	location.href="${path}/event/list.do?curPage="+page;
 } 
 </script>
+<style type="text/css">
+fieldset {
+	margin: 10px;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/eventMenu.jsp" %>
-<form name="form1" method="post" action="${path}/event/list.do">
-	<select name="search_option">
-		<option value="e_name" <c:if test="${map.search_option == 'e_name'}">selected</c:if>>이름</option>
-		<option value="e_agency" <c:if test="${map.search_option == 'e_agency'}">selected</c:if>>기관</option>
-		<option value="e_place" <c:if test="${map.search_option == 'e_place'}">selected</c:if>>장소</option>
-		<option value="all" <c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
-	</select>
-	<input name="keyword" value="${map.keyword}">
-	<input type="submit" value="조회">
-</form>
+<fieldset> 검색하기
+	<form name="form1" method="post" action="${path}/event/list.do">
+		<select name="search_option">
+			<option value="e_name" <c:if test="${map.search_option == 'e_name'}">selected</c:if>>이름</option>
+			<option value="e_agency" <c:if test="${map.search_option == 'e_agency'}">selected</c:if>>기관</option>
+			<option value="e_place" <c:if test="${map.search_option == 'e_place'}">selected</c:if>>장소</option>
+			<option value="all" <c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
+		</select>
+		<input name="keyword" value="${map.keyword}">
+		<input type="submit" value="조회">
+	</form>
+</fieldset>
 행사 페이지
 <table>
 	<tr>
