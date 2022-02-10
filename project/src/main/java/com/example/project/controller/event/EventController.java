@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.event.dto.EventDTO;
+import com.example.project.model.event.dto.EventEmailDTO;
+import com.example.project.service.event.EventEmailService;
 import com.example.project.service.event.EventPager;
 import com.example.project.service.event.EventService;
 
@@ -24,6 +26,8 @@ public class EventController {
 	
 	@Inject
 	EventService eventService;
+	@Inject
+	EventEmailService eventEmailService;
 	
 	/* 행사페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("list.do")
@@ -110,4 +114,10 @@ public class EventController {
 		return "redirect:/event/listAdmin.do";
 	}
 	
+	@RequestMapping("send.do")
+	public String send(@ModelAttribute EventEmailDTO dto, Model model) throws Exception {
+		String message=eventEmailService.sendMail(dto);
+		model.addAttribute("message", message);
+		return "redirect:/event/listAdmin.do";
+	}
 } 
