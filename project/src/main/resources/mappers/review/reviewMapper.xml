@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="review">
+
+ <select id="listAll" resultType="com.example.project.model.review.dto.ReviewDTO">
+  <include refid="paging_header" />
+		  select review_bno,review_title,review_writer,review_content,review_regdate,review_viewcnt,review_show
+		    , (select count(*) from review_reply where review_bno=r.review_bno) review_cnt
+		  from review r, member m
+		  <include refid="search" />
+		    order by review_bno desc 
+		  <include refid="paging_footer" />
+ </select>
+ 
+ <sql id="paging_header">
+  select *
+  from (
+    select rownum as rn, A.* 
+    from(
+ </sql>
+ <sql id="paging_footer">
+    ) A
+  ) where rn between #{start} and #{end}
+ </sql>
+ 
+ 
+ 
+ 
+ 
+ <insert id="insert">
+  insert into review (review_bno,review_title,review_content,review_writer) values 
+   (seq_review.nextval, #{review_title}, #{review_content}, #{review_writer})
+ </insert>
+
+
+
+
+
+
+
+ <!-- 첨부파일 정보 저장 -->
+ <insert id="addAttach">
+  insert into review_attach (review_fullName, review_bno) values
+  ( #{review_fullName}, seq_review.currval)
+ </insert>
+ 
+ 
+ 
+ 
+ <!-- 레코드 갯수 계산 -->
+ <!-- 아래 show='Y'가 아까 show='N'과 이어지는 내용인데 -->
+ <!-- 글을 삭제 했을때 show='N'인 애들이 화면에 안보이게 된 이유가 애초에 여기서 -->
+ <!-- show='Y'인 애들만 불러서 화면에 표시하기 때문임 -->
+ <!-- 즉, show='Y'가 아닌 애들은 애초에 데이터를 가져오지 않기 때문에 화면에 표시 될 수가 없었던거 -->
+ <select id="countArticle" resultType="int">
+  select count(*)
+  from review r, member m
+  <include refid="search"></include>
+ </select>
+
+ <!-- 검색기능추가, sql태그는 다른 태그에 끼워넣을 수 있는 기능을 가지고 있음. -->
+ <!-- 위 where절을 대신해서 끼워넣을 수 있음 -->
+ <sql id="search">
+  <choose>
+   <when test="search_option != 'all' ">
+    where r.review_writer=m.userid 
+      and review_show='Y'
+      and ${search_option} like #{keyword}
+   </when>
+   <otherwise>
+    where r.review_writer=m.userid
+      and review_show='Y'
+      and (name like #{keyword} 
+       or review_title like #{keyword}
+       or review_content like #{keyword})
+   </otherwise>
+  </choose>
+ </sql>
+ 
+ 
+ 
+ 
+ 
+ <!-- 조회수 증가 처리 -->
+ <update id="increaseViewcnt">
+  update review set review_viewcnt=review_viewcnt+1
+		where review_bno=#{review_bno}
+ </update>
+ 
+ 
+ 
+ <select id="read" resultType="com.example.project.model.review.dto.ReviewDTO">
+  select review_bno,review_title,review_writer,review_regdate,review_viewcnt,review_content
+  from review r, member m
+  where r.review_writer=m.userid and review_bno=#{review_bno}
+ </select>
+ 
+ 
+ 
+ <select id="getAttach" resultType="String">
+  select review_fullName
+  from review_attach
+  where review_bno=#{review_bno}
+  order by review_regdate desc
+ </select>
+ 
+ 
+ 
+ 
+ 
+ <!-- 첨부파일 레코드 삭제 -->
+ <delete id="deleteFile">
+  delete from review_attach
+  where review_fullName=#{review_fullName}
+ </delete>
+ 
+ <!-- 게시물 내용 수정 -->
+ <update id="update">
+  update review
+  set review_title=#{review_title}, review_content=#{review_content}
+  where review_bno=#{review_bno}
+ </update>
+ 
+ 
+ <!-- 새로운 첨부파일 추가 -->
+ <insert id="updateAttach">
+  insert into review_attach (review_fullName, review_bno) 
+  values ( #{review_fullName}, #{review_bno})
+ </insert>
+ 
+ 
+ 
+ <!-- 게시물 삭제 -->
+ <delete id="delete">
+  <!-- delete from board where bno=#{bno} -->
+  update review set show='N' where review_bno=#{review_bno}
+ </delete>
+	
+</mapper>
+
+
+

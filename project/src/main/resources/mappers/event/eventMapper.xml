@@ -4,9 +4,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="event">
+	<sql id="pagerHeader">
+		select * 
+		from (
+			select rownum as rn, E.*
+			from (
+	</sql>
+	
+	<sql id="pagerFooter">
+			) E
+		) where rn between #{start} and #{end}
+	</sql>
+	
+	<sql id="search">
+		<choose>
+			<when test="search_option != 'all'">
+				${search_option} like #{keyword}
+			</when>
+			<otherwise>
+				(e_name like #{keyword}
+				or e_agency like #{keyword}
+				or e_place like #{keyword})
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="listForAdmin">
+		<if test="list_option != 'all' or past == 'on'">where</if>
+		<if test="list_option != 'all'">
+			e_result=
+			<if test="list_option == 'waiting'">0</if>
+			<if test="list_option == 'approve'">1</if>
+			<if test="list_option == 'reject'">2</if>
+		</if>
+		<if test="list_option != 'all' and past == 'on'">and</if>
+		<if test="past == 'on'">
+			e_finish_d &lt; sysdate 
+		</if>
+	</sql>
+	
+	<select id="countEvent" resultType="int">
+		select count(*) from event
+		where e_finish_d > sysdate and 
+		<include refid="search"/>
+	</select>
+	
 	<select id="eventList" resultType="eventDTO"> 
-		select * from event
-		where e_start_d > sysdate 
+		<include refid="pagerHeader"/>
+		select e_num, e_agency, e_instr, e_name, e_start_d, e_finish_d, e_place, e_read_cnt, e_result 
+		from event
+		where e_finish_d > sysdate 
+		<include refid="pagerFooter"/>
 		order by e_start_d
 	</select>
 	
@@ -26,13 +74,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (event_seq.nextval, #{e_email}, #{e_agency}, #{e_instr}, #{e_name}, #{e_intro}, #{e_start_d}, #{e_start_t}, #{e_finish_d}, #{e_place})
 	</insert>
 	
-	<select id="eventListForAdmin" resultType="eventDTO"> 
-		select * from event
+	<select id="countEventForAdmin" resultType="int">
+		select count(*) from event
+		<include refid="listForAdmin"/>
 	</select>
 	
-	<update id="approve">
+	<select id="eventListForAdmin" resultType="eventDTO"> 
+		<include refid="pagerHeader"/>
+		select e_num, e_agency, e_name, e_result 
+		from event
+		<include refid="listForAdmin"/>
+		<include refid="pagerFooter"/>
+		order by e_num
+	</select>
+	
+	<update id="result">
 		update event
-		set e_result=1
+		set e_result=#{e_result}
 		where e_num=#{e_num}
 	</update>
 </mapper>

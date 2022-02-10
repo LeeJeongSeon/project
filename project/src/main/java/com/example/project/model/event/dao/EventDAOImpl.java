@@ -1,6 +1,8 @@
 package com.example.project.model.event.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,8 +18,21 @@ public class EventDAOImpl implements EventDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public List<EventDTO> eventList() {
-		return sqlSession.selectList("event.eventList");
+	public int countEvent(String search_option, String keyword) {
+		Map<String,String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectOne("event.countEvent", map);
+	}
+	
+	@Override
+	public List<EventDTO> eventList(String search_option, String keyword, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("event.eventList", map);
 	}
 
 	@Override
@@ -34,16 +49,31 @@ public class EventDAOImpl implements EventDAO {
 	public void insert(EventDTO dto) {
 		sqlSession.insert("event.insert", dto);
 	}
+	
+	@Override
+	public int countEventForAdmin(String list_option, String past) {
+		Map<String, String> map = new HashMap<>();
+		map.put("list_option", list_option);
+		map.put("past", past);
+		return sqlSession.selectOne("event.countEventForAdmin", map);
+	}
 
 	@Override
-	public List<EventDTO> eventListForAdmin() {
-		return sqlSession.selectList("event.eventListForAdmin");
+	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("list_option", list_option);
+		map.put("past", past);
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("event.eventListForAdmin", map);
 	}
 	
 	@Override
-	public void approve(int e_num) {
-		sqlSession.update("event.approve", e_num);
+	public void result(int e_num, int e_result) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("e_num", e_num);
+		map.put("e_result", e_result);
+		sqlSession.update("event.result", map);
 	}
-
 
 }

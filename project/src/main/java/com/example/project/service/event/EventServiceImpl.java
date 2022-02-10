@@ -15,10 +15,15 @@ public class EventServiceImpl implements EventService {
 
 	@Inject
 	EventDAO eventDao;
+
+	@Override
+	public int countEvent(String search_option, String keyword) {
+		return eventDao.countEvent(search_option, keyword);
+	}
 	
 	@Override
-	public List<EventDTO> eventList() throws Exception {
-		return eventDao.eventList();
+	public List<EventDTO> eventList(String search_option, String keyword, int start, int end) throws Exception {
+		return eventDao.eventList(search_option, keyword, start, end);
 	}
 
 	@Override
@@ -43,16 +48,24 @@ public class EventServiceImpl implements EventService {
 	public void insert(EventDTO dto) throws Exception {
 		eventDao.insert(dto);
 	}
+	
+	@Override
+	public int countEventForAdmin(String list_option, String past) throws Exception {
+		return eventDao.countEventForAdmin(list_option, past);
+	}
 
 	@Override
-	public List<EventDTO> eventListForAdmin() throws Exception {
-		return eventDao.eventListForAdmin();
+	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) throws Exception {
+		return eventDao.eventListForAdmin(list_option, past, start, end);
 	}
 	
 	@Override
-	public void approve(int e_num) throws Exception {
-		eventDao.approve(e_num);
+	public void result(int e_num, int e_result) throws Exception {
+		eventDao.result(e_num, e_result);
 	}
+
+	
+
 
 
 }
