@@ -119,7 +119,7 @@ public class BookController {
 		return mav;
 	}
 	
-	//페이지이동
+	
 	@RequestMapping("book_write.do")
 	public ModelAndView book_insert() {
 		ModelAndView mav = new ModelAndView();

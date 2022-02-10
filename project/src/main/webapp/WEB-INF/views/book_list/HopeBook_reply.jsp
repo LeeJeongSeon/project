@@ -36,7 +36,7 @@ function updateReply(){
 <table style="border: 1px solid; width: 100%;">
  <tr>
   <td>관리자</td>
-  <td><input name="hopeBook_userid" id="hopeBook_userid"> </td>
+  <td><input name="hopeBook_userid" id="hopeBook_userid" value="admin"> </td>
  </tr>
  <tr>
   <td>제목</td>
@@ -65,7 +65,9 @@ function updateReply(){
    <input type="hidden" name="re_step" id="re_step" value="${dto.re_step}">
    <input type="hidden" name="re_level" id="re_level" value="${dto.re_level}">
    <input type="hidden" name="hopeBook_id" id="hopeBook_id" value="${dto.hopeBook_id}">
-   <input type="button" value="답변달기" onclick="updateReply()">
+   <c:if test="${sessionScope.userid==admin}">
+   	<input type="button" value="답변달기" onclick="updateReply()">
+   </c:if>
   </td>
  </tr>
 </table>

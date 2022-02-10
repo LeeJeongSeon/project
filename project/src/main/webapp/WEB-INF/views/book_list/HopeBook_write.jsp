@@ -148,7 +148,7 @@ $(function(){
 </tr> -->
 </table>
 	<div style="width:700px; text-align:center;">
-	<input type="hidden" name="hopeBook_userid" id="hopeBook_userid" value="kim"> <!-- 후에 value를 ${sessionScope.userid}로 수정 -->
+	<input type="hidden" name="hopeBook_userid" id="hopeBook_userid" value="${sessionScope.userid}"> 
 		<!-- <button type="button" id="btnSave">확인</button> -->
 	<input type="submit" value="글쓰기">
 	</div>
