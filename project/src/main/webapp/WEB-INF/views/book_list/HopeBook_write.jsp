@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="${path}/ckeditor/ckeditor.js"></script>
 <script>
-$(function(){
+ $(function(){
 	$("#btn").click(function(){
 		if($("#hopeBook_title").val()=="") {
 			alert("제목을 입력해주세요.");
@@ -98,7 +98,7 @@ function book_check(){
 </tr> -->
 </table>
 	<div style="width:700px; text-align:center;">
-	<input type="hidden" name="hopeBook_userid" id="hopeBook_userid" value="${sessionScope.userid}"> 
+	<input type="hidden" name="hopeBook_userid" id="hopeBook_userid" value="kim"> <!-- 후에 value를 ${sessionScope.userid}로 수정 -->
 		<!-- <button type="button" id="btnSave">확인</button> -->
 	<button type="button" id ="btn">글쓰기</button>
 	<button type="button" onclick="book_check()"></button>

@@ -68,9 +68,7 @@ $(function(){
    <input type="hidden" name="ref" id="ref" value="${dto.ref}">
    <input type="hidden" name="re_level" id="re_level" value="${dto.re_level}">
    <input type="hidden" name="hopeBook_id" id="hopeBook_id" value="${dto.hopeBook_id}">
-   <c:if test="${sessionScope.userid eq 'admin'}">
-    <input type="button" value="답변" id="btnReply">
-   </c:if>
+   <input type="button" value="답변" id="btnReply"> <!-- admin만 작성하도록 쓰기 -->
    <input type="button" value="목록" id="btnList"> 
    </form>
 </body>
