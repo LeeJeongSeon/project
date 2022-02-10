@@ -16,98 +16,48 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="${path}/ckeditor/ckeditor.js"></script>
 <script>
-function checkImageType(fileName){
-	var pattern=/jpg|png|gif/i; //정규표현식(i는 대소문자 무시)
-	return fileName.match(pattern);// 규칙에 맞으면 true가 리턴
-}
-function getOriginalName(fileName){
-	if(checkImageType(fileName)){//이미지 파일이면 skip
-		return;
-	}
-	var idx=fileName.indexOf("_")+1;//uuid를 제외한 파일이름만 뽑음
-	return fileName.substr(idx);
-}
-function getImageLink(fileName){
-	if(!checkImageType(fileName)){//이미지 파일이 아니면 skip
-		return;
-	}
-	var front=fileName.substr(0,12);//(0~11번째까지 자르고)
-	var end=fileName.substr(14);//14번째 문자열 앞의 s_제거
-	return front+end;
-}
-function getFileInfo(fullName){
-	var fileName, imgsrc, getLink, fileLink;
-	if(checkImageType(fullName)){ //이미지 파일인 경우
-		imgsrc="/project/HopeBook/displayFile?fileName="
-			+fullName;
-		fileLink=fullName.substr(14); //14 인덱스~끝
-		var front=fullName.substr(0,12); //0~11
-		var end=fullName.substr(14);
-		getLink="/project/HopeBook/displayFile?fileName="+front+end;
-	}else{ //이미지가 아닌 경우
-		fileLink=fullName.substr(12);
-		getLink="/project/HopeBook/displayFile?fileName="+fullName;
-	}
-	// uuid_filename (+1은 _ 다음의 filename을 뽑아냄)
-	fileName=fileLink.substr(fileLink.indexOf("_")+1);
-	//json 리턴
-	return {fileName: fileName, imgsrc: imgsrc,
-			getLink: getLink, fullName:fullName };
-}
 $(function(){
-	
-	$("#hopeBook_content").summernote({ //서머노트
-		width: 500,
-		height: 200
-	});
-	
-	$("#btnSave").click(function(){
-		var str="";
-   //uploadedList 영역에 클래스이름이 file인 히든타입의태그를 각각 반복
-		$("#uploadedList .file").each(function(i){
-			console.log(i);
-			//hidden 태그 구성-
-			str += "<input type='hidden' name='files["+i+"]'	value='"
-	+ $(this).val()+"'>";
-		});
-		//폼에 hidden 태그들을 붙임
-		$("#form1").append(str);
+	$("#btn").click(function(){
+		if($("#hopeBook_title").val()=="") {
+			alert("제목을 입력해주세요.");
+			$("#hopeBook_title").focus();
+		}
+		if($("#hopeBook_bookname").val()=="") {
+			alert("도서 이름을 입력해주세요.");
+			$("#hopeBook_bookname").focus();
+		}
+		if($("#hopeBook_author").val()=="") {
+			alert("저자를 입력해주세요.");
+			$("#hopeBook_author").focus();
+		}
+		if($("#hopeBook_content").val()=="") {
+			alert("신청사유를 입력해주세요.");
+			$("#hopeBook_content").focus();
+		}
+		
+		if(book_check()==1){
+			alert("이미 있는 도서이기 때문에 희망도서로 신청불가능합니다.")
+		}
+		console.log("임시:"+book_check);
+		
 		document.form1.submit();
 	});
-  //파일을 마우스로 드래그하여 업로드 영역에 올라갈때 파일이 열리는 기본 효과 막음
-	$(".fileDrop").on("dragenter dragover",function(e){
-		e.preventDefault();
-	});
-  //마우스로 파일을 드롭할 때 파일이 열리는 기본 효과 막음
-	$(".fileDrop").on("drop",function(e){
-		e.preventDefault();
-		//첫번째 첨부파일
-		var files=e.originalEvent.dataTransfer.files;
-		var file=files[0];
-		//폼 데이터에 첨부파일 추가
-		var formData=new FormData();
-		formData.append("file",file);
-		$.ajax({
-			url: "${path}/HopeBook/uploadAjax",
-			data: formData,
-			dataType: "text",
-			processData: false,
-			contentType: false,
-			type: "post",
-			success: function(data){
-				//console.log(data);
-				//data : 업로드한 파일 정보와 Http 상태 코드
-				var fileInfo=getFileInfo(data);
-				//console.log(fileInfo);
-				var html="<a href='"+fileInfo.getLink+"'>"+
-					fileInfo.fileName+"</a><br>";
-				html += "<input type='hidden' class='file' value='"
-					+fileInfo.fullName+"'>";
-				$("#uploadedList").append(html);
-			}
-		});
-	});
 });
+
+function book_check(){
+	var param="hopeBook_bookname="+$("#hopeBook_bookname").val()
+	+"$hopeBook_author="+$("#hopeBook_author").val()
+	
+	$.ajax({
+		type: "post",
+		url: "${path}/HopeBook/check.do",
+		data: param,
+		success:function(check){
+			return check;
+		}
+		
+	});
+}
 </script>
 
 <style>
@@ -150,7 +100,8 @@ $(function(){
 	<div style="width:700px; text-align:center;">
 	<input type="hidden" name="hopeBook_userid" id="hopeBook_userid" value="${sessionScope.userid}"> 
 		<!-- <button type="button" id="btnSave">확인</button> -->
-	<input type="submit" value="글쓰기">
+	<button type="button" id ="btn">글쓰기</button>
+	<button type="button" onclick="book_check()"></button>
 	</div>
 </form>
 </body>
