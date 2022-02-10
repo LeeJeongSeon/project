@@ -88,7 +88,6 @@ public class BookController {
 		mav.setViewName("book_list/view");
 		mav.addObject("dto", bookService.read(book_id));
 		return mav;
-		
 	}
 	
 	//도서목록 인기순

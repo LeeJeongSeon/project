@@ -7,7 +7,7 @@
 <a href="${path}/book/list.do">책목록</a> | 
 <a href="${path}/book/popularity_list.do">책목록(인기순)</a> | 
 <a href="${path}/book/book_write.do">도서 추가</a> |
-<a href="${path}/book/hope_book.do">희망도서신청</a> |
+<a href="${path}/HopeBook/list.do">희망도서신청</a> |
 <a href="${path}/event/list.do">행사</a> | 
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |    
 </div>

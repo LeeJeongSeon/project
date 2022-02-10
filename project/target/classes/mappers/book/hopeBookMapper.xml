@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="hopeBook"> 
+<select id="countArticle" resultType="int">
+select count(*)
+  from hope_book
+  <choose>
+	<when test="search_option != 'all' ">
+	where  ${search_option} like #{keyword}
+	</when>
+	<otherwise>
+	where (hopeBook_bookname like #{keyword} 
+	or hopeBook_userid like #{keyword}
+	or hopeBook_title like #{keyword})
+	</otherwise>
+  	</choose>
+</select>
+
+<select id="listAll" resultType="com.example.project.model.book.dto.hopeBookDTO">
+ select *
+  from (
+    select rownum as rn, A.* 
+    from(
+		  select hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,
+		  hopeBook_userid,re_level,name
+		  from hope_book,member
+		  where member.userid=hope_book.hopeBook_userid
+		  <choose>
+		   <when test="search_option != 'all' ">
+		    and  ${search_option} like #{keyword}
+		   </when>
+		   <otherwise>
+		    and (hopeBook_title like #{keyword} 
+			or hopeBook_userid like #{keyword}
+			or hopeBook_name like #{keyword})
+		   </otherwise>
+  			</choose>
+  			order by ref desc, re_level
+  			 ) A
+  ) where rn between #{start} and #{end}
+</select>
+
+<select id="read" resultType="com.example.project.model.book.dto.hopeBookDTO">
+select hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,name
+,ref,re_step,re_level
+from hope_book,member
+where member.userid=hope_book.hopeBook_userid
+ and hopeBook_id=#{hopeBook_id}
+</select>
+
+<insert id="insertBook">
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level)
+values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_userid},#{hopeBook_content},#{hopeBook_author}
+,HopeBook_seq.nextval,1,0)
+</insert>
+
+<insert id="reply">
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level)
+values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_userid},#{hopeBook_content},#{hopeBook_author}
+,#{ref},#{re_step},#{re_level})
+</insert>
+
+<select id="ref" resultType="int">
+select distinct ref from hope_book where ref=#{ref}
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
