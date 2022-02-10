@@ -48,10 +48,15 @@ public class EventServiceImpl implements EventService {
 	public void insert(EventDTO dto) throws Exception {
 		eventDao.insert(dto);
 	}
+	
+	@Override
+	public int countEventForAdmin(String list_option, String past) throws Exception {
+		return eventDao.countEventForAdmin(list_option, past);
+	}
 
 	@Override
-	public List<EventDTO> eventListForAdmin() throws Exception {
-		return eventDao.eventListForAdmin();
+	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) throws Exception {
+		return eventDao.eventListForAdmin(list_option, past, start, end);
 	}
 	
 	@Override

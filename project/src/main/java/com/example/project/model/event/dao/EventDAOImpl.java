@@ -49,10 +49,23 @@ public class EventDAOImpl implements EventDAO {
 	public void insert(EventDTO dto) {
 		sqlSession.insert("event.insert", dto);
 	}
+	
+	@Override
+	public int countEventForAdmin(String list_option, String past) {
+		Map<String, String> map = new HashMap<>();
+		map.put("list_option", list_option);
+		map.put("past", past);
+		return sqlSession.selectOne("event.countEventForAdmin", map);
+	}
 
 	@Override
-	public List<EventDTO> eventListForAdmin() {
-		return sqlSession.selectList("event.eventListForAdmin");
+	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("list_option", list_option);
+		map.put("past", past);
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("event.eventListForAdmin", map);
 	}
 	
 	@Override

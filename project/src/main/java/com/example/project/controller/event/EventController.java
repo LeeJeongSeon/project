@@ -45,7 +45,6 @@ public class EventController {
 		map.put("pager", pager);
 		mav.setViewName("event/list");
 		mav.addObject("map", map);
-		System.out.println(list.get(1));
 		return mav;
 	}
 	
@@ -74,10 +73,25 @@ public class EventController {
 	
 	/* 행사관리 페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("listAdmin.do")
-	public String listAdmin(Model model) throws Exception {
-		List<EventDTO> list=eventService.eventListForAdmin();
-		model.addAttribute("list", list);
-		return "event/listAdmin";
+	public ModelAndView listAdmin(
+			@RequestParam(defaultValue = "all") String list_option,
+			@RequestParam(defaultValue = "") String past,
+			@RequestParam(defaultValue = "1") int curPage) throws Exception {
+		int count=eventService.countEventForAdmin(list_option, past);
+		EventPager pager=new EventPager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		List<EventDTO> list=eventService.eventListForAdmin(list_option, past, start, end);
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("list_option", list_option);
+		map.put("past", past);
+		map.put("pager", pager);
+		mav.addObject("map", map);
+		mav.setViewName("event/listAdmin");
+		return mav;
 	}
 	
 	/* 행사관리 상세보기 페이지로 이동 */

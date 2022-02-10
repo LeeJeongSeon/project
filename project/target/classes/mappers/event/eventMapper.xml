@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) where rn between #{start} and #{end}
 	</sql>
 	
-	<sql id="searchSetting">
+	<sql id="search">
 		<choose>
 			<when test="search_option != 'all'">
 				${search_option} like #{keyword}
@@ -29,10 +29,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</sql>
 	
+	<sql id="listForAdmin">
+		<if test="list_option != 'all' or past == 'on'">where</if>
+		<if test="list_option != 'all'">
+			e_result=
+			<if test="list_option == 'waiting'">0</if>
+			<if test="list_option == 'approve'">1</if>
+			<if test="list_option == 'reject'">2</if>
+		</if>
+		<if test="list_option != 'all' and past == 'on'">and</if>
+		<if test="past == 'on'">
+			e_finish_d &lt; sysdate 
+		</if>
+	</sql>
+	
 	<select id="countEvent" resultType="int">
 		select count(*) from event
 		where e_finish_d > sysdate and 
-		<include refid="searchSetting"/>
+		<include refid="search"/>
 	</select>
 	
 	<select id="eventList" resultType="eventDTO"> 
@@ -60,8 +74,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (event_seq.nextval, #{e_email}, #{e_agency}, #{e_instr}, #{e_name}, #{e_intro}, #{e_start_d}, #{e_start_t}, #{e_finish_d}, #{e_place})
 	</insert>
 	
+	<select id="countEventForAdmin" resultType="int">
+		select count(*) from event
+		<include refid="listForAdmin"/>
+	</select>
+	
 	<select id="eventListForAdmin" resultType="eventDTO"> 
-		select * from event
+		<include refid="pagerHeader"/>
+		select e_num, e_agency, e_name, e_result 
+		from event
+		<include refid="listForAdmin"/>
+		<include refid="pagerFooter"/>
 		order by e_num
 	</select>
 	

@@ -11,7 +11,8 @@ public interface EventDAO {
 	public void updateEReadCount(int e_num);
 	public EventDTO eventViewDetail(int e_num);
 	public void insert(EventDTO dto);
-	public List<EventDTO> eventListForAdmin();
+	public int countEventForAdmin(String list_option, String past);
+	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end);
 	public void result(int e_num, int e_result);
 
 }

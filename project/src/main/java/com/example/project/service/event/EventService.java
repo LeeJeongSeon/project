@@ -13,7 +13,8 @@ public interface EventService {
 	public void updateEReadCount(int e_num, HttpSession session) throws Exception;
 	public EventDTO eventViewDetail(int e_num) throws Exception;
 	public void insert(EventDTO dto) throws Exception;
-	public List<EventDTO> eventListForAdmin() throws Exception;
+	public int countEventForAdmin(String list_option, String past) throws Exception;
+	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) throws Exception;
 	public void result(int e_num, int e_result) throws Exception;
 
 }
