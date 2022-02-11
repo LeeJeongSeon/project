@@ -224,19 +224,6 @@ public class HopeBookController {
 			return "redirect:/HopeBook/list.do";
 		}
 		
-//		@RequestMapping("check.do")
-//		@ResponseBody
-//		public int check(
-//				@RequestParam String hopeBook_bookname,
-//				@RequestParam String hopeBook_author) {
-//			int check=0;
-//			
-//			System.out.println("체크:"+hopeBook_bookname);
-//			System.out.println("체크:"+hopeBook_author);
-//			
-//			return check;
-//		}
-		
 	
 		@RequestMapping("hopeBook_check.do")
 		@ResponseBody
