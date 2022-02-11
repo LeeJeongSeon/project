@@ -218,10 +218,6 @@ public class HopeBookController {
 			dto2.setRe_step(re_step);
 			dto2.setRe_level(re_level);
 			
-			//답글 순서 조정
-			//hopeBookSercvie.updateStep(ref, re_step);
-			System.out.println("답변:"+ref+","+re_step+","+re_level);
-			System.out.println("답변:"+dto2);
 			
 			hopeBookSercvie.reply(dto2);
 			
@@ -242,4 +238,21 @@ public class HopeBookController {
 //		}
 		
 	
+		@RequestMapping("hopeBook_check.do")
+		@ResponseBody
+		public int hopeBook_check(
+				@RequestParam String hopeBook_author,
+				@RequestParam String hopeBook_bookname
+				) {
+			int check=0;
+			
+			String check_val=hopeBookSercvie.check(hopeBook_author,hopeBook_bookname);
+			if(check_val==null) {
+				check=0;
+			}else {
+				check=1;
+			}
+			
+			return check;
+		}
 }

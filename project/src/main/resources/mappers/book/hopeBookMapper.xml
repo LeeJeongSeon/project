@@ -67,6 +67,12 @@ values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_us
 <select id="ref" resultType="int">
 select distinct ref from hope_book where ref=#{ref}
 </select>
+
+<select id="check" resultType="String">
+select book_name
+from book
+where book_name=#{hopeBook_bookname} and book_author=#{hopeBook_author}
+</select>
 </mapper>
 
 

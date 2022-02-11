@@ -16,6 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="${path}/ckeditor/ckeditor.js"></script>
 <script>
+<<<<<<< HEAD
  $(function(){
 	$("#btn").click(function(){
 		if($("#hopeBook_title").val()=="") {
@@ -29,10 +30,35 @@
 		if($("#hopeBook_author").val()=="") {
 			alert("저자를 입력해주세요.");
 			$("#hopeBook_author").focus();
+=======
+$(function(){
+	var book_check=0;
+	
+	$("#hopeBook_content").summernote({ //서머노트
+		width: 500,
+		height: 200
+	});
+	
+	$("#btn").click(function(){
+		if($("#hopeBook_title").val()=="") {
+			alert("게시물 제목을 입력해주세요.");
+			$("#hopeBook_title").focus();	
+		}
+		if($("#hopeBook_bookname").val()=="") {
+			alert("책 이름을 입력해주세요.");
+			$("#hopeBook_bookname").focus();
+			
+		}
+		if($("#hopeBook_author").val()=="") {
+			alert("책 저자를 입력해주세요.");
+			$("#hopeBook_author").focus();
+			
+>>>>>>> master
 		}
 		if($("#hopeBook_content").val()=="") {
 			alert("신청사유를 입력해주세요.");
 			$("#hopeBook_content").focus();
+<<<<<<< HEAD
 		}
 		
 		if(book_check()==1){
@@ -56,6 +82,35 @@ function book_check(){
 			return check;
 		}
 		
+=======
+			
+		}
+		
+		hopeBook_check()
+
+		if(book_check==1){
+			document.form1.submit();
+		}
+		
+	});
+});
+
+function hopeBook_check(){
+	var param="hopeBook_bookname="+$("#hopeBook_bookname").val()
+	 +"&hopeBook_author="+$("#hopeBook_author").val();
+	
+	$.ajax({
+		url: "${path}/HopeBook/hopeBook_check.do",
+		type: "post",
+		data: param,
+		success: function(check){
+			if(check==1){
+				alert("이미 있는 도서이기때문에 신청이 불가능합니다");
+			}else{
+				book_check=1;
+			}
+		}
+>>>>>>> master
 	});
 }
 </script>
@@ -100,8 +155,14 @@ function book_check(){
 	<div style="width:700px; text-align:center;">
 	<input type="hidden" name="hopeBook_userid" id="hopeBook_userid" value="kim"> <!-- 후에 value를 ${sessionScope.userid}로 수정 -->
 		<!-- <button type="button" id="btnSave">확인</button> -->
+<<<<<<< HEAD
 	<button type="button" id ="btn">글쓰기</button>
 	<button type="button" onclick="book_check()"></button>
+=======
+	<!-- <input type="submit" value="글쓰기"> -->
+	<button type="button" id="btn">글쓰기</button>
+	<button type="button" onclick="hopeBook_check()">값 확인</button>
+>>>>>>> master
 	</div>
 </form>
 </body>

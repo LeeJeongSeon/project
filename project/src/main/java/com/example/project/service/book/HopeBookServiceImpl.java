@@ -54,4 +54,9 @@ public class HopeBookServiceImpl implements HopeBookService {
 		return hopeBookDao.ref(ref);
 	}
 
+	@Override
+	public String check(String hopeBook_author, String hopeBook_bookname) {
+		return hopeBookDao.check(hopeBook_author,hopeBook_bookname);
+	}
+
 }
