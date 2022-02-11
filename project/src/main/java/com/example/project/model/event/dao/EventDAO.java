@@ -15,5 +15,6 @@ public interface EventDAO {
 	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end);
 	public void result(int e_num, int e_result);
 	public int checkEmail(String e_email);
+	public int checkENum(String e_email);
 
 }

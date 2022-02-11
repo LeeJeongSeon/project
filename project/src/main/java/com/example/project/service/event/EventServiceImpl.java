@@ -69,6 +69,11 @@ public class EventServiceImpl implements EventService {
 		return eventDao.checkEmail(e_email);
 	}
 
+	@Override
+	public int checkENum(String e_email) throws Exception {
+		return eventDao.checkENum(e_email);
+	}
+
 	
 
 

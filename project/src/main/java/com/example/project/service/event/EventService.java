@@ -17,5 +17,6 @@ public interface EventService {
 	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) throws Exception;
 	public void result(int e_num, int e_result) throws Exception;
 	public int checkEmail(String e_email) throws Exception;
+	public int checkENum(String e_email) throws Exception;
 
 }

@@ -100,4 +100,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from event
 		where e_email=#{email}
 	</select>
+	
+	<select id="checkENum" resultType="int">
+		select e_num from event
+		where e_email=#{email}
+	</select>
 </mapper>

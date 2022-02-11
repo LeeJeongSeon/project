@@ -90,24 +90,14 @@ function checkDate() {
 	<form action="${path}/event/insert.do" name="form1" >
 		<table>
 			<tr>
-				<th>주최기관</th>
-				<td><input name="e_agency" id="e_agency"></td>
-			</tr>
-			<tr>
-				<th>강사</th>
-				<td colspan="3"><input name="e_instr" id="e_instr"></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td colspan="3"><input type="email" name="e_email" id="e_email" placeholder="abc@abc.com"></td>
-			</tr>
-			<tr>
 				<th>행사명</th>
 				<td colspan="3"><input name="e_name" id="e_name"></td>
 			</tr>
 			<tr>
-				<th>희망 행사 장소</th>
-				<td colspan="3"><input name="e_place" id="e_place"></td>
+				<th>주최기관</th>
+				<td><input name="e_agency" id="e_agency"></td>
+				<th>강사</th>
+				<td><input name="e_instr" id="e_instr"></td>
 			</tr>
 			<tr>
 				<td colspan="4">
@@ -115,15 +105,9 @@ function checkDate() {
 				</td>
 			</tr>
 			<tr>
-				<th>행사 시작일</th>
-				<td colspan="3"><input type="date" name="e_start_d" id="e_start_d"></td>
-			</tr>
-			<tr>
-				<th>행사 마감일</th>
-				<td colspan="3"><input type="date" name="e_finish_d" id="e_finish_d"></td>
-			</tr>
-			<tr>
-				<th>행시 시작 시간</th>
+				<th>희망 행사장소</th>
+				<td><input name="e_place" id="e_place"></td>
+				<th>시작 시간</th>
 				<td>
 					<select name="e_start_t" id="e_start_t">
 						<%
@@ -137,6 +121,16 @@ function checkDate() {
 				</td>
 			</tr>
 			<tr>
+				<th>행사 시작일</th>
+				<td><input type="date" name="e_start_d" id="e_start_d"></td>
+				<th>행사 마감일</th>
+				<td><input type="date" name="e_finish_d" id="e_finish_d"></td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td colspan="3"><input type="email" name="e_email" id="e_email" placeholder="abc@abc.com"></td>
+			</tr>
+			<tr align="center">
 				<td colspan="4">
 					<input type="button" id="btnEnter" value="신청하기">
 				</td>
