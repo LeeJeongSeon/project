@@ -76,4 +76,9 @@ public class EventDAOImpl implements EventDAO {
 		sqlSession.update("event.result", map);
 	}
 
+	@Override
+	public int checkEmail(String e_email) {
+		return sqlSession.selectOne("event.checkEmail", e_email);
+	}
+
 }

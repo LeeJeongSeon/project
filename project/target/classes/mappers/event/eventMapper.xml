@@ -95,4 +95,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set e_result=#{e_result}
 		where e_num=#{e_num}
 	</update>
+	
+	<select id="checkEmail" resultType="int">
+		select count(*) from event
+		where e_email=#{email}
+	</select>
 </mapper>
