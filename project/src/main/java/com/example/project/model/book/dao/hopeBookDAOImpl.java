@@ -57,4 +57,16 @@ public class hopeBookDAOImpl implements hopeBookDAO {
 		return sqlSession.selectOne("hopeBook.ref",ref);
 	}
 
+	@Override
+	public String check(String hopeBook_author, String hopeBook_bookname) {
+		Map<String,String> map=new HashMap<>();
+		map.put("hopeBook_author", hopeBook_author);
+		map.put("hopeBook_bookname", hopeBook_bookname);
+		//System.out.println("임시:"+hopeBook_bookname+","+hopeBook_author);
+		//String result=sqlSession.selectOne("hopeBook.check",map);
+		//System.out.println(result);
+		
+		return sqlSession.selectOne("hopeBook.check",map);
+	}
+
 }

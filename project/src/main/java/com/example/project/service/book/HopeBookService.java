@@ -13,4 +13,5 @@ public interface HopeBookService {
 	public void updateStep(int ref, int re_step);
 	public void reply(hopeBookDTO dto2);
 	public int ref(int ref);
+	public String check(String hopeBook_author, String hopeBook_bookname);
 }
