@@ -11,9 +11,13 @@ function list(page) {
 	location.href="${path}/event/list.do?curPage="+page;
 } 
 
-function info() {
+function checkEmail() {
 	var e_email=prompt("행사 신청하실 때 입력한 이메일을 입력해주세요", "");
-	location.href="${path}/event/info.do?e_email="+e_email;
+	location.href="${path}/event/checkEmail.do?e_email="+e_email;
+}
+if(${param.message=='no'}) {
+	alert("잘못 입력된 이메일이거나 신청하신 행사가 없습니다.");
+	location.href="${path}/event/list.do";
 }
 </script>
 <style type="text/css">
@@ -95,7 +99,7 @@ fieldset {
 </table>
 <footer align="center">
 이미 신청한 행사의 내용을 수정하거나, 신청 취소를 희망하실 경우 클릭하세요! 
-<input type="button" onclick="info()" value="확인">
+<input type="button" onclick="checkEmail()" value="확인">
 </footer>
 </body>
 </html>

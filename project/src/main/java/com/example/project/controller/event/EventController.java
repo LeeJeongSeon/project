@@ -110,13 +110,17 @@ public class EventController {
 		return "redirect:/event/listAdmin.do";
 	}
 	
-	/* 행사 수정/삭제 페이지로 이동 */
-	@RequestMapping("info.do")
-	public ModelAndView info() throws Exception {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("message", "no");
-		mav.setViewName("event/info");
-		return mav;
+	/* 이메일로 신청한 행사 조회 */
+	@RequestMapping("checkEmail.do")
+	public String checkEmail(String e_email) throws Exception {
+		int eventCount = eventService.checkEmail(e_email);
+		String result="";
+		if(eventCount==0) {
+			result="redirect:/event/list.do?message=no";			
+		}else {
+			result="redirect:/event/info.do";
+		}
+		return result;
 	}
 	
 } 
