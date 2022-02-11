@@ -110,4 +110,13 @@ public class EventController {
 		return "redirect:/event/listAdmin.do";
 	}
 	
+	/* 행사 수정/삭제 페이지로 이동 */
+	@RequestMapping("info.do")
+	public ModelAndView info() throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("message", "no");
+		mav.setViewName("event/info");
+		return mav;
+	}
+	
 } 
