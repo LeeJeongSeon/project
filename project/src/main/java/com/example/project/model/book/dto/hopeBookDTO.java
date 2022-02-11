@@ -11,6 +11,8 @@ public class hopeBookDTO {
 	private int re_step;
 	private int re_level;
 	private String name; //join해서 받아올 속성 
+	private String userid;
+	
 	public hopeBookDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,8 +24,11 @@ public class hopeBookDTO {
 		return "hopeBookDTO [hopeBook_id=" + hopeBook_id + ", hopeBook_title=" + hopeBook_title + ", hopeBook_bookname="
 				+ hopeBook_bookname + ", hopeBook_author=" + hopeBook_author + ", hopeBook_userid=" + hopeBook_userid
 				+ ", hopeBook_content=" + hopeBook_content + ", ref=" + ref + ", re_step=" + re_step + ", re_level="
-				+ re_level + ", name=" + name + "]";
+				+ re_level + ", name=" + name + ", userid=" + userid + "]";
 	}
+
+
+
 
 
 	public int getRef() {
@@ -97,6 +102,14 @@ public class hopeBookDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	
 	

@@ -205,10 +205,11 @@ public class HopeBookController {
 		
 		@RequestMapping("insertReply.do")
 		public String insertReply(@ModelAttribute hopeBookDTO dto) {
-			System.out.println("답변:"+dto);
 			hopeBookDTO dto2=hopeBookSercvie.read(dto.getHopeBook_id());
 			dto2.setHopeBook_content(dto.getHopeBook_content());
 			dto2.setHopeBook_title(dto.getHopeBook_title());
+			dto2.setHopeBook_userid(dto.getHopeBook_userid());
+			dto2.setName("관리자");
 			
 			int ref=hopeBookSercvie.ref(dto.getRef());//답변그룹번호
 			int re_step=dto.getRe_step()+1;//출력순번
@@ -220,6 +221,7 @@ public class HopeBookController {
 			
 			
 			hopeBookSercvie.reply(dto2);
+			System.out.println("답변:"+dto2);
 			
 			return "redirect:/HopeBook/list.do";
 		}

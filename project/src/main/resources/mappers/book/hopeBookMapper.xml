@@ -36,7 +36,7 @@ select count(*)
 		   <otherwise>
 		    and (hopeBook_title like #{keyword} 
 			or hopeBook_userid like #{keyword}
-			or hopeBook_name like #{keyword})
+			or hopeBook_bookname like #{keyword})
 		   </otherwise>
   			</choose>
   			order by ref desc, re_level

@@ -68,9 +68,10 @@ $(function(){
   </td>
  </tr>
 </table>
-<!-- admin만 접근하도록 추후수정 -->
 <input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
+<c:if test="${sessionScope.userid eq 'admin'}">
 <a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
 <button type="button" id="updatebtn">수정</button>
+</c:if>
 </body>
 </html>

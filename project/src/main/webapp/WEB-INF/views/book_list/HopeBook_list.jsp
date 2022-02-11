@@ -39,8 +39,8 @@ function list(page){
 		<option value="hopeBook_userid" 
 		<c:if test="${map.search_option == 'hopeBook_userid'}">selected</c:if>
 		>작성자</option>
-		<option value="hopeBook_name" 
-		<c:if test="${map.search_option == 'hopeBook_name'}">selected</c:if>
+		<option value="hopeBook_bookname" 
+		<c:if test="${map.search_option == 'hopeBook_bookname'}">selected</c:if>
 		>신청도서</option>
 		<option value="all" 
 		<c:if test="${map.search_option == 'all'}">selected</c:if>
@@ -61,7 +61,7 @@ function list(page){
 
 ${map.count}개의 게시물이 있습니다.
 
-<table border="1">
+<table border="1" style="width:80%; text-align: center">
  <tr>
   <th>제목</th>
   <th>작성자</th>

@@ -34,13 +34,17 @@ $(function(){
 .input{
 	border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
 }
+*{
+	font-size: 20px;
+}
 </style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>희망도서 상세페이지</h2>
+<div style="text-align: center;">
 <form id="form1" name="form1" method="post" action="${path}/HopeBook/replay.do">
-   <table>
+   <table style="width:100%;">
     <tr>
      <td width="width:30%;">제목</td>
      <td><input id="hopeBook_title" name="hopeBook_title" class="input" value="${dto.hopeBook_title}" readonly></td>
@@ -73,5 +77,6 @@ $(function(){
    </c:if>
    <input type="button" value="목록" id="btnList"> 
    </form>
+</div>
 </body>
 </html>
