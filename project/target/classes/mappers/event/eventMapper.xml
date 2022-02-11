@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 	
 	<sql id="search">
+		and
 		<choose>
 			<when test="search_option != 'all'">
 				${search_option} like #{keyword}
@@ -39,13 +40,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="list_option != 'all' and past == 'on'">and</if>
 		<if test="past == 'on'">
-			e_finish_d &lt; sysdate 
+			e_finish_d > sysdate 
 		</if>
 	</sql>
 	
 	<select id="countEvent" resultType="int">
 		select count(*) from event
-		where e_finish_d > sysdate and 
+		where e_finish_d > sysdate
 		<include refid="search"/>
 	</select>
 	
@@ -54,6 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select e_num, e_agency, e_instr, e_name, e_start_d, e_finish_d, e_place, e_read_cnt, e_result 
 		from event
 		where e_finish_d > sysdate 
+		<include refid="search"/>
 		<include refid="pagerFooter"/>
 		order by e_start_d
 	</select>
