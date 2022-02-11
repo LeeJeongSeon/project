@@ -10,10 +10,23 @@
 function result (e_num, r_num) {
 	if(r_num==2) {
 		if(!confirm("해당 행사를 반려하실 경우 사유를 이메일을 통해 알려야합니다.\n이메일 전송이 완료되었습니까?")) {
+			alert("이메일로 행사 반려 사유를 알려주세요!");
+			$("#subject").focus();
 			return;
 		}
 	}
 	location.href="${path}/event/result.do?e_num="+e_num+"&e_result="+r_num;
+}
+
+function send(address) {
+	var message=$("#message").val();
+	while(message.indexOf("\n")!=-1) {
+		message=message.replace("\n"," ");
+	}
+	var data="?senderName=행사관리자&senderMail=num5library@gmail.com&receiveMail="+address
+			+"&subject="+$("#subject").val()+"&message="+message;
+	location.href="${path}/email/sendEventResult.do"+data;
+	alert("이메일 발송에 성공했습니다.");
 }
 </script>
 <style type="text/css">
@@ -65,19 +78,18 @@ fieldset {
 	<fieldset>
 		<legend>이메일 작성 폼</legend>
 		<div style="padding: 2% 5%;">
-			<input style="width: 100%"><br><br>
-			<textarea rows="15" style="width: 100%;">안녕하세요 도서관입니다.
-행사 신청 결과를 안내해드립니다.
+			<input style="width: 100%" id="subject" value="안녕하세요 도서관입니다."><br><br>
+			<textarea rows="15" style="width: 100%;" id="message">행사 신청 결과를 안내해드립니다.
 
 신청하신 행사가 불가피하게 하단의 사유로 인해 반려되었습니다.
 
 첫 번째 사유 : 
-두 번쨰 사유 : 
+두 번째 사유 : 
 
 신청에 감사드리며 다른 시간대 혹은 장소로 재 신청하시길 바랍니다.
 
 좋은 하루 되세요 :)</textarea> <br>
-			<input type="button" onclick="send()" value="보내기">
+			<button type="button" onclick="send('${dto.e_email}')">보내기</button>
 		</div>
 	</fieldset>
 </body>
