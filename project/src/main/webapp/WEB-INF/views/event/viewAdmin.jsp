@@ -8,6 +8,11 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 function result (e_num, r_num) {
+	if(r_num==2) {
+		if(!confirm("해당 행사를 반려하실 경우 사유를 이메일을 통해 알려야합니다.\n이메일 전송이 완료되었습니까?")) {
+			return;
+		}
+	}
 	location.href="${path}/event/result.do?e_num="+e_num+"&e_result="+r_num;
 }
 </script>
@@ -58,12 +63,22 @@ fieldset {
 		</tr>
 	</table>
 	<fieldset>
-	<div>
-	이메일 보내기
-	<textarea rows="5">안녕하세요 OO도서관입니다.
-신청하신 행사는...</textarea> <br>
-	<input type="button" onclick="send()" value="보내기">
-	</div>
+		<legend>이메일 작성 폼</legend>
+		<div style="padding: 2% 5%;">
+			<input style="width: 100%"><br><br>
+			<textarea rows="15" style="width: 100%;">안녕하세요 도서관입니다.
+행사 신청 결과를 안내해드립니다.
+
+신청하신 행사가 불가피하게 하단의 사유로 인해 반려되었습니다.
+
+첫 번째 사유 : 
+두 번쨰 사유 : 
+
+신청에 감사드리며 다른 시간대 혹은 장소로 재 신청하시길 바랍니다.
+
+좋은 하루 되세요 :)</textarea> <br>
+			<input type="button" onclick="send()" value="보내기">
+		</div>
 	</fieldset>
 </body>
 </html>
