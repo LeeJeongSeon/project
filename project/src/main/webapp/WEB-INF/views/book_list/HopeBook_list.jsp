@@ -44,7 +44,7 @@ function list(page){
 		>신청도서</option>
 		<option value="all" 
 		<c:if test="${map.search_option == 'all'}">selected</c:if>
-		>도서이름+작성자</option> <!-- 통합검색 -->
+		>제목+도서이름+작성자</option> <!-- 통합검색 -->
 	</select>
 	<input name="keyword" value="${map.keyword}">
 	<input type="submit" value="검색">

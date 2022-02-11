@@ -73,6 +73,12 @@ select book_name
 from book
 where book_name=#{hopeBook_bookname} and book_author=#{hopeBook_author}
 </select>
+
+<select id="view" resultType="com.example.project.model.book.dto.hopeBookDTO">
+select *
+from hope_book
+where ref=(select ref from hope_book where hopebook_id=#{hopeBook_id})
+</select>
 </mapper>
 
 

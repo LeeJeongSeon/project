@@ -59,4 +59,9 @@ public class HopeBookServiceImpl implements HopeBookService {
 		return hopeBookDao.check(hopeBook_author,hopeBook_bookname);
 	}
 
+	@Override
+	public List<hopeBookDTO> view(int hopeBook_id) {
+		return hopeBookDao.view(hopeBook_id);
+	}
+
 }

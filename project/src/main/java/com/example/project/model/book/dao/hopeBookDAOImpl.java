@@ -69,4 +69,9 @@ public class hopeBookDAOImpl implements hopeBookDAO {
 		return sqlSession.selectOne("hopeBook.check",map);
 	}
 
+	@Override
+	public List<hopeBookDTO> view(int hopeBook_id) {
+		return sqlSession.selectList("hopeBook.view",hopeBook_id);
+	}
+
 }

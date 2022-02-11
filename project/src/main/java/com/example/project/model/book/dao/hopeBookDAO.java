@@ -13,4 +13,5 @@ public interface hopeBookDAO {
 	public void reply(hopeBookDTO dto);
 	public int ref(int ref);
 	public String check(String hopeBook_author, String hopeBook_bookname);
+	public List<hopeBookDTO> view(int hopeBook_id);
 }

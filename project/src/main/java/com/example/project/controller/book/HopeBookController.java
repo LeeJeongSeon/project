@@ -79,11 +79,11 @@ public class HopeBookController {
 	@RequestMapping("view.do")
 	public ModelAndView view(int hopeBook_id, HttpSession session) 
 			throws Exception{
-		System.out.print("상세보기 임시:"+ hopeBook_id+"\n");
+		List<hopeBookDTO> list=hopeBookSercvie.view(hopeBook_id);
+		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("book_list/HopeBook_view");
-		mav.addObject("dto", hopeBookSercvie.read(hopeBook_id));
-		System.out.print("상세보기 임시:"+ hopeBookSercvie.read(hopeBook_id)+"\n");
+		mav.addObject("list", list);
 		return mav;
 	}
 	
