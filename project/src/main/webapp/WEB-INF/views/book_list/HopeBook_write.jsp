@@ -16,8 +16,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="${path}/ckeditor/ckeditor.js"></script>
 <script>
+var book_check=0;
+
 $(function(){
-	var book_check=0;
 	
 	$("#hopeBook_content").summernote({ //서머노트
 		width: 500,
@@ -67,6 +68,7 @@ function hopeBook_check(){
 			if(check==1){
 				alert("이미 있는 도서이기때문에 신청이 불가능합니다");
 			}else{
+				console.log("실행?");
 				book_check=1;
 			}
 		}

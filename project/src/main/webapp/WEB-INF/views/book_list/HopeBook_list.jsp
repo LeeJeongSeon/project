@@ -50,7 +50,14 @@ function list(page){
 	<input type="submit" value="검색">
  </form>
  
+<c:choose>
+<c:when test="${sessionScope.userid!=null}">
 <button type="button" id="btnWrite">글쓰기</button>
+</c:when>
+<c:otherwise>
+글쓰기기능은 로그인이 필요한 기능입니다. <br>
+</c:otherwise>
+</c:choose>
 
 ${map.count}개의 게시물이 있습니다.
 

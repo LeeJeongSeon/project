@@ -234,12 +234,11 @@ public class HopeBookController {
 			int check=0;
 			
 			String check_val=hopeBookSercvie.check(hopeBook_author,hopeBook_bookname);
-			if(check_val==null) {
+			if(check_val==null) { //중복 존재하지 않음
 				check=0;
-			}else {
+			}else {	//중복 존재 
 				check=1;
 			}
-			
 			return check;
 		}
 }

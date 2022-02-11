@@ -38,4 +38,23 @@
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="C:\work\project\project\src\main\webapp\WEB-INF\views\images"/> 
 	</beans:bean>
+	
+	<!-- 인터셉터빈 -->
+	<beans:bean id="loginInterceptor" 
+ 		class="com.example.project.interceptor.LoginInterceptor">
+ 	</beans:bean>
+
+ 	 <!-- 인터셉터 호출을 위한 url mapping -->
+ <interceptors>
+  <interceptor>
+   <mapping path="/book/book_write.do"/>
+   <mapping path="/book/book_insert.do"/>
+   <mapping path="/book/book_edit.do"/>
+   <mapping path="/book/book_update.do"/>
+   <mapping path="/book/book_delete.do"/>
+   <mapping path="/HopeBook/write.do"/>
+   <mapping path="/HopeBook/insertReply.do"/>
+   <beans:ref bean="loginInterceptor" />
+  </interceptor>
+ </interceptors>
 </beans:beans>
