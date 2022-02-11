@@ -64,6 +64,12 @@ public class EventServiceImpl implements EventService {
 		eventDao.result(e_num, e_result);
 	}
 
+	@Override
+	public int checkEmail(String e_email) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 
