@@ -68,18 +68,38 @@ fieldset {
 			<th>이메일</th>
 			<td colspan="3">${dto.e_email}</td>
 		</tr>
-		<tr align="center">
-			<td colspan="4">
-				<input type="button" value="승인" onclick="result(1)">
-				<input type="button" value="반려" onclick="result(2)">
-			</td>
-		</tr>
+		<c:if test="${dto.e_result==0}">
+			<tr align="center">
+				<td colspan="4">
+					<input type="button" value="승인" onclick="result(1)">
+					<input type="button" value="반려" onclick="result(2)">
+				</td>
+			</tr>
+		</c:if>
+		<c:if test="${dto.e_result!=0}">
+			<tr align="center">
+				<td colspan="4">
+					해당 행사는 [
+					<c:choose>
+						<c:when test="${dto.e_result==1}">승인</c:when>
+						<c:when test="${dto.e_result==2}">반려</c:when>
+						<c:when test="${dto.e_result==3}">취소</c:when>
+					</c:choose>
+					] 상태입니다. 
+					<c:if test="${dto.e_result>1}">
+						<br>신청 내역을 삭제하시겠습니까? 
+						<input type="button" onclick="location.href='${path}/event/delete.do?e_num=${dto.e_num}'" value="확인">
+					</c:if>
+				</td>
+			</tr>
+		</c:if>
 	</table>
-	<fieldset>
-		<legend>이메일 작성 폼</legend>
-		<div style="padding: 2% 5%;">
-			<input style="width: 100%" id="subject" value="안녕하세요 도서관입니다."><br><br>
-			<textarea rows="15" style="width: 100%;" id="message">행사 신청 결과를 안내해드립니다.
+	<c:if test="${dto.e_result==0}">
+		<fieldset>
+			<legend>이메일 작성 폼</legend>
+			<div style="padding: 2% 5%;">
+				<input style="width: 100%" id="subject" value="안녕하세요 도서관입니다."><br><br>
+				<textarea rows="15" style="width: 100%;" id="message">행사 신청 결과를 안내해드립니다.
 
 신청하신 행사가 불가피하게 하단의 사유로 인해 반려되었습니다.
 
@@ -89,8 +109,9 @@ fieldset {
 신청에 감사드리며 다른 시간대 혹은 장소로 재 신청하시길 바랍니다.
 
 좋은 하루 되세요 :)</textarea> <br>
-			<button type="button" onclick="send('${dto.e_email}')">보내기</button>
-		</div>
-	</fieldset>
+				<button type="button" onclick="send('${dto.e_email}')">보내기</button>
+			</div>
+		</fieldset>
+	</c:if>
 </body>
 </html>
