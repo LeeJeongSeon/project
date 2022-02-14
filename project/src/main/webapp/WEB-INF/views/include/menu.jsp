@@ -134,7 +134,18 @@
 .body h3 span {font-size:13px; color:#565656; padding-left:12px;}
 .board-list{margin-top: 10px; margin-bottom: 20px;}
 </style>
-<script>  
+<script>
+      
+        $(document).ready(function(){
+             $("#MallMenu").click(function(){
+                if($("#hiddenList").css('display') !== 'none'){ //  if($("#hiddenList").is(":visible")){
+                    $("#hiddenList").slideUp();  
+                }else{
+                    $("#hiddenList").slideDown();               
+                }
+                // $("#hiddenList").toggle(1000);  
+            });
+
             $(".adidas").click(function(){
             if($("#allmenuList").css('display') !== 'none'){ //  if($("#hiddenList").is(":visible")){
                 $("#allmenuList").slideUp();  
