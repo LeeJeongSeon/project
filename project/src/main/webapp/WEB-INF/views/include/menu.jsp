@@ -134,18 +134,7 @@
 .body h3 span {font-size:13px; color:#565656; padding-left:12px;}
 .board-list{margin-top: 10px; margin-bottom: 20px;}
 </style>
-<script>
-      
-        $(document).ready(function(){
-             $("#MallMenu").click(function(){
-                if($("#hiddenList").css('display') !== 'none'){ //  if($("#hiddenList").is(":visible")){
-                    $("#hiddenList").slideUp();  
-                }else{
-                    $("#hiddenList").slideDown();               
-                }
-                // $("#hiddenList").toggle(1000);  
-            });
-
+<script>  
             $(".adidas").click(function(){
             if($("#allmenuList").css('display') !== 'none'){ //  if($("#hiddenList").is(":visible")){
                 $("#allmenuList").slideUp();  
@@ -195,6 +184,15 @@
                         <li id="sList"><a class="menuLink" href="../soonhyeon/openstep.html">개설절차</a></li>
                         <li id="sList"><a class="menuLink" href="../soonhyeon/consultation.html">가맹상담신청</a></li>
                         <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                    </ul>
+                </li>
+                <li id="mList" style="right:-4px;">회원
+                    <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
+                        <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
+                        <li id="sList"><a class="menuLink" href="#">이벤트</a></li>
+                        <li id="sList" style="z-index: 3;"><a class="menuLink" href="#">고객불편사항</a></li>
                         <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
                         <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
                     </ul>
