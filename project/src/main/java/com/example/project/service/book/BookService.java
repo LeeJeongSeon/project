@@ -23,4 +23,6 @@ public interface BookService {
 	public void deleteBook(int book_id);
 
 	public List<bookDTO> book_random_recommend(String userid);
+
+	public List<bookDTO> book_other_recommend(String userid);
 }

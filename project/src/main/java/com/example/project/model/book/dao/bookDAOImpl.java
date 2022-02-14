@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.example.project.model.book.VO.book_check;
 import com.example.project.model.book.dto.bookDTO;
 
+import ch.qos.logback.core.subst.Token.Type;
+
 @Repository
 public class bookDAOImpl implements bookDAO {
 	@Inject
@@ -76,6 +78,12 @@ public class bookDAOImpl implements bookDAO {
 	@Override
 	public List<bookDTO> book_random_recommend(String userid) {
 		return sqlSession.selectList("random_recommend",userid);
+	}
+
+	@Override
+	public List<bookDTO> book_other_recommend(String userid) {
+		List<String> list=sqlSession.selectList("other_recommend",userid);
+		return sqlSession.selectList("other_recommend2",list);
 	}
 
 

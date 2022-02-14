@@ -6,6 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../resources/assets/css/main.css" />
+<script src="../resources/assets/js/jquery.min.js"></script>
+<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
+<script src="../resources/assets/js/browser.min.js"></script>
+<script src="../resources/assets/js/breakpoints.min.js"></script>
+<script src="../resources/assets/js/util.js"></script>
+<script src="../resources/assets/js/main.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script type="text/javascript">
 function list(page){
 	if($("#keyword").val()){

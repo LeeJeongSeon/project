@@ -25,5 +25,7 @@ public interface bookDAO {
 
 	public List<bookDTO> book_random_recommend(String userid);
 
+	public List<bookDTO> book_other_recommend(String userid);
+
 
 }

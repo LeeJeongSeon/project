@@ -305,4 +305,18 @@ public class BookController {
 		mav.addObject("map", map); 
 		return mav;
 	}
+	
+	//도서 추천
+		@RequestMapping("book_other_recommend.do")
+		public ModelAndView book_other_recommend(@RequestParam(defaultValue = "") String userid) {
+			List<bookDTO> list=bookService.book_other_recommend(userid);
+			System.out.print("리스트:"+list);
+			
+			ModelAndView mav=new ModelAndView();
+			Map<String, Object> map=new HashMap<>();
+			map.put("list", list);
+			mav.setViewName("book_list/other_recommend");
+			mav.addObject("map", map); 
+			return mav;
+		}
 }
