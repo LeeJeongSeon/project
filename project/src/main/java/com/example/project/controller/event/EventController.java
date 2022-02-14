@@ -116,25 +116,31 @@ public class EventController {
 	/* 이메일로 신청한 행사 조회 */
 	@RequestMapping("checkEmail.do")
 	public String checkEmail(String e_email) throws Exception {
-		System.out.println(e_email);
-		int eventCount = eventService.checkEmail(e_email);
+		int eventCount = eventService.checkEmailEvent(e_email);
 		String result="";
 		if(eventCount==0) {
 			result="redirect:/event/list.do?message=no";			
 		}else {
-			result="redirect:/event/info.do?eventCount="+eventCount+"&e_email="+e_email;
+			result="redirect:/event/info.do?e_email="+e_email;
 		}
 		return result;
 	}
 	
-	/* 행사 수정/삭제 페이지로 이동 */
+	/* 행사 수정/삭제 페이지로 이동 & 리스트 가져오기 */
 	@RequestMapping("info.do")
-	public ModelAndView info(int eventCount, String e_email) throws Exception {
+	public ModelAndView info(String e_email) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		if(eventCount==1) {
-			mav.addObject("dto", eventService.eventViewDetail(eventService.checkENum(e_email)));
-		}
+		mav.addObject("list", eventService.eventApplyList(e_email));
 		mav.setViewName("event/info");
+		return mav;
+	}	
+	
+	/* 행사 수정/삭제 페이지로 이동 */
+	@RequestMapping("details.do")
+	public ModelAndView details(int e_num) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", eventService.eventViewDetail(e_num));
+		mav.setViewName("event/details");
 		return mav;
 	}	
 	

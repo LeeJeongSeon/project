@@ -108,7 +108,9 @@ fieldset {
 
 신청에 감사드리며 다른 시간대 혹은 장소로 재 신청하시길 바랍니다.
 
-좋은 하루 되세요 :)</textarea> <br>
+더불어 반려 상태의 행사는 관리자가 무통보 삭제 처리할 수 있음을 알려드립니다.
+
+감사합니다. 좋은 하루 되세요 :)</textarea> <br>
 				<button type="button" onclick="send('${dto.e_email}')">보내기</button>
 			</div>
 		</fieldset>

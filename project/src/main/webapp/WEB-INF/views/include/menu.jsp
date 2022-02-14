@@ -212,14 +212,14 @@
     </nav>
     
 <!-- main menu영역-->
-    <div  style="position: relative; width: 100%; height: 95px;"> <!-- notice 영역-->
+    <div  style="position: relative; width: 100%; height: 95px;"> 
         <div id="logo">
             <img id="logoimg" src="http://www.qooqoo.co.kr/eyoom/theme/company_e1/image/site_logo.png">
         </div>
         <nav id="menuBar" style=" width: 79%; margin-right: auto; margin-left: auto;"> <!--메뉴 리스트-->
             <ul style="margin-left: 5%;">
                 <li id="bigMenu"><a href="${path}" style=" padding-bottom: 45px;">HOME</a></li>
-                <li id="bigMenu"><a href="../soonhyeon/greeting.html" style=" padding-bottom: 45px;">도서목록</a>
+                <li id="bigMenu"><a href="${path}/book/list.do" style=" padding-bottom: 45px;">도서목록</a>
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/book/list.do" style=" padding-right: 40px;">책목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">인기순 책목록</a></li>
