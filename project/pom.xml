@@ -213,7 +213,7 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-				<!-- jackson --> 
+		<!-- jackson --> 
 		<dependency> 
 			<groupId>com.fasterxml.jackson.core</groupId> 
 			<artifactId>jackson-core</artifactId> 
