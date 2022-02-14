@@ -73,6 +73,11 @@ public class bookDAOImpl implements bookDAO {
 		
 	}
 
+	@Override
+	public List<bookDTO> book_random_recommend(String userid) {
+		return sqlSession.selectList("random_recommend",userid);
+	}
+
 
 	
 	

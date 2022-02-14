@@ -23,4 +23,7 @@ public interface bookDAO {
 
 	public void deleteBook(int book_id);
 
+	public List<bookDTO> book_random_recommend(String userid);
+
+
 }

@@ -45,12 +45,13 @@ $(function(){
 <div style="text-align: center;">
    <c:forEach var="row" items="${list}" varStatus="status">
    <p><b>============================================================================</b></p>
-   <p><b>${status.count}번째 글</b></p>
-   <table style="width:100%;">
+   <p><b>${status.count}번째</b></p>
+   <table style="width:100%; text-align: center;">
     <tr>
      <td width="width:30%;">제목</td>
      <td><input id="hopeBook_title" name="hopeBook_title" class="input" value="${row.hopeBook_title}" readonly></td>
     </tr>
+    <c:if test="${status.first}">
     <tr>
      <td>신청자</td>
      <td><input id="name" name="name" class="input" value="${row.name}" readonly></td>
@@ -67,6 +68,13 @@ $(function(){
      <td>신청사유</td>
      <td>${row.hopeBook_content}</td>
     </tr>
+   </c:if>
+   <c:if test="${!status.first}">
+   <tr>
+     <td>답변</td>
+     <td>${row.hopeBook_content}</td>
+    </tr>
+   </c:if>
    </table>
    </c:forEach>
    <form id="form1" name="form1" method="post" action="${path}/HopeBook/replay.do">

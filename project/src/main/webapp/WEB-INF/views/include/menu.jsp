@@ -10,6 +10,7 @@
  <a href="${path}/book/book_write.do">도서 추가</a> |
 </c:if>
 <a href="${path}/HopeBook/list.do">희망도서신청</a> |
+<a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/event/list.do">행사</a> | 
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
 <a href="${path}/member/login.do">로그인</a> |

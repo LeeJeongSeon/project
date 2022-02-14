@@ -58,6 +58,11 @@ public class BookServiceImpl implements BookService {
 		
 	}
 
+	@Override
+	public List<bookDTO> book_random_recommend(String userid) {
+		return bookDao.book_random_recommend(userid); 
+	}
+
 
 
 	

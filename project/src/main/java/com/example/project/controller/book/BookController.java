@@ -285,4 +285,24 @@ public class BookController {
 		bookService.deleteBook(book_id);
 		return "redirect:/book/list.do";	
 	}
+	
+	@RequestMapping("book_recommend.do")
+	public ModelAndView book_recommend() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("book_list/book_recommend");
+		return mav;
+	}
+	
+	//도서 랜덤 추천
+	@RequestMapping("book_random_recommend.do")
+	public ModelAndView book_random_recommend(@RequestParam(defaultValue = "") String userid) {
+		List<bookDTO> list=bookService.book_random_recommend(userid);
+		
+		ModelAndView mav=new ModelAndView();
+		Map<String, Object> map=new HashMap<>();
+		map.put("list", list);
+		mav.setViewName("book_list/rendom_recommend");
+		mav.addObject("map", map); 
+		return mav;
+	}
 }
