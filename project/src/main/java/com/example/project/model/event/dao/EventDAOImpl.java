@@ -86,4 +86,14 @@ public class EventDAOImpl implements EventDAO {
 		return sqlSession.selectOne("event.checkENum", e_email);
 	}
 
+	@Override
+	public void update(EventDTO dto) {
+		sqlSession.update("event.update", dto);
+	}
+
+	@Override
+	public void cancel(int e_num) {
+		sqlSession.update("event.cancel", e_num);
+	}
+
 }

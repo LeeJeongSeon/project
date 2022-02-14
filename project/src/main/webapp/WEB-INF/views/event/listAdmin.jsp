@@ -21,6 +21,7 @@ fieldset {
 			<option value="waiting" <c:if test="${map.list_option == 'waiting'}">selected</c:if>>대기</option>
 			<option value="reject" <c:if test="${map.list_option == 'reject'}">selected</c:if>>반려</option>
 			<option value="approve" <c:if test="${map.list_option == 'approve'}">selected</c:if>>승인</option>
+			<option value="cancel" <c:if test="${map.list_option == 'cancel'}">selected</c:if>>취소</option>
 			<option value="all" <c:if test="${map.list_option == 'all'}">selected</c:if>>전체</option>
 		</select> 
 		이미 끝난 행사는 제외하시겠습니까? <input type="checkbox" name="past" 
@@ -44,6 +45,7 @@ fieldset {
 				<c:if test="${dto.e_result==0}">대기</c:if>
 				<c:if test="${dto.e_result==1}">승인</c:if>
 				<c:if test="${dto.e_result==2}">반려</c:if>
+				<c:if test="${dto.e_result==3}">취소</c:if>
 			</td>
 			<td><input type="button" onclick="location.href='${path}/event/viewAdmin.do?e_num=${dto.e_num}'" value="이동"></td>
 		</tr>

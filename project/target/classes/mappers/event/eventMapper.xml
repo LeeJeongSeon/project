@@ -37,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="list_option == 'waiting'">0</if>
 			<if test="list_option == 'approve'">1</if>
 			<if test="list_option == 'reject'">2</if>
+			<if test="list_option == 'cancel'">3</if>
 		</if>
 		<if test="list_option != 'all' and past == 'on'">and</if>
 		<if test="past == 'on'">
@@ -105,4 +106,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select e_num from event
 		where e_email=#{email}
 	</select>
+	
+	<update id="update">
+		update event 
+		set 
+		e_email=#{e_email}, e_agency=#{e_agency}, e_instr=#{e_instr}, 
+		e_name=#{e_name}, e_intro=#{e_intro}, e_start_d=#{e_start_d}, 
+		e_start_t=#{e_start_t}, e_finish_d=#{e_finish_d}, e_place=#{e_place}, 
+        e_result=0 
+        where e_num=#{e_num}
+	</update>
+	
+	<update id="cancel">
+		update event
+		set e_result=3
+		where e_num=#{e_num}
+	</update>
 </mapper>

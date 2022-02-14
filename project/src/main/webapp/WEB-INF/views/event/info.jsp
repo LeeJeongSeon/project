@@ -43,8 +43,24 @@
 
 		} else {
 			if (checkDate()) {
-				document.form1.submit();
-				alert("신청이 완료되었습니다.\n이메일을 확인해주세요!");
+				if(${dto.e_result!=0}) {
+					var result="";
+					switch (${dto.e_result}) {
+					case 1:
+						result="승인";
+						break;
+					case 2:
+						result="반려";
+						break;
+					}
+					if(confirm("해당 행사는 [ "+result+" ] 상태입니다. \n변경하실 경우 [ 대기 ] 상태로 변경됩니다. 동의하십니까?")) {
+						document.form1.submit();
+						alert("변경이 완료되었습니다.\n이메일을 확인해주세요!");						
+					}	
+				} else {
+					document.form1.submit();
+					alert("변경이 완료되었습니다.\n이메일을 확인해주세요!");
+				}
 			}
 		}
 	}
@@ -83,21 +99,18 @@
 			}
 		}
 	}
+	
+	function cancel() {
+		if(confirm("정말 행사 신청을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다. ")) {
+			location.href="${path}/event/cancel.do?e_num=${dto.e_num}&e_name=${dto.e_name}&e_email=${dto.e_email}";
+			alert("취소가 완료되었습니다. 이전 페이지로 이동합니다.");
+		}
+	}
 </script>
 <body>
 <%@ include file="../include/eventMenu.jsp" %>
-	<form action="${path}/event/insert.do" name="form1" >
+	<form action="${path}/event/update.do" name="form1" >
 		<table>
-			<caption>
-				신청하신 행사는 [
-				<c:if test="${dto.e_result==0}">대기</c:if>
-				<c:if test="${dto.e_result==1}">승인</c:if>
-				<c:if test="${dto.e_result==2}">반려</c:if>
-				] 상태입니다. <br>
-				<c:if test="${dto.e_result!=0}">
-					수정하실 경우 [ 대기 ] 상태로 돌아가게 됩니다.
-				</c:if>
-			</caption>
 			<tr>
 				<th>행사명</th>
 				<td colspan="3"><input name="e_name" id="e_name" value="${dto.e_name}"></td>
@@ -121,7 +134,7 @@
 						for (int i = 8; i < 20; i++) {
 						%>
 						<option value="<%=i%>:00" 
-							<c:if test="${dto.e_start_t}=i+':00'">
+							<c:if test="${dto.e_start_t}==i+':00'">
 							selected</c:if>
 						><%=i%>:00</option>
 						<%
@@ -141,8 +154,9 @@
 			</tr>
 			<tr align="center">
 				<td colspan="4">
-					<input type="button" onclick="update()" value="수정">
-					<input type="button" value="삭제">
+				<input type="hidden" value="${dto.e_num}" name="e_num">
+					<input type="button" onclick="update()" value="변경">
+					<input type="button" onclick="cancel()" value="취소">
 				</td>
 			</tr>
 		</table>

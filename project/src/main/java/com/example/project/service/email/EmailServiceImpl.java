@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService {
 	public void sendResultMail(EmailDTO dto) throws Exception {
 		MimeMessage msg = mailSender.createMimeMessage();
 		msg.addRecipient(RecipientType.TO, new InternetAddress(dto.getReceiveMail()));
-		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), dto.getSenderName()) });
+		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), "행사관리자") });
 		msg.setSubject(dto.getSubject(), "utf-8");
 		msg.setText(dto.getMessage(), "utf-8");
 		mailSender.send(msg);

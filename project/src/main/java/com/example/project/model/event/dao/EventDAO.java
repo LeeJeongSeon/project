@@ -16,5 +16,7 @@ public interface EventDAO {
 	public void result(int e_num, int e_result);
 	public int checkEmail(String e_email);
 	public int checkENum(String e_email);
+	public void update(EventDTO dto);
+	public void cancel(int e_num);
 
 }

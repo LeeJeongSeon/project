@@ -8,13 +8,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.event.dto.EventDTO;
+import com.example.project.service.email.EmailService;
 import com.example.project.service.event.EventPager;
 import com.example.project.service.event.EventService;
 
@@ -24,6 +24,8 @@ public class EventController {
 	
 	@Inject
 	EventService eventService;
+	@Inject
+	EmailService emailService;
 	
 	/* 행사페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("list.do")
@@ -64,10 +66,11 @@ public class EventController {
 		return "event/write";
 	}
 	
-	/* 행사신청 후 행사페이지로 이동 */
+	/* 행사신청, 메일 전송 후 행사페이지로 이동 */
 	@RequestMapping("insert.do")
 	public String insert(@ModelAttribute EventDTO dto) throws Exception {
 		eventService.insert(dto);
+		emailService.sendCheckMail(dto.getE_name(), dto.getE_email());
 		return "redirect:/event/list.do";
 	}
 	
@@ -135,4 +138,20 @@ public class EventController {
 		return mav;
 	}	
 	
+	/* 행사변경, 메일 전송 후 행사페이지로 이동 */
+	@RequestMapping("update.do")
+	public String update(@ModelAttribute EventDTO dto) throws Exception {
+		System.out.println(dto);
+		eventService.update(dto);
+		emailService.sendUpdateMail(dto.getE_name(), dto.getE_email());
+		return "redirect:/event/list.do";
+	}
+	
+	/* 행사취소, 메일 전송 후 행사페이지로 이동 */
+	@RequestMapping("cancel.do")
+	public String cancel(int e_num, String e_name, String e_email) throws Exception {
+		eventService.cancel(e_num);
+		emailService.sendCancelMail(e_name, e_email);
+		return "redirect:/event/list.do";
+	}
 } 

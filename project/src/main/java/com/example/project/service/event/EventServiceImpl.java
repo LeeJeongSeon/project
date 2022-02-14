@@ -74,6 +74,16 @@ public class EventServiceImpl implements EventService {
 		return eventDao.checkENum(e_email);
 	}
 
+	@Override
+	public void update(EventDTO dto) throws Exception {
+		eventDao.update(dto);
+	}
+
+	@Override
+	public void cancel(int e_num) throws Exception {
+		eventDao.cancel(e_num);
+	}
+
 	
 
 

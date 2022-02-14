@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
-function result (e_num, r_num) {
+function result (r_num) {
 	if(r_num==2) {
 		if(!confirm("해당 행사를 반려하실 경우 사유를 이메일을 통해 알려야합니다.\n이메일 전송이 완료되었습니까?")) {
 			alert("이메일로 행사 반려 사유를 알려주세요!");
@@ -15,7 +15,7 @@ function result (e_num, r_num) {
 			return;
 		}
 	}
-	location.href="${path}/event/result.do?e_num="+e_num+"&e_result="+r_num;
+	location.href="${path}/event/result.do?e_num=${dto.e_num}&e_result="+r_num;
 }
 
 function send(address) {
@@ -23,7 +23,7 @@ function send(address) {
 	while(message.indexOf("\n")!=-1) {
 		message=message.replace("\n"," ");
 	}
-	var data="?senderName=행사관리자&receiveMail="+address
+	var data="?senderName="+${dto.e_num}+"&receiveMail="+address
 			+"&subject="+$("#subject").val()+"&message="+message;
 	location.href="${path}/email/sendEventResult.do"+data;
 	alert("이메일 발송에 성공했습니다.");
@@ -70,9 +70,8 @@ fieldset {
 		</tr>
 		<tr align="center">
 			<td colspan="4">
-				<input type="hidden" value="${dto.e_num}">
-				<input type="button" value="승인" onclick="result(${dto.e_num}, 1)">
-				<input type="button" value="반려" onclick="result(${dto.e_num}, 2)">
+				<input type="button" value="승인" onclick="result(1)">
+				<input type="button" value="반려" onclick="result(2)">
 			</td>
 		</tr>
 	</table>
