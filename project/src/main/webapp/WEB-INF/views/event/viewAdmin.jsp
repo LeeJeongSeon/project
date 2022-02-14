@@ -23,7 +23,7 @@ function send(address) {
 	while(message.indexOf("\n")!=-1) {
 		message=message.replace("\n"," ");
 	}
-	var data="?senderName=행사관리자&senderMail=num5library@gmail.com&receiveMail="+address
+	var data="?senderName=행사관리자&receiveMail="+address
 			+"&subject="+$("#subject").val()+"&message="+message;
 	location.href="${path}/email/sendEventResult.do"+data;
 	alert("이메일 발송에 성공했습니다.");
@@ -70,6 +70,7 @@ fieldset {
 		</tr>
 		<tr align="center">
 			<td colspan="4">
+				<input type="hidden" value="${dto.e_num}">
 				<input type="button" value="승인" onclick="result(${dto.e_num}, 1)">
 				<input type="button" value="반려" onclick="result(${dto.e_num}, 2)">
 			</td>

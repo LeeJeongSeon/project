@@ -15,14 +15,47 @@ public class EmailServiceImpl implements EmailService {
 
 	@Inject
 	JavaMailSender mailSender;
+	
+	@Override
+	public void sendCheckMail(String e_name, String e_email) throws Exception {
+		EmailDTO dto=new EmailDTO();
+		MimeMessage msg = mailSender.createMimeMessage();
+		msg.addRecipient(RecipientType.TO, new InternetAddress(e_email));
+		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), "행사관리자") });
+		msg.setSubject("안녕하세요 도서관입니다.", "utf-8");
+		msg.setText("\'"+e_name+"\' 행사 신청 접수가 완료되었습니다. 영업일 기준 7일 내 승인 / 반려 처리가 완료됩니다. 반려 시 이메일이 발송되며, 해당 메일은 확인용 메일임을 알려드립니다. 행사 내용 변경을 원하실 경우 사이트를 재 방문해주세요. 감사합니다. 좋은 하루 되세요:)", "utf-8");
+		mailSender.send(msg);
+	}
 
 	@Override
-	public void sendMail(EmailDTO dto) throws Exception {
+	public void sendResultMail(EmailDTO dto) throws Exception {
 		MimeMessage msg = mailSender.createMimeMessage();
 		msg.addRecipient(RecipientType.TO, new InternetAddress(dto.getReceiveMail()));
 		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), dto.getSenderName()) });
 		msg.setSubject(dto.getSubject(), "utf-8");
 		msg.setText(dto.getMessage(), "utf-8");
+		mailSender.send(msg);
+	}
+
+	@Override
+	public void sendUpdateMail(String e_name, String e_email) throws Exception {
+		EmailDTO dto=new EmailDTO();
+		MimeMessage msg = mailSender.createMimeMessage();
+		msg.addRecipient(RecipientType.TO, new InternetAddress(e_email));
+		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), "행사관리자") });
+		msg.setSubject("안녕하세요 도서관입니다.", "utf-8");
+		msg.setText("\'"+e_name+"\' 행사 변경 접수가 완료되었습니다. 영업일 기준 7일 내 승인 / 반려 처리가 완료됩니다. 반려 시 이메일이 발송되며, 해당 메일은 확인용 메일임을 알려드립니다. 행사 내용 변경을 원하실 경우 사이트를 재 방문해주세요. 감사합니다. 좋은 하루 되세요:)", "utf-8");
+		mailSender.send(msg);
+	}
+
+	@Override
+	public void sendCancelMail(String e_name, String e_email) throws Exception {
+		EmailDTO dto=new EmailDTO();
+		MimeMessage msg = mailSender.createMimeMessage();
+		msg.addRecipient(RecipientType.TO, new InternetAddress(e_email));
+		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), "행사관리자") });
+		msg.setSubject("안녕하세요 도서관입니다.", "utf-8");
+		msg.setText("\'"+e_name+"\' 행사 신청 취소가 완료되었습니다. 해당 메일은 확인용 메일임을 알려드립니다. 감사합니다. 좋은 하루 되세요:)", "utf-8");
 		mailSender.send(msg);
 	}
 

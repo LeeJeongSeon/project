@@ -19,7 +19,7 @@ public class EmailController {
 	
 	@RequestMapping("sendEventResult.do")
 	public String send(@ModelAttribute EmailDTO dto) throws Exception {
-		emailService.sendMail(dto);
+		emailService.sendResultMail(dto);
 		return "redirect:/event/listAdmin.do";
 	}
 }
