@@ -82,5 +82,6 @@ fieldset {
 		</td>
 	</tr>
 </table>
+<marquee style="color: red;">※ 관리자가 행사 삭제 처리 시 데이터가 완전히 지워지게 됩니다.</marquee>
 </body>
 </html>

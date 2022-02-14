@@ -16,8 +16,8 @@ public interface EventService {
 	public int countEventForAdmin(String list_option, String past) throws Exception;
 	public List<EventDTO> eventListForAdmin(String list_option, String past, int start, int end) throws Exception;
 	public void result(int e_num, int e_result) throws Exception;
-	public int checkEmail(String e_email) throws Exception;
-	public int checkENum(String e_email) throws Exception;
+	public int checkEmailEvent(String e_email) throws Exception;
+	public List<EventDTO> eventApplyList(String e_email) throws Exception;
 	public void update(EventDTO dto) throws Exception;
 	public void cancel(int e_num) throws Exception;
 

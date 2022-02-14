@@ -102,9 +102,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where e_email=#{email}
 	</select>
 	
-	<select id="checkENum" resultType="int">
-		select e_num from event
-		where e_email=#{email}
+	<select id="eventApplyList" resultType="eventDTO">
+		select e_num, e_name, e_result from event
+		where e_email=#{e_email}
+		order by e_num
 	</select>
 	
 	<update id="update">

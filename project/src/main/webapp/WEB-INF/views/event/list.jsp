@@ -15,9 +15,9 @@ function checkEmail() {
 	var e_email=prompt("행사 신청하실 때 입력한 이메일을 입력해주세요", "");
 	location.href="${path}/event/checkEmail.do?e_email="+e_email;
 }
+
 if(${param.message=='no'}) {
 	alert("잘못 입력된 이메일이거나 신청하신 행사가 없습니다.");
-	location.href="${path}/event/list.do";
 }
 </script>
 <style type="text/css">
