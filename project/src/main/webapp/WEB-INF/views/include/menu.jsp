@@ -232,7 +232,7 @@
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/book/list.do" style=" padding-right: 40px;">도서목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">도서목록 인기순</a></li>
-                        <li style="margin-bottom: 10px;"><a href="${path}/book/book_recommend.dol" style=" padding-right: 40px;">도서추천</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/book/book_recommend.do" style=" padding-right: 40px;">도서추천</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/HopeBook/list.do" style=" padding-right: 40px;">희망도서신청</a></li>
                         <!-- <li><a href="">사회공헌활동</a></li> -->
                     </ul>
