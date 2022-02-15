@@ -1,4 +1,8 @@
+<<<<<<< HEAD:project/src/main/java/com/example/project/controller/util/UploadFileUtils.java
 package com.example.project.controller.util;
+=======
+package com.example.project.util;
+>>>>>>> master:project/src/main/java/com/example/project/util/UploadFileUtils.java
 
 import java.awt.image.BufferedImage;
 import java.io.File;

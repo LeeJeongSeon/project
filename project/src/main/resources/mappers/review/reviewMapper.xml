@@ -137,7 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 게시물 삭제 -->
  <delete id="delete">
   <!-- delete from board where bno=#{bno} -->
-  update review set show='N' where review_bno=#{review_bno}
+  update review set review_show='N' where review_bno=#{review_bno}
  </delete>
 	
 </mapper>
