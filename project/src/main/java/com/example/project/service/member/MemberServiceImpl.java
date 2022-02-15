@@ -61,6 +61,26 @@ public class MemberServiceImpl implements MemberService {
 	public boolean checkPw(String userid, String passwd) {
 		return memberDAO.checkPw(userid, passwd);
 	}
+	
+	//여기서부터 관리자 단
+	
+	//회원수
+	@Override
+	public int countMember(String search_option, String keyword) throws Exception {
+		return memberDAO.countMember(search_option,keyword);
+	}
+
+	//회원 리스트
+	@Override
+	public List<MemberDTO> listMember(String search_option, String keyword, int start, int end) {
+		return memberDAO.listMember(search_option, keyword, start, end);
+	}
+
+	//회원 정보 보기
+	@Override
+	public MemberDTO readMember(String userid) throws Exception {
+		return memberDAO.readMember(userid);
+	}
 
 	
 	
