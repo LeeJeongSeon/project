@@ -62,15 +62,17 @@ increment by 1;
 - 신청사유: hopeBook_content
 - 
 
+create table hope_book(
 hopeBook_id number not null primary key, 
 hopeBook_title varchar2(500) not null,
-hopeBook_bookname varchar2(500) not null, 
+hopeBook_bookname varchar2(500) not null,
 hopeBook_author varchar2(500), 
-hopeBook_userid varchar2(50) references member(userid),
-hopeBook_content clob, 
+hopeBook_userid varchar2(50) references member(userid), 
+hopeBook_content clob,
 ref number not null,	
 re_step number not null,	
 re_level number not null	
+);	
 
 ++ 희망도서게시판번호 시퀀스 HopeBook_seq
 create sequence HopeBook_seq
