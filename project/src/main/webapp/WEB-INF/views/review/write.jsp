@@ -93,8 +93,9 @@ $(function(){
 	
 	<script>
 	// ckeditor 적용
-	CKEDITOR.replace("content",{
-		filebrowserUploadUrl: "${path}/imageUpload.do"
+	CKEDITOR.replace("review_content",{
+	filebrowserUploadUrl: "${path}/imageUpload.do",
+	height: "300px"
 	});// ImageUploadController.java 에서 처리
 	</script>
 	
