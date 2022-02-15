@@ -8,14 +8,6 @@
 <%@ include file="../include/header.jsp" %>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../resources/assets/css/main.css" />
-<script src="../resources/assets/js/jquery.min.js"></script>
-<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
-<script src="../resources/assets/js/browser.min.js"></script>
-<script src="../resources/assets/js/breakpoints.min.js"></script>
-<script src="../resources/assets/js/util.js"></script>
-<script src="../resources/assets/js/main.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script type="text/javascript">
 function list(page){
 	if($("#keyword").val()){
@@ -27,6 +19,15 @@ function list(page){
 }
 }
 
+$(function(){
+	$("#exbtn").click(function(){
+		$.ajax({
+			url: "${path}/crawling/example.do",
+			type: "post"
+		});
+	});
+	
+});
 </script>
 </head>
 <body>
@@ -36,7 +37,7 @@ function list(page){
 <img src="C:\images\1.jpg" width="100px" height="100px">
 절대경로로 이미지출력 안됨 -->
 
-
+<button type="button" id="exbtn">확인</button>
 <!-- 검색폼 -->
 <form name="form1" method="post" action="${path}/book/list.do">
 	<select name="search_option">
