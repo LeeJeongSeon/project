@@ -63,6 +63,38 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 	
+	//여기서부터 관리자 단
+	
+	//회원수
+	@Override
+	public int countMember(String search_option, String keyword) throws Exception {
+
+		Map<String,String> map=new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectOne("member.countMember",map);
+		
+	}
+
+	
+	//회원 리스트
+	@Override
+	public List<MemberDTO> listMember(String search_option, String keyword, int start, int end) {
+		Map<String,Object> map=new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", "%"+keyword+"%");
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("member.listMember", map);
+	}
+
+	
+	//회원 정보
+	@Override
+	public MemberDTO readMember(String userid) throws Exception {
+		return sqlSession.selectOne("member.readMember", userid);
+	}
+	
 	
     
 
