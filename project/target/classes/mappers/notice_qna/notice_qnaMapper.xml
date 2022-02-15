@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="notice_qna">
+ <select id="list" resultType="com.example.project.model.notice_qna.dto.Notice_qnaDTO">
+  select *
+    from (
+     select rownum as rn, A.* 
+     from(select num,id,subject,reg_date,readcount,content,category,re_level
+     from notice_qna 
+     where category = #{cate}
+     and ${search_option} like #{keyword}
+     order by ref desc,ref_step) A
+     ) where rn between #{start} and #{end} 
+    
+ </select>
+ 
+ <select id="listCount" resultType="int">
+  select count(*) from notice_qna
+   where category = #{cate}
+   and ${search_option} like #{keyword} 
+ </select>
+ 
+ <select id="noticeList" resultType="com.example.project.model.notice_qna.dto.Notice_qnaDTO">
+    select num,id,subject,reg_date,readcount,content,category
+     from notice_qna
+     where notice='n' 
+ </select>
+
+ <insert id="insert">
+  insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, #{subject}, #{content}, #{id}, #{category}, notice_qna_seq.nextval,0,0)
+ </insert>
+ 
+ <update id="viewCount">
+  update notice_qna set readcount=readcount+1
+  where num=#{num}
+ </update>
+ 
+ <select id="view" resultType="com.example.project.model.notice_qna.dto.Notice_qnaDTO">
+  select * from notice_qna  
+  where num=#{num}
+ </select>
+ 
+ <update id="noticeNy">
+  update notice_qna set notice=#{notice}
+  where num=#{num}
+ </update>
+ 
+ <delete id="delete">
+  delete from notice_qna 
+  where num=#{num}
+ </delete>
+ 
+ <update id="update">
+  update notice_qna
+  set subject=#{subject},
+  content=#{content}
+  where num=#{num}
+ </update>
+ 
+ <update id="updateStep">
+  update notice_qna
+  set ref_step=ref_step+1
+  where ref=#{ref} and ref_step >= #{ref_step}
+ </update>
+ 
+ <insert id="reply">
+  insert into notice_qna 
+  (num,id,subject,ref
+  ,ref_step,re_level,content,category)
+ values
+  ( notice_qna_seq.nextval
+    ,#{id},#{subject}
+    , #{ref}, #{ref_step}, #{re_level}
+    , #{content}, #{category} )
+ </insert>
+ 
+ <select id="searchCount" resultType="int">
+  select count(*) from notice_qna
+  where category=#{category}
+  and #{search_option} like #{keyword}
+ </select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

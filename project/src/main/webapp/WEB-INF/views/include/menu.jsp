@@ -171,12 +171,13 @@
                         <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
                     </ul>
                 </li>
-                <li id="mList" style="right:449px;">행사
+                <li id="mList" style="right:449px;">
                     <ul id="sListUl" >
                         <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/event/write.do">신청</a></li>
                         <li id="sList"><a class="menuLink" href="#">행사 참여</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">관리</a></li>
+                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
                     </ul>
                 </li>
                 <li id="mList" style="right:298px;">리뷰 게시판으로 이동
@@ -296,5 +297,21 @@
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/event/list.do">행사</a> | 
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-<a href="${path}/member/login.do">로그인</a> |
+<a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
+<a href="${path}/notice_qna/list.do?category=qna">묻고답하기</a> |
+<div style="text-align: right;">
+  <c:choose>
+   <c:when test="${sessionScope.userid == null}">
+    <!-- 로그인 하지 않은 상태 -->
+    <a href="${path}/member/write.do">회원가입</a> |
+    <a href="${path}/member/login.do">로그인</a> |
+   </c:when>
+   <c:otherwise>
+    <!-- 로그인한 상태 -->
+    ${sessionScope.name}님이 로그인중입니다.
+    <a href="${path}/member/view.do?userid=${sessionScope.userid}">회원정보</a> |
+    <a href="${path}/member/logout.do">로그아웃</a>
+   </c:otherwise>
+  </c:choose>
+ </div>
 </div>
