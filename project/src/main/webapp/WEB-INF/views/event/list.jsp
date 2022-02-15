@@ -24,6 +24,7 @@ if(${param.message=='no'}) {
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
+<div id="ge"></div>
 <fieldset> 
 	<legend>검색하기</legend>
 	<form name="form1" method="post" action="${path}/event/list.do">

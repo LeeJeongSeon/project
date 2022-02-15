@@ -6,13 +6,18 @@ body {
 	font-family: "Trebuchet MS", Dotum, Arial; 
 }
 
-
+#ge {
+	background-color: red;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 50%; 
+} 
 
 fieldset {
 	margin: 10px;
 	border: 2px solid #666;
 }
-
 
 button {
 	background-color: #fff;
