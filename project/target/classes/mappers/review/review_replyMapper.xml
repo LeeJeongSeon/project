@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <select id="listReply" resultType="com.example.project.model.reply.dto.ReviewReplyDTO">
 	  select review_rno,review_bno,review_replyer,review_regdate,review_updatedate,review_replytext
-	  from review_reply r, member m
-	  where r.review_replyer=m.userid and review_bno=#{review_bno}
+	  from review_reply rr, member m
+	  where rr.review_replyer=m.userid and review_bno=#{review_bno}
 	  order by review_rno
   </select>
   
