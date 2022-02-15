@@ -24,12 +24,6 @@ if(${param.message=='no'}) {
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<table align="center" id="body">
-	<tr>
-		<td>
-		</td>
-	</tr>
-</table>
 <fieldset> 
 	<legend>검색하기</legend>
 	<form name="form1" method="post" action="${path}/event/list.do">
