@@ -25,6 +25,7 @@ $(function(){
 }
 </style>
 <title>Home</title>
+
 </head>
 <body>
 <%@ include file="include/menu.jsp" %>
