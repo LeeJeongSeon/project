@@ -296,5 +296,19 @@
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/event/list.do">행사</a> | 
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-<a href="${path}/member/login.do">로그인</a> |
+<div style="text-align: right;">
+  <c:choose>
+   <c:when test="${sessionScope.userid == null}">
+    <!-- 로그인 하지 않은 상태 -->
+    <a href="${path}/member/write.do">회원가입</a> |
+    <a href="${path}/member/login.do">로그인</a> |
+   </c:when>
+   <c:otherwise>
+    <!-- 로그인한 상태 -->
+    ${sessionScope.name}님이 로그인중입니다.
+    <a href="${path}/member/view.do?userid=${sessionScope.userid}">회원정보</a> |
+    <a href="${path}/member/logout.do">로그아웃</a>
+   </c:otherwise>
+  </c:choose>
+ </div>
 </div>

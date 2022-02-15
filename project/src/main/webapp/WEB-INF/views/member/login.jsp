@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 
@@ -29,24 +32,43 @@ if(passwd==""){
  document.form1.submit(); //제출
  });
 });
+
+
 </script>
+
+<style type="text/css">
+
+table{
+ width: 50%;
+ border: solid;
+ border-color: green;
+ border-width: 4px;
+}
+
+tr,td{
+border: none;
+text-align: center;
+}
+
+
+</style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>로그인</h2>
 <form name="form1" method="post">
-<table border="1" width="400px"">
+<table border="none" width="400px">
 <tr>
- <td>아이디</td>
- <td><input id="userid" name="userid"></td>
+ <td>ID</td>
+ <td><input id="userid" name="userid" class="form-control" placeholder="아이디"></td>
 </tr>
 <tr>
- <td>비밀번호</td>
- <td><input type="password" id="passwd" name="passwd"></td>
+ <td>pw</td>
+ <td><input type="password" id="passwd" name="passwd" class="form-control" placeholder="비밀번호"></td>
 </tr>
 <tr>
- <td colspan="2" align="center">
- <button type="button" id="btnLogin">로그인 </button>
+ <td colspan="2">
+ <button type="button" id="btnLogin" class="btn btn-lg btn-success btn-block" style="width: 100;">로그인 </button>
  <c:if test="${message == 'error'}">
  <div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.
  </div>
@@ -58,7 +80,19 @@ if(passwd==""){
 </td>
 </tr>
 </table>
+<br>
+<div>
+<a href="${path}">아이디찾기</a> |
+<a href="${path}">비밀번호찾기</a> |
+<a href="${path}/member/write.do">회원가입</a> |
+
+
+</div>
+
+
 </form>
+
+
 
 
 

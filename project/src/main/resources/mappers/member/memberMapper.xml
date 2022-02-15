@@ -3,9 +3,50 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
+ <!-- 로그인체크  -->
  <select id="login_check" resultType="String">
   select name
   from member
   where userid=#{userid} and passwd=#{passwd}
  </select>
+ 
+ <!-- 회원가입  -->
+ <insert id="insertMember">
+  insert into member (userid,passwd,name,email,zipcode,address1,address2,phone)
+  values (#{userid}, #{passwd}, #{name}, #{email}, #{zipcode},
+   #{address1}, #{address2}, #{phone})
+ </insert>
+ 
+ <!-- 회원정보 수정  -->
+  <select id="viewMember" 
+ resultType="com.example.project.model.member.DTO.MemberDTO">
+  select * from member
+  where userid=#{userid}
+ </select>
+ 
+ 
+ <!-- 회원정보 업데이트  -->
+ <update id="updateMember">
+  update member
+  set passwd=#{passwd}, name=#{name}, email=#{email}, 
+  zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}, phone=#{phone}
+  where userid=#{userid}
+ </update>
+ 
+ <!-- 회원정보 삭제  -->
+ <delete id="deleteMember">
+  delete from member
+  where userid=#{userid}
+ </delete>
+ 
+ <!-- 수정용 비밀번호 체크 -->
+ <select id="checkPw" resultType="int">
+  select count(*) from member
+  where userid=#{userid} and passwd=#{passwd}
+ </select>
+ 
+ 
+ 
+ 
+ 
 </mapper>
