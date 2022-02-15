@@ -187,7 +187,7 @@ function listReply2(){
 				repl = repl.replace(/>/gi,"&gt;");
 				repl = repl.replace(/\n/gi,"<br>"); //줄바꿈 처리
 				
-				output += "<tr><td>"+result[i].review_writer;
+				output += "<tr><td>"+result[i].review_replyer;
 				date = changeDate(result[i].review_regdate);
 				output += "("+date+")";
 				output += "<br>"+repl+"</td></tr>";
@@ -239,6 +239,7 @@ function listAttach(){
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>게시물 보기</h2>
+
  <form id="form1" name="form1" method="post" action="${path}/review/insert.do">
 	<div>제목 <input name="review_title" id="review_title" size="80" value="${dto.review_title}" placeholder="제목을 입력하세요"></div>
 	<div>조회수 : ${dto.review_viewcnt}	</div>
@@ -261,7 +262,7 @@ function listAttach(){
 	</div>
 	<div style="width:700px; text-align:center;">
 	<!-- 수정,삭제에 필요한 글번호를 hidden 태그에 저장 -->	
-		<input type="hidden" name="bno" value="${dto.review_bno}">
+		<input type="hidden" name="review_bno" value="${dto.review_bno}">
 		
 		<!-- 본인만 수정,삭제 버튼 표시 -->
 		<c:if test="${sessionScope.userid == dto.review_writer}">
@@ -280,6 +281,8 @@ function listAttach(){
 	 	<button type="button" id="btnReply">댓글쓰기</button>
 	 </c:if>
 </div>
+
+
 <!-- 댓글 목록 -->
 <div id="listReply"></div>
 
