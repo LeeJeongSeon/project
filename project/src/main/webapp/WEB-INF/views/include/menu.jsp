@@ -229,10 +229,10 @@
                 <li id="bigMenu"><a href="${path}" style=" padding-bottom: 45px;">HOME</a></li>
                 <li id="bigMenu"><a href="${path}/book/list.do" style=" padding-bottom: 45px;">도서목록</a>
                     <ul class="secondMenu">
-                        <li style="margin-bottom: 10px;"><a href="${path}/book/list.do" style=" padding-right: 40px;">책목록</a></li>
-                        <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">인기순 책목록</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../chanwoo/biIntro.html" style=" padding-right: 40px;">book</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../soonhyeon/history.html" style=" padding-right: 40px;">book</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/book/list.do" style=" padding-right: 40px;">도서목록</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">도서목록 인기순</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/book/book_recommend.dol" style=" padding-right: 40px;">도서추천</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/HopeBook/list.do" style=" padding-right: 40px;">희망도서신청</a></li>
                         <!-- <li><a href="">사회공헌활동</a></li> -->
                     </ul>
                 </li>
@@ -257,7 +257,7 @@
                         <li style="margin-bottom: 10px;"><a href="../soonhyeon/consultation.html" style=" padding-right: 40px;">가맹상담신청</a></li>
                     </ul>
                 </li>
-                <li id="bigMenu"><a href="${path}/member/login.do"" style=" padding-bottom: 45px;">member</a>
+                <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">member</a>
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/member/login.do""  style=" padding-right: 40px;">로그인</a></li>
                         <li style="margin-bottom: 10px;"><a href="../soonhyeon/eventnotice.html"  style=" padding-right: 40px;">member</a></li>
