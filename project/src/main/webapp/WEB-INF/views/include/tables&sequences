@@ -200,7 +200,7 @@ review_regdate date default sysdate,
 review_updatedate date default sysdate
 );
 
-++ 리뷰 댓글번호용 시퀀스 review_seq
+++ 리뷰 댓글번호용 시퀀스 seq_review_seq
 create sequence seq_review_reply
 start with 1
 increment by 1;
