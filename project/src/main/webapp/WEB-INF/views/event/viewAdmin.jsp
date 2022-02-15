@@ -36,7 +36,7 @@ fieldset {
 </style>
 </head>
 <body>
-<%@ include file="../include/eventMenu.jsp" %>
+<%@ include file="../include/menu.jsp" %>
 	행사 관리 상세보기 페이지
 	<table> 
 		<tr>

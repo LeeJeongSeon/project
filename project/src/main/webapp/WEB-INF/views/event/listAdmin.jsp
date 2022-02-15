@@ -13,7 +13,7 @@ fieldset {
 </style>
 </head>
 <body>
-<%@ include file="../include/eventMenu.jsp" %>
+<%@ include file="../include/menu.jsp" %>
 행사 관리 페이지 <br>
 <fieldset>
 	<form name="form1" method="post" action="${path}/event/listAdmin.do">

@@ -173,11 +173,10 @@
                 </li>
                 <li id="mList" style="right:449px;">행사
                     <ul id="sListUl" >
-                        <li id="sList"><a class="menuLink" href="${path}/event/list.do">행사</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/list.do">행사목록</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/write.do">행사신청</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">행사관리</a></li>
                         <li id="sList"><a class="menuLink" href="#">event</a></li>
-                        <li id="sList"><a class="menuLink" href="#">event</a></li>
-                        <li id="sList"><a class="menuLink" href="#">event</a></li>
-                        <li id="sList"><a class="menuLink" href="">event</a></li>
                     </ul>
                 </li>
                 <li id="mList" style="right:298px;">리뷰 게시판으로 이동
