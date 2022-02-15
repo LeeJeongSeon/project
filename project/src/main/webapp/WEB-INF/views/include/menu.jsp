@@ -296,6 +296,8 @@
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/event/list.do">행사</a> | 
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
+<a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
+<a href="${path}/notice_qna/list.do?category=qna">묻고답하기</a> |
 <div style="text-align: right;">
   <c:choose>
    <c:when test="${sessionScope.userid == null}">
