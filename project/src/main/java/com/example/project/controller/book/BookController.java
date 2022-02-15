@@ -319,4 +319,16 @@ public class BookController {
 			mav.addObject("map", map); 
 			return mav;
 		}
+	
+	//index페이지
+	@RequestMapping("book_index.do")
+	public ModelAndView book_index() {
+		List<bookDTO> list=bookService.book_index();
+		System.out.print("리스트:"+list);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("book_list/book_index");
+		mav.addObject("list", list); 
+		return mav;
+	}
 }

@@ -68,6 +68,11 @@ public class BookServiceImpl implements BookService {
 		return bookDao.book_other_recommend(userid);
 	}
 
+	@Override
+	public List<bookDTO> book_index() {
+		return bookDao.book_index();
+	}
+
 
 
 	

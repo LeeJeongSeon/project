@@ -166,6 +166,14 @@ select book_id,book_name,book_img,book_genre,book_content,
 </if>
 and <![CDATA[ rownum<=5]]>
 </select>
+
+<!-- index페이지 -->
+<select id="book_index" resultType="com.example.project.model.book.dto.bookDTO">
+select book_id,book_name,book_img,book_genre
+from book 
+where <![CDATA[ rownum<=5]]>
+order by book_id
+</select>
 </mapper>
 
 

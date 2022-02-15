@@ -5,12 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
 <%@ include file="include/header.jsp" %>	
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url: "${path}/book/book_index.do",
+		type: "post",
+		async: false, 
+		success: function(result){
+			$("#result").html(result);
+		}
+	});
+	
+});
+</script>
+<style type="text/css">
+#result{
+ 	border: 1px solid black;
+}
+</style>
+<title>Home</title>
 </head>
 <body>
 <%@ include file="include/menu.jsp" %>
 <h1>Hello world!</h1>
 <P>The time on the server is ${serverTime}. </P>
+<div id="result"></div>
+<div></div>
 </body>
 </html>

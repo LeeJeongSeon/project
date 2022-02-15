@@ -25,4 +25,6 @@ public interface BookService {
 	public List<bookDTO> book_random_recommend(String userid);
 
 	public List<bookDTO> book_other_recommend(String userid);
+
+	public List<bookDTO> book_index();
 }
