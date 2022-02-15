@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body {
+	width: 1250px;
+	color: #333;
+	font-family: "Trebuchet MS", Dotum, Arial; 
+}
+
+
+
+fieldset {
+	margin: 10px;
+	border: 2px solid #666;
+}
+
+
+button {
+	background-color: #fff;
+	color: orange;
+	border: 1px solid orange;
+	font-weight: bold;
+}
