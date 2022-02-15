@@ -173,11 +173,10 @@
                 </li>
                 <li id="mList" style="right:449px;">행사
                     <ul id="sListUl" >
-                        <li id="sList"><a class="menuLink" href="${path}/event/list.do">행사</a></li>
-                        <li id="sList"><a class="menuLink" href="#">event</a></li>
-                        <li id="sList"><a class="menuLink" href="#">event</a></li>
-                        <li id="sList"><a class="menuLink" href="#">event</a></li>
-                        <li id="sList"><a class="menuLink" href="">event</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/write.do">신청</a></li>
+                        <li id="sList"><a class="menuLink" href="#">행사 참여</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">관리</a></li>
                     </ul>
                 </li>
                 <li id="mList" style="right:298px;">리뷰 게시판으로 이동
@@ -238,13 +237,12 @@
                     </ul>
                 </li>
 
-                <li id="bigMenu"><a href="${path}/event/list.do" style=" padding-bottom: 45px;">행사</a>
+                <li id="bigMenu"><a style="padding-bottom: 45px;">행사</a>
                     <ul class="secondMenu">
-                        <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">event</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">event</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">event</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">event</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">event</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">신청</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">행사 참여</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/event/listAdmin.do" style=" padding-right: 40px;">관리</a></li>
                     </ul>
                 </li>
 
@@ -264,7 +262,6 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/member/login.do""  style=" padding-right: 40px;">로그인</a></li>
                         <li style="margin-bottom: 10px;"><a href="../soonhyeon/eventnotice.html"  style=" padding-right: 40px;">member</a></li>
                         <li style="margin-bottom: 10px;"><a href="../chanwoo/customerComplaints.html"  style=" padding-right: 40px;">member</a></li>
-                      
                     </ul>
                 </li>
 

@@ -27,7 +27,7 @@ fieldset {
 </style>
 </head>
 <body>
-<%@ include file="../include/eventMenu.jsp" %>
+<%@ include file="../include/menu.jsp" %>
 <fieldset> 검색하기
 	<form name="form1" method="post" action="${path}/event/list.do">
 		<select name="search_option">

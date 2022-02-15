@@ -19,7 +19,7 @@ function show(e_num) {
 </script>
 </head>
 <body>
-<%@ include file="../include/eventMenu.jsp" %>
+<%@ include file="../include/menu.jsp" %>
 <table>
 	<tr>
 		<th>번호</th>
