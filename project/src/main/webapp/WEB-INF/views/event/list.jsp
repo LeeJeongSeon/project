@@ -41,29 +41,31 @@ if(${param.message=='no'}) {
 	<div id="table">
 		<table>
 			<tr>
-				<th>기관명</th>
-				<th>멘토</th>
-				<th>행사명</th>
-				<th>시작일</th>
-				<th>마감일</th>
-				<th>장소</th>
-				<th>조회수</th>
-				<th></th>
+				<th class="tb1_col1">기관명</th>
+				<th class="tb1_col2">멘토</th>
+				<th class="tb1_col3">행사명</th>
+				<th class="tb1_col4">시작일</th>
+				<th class="tb1_col5">마감일</th>
+				<th class="tb1_col6">장소</th>
+				<th class="tb1_col7">&nbsp;</th>
 			</tr>
+		</table>
+		<table>
 			<c:forEach var="dto" items="${map.list}">
 				<c:if test="${dto.e_result==1}">
 					<tr>
-						<td>${dto.e_agency}</td>
-						<td>${dto.e_instr}</td>
-						<td>${dto.e_name}</td>
-						<td>${dto.e_start_d}</td>
-						<td>${dto.e_finish_d}</td>
-						<td>${dto.e_place}</td>
-						<td>${dto.e_read_cnt}</td>
-						<td><button type="button" onclick="location.href='${path}/event/view.do?e_num=${dto.e_num}'">이동</button></td>
+						<td class="tb1_col1">${dto.e_agency}</td>
+						<td class="tb1_col2">${dto.e_instr}</td>
+						<td class="tb1_col3">${dto.e_name}</td>
+						<td class="tb1_col4">${dto.e_start_d}</td>
+						<td class="tb1_col5">${dto.e_finish_d}</td>
+						<td class="tb1_col6">${dto.e_place}</td>
+						<td class="tb1_col7"><button type="button" onclick="location.href='${path}/event/view.do?e_num=${dto.e_num}'">이동</button></td>
 					</tr>
 				</c:if>
 			</c:forEach>
+		</table>
+		<table>
 			<tr>
 				<td colspan="8" align="center">
 					<c:if test="${map.pager.curBlock > 1}">
