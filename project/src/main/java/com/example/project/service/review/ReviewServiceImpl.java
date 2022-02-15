@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.project.model.review.dao.ReviewDAO;
 import com.example.project.model.review.dto.ReviewDTO;
@@ -39,6 +40,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	}
 
+	@Transactional
 	@Override
 	public void create(ReviewDTO dto) throws Exception {
 		//board 테이블에 레코드 추가
@@ -53,7 +55,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	
 	
-	
+	@Transactional
 	@Override
 	public void update(ReviewDTO dto) throws Exception {
 		reviewDao.update(dto);
@@ -69,7 +71,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	
 	
-	
+	@Transactional
 	@Override
 	public void delete(int review_bno) throws Exception {
 		reviewDao.delete(review_bno);
