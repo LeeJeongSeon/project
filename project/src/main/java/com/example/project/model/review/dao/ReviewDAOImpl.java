@@ -46,6 +46,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	}
 
+	
 	@Override
 	public void create(ReviewDTO dto) throws Exception {
 		sqlSession.insert("review.insert", dto);
@@ -54,7 +55,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public void update(ReviewDTO dto) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.update("review.update", dto);
 
 	}
 
