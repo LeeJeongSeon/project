@@ -27,7 +27,6 @@ if(${param.message=='no'}) {
 <table align="center" id="body">
 	<tr>
 		<td>
-		어이
 		</td>
 	</tr>
 </table>
