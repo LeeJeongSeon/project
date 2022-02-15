@@ -126,10 +126,53 @@ public class MemberController {
 	
 	
 	
-
-
-
-
+	
+	//관리자가 회원 리스트 보기
+	@RequestMapping("list.do")
+	public ModelAndView list(			
+			@RequestParam(defaultValue = "userid") String search_option,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "1") int curPage) throws Exception{
+		
+		//레코드 갯수 계산
+		int count=memberService.countMember(search_option,keyword);
+		//페이지 관련 설정
+		Pager pager=new Pager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		
+		List<MemberDTO> list=memberService.listMember(search_option,keyword,start,end);
+		logger.info(list.toString());
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map=new HashMap<>();
+		map.put("list", list);
+		map.put("count", count);//레코드 갯수 파악
+		map.put("pager", pager);//페이지 네비게이션을 위한 변수
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+		
+		mav.setViewName("member/member_list");//포워딩
+		mav.addObject("map", map); //ModelAndView에 map을 저장
+		return mav; //board/list.jsp로 데이터와 함께 이동
+	}
+	
+	
+	
+	
+	
+	//회원 리스트에서 이름 클릭시 회원 정보 보기
+	@RequestMapping("admin_view.do")
+	public ModelAndView view(String userid, HttpSession session) 
+			throws Exception{
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("member/admin_view");//포워딩할 뷰의 이름
+		mav.addObject("dto", memberService.readMember(userid));//자료저장
+		return mav; //board/view.jsp로 포워딩
+		
+	}
+	
+	
 
 
 }
