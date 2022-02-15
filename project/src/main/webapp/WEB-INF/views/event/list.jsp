@@ -20,15 +20,19 @@ if(${param.message=='no'}) {
 	alert("잘못 입력된 이메일이거나 신청하신 행사가 없습니다.");
 }
 </script>
-<style type="text/css">
-fieldset {
-	margin: 10px;
-}
-</style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<fieldset> 검색하기
+<table align="center" id="body">
+	<tr>
+		<td>
+		어이
+		</td>
+	</tr>
+</table>
+<fieldset> 
+	<legend>검색하기</legend>
 	<form name="form1" method="post" action="${path}/event/list.do">
 		<select name="search_option">
 			<option value="e_name" <c:if test="${map.search_option == 'e_name'}">selected</c:if>>이름</option>
@@ -37,10 +41,9 @@ fieldset {
 			<option value="all" <c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
 		</select>
 		<input name="keyword" value="${map.keyword}">
-		<input type="submit" value="조회">
+		<button>조회</button>
 	</form>
 </fieldset>
-행사 페이지
 <table>
 	<tr>
 		<th>기관명</th>
