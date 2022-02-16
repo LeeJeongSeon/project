@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.project.model.member.DTO.MemberDTO;
 import com.example.project.model.notice_qna.dto.Notice_qnaDTO;
+import com.example.project.service.member.MemberService;
 import com.example.project.service.notice_qna.Notice_qnaService;
 import com.example.project.service.notice_qna.Pager;
 
@@ -24,13 +26,17 @@ public class Notice_qnaController {
 	
 	@Inject
 	Notice_qnaService notice_qnaService;
+	@Inject
+	MemberService memberService;
 	
 	@RequestMapping("list.do")
-	public ModelAndView list(String category,
+	public ModelAndView list(String category,HttpSession session,
 			@RequestParam(defaultValue = "subject") String search_option,
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1")  int curPage) throws Exception{
 		String cate="";
+		String id=(String)session.getAttribute("userid");
+		int adminCk = memberService.adminCheck(id);
 		ModelAndView mav = new ModelAndView();
 		if(category.equals("notice")) {
 			 cate = "notice";
@@ -53,6 +59,7 @@ public class Notice_qnaController {
 		map.put("noticeList", noticeList);
 		map.put("keyword", keyword);
 		map.put("search_option", search_option);
+		map.put("adminCk", adminCk);
 		mav.addObject("map",map);
 		return mav;
 	}

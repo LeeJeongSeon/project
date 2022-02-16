@@ -98,7 +98,9 @@ a{text-decoration: none;}
 
 <div>
 <!-- 관리자일때만 -->
+<c:if test="${map.adminCk==1 }">
 <button type="button" id="btnWrite">공지쓰기</button>
+ </c:if>
  <button type="button" id="btnList">목록</button>
 </div>
 
