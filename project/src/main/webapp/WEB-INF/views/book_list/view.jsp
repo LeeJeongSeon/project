@@ -82,5 +82,6 @@ $(function(){
 		<button type="button" id="updatebtn">수정</button>
 	</c:if>
 	</section>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

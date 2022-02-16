@@ -40,5 +40,6 @@ $(function(){
 <div id="result"></div>
 <h2>다른사람의 도서추천</h2>
 <div id="result2"></div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

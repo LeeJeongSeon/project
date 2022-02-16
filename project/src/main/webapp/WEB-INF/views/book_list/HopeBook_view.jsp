@@ -98,8 +98,6 @@ $(function(){
    <input type="button" value="목록" id="btnList">  
    </form>
 </div>
-<%-- 
-임시2: ${list[0].hopeBook_title} <br>
-임시3: ${list[0]} --%>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
