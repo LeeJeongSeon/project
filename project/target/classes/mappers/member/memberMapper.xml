@@ -99,7 +99,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
   where userid=#{userid}
  </select>
  
- 
+ <select id="adminCheck" resultType="int">
+  select adminCk from member
+  where userid = #{userid}
+ </select>
  
  
  

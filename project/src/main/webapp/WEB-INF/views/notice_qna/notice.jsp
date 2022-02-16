@@ -24,11 +24,11 @@ function list(page){
 #pageNv{
  display: inline;
 }
+#main{width: 100%; }
 #side{
- position: absolute;
- top:150px;
- left : 100px;
- width: 200px;
+float:left;
+padding-left:6%;
+ width: 13%;
  height: 200px;
 }
 #sidemenu1{list-style: none;
@@ -38,31 +38,32 @@ padding: 0px;
  border-bottom: 1px solid gray;
 }
 #content{
-position: absolute;
-left: 300px;
-top: 150px;
-width: 1200px;
+
+float:right;
+width: 80%;
 }
 a{text-decoration: none;}
 .qnamenu:hover {
-	background: orange;
+	background: #ff8533;
 	color: white;
 }
+#footer{clear:both;}
 
 </style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
+<div id="main">
 <div id="side">
 <h3>이용자게시판</h3>
  <ul id="sidemenu1">
-  <li class="noticemenu" style="background: orange; "><a class="noticemenu" style="color: white;" href="${path}/notice_qna/list.do?category=notice">공지사항</a></li>
+  <li class="noticemenu" style="background: #ff8533; "><a class="noticemenu" style="color: white;" href="${path}/notice_qna/list.do?category=notice">공지사항</a></li>
   <li class="qnamenu" ><a class="qnamenu" href="${path}/notice_qna/list.do?category=qna">묻고답하기</a></li>
  </ul>
 </div>
 <div id="content" >
 <div id="article" >
-<h2>공지사항</h2>
+<h2>공지사항</h2 >
 전체<strong>${map.count}</strong> 개
 <table>
 <tr>
@@ -91,8 +92,8 @@ a{text-decoration: none;}
   <td><fmt:formatDate value="${row.reg_date }" pattern="yyyy.MM.dd"/></td>
   <td>${row.readcount}</td>
  </tr>
- </c:forEach>
-</table>
+ </c:forEach >
+</table >
 </div>
 
 <div>
@@ -149,7 +150,8 @@ a{text-decoration: none;}
 </form>
 </div>
 </div>
-
+</div>
+<%@ include file="../include/footer.jsp" %>
 
 
 </body>

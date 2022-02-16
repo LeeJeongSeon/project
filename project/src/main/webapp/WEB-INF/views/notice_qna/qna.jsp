@@ -24,11 +24,11 @@ function list(page){
 #pageNv{
  display: inline;
 }
+#main{width: 100%; }
 #side{
- position: absolute;
- top:150px;
- left : 100px;
- width: 200px;
+float:left;
+padding-left:6%;
+ width: 13%;
  height: 200px;
 }
 #sidemenu1{list-style: none;
@@ -38,16 +38,16 @@ padding: 0px;
  border-bottom: 1px solid gray;
 }
 #content{
-position: absolute;
-left: 300px;
-top: 150px;
-width: 1200px;
+
+float:right;
+width: 80%;
 }
 a{text-decoration: none;}
-.noticemenu:hover {
-	background: orange;
+.qnamenu:hover {
+	background: #ff8533;
 	color: white;
 }
+#footer{clear:both;}
 
 </style>
 </head>
@@ -57,11 +57,11 @@ a{text-decoration: none;}
 <h3>이용자게시판</h3>
  <ul id="sidemenu1">
   <li class="noticemenu" ><a class="noticemenu"  href="${path}/notice_qna/list.do?category=notice">공지사항</a></li>
-  <li class="qnamenu" style="background: orange;"><a class="qnamenu" style="color: white;" href="${path}/notice_qna/list.do?category=qna">묻고답하기</a></li>
+  <li class="qnamenu" style="background: #ff8533;"><a class="qnamenu" style="color: white;" href="${path}/notice_qna/list.do?category=qna">묻고답하기</a></li>
  </ul>
 </div>
 
-<div id="content">
+<div id="content" >
 <div id="article" >
 <h2>묻고답하기</h2>
 전체<strong>${map.count}</strong> 개
@@ -157,6 +157,6 @@ a{text-decoration: none;}
 </form>
 </div>
 </div>
- 
+ <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

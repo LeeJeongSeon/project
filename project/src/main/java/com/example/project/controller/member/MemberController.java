@@ -47,9 +47,12 @@ public class MemberController {
 	public ModelAndView login_check(MemberDTO dto,HttpSession session) {
 		boolean result = memberService.loginCheck(dto, session);
 		ModelAndView mav = new ModelAndView();
-
-		if(result) {//login성공시
+        System.out.println("아이디뭐야"+dto.getUserid());
+		
+		  int adminCk = memberService.adminCheck(dto.getUserid());
+			if(result) {//login성공시
 			mav.setViewName("home");//뷰의 이름
+			mav.addObject("adminCk", adminCk);
 
 		}else {//실패시
 			mav.setViewName("member/login");

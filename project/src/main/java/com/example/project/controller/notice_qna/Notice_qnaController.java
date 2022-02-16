@@ -79,10 +79,10 @@ public class Notice_qnaController {
 	@RequestMapping("insert.do")
 	public String insert(@ModelAttribute Notice_qnaDTO dto, 
 			HttpSession session) throws Exception {
-		/*
-		 * String id=(String)session.getAttribute("userid");
-		 */		String id2="hong";
-		dto.setId(id2);
+		
+		  String id=(String)session.getAttribute("userid");
+			/* String id2="hong"; */
+		dto.setId(id);
 		
 		notice_qnaService.create(dto);
 		return "redirect:/notice_qna/list.do?category="+dto.getCategory();
@@ -135,10 +135,10 @@ public class Notice_qnaController {
 	}
 	@RequestMapping("insertReply.do")
 	public String insertReply(@ModelAttribute Notice_qnaDTO dto, HttpSession session) throws Exception{
-		/*
-		 * String id=(String)session.getAttribute("userid");
-		 */		String id2="hong";
-		dto.setId(id2);
+		
+		 String id=(String)session.getAttribute("userid");
+			/* String id2="hong"; */
+		dto.setId(id);
 		dto.setRef(dto.getNum());
 		int ref=dto.getRef();		
 		int ref_step=dto.getRef_step()+1;
