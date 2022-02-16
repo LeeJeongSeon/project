@@ -29,12 +29,12 @@ header {
 <%@ include file="../include/menu.jsp" %>
 <div id="body">
 	<header>
-		문화 행사
+		문화행사 세부사항
 	</header>
 	<div id="table">
 		<table class="tb2"> 
 			<tr>
-				<th style="font-size: 20px;">${dto.e_name}</th>
+				<th id="title">${dto.e_name}</th>
 				<td align="right" style="width: 8%;">				
 					<span>조회수 ${dto.e_read_cnt}</span>
 				</td>
@@ -76,5 +76,6 @@ header {
 		<button type="button" onclick="location.href='${path}/event/list.do'">확인</button>
 	</div>
 </div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

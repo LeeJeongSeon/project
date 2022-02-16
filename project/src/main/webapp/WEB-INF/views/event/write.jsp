@@ -137,5 +137,6 @@ function checkDate() {
 			</tr>
 		</table>
 	</form>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

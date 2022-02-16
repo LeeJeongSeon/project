@@ -82,6 +82,10 @@ th, td {
 	margin-bottom: 30px;
 }
 
+#title {
+	font-size: 20px;
+}
+
 select {
 	margin-left: 30px;
 	width: 60px;
@@ -95,6 +99,5 @@ input {
 }
 
 textarea {
-	width: 82%;
-	height: 150px;
+	height: 200px;
 }

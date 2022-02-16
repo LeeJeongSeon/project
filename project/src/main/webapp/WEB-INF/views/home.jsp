@@ -33,5 +33,6 @@ $(function(){
 <P>The time on the server is ${serverTime}. </P>
 <div id="result"></div>
 <div></div>
+<%@ include file="include/footer.jsp" %>
 </body>
 </html>

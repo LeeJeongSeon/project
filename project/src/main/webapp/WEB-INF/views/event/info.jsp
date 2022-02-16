@@ -66,5 +66,6 @@ header {
 	<hr>
 	<div style="width: 100%;" id="div1"></div>
 </div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

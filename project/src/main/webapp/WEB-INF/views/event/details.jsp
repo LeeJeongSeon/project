@@ -118,7 +118,7 @@
 			<table>
 				<tr>
 					<th>행사명</th>
-					<td colspan="3"><input name="e_name" id="e_name" value="${dto.e_name}"></td>
+					<td colspan="3"><input name="e_name" id="e_name" value="${dto.e_name}" style="width: 92.5%;"></td>
 				</tr>
 				<tr>
 					<th>주최기관</th>
@@ -127,8 +127,10 @@
 					<td><input name="e_instr" id="e_instr" value="${dto.e_instr}"></td>
 				</tr>
 				<tr>
-					<td colspan="4"><textarea name="e_intro" id="e_intro"
-							placeholder="행사에 대해 소개해주세요!">${dto.e_intro}</textarea></td>
+					<th style="vertical-align: top;">행사 설명</th>
+					<td colspan="4">
+						<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!" style="width: 92.5%;">${dto.e_intro}</textarea>
+					</td>
 				</tr>
 				<tr>
 					<th>희망 행사장소</th>
@@ -155,7 +157,7 @@
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td colspan="3"><input type="email" name="e_email" id="e_email" value="${dto.e_email}"></td>
+					<td colspan="3"><input type="email" name="e_email" id="e_email" value="${dto.e_email}" style="width: 92.5%;"></td>
 				</tr>
 				<tr align="center">
 					<td colspan="4">
