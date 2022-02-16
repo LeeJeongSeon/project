@@ -1,5 +1,7 @@
 package com.example.project.service.member;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
