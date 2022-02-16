@@ -299,7 +299,8 @@
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
 
 <c:if test="${adminCk == 1 }">                            
-<a href="${path}/member/list.do">회원 리스트</a> |                           
+<a href="${path}/member/list.do">회원 리스트</a> | 
+                          
 </c:if> 
                            
 <a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
