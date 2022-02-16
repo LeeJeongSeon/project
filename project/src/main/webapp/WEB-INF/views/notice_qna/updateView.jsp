@@ -36,5 +36,6 @@ CKEDITOR.replace("content",{
 	</div>
 	<input type="button" value="수정" onclick="btnUpdate()">
 </form>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

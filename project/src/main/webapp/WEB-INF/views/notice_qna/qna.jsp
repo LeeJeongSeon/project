@@ -20,11 +20,51 @@ function list(page){
 			+"&category=qna";
 }
 </script>
+<style type="text/css">
+#pageNv{
+ display: inline;
+}
+#side{
+ position: absolute;
+ top:150px;
+ left : 100px;
+ width: 200px;
+ height: 200px;
+}
+#sidemenu1{list-style: none;
+padding: 0px;
+}
+.noticemenu,.qnamenu{padding: 0.7em;
+ border-bottom: 1px solid gray;
+}
+#content{
+position: absolute;
+left: 300px;
+top: 150px;
+width: 1200px;
+}
+a{text-decoration: none;}
+.noticemenu:hover {
+	background: orange;
+	color: white;
+}
+
+</style>
 </head>
 <body>
-<h2>묻고답하기</h2>
+<%@ include file="../include/menu.jsp" %>
+<div id="side">
+<h3>이용자게시판</h3>
+ <ul id="sidemenu1">
+  <li class="noticemenu" ><a class="noticemenu"  href="${path}/notice_qna/list.do?category=notice">공지사항</a></li>
+  <li class="qnamenu" style="background: orange;"><a class="qnamenu" style="color: white;" href="${path}/notice_qna/list.do?category=qna">묻고답하기</a></li>
+ </ul>
+</div>
 
-전체${map.count}개
+<div id="content">
+<div id="article" >
+<h2>묻고답하기</h2>
+전체<strong>${map.count}</strong> 개
 
 <table>
  <tr>
@@ -43,6 +83,7 @@ function list(page){
   <td>${row2.readcount}</td>
 </tr>
 </c:forEach>
+
  <c:forEach var="row" items="${map.list}">
  <tr>
   <td>${row.num}</td>
@@ -57,19 +98,20 @@ function list(page){
  </tr>
  </c:forEach>
 </table>
+</div>
 
 <div>
 <button type="button" id="btnWrite">글쓰기</button>
  <button type="button" id="btnList">목록</button>
 </div>
 
-<div>
+<div id="pageNv">
 <c:if test="${map.pager.curBlock > 1}">
-				<a href="#" onclick="list('1')">[처음]</a>
+				<a href="#" onclick="list('1')">[처음]</a>&nbsp;
 			</c:if>
 			<c:if test="${map.pager.curBlock > 1}">
 				<a href="#" onclick="list('${map.pager.prevPage}')">
-				[이전]</a>
+				[이전]</a>&nbsp;
 			</c:if>
 			<c:forEach var="num" 
 				begin="${map.pager.blockStart}"
@@ -77,16 +119,16 @@ function list(page){
 				<c:choose>
 					<c:when test="${num == map.pager.curPage}">
 					<!-- 현재 페이지인 경우 하이퍼링크 제거 -->
-						<span style="color:red;">${num}</span>
+						<span style="color:red;">${num}</span>&nbsp;
 					</c:when>
 					<c:otherwise>
-						<a href="#" onclick="list('${num}')">${num}</a>
+						<a href="#" onclick="list('${num}')">${num}</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${map.pager.curBlock < map.pager.totBlock}">
 				<a href="#" 
-				onclick="list('${map.pager.nextPage}')">[다음]</a>
+				onclick="list('${map.pager.nextPage}')">[다음]</a>&nbsp;
 			</c:if>
 			<c:if test="${map.pager.curPage < map.pager.totPage}">
 				<a href="#" 
@@ -94,7 +136,7 @@ function list(page){
 			</c:if>
 </div>
 
-<div>
+<div >
 <form name="form1" method="post"
 	action="${path}/notice_qna/list.do">
 		<select name="search_option">
@@ -113,6 +155,7 @@ function list(page){
 	<input name="keyword" value="${map.keyword}">
 	<input type="submit" value="조회">
 </form>
+</div>
 </div>
  
 </body>

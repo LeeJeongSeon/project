@@ -25,7 +25,7 @@ $(function(){
 }
 </style>
 <title>Home</title>
-
+<link rel="stylesheet" href="include/event.css">
 </head>
 <body>
 <%@ include file="include/menu.jsp" %>
@@ -33,5 +33,6 @@ $(function(){
 <P>The time on the server is ${serverTime}. </P>
 <div id="result"></div>
 <div></div>
+<%@ include file="include/footer.jsp" %>
 </body>
 </html>

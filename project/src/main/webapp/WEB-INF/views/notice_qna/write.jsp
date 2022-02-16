@@ -31,6 +31,7 @@ function notice_qna_write(){
 </script>
 </head>
 <body>
+<%@ include file="../include/menu.jsp" %>
 <h2>${map.cate}</h2>
 
 <form id="form1" name="form1" method="post">
@@ -49,6 +50,6 @@ CKEDITOR.replace("content",{
 	</div>
 	<input type="button" value="등록" onclick="notice_qna_write()">
 </form>
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

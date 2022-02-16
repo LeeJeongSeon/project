@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where e_finish_d > sysdate 
 		<include refid="search"/>
 		<include refid="pagerFooter"/>
-		order by e_start_d
+		order by e_finish_d
 	</select>
 	
 	<update id="updateEReadCount">
@@ -103,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="eventApplyList" resultType="eventDTO">
-		select e_num, e_name, e_result from event
+		select e_num, e_name, e_agency, e_result from event
 		where e_email=#{e_email}
 		order by e_num
 	</select>

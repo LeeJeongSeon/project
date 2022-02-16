@@ -22,9 +22,24 @@ if(${param.message=='no'}) {
 }
 </script>
 <link rel="stylesheet" href="../include/event.css">
+<style type="text/css">
+#body {
+	font-family: HYKANM;
+}
+
+header {
+	font-size: 25px;
+	font-weight: bold;
+	padding-left: 30px;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
+<div id="body">
+	<header>
+		문화행사
+	</header>
 	<fieldset> 
 		<legend>Search Zone</legend>
 		<form name="form1" method="post" action="${path}/event/list.do">
@@ -47,7 +62,7 @@ if(${param.message=='no'}) {
 				<th class="tb1_col4">시작일</th>
 				<th class="tb1_col5">마감일</th>
 				<th class="tb1_col6">장소</th>
-				<th class="tb1_col7">&nbsp;</th>
+				<th class="tb1_col7"> </th>
 			</tr>
 		</table>
 		<table>
@@ -99,9 +114,11 @@ if(${param.message=='no'}) {
 			</tr>
 		</table>
 	</div>
-	<footer align="center">
-	이미 신청한 행사의 내용을 수정하거나, 신청 취소를 희망하실 경우 클릭하세요 
-	<button type="button" onclick="checkEmail()">확인</button>
-	</footer>
+	<div align="center">
+		이미 신청한 행사의 내용을 수정하거나, 신청 취소를 희망하실 경우 클릭하세요 
+		<button type="button" onclick="checkEmail()">확인</button>
+	</div>
+</div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
