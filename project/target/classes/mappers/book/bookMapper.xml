@@ -172,7 +172,7 @@ and <![CDATA[ rownum<=5]]>
 select book_id,book_name,book_img,book_genre
 from book 
 where <![CDATA[ rownum<=5]]>
-order by book_id
+order by book_id desc
 </select>
 </mapper>
 
