@@ -19,25 +19,12 @@ function list(page){
 }
 }
 
-$(function(){
-	$("#exbtn").click(function(){
-		$.ajax({
-			url: "${path}/crawling/example.do",
-			type: "post"
-		});
-	});
-	
-});
 </script>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>게시판</h2>
-<!-- 
-<img src="C:\images\1.jpg" width="100px" height="100px">
-절대경로로 이미지출력 안됨 -->
 
-<button type="button" id="exbtn">확인</button>
 <!-- 검색폼 -->
 <form name="form1" method="post" action="${path}/book/list.do">
 	<select name="search_option">
@@ -83,11 +70,28 @@ ${map.count}개의 도서가 있습니다.
  <c:forEach var="row" items="${map.list}">
  <tr>
   <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
-  <td><img src="../images/${row.book_img}" width="100px" height="100px">
-  <!-- <td><img src="C:\book_images\${row.book_img}" width="100px" height="100px"> -->
+  <td>
+  <c:choose>
+  <c:when test="${row.book_img==null}">
+  <img src="../images/etc.jpg" width="100px" height="100px">
+  </c:when>
+  <c:when test="${fn:contains(row.book_img,'jpg')}">
+  <img src="../images/${row.book_img}" width="100px" height="100px">
+  </c:when>
+  <c:otherwise>
+  <img src="${row.book_img}" width="100px" height="100px">
+  </c:otherwise>
+  </c:choose>
   </td>
   <td>${row.book_author}</td>
+  <c:choose>
+  <c:when test="${fn:length(row.book_content)>100}">
+  <td>${fn:substring(row.book_content,0,100)}... </td>
+  </c:when>
+  <c:otherwise>
   <td>${row.book_content}</td>
+  </c:otherwise>
+  </c:choose>
   <td>${row.book_publisher}</td>
  </tr>
  </c:forEach>
@@ -131,6 +135,6 @@ ${map.count}개의 도서가 있습니다.
 </table>
 <input type="hidden" value="${map.keyword}" id="keyword">
 <input type="hidden" value="${map.search_option}" id="search_option">
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

@@ -68,7 +68,7 @@ function updateReply(){
    <input type="button" value="답변달기" onclick="updateReply()">
  </tr>
 </table>
-	단계:${dto.re_level}
+<%@ include file="../include/footer.jsp" %>
 </form>
 </body>
 </html>

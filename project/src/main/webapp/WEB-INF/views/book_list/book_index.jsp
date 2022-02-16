@@ -22,17 +22,30 @@
 <table style="text-align: center; width:100%;">
 <tr>
  <c:forEach var="row" items="${list}">
- <td><img src="images/${row.book_img}" width="200px" height="200px"></td> <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+ <td>
+ <c:choose>
+  <c:when test="${row.book_img==null}">
+  <img src="../images/etc.jpg" width="200px" height="200px">
+  </c:when>
+  <c:when test="${fn:contains(row.book_img,'jpg')}">
+  <img src="../images/${row.book_img}" width="200px" height="200px">
+  </c:when>
+  <c:otherwise>
+  <img src="${row.book_img}" width="200px" height="200px">
+  </c:otherwise>
+  </c:choose>
+ </td> 
  </c:forEach>
  </tr>
  <tr>
   <c:forEach var="row" items="${list}">
   <c:choose>
   <c:when test="${fn:length(row.book_name)>15}">
+  
   <td><a class="book" href="${path}/book/view.do?book_id=${row.book_id}">${fn:substring(row.book_name,0,14)}</a>... </td>
   </c:when>
   <c:otherwise>
-  <td><a class="book" href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td> <!-- &nbsp; -->
+  <td><a class="book" href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
   </c:otherwise>
   </c:choose>
  </c:forEach>

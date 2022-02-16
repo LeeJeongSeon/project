@@ -190,5 +190,6 @@ $(function(){
 	</table>
 	<button type="button" id="btnSave">확인</button>
 </form>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

@@ -121,4 +121,5 @@ function hopeBook_check(){
 	</div>
 </form>
 </body>
+<%@ include file="../include/footer.jsp" %>
 </html>

@@ -116,6 +116,6 @@ ${map.count}개의 게시물이 있습니다.
 </table>
 <input type="hidden" value="${map.keyword}" id="keyword">
 <input type="hidden" value="${map.search_option}" id="search_option">
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
