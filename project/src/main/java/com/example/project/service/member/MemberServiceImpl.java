@@ -84,6 +84,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.readMember(userid);
 	}
 
+	@Override
+	public int adminCheck(String userid) {
+		return memberDAO.adminCheck(userid);
+	}
+
 	
 	
 }

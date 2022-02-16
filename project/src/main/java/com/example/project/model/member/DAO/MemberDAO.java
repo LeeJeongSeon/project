@@ -17,6 +17,7 @@ public interface MemberDAO {
 	public int countMember(String search_option, String keyword) throws Exception;//레코드 갯수 계산
 	public List<MemberDTO> listMember(String search_option, String keyword, int start, int end);
 	public MemberDTO readMember(String userid) throws Exception;
+	public int adminCheck(String userid);
 	
 	
 	

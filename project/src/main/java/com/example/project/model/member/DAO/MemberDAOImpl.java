@@ -95,6 +95,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberDTO readMember(String userid) throws Exception {
 		return sqlSession.selectOne("member.readMember", userid);
 	}
+
+	@Override
+	public int adminCheck(String userid) {
+		return sqlSession.selectOne("member.adminCheck",userid);
+	}
 	
 	
     
