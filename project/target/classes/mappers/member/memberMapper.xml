@@ -45,6 +45,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
   where userid=#{userid} and passwd=#{passwd}
  </select>
  
+  
+ 
+<!-- 여기서부터 관리자 -->
+ 
+ 
+ <!-- 회원수 -->
+ <select id="countMember" resultType="int">
+  select count(*) from member
+  <include refid="search"></include>
+ </select>
+
+ <sql id="search">
+  <choose>
+   <when test="search_option != 'all' ">
+    where ${search_option} like #{keyword}
+   </when>
+   <otherwise>
+    where ${search_option} like #{keyword}
+      and (name like #{keyword} 
+       or phone like #{keyword}
+       or email like #{keyword})
+   </otherwise>
+  </choose>
+ </sql>
+
+ 
+ 
+ <!-- 회원 리스트 -->
+  <select id="listMember" resultType="com.example.project.model.member.DTO.MemberDTO">
+  <include refid="paging_header" />
+		  select userid,name,phone,zipcode,email from member
+		  <include refid="search" />
+		  <include refid="paging_footer" />
+ </select>
+ 
+ <sql id="paging_header">
+  select *
+  from (
+    select rownum as rn, A.* 
+    from(
+ </sql>
+ <sql id="paging_footer">
+    ) A
+  ) where rn between #{start} and #{end}
+ </sql>
+ 
+ 
+ <!-- 회원정보 -->
+  <select id="readMember" resultType="com.example.project.model.member.DTO.MemberDTO">
+  select userid,name,email,zipcode,address1,address2,join_date,adminCk
+  from member
+  where userid=#{userid}
+ </select>
+ 
  
  
  
