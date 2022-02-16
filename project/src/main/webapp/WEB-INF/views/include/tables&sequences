@@ -112,7 +112,7 @@ increment by 1;
 = 본문 내용 : content
 = 첨부 파일 : filename
 = 조회수 : readcount
-= 공지 : notice
+= 공지고정 : notice
 
 create table notice_qna (
 num number not null primary key,
