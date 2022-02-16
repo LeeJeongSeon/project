@@ -110,6 +110,7 @@ increment by 1;
 = 본문 내용 : content
 = 첨부 파일 : filename
 = 조회수 : readcount
+= 공지 : notice
 
 create table notice_qna (
 num number not null primary key,
@@ -119,7 +120,11 @@ subject varchar2(50) not null,
 reg_date  date default sysdate, 
 readcount number default 0,  
 content varchar2(4000) , 
-filename varchar2(200) 
+filename varchar2(200) ,
+notice varchar2(1) default 'y',
+ref number default 0 not null,
+ref_step number default 0 not null,
+re_level number default 0 not null
 );
 
 ++ 글번호용 시퀀스 notice_qna_seq
@@ -128,29 +133,7 @@ start with 1
 increment by 1;
 
 
--댓글테이블 : comment
-= 댓글번호 : comment_num
-= 게시물 번호 : qna_num
-= 작성자 아이디 : id
-= 작성일 : reg_date
-= 내용 : comment_content
-= 수정일 : re_date
-= 비공개 : secret_re
 
-create table comment(
-comment_num number not null primary key,
-qna_num number not null references notice_qna(num),
-id varchar2(50) not null,
-reg_date date default sysdate, 
-comment_content varchar2(500),
-re_date date default sysdate,
-secret_re char(1) default 'y'
-);
-
-++ 댓글번호용 시퀀스 comment_seq
-create sequence comment_seq
-start with 1
-increment by 1;
 
 
 
