@@ -1,0 +1,14 @@
+package com.example.project.model.rent.DAO;
+
+import java.util.List;
+
+import com.example.project.model.rent.DTO.RentDTO;
+
+public interface RentDAO {
+	public List<RentDTO> listRent(String userid);
+	public void insert(RentDTO dto);
+	public void delete(int bnum);
+	public void update(int bnum);
+	public int countRent(String userid, String book_id);
+	public void modifyRent(RentDTO dto);
+}
