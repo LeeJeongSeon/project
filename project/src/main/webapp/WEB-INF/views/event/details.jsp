@@ -113,57 +113,59 @@
 	}
 </script>
 <body>
-	<form action="${path}/event/update.do" name="form1" >
-		<table>
-			<tr>
-				<th>행사명</th>
-				<td colspan="3"><input name="e_name" id="e_name" value="${dto.e_name}"></td>
-			</tr>
-			<tr>
-				<th>주최기관</th>
-				<td><input name="e_agency" id="e_agency" value="${dto.e_agency}"></td>
-				<th>강사</th>
-				<td><input name="e_instr" id="e_instr" value="${dto.e_instr}"></td>
-			</tr>
-			<tr>
-				<td colspan="4"><textarea name="e_intro" id="e_intro"
-						placeholder="행사에 대해 소개해주세요!">${dto.e_intro}</textarea></td>
-			</tr>
-			<tr>
-				<th>희망 행사장소</th>
-				<td><input name="e_place" id="e_place" value="${dto.e_place}"></td>
-				<th>시작 시간</th>
-				<td><select name="e_start_t" id="e_start_t">
-						<%
-						for (int i = 8; i < 20; i++) {
-						%>
-						<option value="<%=i%>:00" 
-							<c:if test="${dto.e_start_t}==i+':00'">
-							selected</c:if>
-						><%=i%>:00</option>
-						<%
-						}
-						%>
-				</select></td>
-			</tr>
-			<tr>
-				<th>행사 시작일</th>
-				<td><input type="date" name="e_start_d" id="e_start_d" value="${dto.e_start_d}"></td>
-				<th>행사 마감일</th>
-				<td><input type="date" name="e_finish_d" id="e_finish_d" value="${dto.e_finish_d}"></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td colspan="3"><input type="email" name="e_email" id="e_email" value="${dto.e_email}"></td>
-			</tr>
-			<tr align="center">
-				<td colspan="4">
-				<input type="hidden" value="${dto.e_num}" name="e_num">
-					<input type="button" onclick="update()" value="변경">
-					<input type="button" onclick="cancel()" value="취소">
-				</td>
-			</tr>
-		</table>
+	<form action="${path}/event/update.do" name="form1">
+		<div id="table">
+			<table>
+				<tr>
+					<th>행사명</th>
+					<td colspan="3"><input name="e_name" id="e_name" value="${dto.e_name}"></td>
+				</tr>
+				<tr>
+					<th>주최기관</th>
+					<td><input name="e_agency" id="e_agency" value="${dto.e_agency}"></td>
+					<th>강사</th>
+					<td><input name="e_instr" id="e_instr" value="${dto.e_instr}"></td>
+				</tr>
+				<tr>
+					<td colspan="4"><textarea name="e_intro" id="e_intro"
+							placeholder="행사에 대해 소개해주세요!">${dto.e_intro}</textarea></td>
+				</tr>
+				<tr>
+					<th>희망 행사장소</th>
+					<td><input name="e_place" id="e_place" value="${dto.e_place}"></td>
+					<th>시작 시간</th>
+					<td><select name="e_start_t" id="e_start_t">
+							<%
+							for (int i = 8; i < 20; i++) {
+							%>
+							<option value="<%=i%>:00" 
+								<c:if test="${dto.e_start_t}==i+':00'">
+								selected</c:if>
+							><%=i%>:00</option>
+							<%
+							}
+							%>
+					</select></td>
+				</tr>
+				<tr>
+					<th>행사 시작일</th>
+					<td><input type="date" name="e_start_d" id="e_start_d" value="${dto.e_start_d}"></td>
+					<th>행사 마감일</th>
+					<td><input type="date" name="e_finish_d" id="e_finish_d" value="${dto.e_finish_d}"></td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td colspan="3"><input type="email" name="e_email" id="e_email" value="${dto.e_email}"></td>
+				</tr>
+				<tr align="center">
+					<td colspan="4">
+					<input type="hidden" value="${dto.e_num}" name="e_num">
+						<button type="button" onclick="update()">변경</button>
+						<button type="button" onclick="cancel()">취소</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</form>
 </body>
 </html>
