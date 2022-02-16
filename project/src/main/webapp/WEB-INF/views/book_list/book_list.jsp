@@ -8,6 +8,55 @@
 <%@ include file="../include/header.jsp" %>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<style type="text/css">
+.input {
+	margin: 0px 10px;
+	width: 82%; 
+	height: 20px;
+}
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+fieldset {
+	margin: 10px 20px 0 20px;
+	border: 2px solid #666;
+	padding-right: 40px; 
+	vertical-align: middle;
+}
+.search{
+	width: 50px;
+	height: 25px;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #999;
+	font-weight: bold;
+}
+select {
+	margin-left: 30px;
+	width: 80px;
+	height: 25px;
+}
+table {
+	background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+}
+th, td {
+	padding: 1px 2px;
+}
+</style>
 <script type="text/javascript">
 function list(page){
 	if($("#keyword").val()){
@@ -24,8 +73,9 @@ function list(page){
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>게시판</h2>
-
+<section style="text-align: center;">
 <!-- 검색폼 -->
+<fieldset>
 <form name="form1" method="post" action="${path}/book/list.do">
 	<select name="search_option">
 		<option value="book_name"
@@ -41,22 +91,15 @@ function list(page){
 		<c:if test="${map.search_option == 'all'}">selected</c:if>
 		>제목+지은이+출판사</option> <!-- 통합검색 -->
 	</select>
-	<!-- <input type="submit" value="검색"> -->
-	<input name="keyword" value="${map.keyword}">
-	
-<%-- </form>
-
-<!-- 체크박스폼 -->
-<div>
- <form action="${path}/book/checkbox.do"> --%>
+  <input name="keyword" value="${map.keyword}" class="input"> <br>
   <input type="checkbox"  name="check" value="소설/시/희곡">소설/시/희곡
   <input type="checkbox"  name="check" value="사회/정치">사회/정치
   <input type="checkbox"  name="check" value="인문">인문
   <input type="checkbox"  name="check" value="경제/경영">경제/경영
   <input type="checkbox"  name="check" value="자연과학">자연과학
-  <!-- <input type="submit" value="메뉴분류"> -->
-  <input type="submit" value="검색">
- </form>
+  <input type="submit" value="검색" class="search">
+</form>
+</fieldset>
 ${map.count}개의 도서가 있습니다.
 
 <table border="1">
@@ -135,6 +178,7 @@ ${map.count}개의 도서가 있습니다.
 </table>
 <input type="hidden" value="${map.keyword}" id="keyword">
 <input type="hidden" value="${map.search_option}" id="search_option">
+</section>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

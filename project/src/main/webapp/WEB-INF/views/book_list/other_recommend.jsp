@@ -34,8 +34,8 @@
   </td>
   <td>${row.book_author}</td>
   <c:choose>
-  <c:when test="${fn:length(row.book_content)>50}">
-  <td>${fn:substring(row.book_content,0,50)}... </td>
+  <c:when test="${fn:length(row.book_content)>100}">
+  <td>${fn:substring(row.book_content,0,100)}... </td>
   </c:when>
   <c:otherwise>
   <td>${row.book_content}</td>

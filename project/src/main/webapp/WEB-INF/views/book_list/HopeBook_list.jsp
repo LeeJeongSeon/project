@@ -6,6 +6,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
+<style type="text/css">
+.search{
+	width: 50px;
+	height: 25px;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #999;
+	font-weight: bold;
+}
+select {
+	margin-left: 30px;
+	width: 80px;
+	height: 25px;
+}
+</style>
 <script type="text/javascript">
 $(function(){
 	$("#btnWrite").click(function(){
@@ -27,10 +43,11 @@ function list(page){
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>희망도서 게시판</h2>
+<h2>희망도서신청 게시판</h2>
 
-
+<section id="body">
 <!-- 검색폼 -->
+<fieldset>
 <form name="form1" method="post" action="${path}/HopeBook/list.do">
 	<select name="search_option">
 		<option value="hopeBook_title"
@@ -47,8 +64,9 @@ function list(page){
 		>제목+도서이름+작성자</option> <!-- 통합검색 -->
 	</select>
 	<input name="keyword" value="${map.keyword}">
-	<input type="submit" value="검색">
+	<input type="submit" value="검색" class="search">
  </form>
+</fieldset>
  
 <c:choose>
 <c:when test="${sessionScope.userid!=null}">
@@ -61,7 +79,7 @@ function list(page){
 
 ${map.count}개의 게시물이 있습니다.
 
-<table border="1" style="width:80%; text-align: center">
+<table border="1">
  <tr>
   <th>제목</th>
   <th>작성자</th>
@@ -111,9 +129,8 @@ ${map.count}개의 게시물이 있습니다.
 			</c:if>
 		</td>
 	</tr>
-
- 
 </table>
+</section>
 <input type="hidden" value="${map.keyword}" id="keyword">
 <input type="hidden" value="${map.search_option}" id="search_option">
 <%@ include file="../include/footer.jsp" %>
