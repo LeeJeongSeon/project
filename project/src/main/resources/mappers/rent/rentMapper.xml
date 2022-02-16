@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rent">
+ <select id="listRent"
+ resultType="com.example.project.model.rent.DTO.RentDTO">
+ select rent.bnum, member.userid, member.name, book.book_id,
+ book.book_name, rent.aday, rent.bday
+ from member, book, rent
+ where member.userid=rent.userid and book.book_id=rent.book_id
+ and member.userid=#{userid}
+ </select>
+ 
+ <insert id="insert">
+  insert into rent(bnum, userid, book_id) values
+  (rent_seq.nextval, #{userid}, #{book_id})
+ </insert>
+ 
+ <delete id="delete">
+  delete from rent
+  where bnum=#{bnum}
+ </delete>
+ 
+ <update id="modifyRent">
+  update rent
+  where bnum=#{bnum}
+ </update>
+ 
+</mapper>
