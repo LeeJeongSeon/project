@@ -31,6 +31,7 @@ function notice_qna_write(){
 </script>
 </head>
 <body>
+<%@ include file="../include/menu.jsp" %>
 <h2>${map.cate}</h2>
 
 <form id="form1" name="form1" method="post">
