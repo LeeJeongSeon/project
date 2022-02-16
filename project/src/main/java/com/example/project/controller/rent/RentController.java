@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.rent.DTO.RentDTO;
+import com.example.project.service.book.BookService;
 import com.example.project.service.rent.RentService;
 
 @Controller
@@ -22,10 +23,14 @@ public class RentController {
 	@Inject
 	RentService rentService;
 	
+	@Inject
+	BookService bookService;
+	
 	@RequestMapping("list.do")
 	public ModelAndView list(HttpSession session, ModelAndView mav) {
 		Map<String, Object> map = new HashMap<>();
 		String userid=(String)session.getAttribute("userid");
+		
 		if(userid != null) {
 			List<RentDTO> list = rentService.listRent(userid);
 			
@@ -49,6 +54,11 @@ public class RentController {
 		}
 		dto.setUserid(userid);
 		rentService.insert(dto);
+		
+		//대출횟수 증가와 대출중인지 체크
+		int book_id=dto.getBook_id();
+		System.out.println("북 아이디:"+book_id);
+		bookService.book_increase(book_id); 
 		return "redirect:/rent/list.do";
 	}
 	

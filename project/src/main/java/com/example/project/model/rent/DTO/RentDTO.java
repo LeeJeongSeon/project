@@ -6,7 +6,7 @@ public class RentDTO {
 	private int bnum;
 	private String userid;
 	private String name;
-	private String book_id;
+	private int book_id;
 	private String book_name;
 	private Date aday;
 	private Date bday;
@@ -23,10 +23,10 @@ public class RentDTO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getBook_id() {
+	public int getBook_id() {
 		return book_id;
 	}
-	public void setBook_id(String book_id) {
+	public void setBook_id(int book_id) {
 		this.book_id = book_id;
 	}
 	public String getBook_name() {

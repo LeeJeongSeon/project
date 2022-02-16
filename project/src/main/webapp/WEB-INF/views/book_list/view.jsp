@@ -9,12 +9,22 @@
 <script type="text/javascript">
 $(function(){
 	$("#updatebtn").click(function(){
- 		var param="id="+$("#book_id").val(); //String으로 인식됨 
+ 		var param="id="+$("#book_id").val(); 
 		console.log(param);
  		
 		$.ajax({
 			type: "post",
 			url: "${path}/book/book_edit.do",
+			data: param
+		}); 
+	});
+	
+	$("#rent_btn").click(function(){
+ 		var param="book_id="+$("#book_id").val(); 
+ 		
+		$.ajax({
+			type: "post",
+			url: "${path}/rent/insert.do",
 			data: param
 		}); 
 	});
@@ -77,6 +87,10 @@ $(function(){
 		</table>
 
 	<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
+	
+	<c:if test="${sessionScope.userid!=null}">
+	 <button type="button" id="rent_btn">대출</button>
+	</c:if>
 	<c:if test="${sessionScope.userid eq 'admin'}">
 		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
 		<button type="button" id="updatebtn">수정</button>

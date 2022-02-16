@@ -29,5 +29,7 @@ public interface bookDAO {
 
 	public List<bookDTO> book_index();
 
+	public void book_increase(int book_id);
+
 
 }

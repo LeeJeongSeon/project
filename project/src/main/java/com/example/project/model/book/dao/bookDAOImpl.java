@@ -77,18 +77,24 @@ public class bookDAOImpl implements bookDAO {
 
 	@Override
 	public List<bookDTO> book_random_recommend(String userid) {
-		return sqlSession.selectList("random_recommend",userid);
+		return sqlSession.selectList("book.random_recommend",userid);
 	}
 
 	@Override
 	public List<bookDTO> book_other_recommend(String userid) {
-		List<String> list=sqlSession.selectList("other_recommend",userid);
-		return sqlSession.selectList("other_recommend2",list);
+		List<String> list=sqlSession.selectList("book.other_recommend",userid);
+		return sqlSession.selectList("book.other_recommend2",list);
 	}
 
 	@Override
 	public List<bookDTO> book_index() {
-		return sqlSession.selectList("book_index");
+		return sqlSession.selectList("book.book_index");
+	}
+
+	@Override
+	public void book_increase(int book_id) {
+		sqlSession.update("book.book_increase",book_id);
+		
 	}
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.project.model.book.VO.book_check;
 import com.example.project.model.book.dao.bookDAO;
 import com.example.project.model.book.dto.bookDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -72,6 +73,14 @@ public class BookServiceImpl implements BookService {
 	public List<bookDTO> book_index() {
 		return bookDao.book_index();
 	}
+
+	@Override
+	public void book_increase(int book_id) {
+		bookDao.book_increase(book_id);
+		
+	}
+
+
 
 
 
