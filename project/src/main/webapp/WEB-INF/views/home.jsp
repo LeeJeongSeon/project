@@ -25,7 +25,7 @@ $(function(){
 }
 </style>
 <title>Home</title>
-
+<link rel="stylesheet" href="include/event.css">
 </head>
 <body>
 <%@ include file="include/menu.jsp" %>
