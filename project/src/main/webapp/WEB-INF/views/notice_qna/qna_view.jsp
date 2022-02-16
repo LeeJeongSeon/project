@@ -55,6 +55,6 @@ $(function(){
  <!-- 위에는 작성자만  -->
  <button type="button" id="btnList">목록</button>
 </div>
- 
+ <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

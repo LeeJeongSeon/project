@@ -50,6 +50,6 @@ CKEDITOR.replace("content",{
 	</div>
 	<input type="button" value="등록" onclick="notice_qna_write()">
 </form>
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
