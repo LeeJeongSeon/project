@@ -35,8 +35,11 @@ public class Notice_qnaController {
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "1")  int curPage) throws Exception{
 		String cate="";
+		int adminCk=0;
 		String id=(String)session.getAttribute("userid");
-		int adminCk = memberService.adminCheck(id);
+		if(id != null) {
+		 adminCk = memberService.adminCheck(id);
+		}
 		ModelAndView mav = new ModelAndView();
 		if(category.equals("notice")) {
 			 cate = "notice";
@@ -88,7 +91,6 @@ public class Notice_qnaController {
 			HttpSession session) throws Exception {
 		
 		  String id=(String)session.getAttribute("userid");
-			/* String id2="hong"; */
 		dto.setId(id);
 		
 		notice_qnaService.create(dto);
@@ -97,6 +99,11 @@ public class Notice_qnaController {
 	@RequestMapping("view.do")
 	public ModelAndView view(int num, String category, 
 			HttpSession session) throws Exception{
+		int adminCk=0;
+		String id=(String)session.getAttribute("userid");
+		if(id != null) {
+		 adminCk = memberService.adminCheck(id);
+		}
 		ModelAndView mav = new ModelAndView();
 		if(category.equals("notice")) {
 			mav.setViewName("notice_qna/notice_view");
@@ -105,6 +112,7 @@ public class Notice_qnaController {
 		}
 		notice_qnaService.viewCount(num,session);
 		mav.addObject("dto", notice_qnaService.view(num));
+		mav.addObject("adminCk", adminCk);
 		return mav;
 	}
 	@RequestMapping("noticeNY.do")

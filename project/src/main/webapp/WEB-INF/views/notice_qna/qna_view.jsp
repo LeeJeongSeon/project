@@ -48,10 +48,14 @@ $(function(){
 </table>
 </form>
 <div>
+ <c:if test="${adminCk == 1 }">
  <button type="button" id="btnReply">답하기</button>
+ </c:if>
  <!--위 관리자만  -->
+ <c:if test="${sessionScope.userid ==dto.id}">
  <button type="button" id="btnDelete">삭제</button>
  <button type="button" id="btnUpdate">수정</button>
+ </c:if>
  <!-- 위에는 작성자만  -->
  <button type="button" id="btnList">목록</button>
 </div>
