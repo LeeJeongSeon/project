@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
+<link rel="stylesheet" href="../include/event.css">
 $(function(){
 	var userid="userid="+$("#userid").val();
 	

@@ -90,7 +90,7 @@ public class crawling {
 //            	System.out.print(author[i]);
 //            	System.out.print(publisher[i]);
 //            	System.out.print("장르:"+genre[i]);
-//            	System.out.println(img[i]);
+            	System.out.println(img[i]);
 //            	System.out.print(content[i]);
 //            	System.out.println();
             	
@@ -105,7 +105,7 @@ public class crawling {
             	else
             		dto.setBook_genre(genre[i]);
             	
-            	System.out.println(i+","+dto);
+//            	System.out.println(i+","+dto);
             	bookService.insertBook(dto);
             }
         } catch (IOException e) {

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" href="../include/event.css">
 <script type="text/javascript">
 $(function(){
 	$("#updatebtn").click(function(){
@@ -45,11 +46,11 @@ $(function(){
 			<c:when test="${dto.book_img==null}">
 			<img src="../images/etc.jpg" style="width:300px;">
 			</c:when>
-			<c:when test="${fn:contains(dto.book_img,'jpg')}">
-			<img src="../images/${dto.book_img}" style="width:300px;">
+			<c:when test="${fn:contains(dto.book_img,'http')}">
+			<img src="${dto.book_img}" style="width:300px;">
 			</c:when>
 			<c:otherwise>
-			<img src="${dto.book_img}" style="width:300px;">
+			<img src="../images/${dto.book_img}" style="width:300px;">
 			</c:otherwise>
 			</c:choose>
 		</td>

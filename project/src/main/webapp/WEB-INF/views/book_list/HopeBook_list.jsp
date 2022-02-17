@@ -21,6 +21,9 @@ select {
 	width: 80px;
 	height: 25px;
 }
+button{
+	width: 70px;
+}
 </style>
 <script type="text/javascript">
 $(function(){

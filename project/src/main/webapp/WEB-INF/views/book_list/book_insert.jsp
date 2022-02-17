@@ -154,8 +154,7 @@ $(function(){
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<!-- admin계정만 접근하도록 추후 수정 -->
-<!-- C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\project\WEB-INF\views\images에 이미지저장 -->
+
 <h2>도서추가 </h2>
 <form method="post" name="form1" action="${path}/book/book_insert.do" enctype="multipart/form-data">
 	<table style="width:100%; text-align: center;">
