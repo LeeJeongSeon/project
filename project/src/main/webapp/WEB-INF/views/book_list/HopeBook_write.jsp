@@ -6,6 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
+<style type="text/css">
+button{
+	width:100px;
+}
+input{
+	margin-top:5px;
+}
+</style>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
+<style type="text/css">
+table{
+	table-layout: fixed;
+}
+</style>
 </head>
 <body>
 <table border="1">
@@ -20,15 +26,15 @@
  <tr>
   <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
   <td>
-  <c:choose>
+   <c:choose>
   <c:when test="${row.book_img==null}">
   <img src="../images/etc.jpg" width="100px" height="100px">
   </c:when>
-  <c:when test="${fn:contains(row.book_img,'jpg')}">
-  <img src="../images/${row.book_img}" width="100px" height="100px">
+  <c:when test="${fn:contains(row.book_img,'http')}">
+  <img src="${row.book_img}" width="100px" height="100px">
   </c:when>
   <c:otherwise>
-  <img src="${row.book_img}" width="100px" height="100px">
+  <img src="../images/${row.book_img}" width="100px" height="100px">
   </c:otherwise>
   </c:choose>
   </td>

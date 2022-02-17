@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
 <script type="text/javascript">
 $(function(){
 	$("#exbtn").click(function(){

@@ -118,11 +118,11 @@ ${map.count}개의 도서가 있습니다.
   <c:when test="${row.book_img==null}">
   <img src="../images/etc.jpg" width="100px" height="100px">
   </c:when>
-  <c:when test="${fn:contains(row.book_img,'jpg')}">
-  <img src="../images/${row.book_img}" width="100px" height="100px">
+  <c:when test="${fn:contains(row.book_img,'http')}">
+  <img src="${row.book_img}" width="100px" height="100px">
   </c:when>
   <c:otherwise>
-  <img src="${row.book_img}" width="100px" height="100px">
+  <img src="../images/${row.book_img}" width="100px" height="100px">
   </c:otherwise>
   </c:choose>
   </td>

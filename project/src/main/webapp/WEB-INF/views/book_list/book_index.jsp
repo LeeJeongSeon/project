@@ -23,15 +23,15 @@
 <tr>
  <c:forEach var="row" items="${list}">
  <td>
- <c:choose>
+  <c:choose>
   <c:when test="${row.book_img==null}">
-  <img src="../images/etc.jpg" width="200px" height="200px">
+  <img src="images/etc.jpg" width="200px" height="200px">
   </c:when>
-  <c:when test="${fn:contains(row.book_img,'jpg')}">
-  <img src="../images/${row.book_img}" width="200px" height="200px">
+  <c:when test="${fn:contains(row.book_img,'http')}">
+  <img src="${row.book_img}" width="200px" height="200px">
   </c:when>
   <c:otherwise>
-  <img src="${row.book_img}" width="200px" height="200px">
+  <img src="images/${row.book_img}" width="200px" height="200px">
   </c:otherwise>
   </c:choose>
  </td> 

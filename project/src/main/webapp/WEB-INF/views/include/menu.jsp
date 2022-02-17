@@ -290,13 +290,11 @@
 <a href="${path}">Home</a> |
 <a href="${path}/book/list.do">책목록</a> | 
 <a href="${path}/book/popularity_list.do">책목록(인기순)</a> | 
-<c:if test="${sessionScope.userid eq 'admin'}">
- <a href="${path}/book/book_write.do">도서 추가</a> |
-</c:if>
 <c:if test="${sessionScope.userid != null}">
  <a href="${path}/rent/list.do">도서대출</a> |
 </c:if>
-<a href="${path}/crawling/insert_page.do">도서 추가</a> |
+<a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
+<a href="${path}/book/book_write.do">도서 추가</a> |     
 <a href="${path}/HopeBook/list.do">희망도서신청</a> |
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/event/list.do">행사</a> | 
@@ -304,7 +302,8 @@
 
 <c:if test="${adminCk == 1 }">                            
 <a href="${path}/member/list.do">회원 리스트</a> | 
-                          
+<a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
+<a href="${path}/book/book_write.do">도서 추가</a> |                          
 </c:if> 
                            
 <a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |

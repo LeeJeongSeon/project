@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" href="../include/event.css">
 <script type="text/javascript">
 $(function(){
 	$("#updatebtn").click(function(){
@@ -45,11 +46,11 @@ $(function(){
 			<c:when test="${dto.book_img==null}">
 			<img src="../images/etc.jpg" style="width:300px;">
 			</c:when>
-			<c:when test="${fn:contains(dto.book_img,'jpg')}">
-			<img src="../images/${dto.book_img}" style="width:300px;">
+			<c:when test="${fn:contains(dto.book_img,'http')}">
+			<img src="${dto.book_img}" style="width:300px;">
 			</c:when>
 			<c:otherwise>
-			<img src="${dto.book_img}" style="width:300px;">
+			<img src="../images/${dto.book_img}" style="width:300px;">
 			</c:otherwise>
 			</c:choose>
 		</td>
@@ -73,13 +74,13 @@ $(function(){
 				<td>
 				<c:choose>
 						<c:when test="${dto.book_check==0}">
-					      대출가능
+					      <p style="color: blue;">대출가능</p>
 					     </c:when>
 						<c:when test="${dto.book_check==-1}">
 					      분실
 					     </c:when>
 						<c:otherwise>
-					      대출불가능 
+					      <p style="color: red;">대출불가</p> 
 					     </c:otherwise>
 					</c:choose>
 					</td>
@@ -92,7 +93,15 @@ $(function(){
 	<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
 	
 	<c:if test="${sessionScope.userid!=null}">
-	 <button type="button" id="rent_btn">대출</button>
+	 <c:choose>
+	  <c:when test="${dto.book_check==0}">
+	   <button type="button" id="rent_btn">대출</button>
+	  </c:when>
+	  <c:otherwise>
+	   <p style="color: red;">대출불가</p>
+	  </c:otherwise>
+	 </c:choose>
+
 	</c:if>
 	<c:if test="${sessionScope.userid eq 'admin'}">
 		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
