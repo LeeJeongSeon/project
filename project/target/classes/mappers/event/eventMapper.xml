@@ -48,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countEvent" resultType="int">
 		select count(*) from event
 		where e_finish_d > sysdate
+		and e_result=1
 		<include refid="search"/>
 	</select>
 	
@@ -56,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select e_num, e_agency, e_instr, e_name, e_start_d, e_finish_d, e_place, e_read_cnt, e_result 
 		from event
 		where e_finish_d > sysdate 
+		and e_result=1
 		<include refid="search"/>
 		<include refid="pagerFooter"/>
 		order by e_finish_d
@@ -68,7 +70,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="eventViewDetail" resultType="eventDTO">
-		select * from event
+		select e_num, e_email, e_agency, e_instr, e_name, e_intro
+		, e_start_d, e_start_t, e_finish_d, e_place, e_read_cnt
+		, e_result, e_max_p, e_genre
+		, (select max(ej_people) from event_join where ej_num=#{e_num}) e_join_p
+		, (select count(*) from event_reply where er_e_num=#{e_num}) e_reply_cnt
+		from event
 		where e_num=#{e_num}
 	</select>
 	

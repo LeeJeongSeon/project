@@ -32,6 +32,11 @@ header {
 	font-weight: bold;
 	padding-left: 30px;
 }
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -67,17 +72,15 @@ header {
 		</table>
 		<table>
 			<c:forEach var="dto" items="${map.list}">
-				<c:if test="${dto.e_result==1}">
-					<tr>
-						<td class="tb1_col1">${dto.e_agency}</td>
-						<td class="tb1_col2">${dto.e_instr}</td>
-						<td class="tb1_col3">${dto.e_name}</td>
-						<td class="tb1_col4">${dto.e_start_d}</td>
-						<td class="tb1_col5">${dto.e_finish_d}</td>
-						<td class="tb1_col6">${dto.e_place}</td>
-						<td class="tb1_col7"><button type="button" onclick="location.href='${path}/event/view.do?e_num=${dto.e_num}'">이동</button></td>
-					</tr>
-				</c:if>
+				<tr>
+					<td class="tb1_col1">${dto.e_agency}</td>
+					<td class="tb1_col2">${dto.e_instr}</td>
+					<td class="tb1_col3">${dto.e_name}</td>
+					<td class="tb1_col4">${dto.e_start_d}</td>
+					<td class="tb1_col5">${dto.e_finish_d}</td>
+					<td class="tb1_col6">${dto.e_place}</td>
+					<td class="tb1_col7"><button type="button" onclick="location.href='${path}/event/view.do?e_num=${dto.e_num}'">이동</button></td>
+				</tr>
 			</c:forEach>
 		</table>
 		<table>
@@ -87,7 +90,7 @@ header {
 						<a href="#" onclick="list('1')">[처음]</a>
 					</c:if>
 					<c:if test="${map.pager.curBlock > 1}">
-						<a href="#" onclick="list('${map.pager.prevPage}')">
+							<a href="#" onclick="list('${map.pager.prevPage}')">
 						[이전]</a>
 					</c:if>
 					<c:forEach var="num" 
@@ -95,10 +98,10 @@ header {
 						end="${map.pager.blockEnd}">
 						<c:choose>
 							<c:when test="${num == map.pager.curPage}">
-								<span style="color:red;">${num}</span>
+								<a style="color:red;">${num}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="#" onclick="list('${num}')">${num}</a>
+							<a href="#" onclick="list('${num}')">${num}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -108,7 +111,7 @@ header {
 					</c:if>
 					<c:if test="${map.pager.curPage < map.pager.totPage}">
 						<a href="#" 
-						onclick="list('${map.pager.totPage}')">[끝]</a>
+					onclick="list('${map.pager.totPage}')">[끝]</a>
 					</c:if>
 				</td>
 			</tr>

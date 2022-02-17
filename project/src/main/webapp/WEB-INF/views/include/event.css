@@ -15,7 +15,7 @@ body {
 }
 
 fieldset {
-	margin: 10px 20px 0 20px;
+	margin: 10px 20px 10px 20px;
 	border: 2px solid #666;
 	padding-right: 40px; 
 	vertical-align: middle;
