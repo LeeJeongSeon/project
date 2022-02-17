@@ -86,13 +86,15 @@ increment by 1;
 - 책제목 : bname
 - 대여일 : aday
 - 반납일 : bday
+- 반납여부 : rent_check 
 
 create table rent(
 bnum number not null primary key,
 userid varchar2(50) not null,
 book_id varchar2(50) not null,
 aday  date default sysdate,
-bday date default sysdate+7
+bday date default sysdate+7,
+rent_check number default 0
 );
 
 ++ 시퀀스 rent_seq
