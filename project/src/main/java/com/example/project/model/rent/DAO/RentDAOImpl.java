@@ -45,4 +45,9 @@ public class RentDAOImpl implements RentDAO {
 	public void modifyRent(RentDTO dto) {
 		sqlSession.update("rent.modifyRent", dto);
 	}
+	
+	@Override
+	public void extend(int bnum) {
+		sqlSession.update("rent.extend", bnum);
+	}
 }
