@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <%@ include file="include/header.jsp" %>	
 <script type="text/javascript">
+if(location.href.indexOf("member/login_check.do")!=-1) {
+	location.replace("${path}");
+}
+
 $(function(){
 	$.ajax({
 		url: "${path}/book/book_index.do",
@@ -22,6 +26,7 @@ $(function(){
 	$.ajax({
 		url: "${path}/notice_qna/index.do",
 		type: "post",
+		 
 		success: function(result){
 			$("#result1").html(result);
 		}
@@ -42,7 +47,7 @@ $(function(){
 <h1>Hello world!</h1>
 <P>The time on the server is ${serverTime}. </P>
 <div id="result"></div>
-<div id="result1" ></div>
+<div id="result1"></div>
 <div></div>
 <%@ include file="include/footer.jsp" %>
 </body>
