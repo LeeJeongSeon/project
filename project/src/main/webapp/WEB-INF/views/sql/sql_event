@@ -51,7 +51,7 @@ values (event_seq.nextval, 'na1634@gmail.com', '개인', '나영석 교수', '�
 이번 행사를 통해 사람들이 사회적 경제 기업에 관심을 가질 수 있으면 좋겠습니다.',
 '2022-03-16', '19:00', '2022-03-16', '광명도서관', 15, 4);
 insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
-values (event_seq.nextval, 'hyeondae1@gmail.com', '현대차 정몽구 재단', '미래 지식 포럼', '선택은 어떻게 세상을 바꾸는가', 
+values (event_seq.nextval, 'hyundai1@gmail.com', '현대차 정몽구 재단', '미래 지식 포럼', '선택은 어떻게 세상을 바꾸는가', 
 '현재를 탐구하고 미래를 내다보는 석학들의 인사이트를 만날 수 있는 포럼이 진행합니다. 미래 지식 포럼은 2021년 코로나 시대의 키워드인
 연결을 주제로 진행했습니다. 2022년에는 불확실성의 시대를 맞이하여 선택의 어려움을 겪는 우리에게 삶의 통찰력을 주는 포럼을 
 만들고자 합니다. 이번 키워드는 선택입니다. ', '2022-03-24', '19:00', '2022-03-24', '철산도서관', 20, 2);
