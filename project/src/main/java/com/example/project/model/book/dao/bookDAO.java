@@ -31,5 +31,7 @@ public interface bookDAO {
 
 	public void book_increase(int book_id);
 
+	public void update(int book_id);
+
 
 }

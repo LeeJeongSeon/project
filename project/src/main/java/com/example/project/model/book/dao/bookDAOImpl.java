@@ -97,6 +97,12 @@ public class bookDAOImpl implements bookDAO {
 		
 	}
 
+	@Override
+	public void update(int book_id) {
+		sqlSession.update("book.update",book_id);
+		
+	}
+
 
 	
 	
