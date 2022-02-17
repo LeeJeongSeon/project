@@ -11,4 +11,5 @@ public interface RentService {
 	public void update(int bnum);
 	public int countRent(String userid, String book_id);
 	public void modifyRent(RentDTO dto);
+	public void extend(int bnum);
 }
