@@ -84,6 +84,17 @@ public class RentController {
 		return "redirect:/shop/rent/list.do";
 	}
 	
+	@RequestMapping("extend.do")
+	public String extend(@RequestParam int[] bnum,HttpSession session) {
+	 String userid=(String)session.getAttribute("userid");
+	  if(userid != null) {
+	   for(int i=0; i<bnum.length; i++) {
+	    rentService.extend(bnum[i]);
+	}
+	}
+	return "redirect:/rent/list.do";
+}
+	
 	//대출
 	@Transactional 
 	@RequestMapping("delete.do")
