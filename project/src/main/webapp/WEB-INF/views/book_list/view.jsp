@@ -25,7 +25,10 @@ $(function(){
 		$.ajax({
 			type: "post",
 			url: "${path}/rent/insert.do",
-			data: param
+			data: param,
+			success : function(){
+				alert("대출되었습니다");
+			}
 		}); 
 	});
 });

@@ -10,6 +10,7 @@ public class RentDTO {
 	private String book_name;
 	private Date aday;
 	private Date bday;
+	private int rent_check;
 	
 	public int getBnum() {
 		return bnum;
@@ -53,10 +54,18 @@ public class RentDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getRent_check() {
+		return rent_check;
+	}
+	public void setRent_check(int rent_check) {
+		this.rent_check = rent_check;
+	}
 	
 	@Override
 	public String toString() {
 		return "RentDTO [bnum=" + bnum + ", userid=" + userid + ", name=" + name + ", book_id=" + book_id
-				+ ", book_name=" + book_name + ", aday=" + aday + ", bday=" + bday + "]";
+				+ ", book_name=" + book_name + ", aday=" + aday + ", bday=" + bday + ", rent_check=" + rent_check + "]";
 	}
+	
+	
 }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,6 +46,7 @@ public class RentController {
 		
 	}
 	
+	@Transactional //트랜잭션 사용
 	@RequestMapping("insert.do")
 	public String insert(HttpSession session, 
 			@ModelAttribute RentDTO dto) {
@@ -81,4 +83,12 @@ public class RentController {
 		}
 		return "redirect:/shop/rent/list.do";
 	}
+	
+	@RequestMapping("delete.do")
+	public String delete(@RequestParam int bnum) {
+		rentService.delete(bnum);
+		
+		return "redirect:/rent/list.do";
+	}
+	
 }
