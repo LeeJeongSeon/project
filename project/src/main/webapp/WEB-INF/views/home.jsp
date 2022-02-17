@@ -22,6 +22,17 @@ $(function(){
 	});
 	
 });
+$(function(){
+	$.ajax({
+		url: "${path}/notice_qna/index.do",
+		type: "post",
+		 
+		success: function(result){
+			$("#result1").html(result);
+		}
+	});
+	
+});
 </script>
 <style type="text/css">
 #result{
@@ -36,6 +47,7 @@ $(function(){
 <h1>Hello world!</h1>
 <P>The time on the server is ${serverTime}. </P>
 <div id="result"></div>
+<div id="result1"></div>
 <div></div>
 <%@ include file="include/footer.jsp" %>
 </body>
