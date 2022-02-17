@@ -80,6 +80,12 @@ public class BookServiceImpl implements BookService {
 		
 	}
 
+	@Override
+	public void update(int book_id) {
+		bookDao.update(book_id);
+		
+	}
+
 
 
 

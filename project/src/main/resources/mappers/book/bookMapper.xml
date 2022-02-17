@@ -179,6 +179,15 @@ order by book_id desc
 update book set book_counter=book_counter+1,book_check=1
 where book_id=#{book_id}
 </update>
+
+<update id="update">
+update book set book_check=0
+where book_id=(
+select book_id
+from rent
+where bnum=#{bnum}
+)
+</update>
 </mapper>
 
 

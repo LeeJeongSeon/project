@@ -84,9 +84,13 @@ public class RentController {
 		return "redirect:/shop/rent/list.do";
 	}
 	
+	//대출
+	@Transactional 
 	@RequestMapping("delete.do")
 	public String delete(@RequestParam int bnum) {
 		rentService.delete(bnum);
+		//book테이블 도서대출가능으로 바꾸기
+		bookService.update(bnum);
 		
 		return "redirect:/rent/list.do";
 	}

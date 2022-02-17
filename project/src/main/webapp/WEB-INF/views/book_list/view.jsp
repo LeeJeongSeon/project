@@ -93,15 +93,9 @@ $(function(){
 	<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
 	
 	<c:if test="${sessionScope.userid!=null}">
-	 <c:choose>
-	  <c:when test="${dto.book_check==0}">
+	  <c:if test="${dto.book_check==0}">
 	   <button type="button" id="rent_btn">대출</button>
-	  </c:when>
-	  <c:otherwise>
-	   <p style="color: red;">대출불가</p>
-	  </c:otherwise>
-	 </c:choose>
-
+	  </c:if>
 	</c:if>
 	<c:if test="${sessionScope.userid eq 'admin'}">
 		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
