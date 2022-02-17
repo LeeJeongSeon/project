@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
 <style type="text/css">
+#button{
+	width:100px;
+}
 </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
   </td>
  </tr>
 </table>
-<button>도서추가</button>
+<button id="button">도서추가</button>
 </form>
 </body>
 </html>
