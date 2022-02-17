@@ -44,4 +44,9 @@ public class RentServiceImpl implements RentService {
 	public void modifyRent(RentDTO dto) {
 		rentDao.modifyRent(dto);
 	}
+	
+	@Override
+	public void extend(int bnum) {
+		rentDao.extend(bnum);
+	}
 }
