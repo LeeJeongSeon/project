@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
+<style type="text/css">
+table{
+	table-layout: fixed;
+}
+</style>
 </head>
 <body>
 <table border="1">
