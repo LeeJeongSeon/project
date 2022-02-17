@@ -52,10 +52,12 @@ function noticeY(){
  </tr>
 </table>
 <div>
+ <c:if test="${adminCk == 1 }">
  <input type="button" id="noticeY" onclick="noticeY()" value=" 공지고정헤체">
  <input type="button" id="noticeN" onclick="noticeN()" value="공지고정">
  <button type="button" id="btnDelete">삭제</button>
  <button type="button" id="btnUpdate">수정</button>
+ </c:if>
  <!-- 위에는 관리자만  -->
  <button type="button" id="btnList">목록</button>
 </div>
