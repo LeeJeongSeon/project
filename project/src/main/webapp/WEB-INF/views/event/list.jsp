@@ -32,6 +32,11 @@ header {
 	font-weight: bold;
 	padding-left: 30px;
 }
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -95,7 +100,7 @@ header {
 						end="${map.pager.blockEnd}">
 						<c:choose>
 							<c:when test="${num == map.pager.curPage}">
-								<span style="color:red;">${num}</span>
+								<a style="color:red;">${num}</a>
 							</c:when>
 							<c:otherwise>
 								<a href="#" onclick="list('${num}')">${num}</a>

@@ -68,7 +68,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="eventViewDetail" resultType="eventDTO">
-		select * from event
+		select e_num, e_email, e_agency, e_instr, e_name, e_intro
+		, e_start_d, e_start_t, e_finish_d, e_place, e_read_cnt
+		, e_result, e_max_p, e_genre
+		, (select max(ej_people) from event_join where ej_num=#{e_num}) e_join_p
+		from event
 		where e_num=#{e_num}
 	</select>
 	

@@ -13,13 +13,41 @@ public class EventDTO {
 	private String e_place;
 	private int e_read_cnt;
 	private int e_result;
+	private int e_join_p;
+	private int e_max_p;
+	private int e_genre;
 
 	@Override
 	public String toString() {
 		return "EventDTO [e_num=" + e_num + ", e_email=" + e_email + ", e_agency=" + e_agency + ", e_instr=" + e_instr
 				+ ", e_name=" + e_name + ", e_intro=" + e_intro + ", e_start_d=" + e_start_d + ", e_start_t="
 				+ e_start_t + ", e_finish_d=" + e_finish_d + ", e_place=" + e_place + ", e_read_cnt=" + e_read_cnt
-				+ ", e_result=" + e_result + "]";
+				+ ", e_result=" + e_result + ", e_join_p=" + e_join_p + ", e_max_p=" + e_max_p + ", e_genre=" + e_genre
+				+ "]";
+	}
+
+	public int getE_join_p() {
+		return e_join_p;
+	}
+
+	public void setE_join_p(int e_join_p) {
+		this.e_join_p = e_join_p;
+	}
+
+	public int getE_max_p() {
+		return e_max_p;
+	}
+
+	public void setE_max_p(int e_max_p) {
+		this.e_max_p = e_max_p;
+	}
+
+	public int getE_genre() {
+		return e_genre;
+	}
+
+	public void setE_genre(int e_genre) {
+		this.e_genre = e_genre;
 	}
 
 	public String getE_start_t() {

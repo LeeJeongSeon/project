@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function list(page) {
+	location.href="${path}/event/listAdmin.do?curPage="+page;
+} 
+</script>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="../include/event.css">
 <style type="text/css">
@@ -16,6 +21,11 @@ header {
 	font-size: 25px;
 	font-weight: bold;
 	padding-left: 30px;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
 }
 </style>
 </head>
@@ -76,7 +86,7 @@ header {
 						end="${map.pager.blockEnd}">
 						<c:choose>
 							<c:when test="${num == map.pager.curPage}">
-								<span style="color:red;">${num}</span>
+								<a style="color:red;">${num}</a>
 							</c:when>
 							<c:otherwise>
 								<a href="#" onclick="list('${num}')">${num}</a>
