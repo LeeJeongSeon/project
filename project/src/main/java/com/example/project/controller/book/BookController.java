@@ -121,11 +121,8 @@ public class BookController {
 	
 	//페이지이동
 	@RequestMapping("book_write.do")
-	public ModelAndView book_insert() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("book_list/book_insert");
-		return mav;
-		//return "redirect:/book_list/book_insert";
+	public String book_insert() {
+		return "book_list/book_insert";
 	}
 	
 	//이미지 ajax로 받음

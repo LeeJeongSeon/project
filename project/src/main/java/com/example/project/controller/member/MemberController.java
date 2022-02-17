@@ -162,9 +162,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
-	
 	//회원 리스트에서 이름 클릭시 회원 정보 보기
 	@RequestMapping("admin_view.do")
 	public ModelAndView view(String userid, HttpSession session) 
@@ -176,7 +173,7 @@ public class MemberController {
 		return mav; //board/view.jsp로 포워딩
 		
 	}
-	
+		
 	
 
 

@@ -36,7 +36,8 @@ $(function(){
   <td><fmt:formatDate value="${row.aday}" 
   pattern="yyyy-MM-dd HH시 mm분"/></td>
   <td><fmt:formatDate value="${row.bday}" 
-  pattern="yyyy-MM-dd HH시 mm분"/></td>
+  pattern="yyyy-MM-dd HH시 mm분"/>
+  </td>
   <td>
   <c:choose>
    <c:when test="${row.rent_check==1}">
@@ -49,12 +50,16 @@ $(function(){
   </td>
   <td>
     <c:if test="${sessionScope.userid != null}">
+    	<c:if test="${row.rent_check==1}">
      <a href="${path}/rent/delete.do?bnum=${row.bnum}">반납</a>
+        </c:if>
     </c:if>
   </td>
   <td>
    <c:if test="${sessionScope.userid != null}"> 
+   	<c:if test="${row.rent_check==1}">
     <a href="${path}/rent/extend.do?bnum=${row.bnum}">연장</a>
+    </c:if>
    </c:if>
   </td>
  </tr>

@@ -48,6 +48,7 @@ public class RentDAOImpl implements RentDAO {
 	
 	@Override
 	public void extend(int bnum) {
+		System.out.println("연장:"+bnum);
 		sqlSession.update("rent.extend", bnum);
 	}
 }
