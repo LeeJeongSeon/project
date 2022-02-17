@@ -52,6 +52,11 @@ $(function(){
      <a href="${path}/rent/delete.do?bnum=${row.bnum}">반납</a>
     </c:if>
   </td>
+  <td>
+   <c:if test="${sessionScope.userid != null}"> 
+    <a href="${path}/rent/extend.do?bnum=${row.bnum}">연장</a>
+   </c:if>
+  </td>
  </tr>
  </c:forEach>
  </table>
