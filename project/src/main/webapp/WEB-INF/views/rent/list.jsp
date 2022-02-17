@@ -28,6 +28,7 @@ $(function(){
   <th>제목</th>
   <th>대출일</th>
   <th>반납일</th>
+  <th>반납여부</th>
  </tr>
  <c:forEach var="row" items="${map.list}">
  <tr>
@@ -37,8 +38,18 @@ $(function(){
   <td><fmt:formatDate value="${row.bday}" 
   pattern="yyyy-MM-dd HH시 mm분"/></td>
   <td>
+  <c:choose>
+   <c:when test="${row.rent_check==1}">
+   	대출중
+   </c:when>
+   <c:otherwise>
+    반납
+   </c:otherwise>
+  </c:choose>
+  </td>
+  <td>
     <c:if test="${sessionScope.userid != null}">
-     <a href="${path}/rent/delete.do?bnum=${row.bnum}">삭제</a>
+     <a href="${path}/rent/delete.do?bnum=${row.bnum}">반납</a>
     </c:if>
   </td>
  </tr>

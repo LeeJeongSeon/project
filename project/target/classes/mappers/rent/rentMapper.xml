@@ -7,25 +7,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="listRent"
  resultType="com.example.project.model.rent.DTO.RentDTO">
  select rent.bnum, member.userid, member.name, book.book_id,
- book.book_name, rent.aday, rent.bday
+ book.book_name, rent.aday, rent.bday,rent.rent_check
  from member, book, rent
  where member.userid=rent.userid and book.book_id=rent.book_id
  and member.userid=#{userid}
  </select>
  
  <insert id="insert">
-  insert into rent(bnum, userid, book_id) values
-  (rent_seq.nextval, #{userid}, #{book_id})
+  insert into rent(bnum, userid, book_id,rent_check) values
+  (rent_seq.nextval, #{userid}, #{book_id},1)
  </insert>
  
- <delete id="delete">
+<!--  <delete id="delete">
   delete from rent
   where bnum=#{bnum}
- </delete>
+ </delete> -->
  
  <update id="modifyRent">
   update rent
   where bnum=#{bnum}
  </update>
  
+ <update id="delete">
+ update rent set rent_check=0
+ where bnum=#{bnum}
+ </update>
 </mapper>

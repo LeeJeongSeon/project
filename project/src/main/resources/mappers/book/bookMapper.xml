@@ -140,19 +140,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 select book_id,book_name,book_img,book_genre,book_content,
 		  book_publisher,book_author from  (
 select * from book
-where book_name not in(
-    select bname from rent
-    where id=#{userid}
+where book_id not in(
+    select book_id from rent
+    where userid=#{userid}
 )
 order by dbms_random.value)
 <![CDATA[where rownum<=5]]>
 </select>
 
 <select id="other_recommend" resultType="String">
-select bname
+select book_id
 from rent
-group by bname
-having bname not in (select bname from rent where id=#{userid})
+group by book_id
+having book_id not in (select book_id from rent where userid=#{userid})
 order by count(*) desc
 </select>
 
@@ -160,7 +160,7 @@ order by count(*) desc
 select book_id,book_name,book_img,book_genre,book_content,
 		  book_publisher,book_author from book 
 <if test="list.size!=0">
-     where book_name in <foreach item="arr" index="index" collection="list" open="(" separator="," close=")" >
+     where book_id in <foreach item="arr" index="index" collection="list" open="(" separator="," close=")" >
      #{arr}
      </foreach>
 </if>
