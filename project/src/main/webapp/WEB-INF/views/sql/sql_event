@@ -15,34 +15,151 @@ e_start_t varchar2(10),
 e_finish_d date,
 e_place varchar2(50),
 e_read_cnt number default 0,
-e_result number default 0
+e_result number default 0,
+e_max_p number not null,
+e_genre number not null
 );
 
 create sequence event_seq
 start with 1
 increment by 1;
 
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'kim@gmail.com', '카이스트 전기 및 전자공학과', '김대식 교수', '메타버스 특강', 
-'뉴웨이브 : 지금 우리가 알아야 할 지식, 메타버스 대항해시대', '2022-02-09', '19:00', '2022-02-09', '이프랜드');
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'lee@gmail.com', '서울대학교 규장각한국학연구원', '이인숙 작가', '명사초청 특강', 
-'나의 멘토 : 새시작을 위한 정신적 멘토, 시대의 한계를 넘어 선 여인들', '2022-02-25', '19:00', '2022-02-25', '별마당 도서관');
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'you@gmail.com', '명지대학교 미술사학과 석좌교수', '유흥준 교수', '명사초청 특강', 
-'나의 멘토 : 새시작을 위한 정신적 멘토, 한국문화의 정체성', '2022-02-04', '19:00', '2022-02-04', '별마당 도서관');
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'yang@gmail.com', '한국예술종합학교 미술원 미술이론과', '양정무 교수', '메타버스 특강', 
-'뉴웨이브 : 지금 우리가 알아야 할 지식, 미술로 살아나다', '2022-02-16', '19:00', '2022-02-16', '이프랜드');
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'jang@gmail.com', '개인', '장강명 소설가', '메타버스 특강', 
-'뉴웨이브 : 지금 우리가 알아야 할 지식, 책 중심 사회', '2022-02-23', '19:00', '2022-02-23', '이프랜드');
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'na@gmail.com', '개인', '나태주 시인', '명사초청 특강', 
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'kim124@gmail.com', '개인', '김지완 작가', '역사논술 : 선사시대', 
+'선사시대 각 시대별 생활 모습과 다양한 만들기를 통한 우리 역사 체험', '2022-03-01', '19:00', '2022-03-10', '하얀도서관', 35, 3);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'lee436@gmail.com', '개인', '이명희 교수', '명사초청 특강', 
+'안전의 시대, 기업 경영자의 역할과 안전경영', '2022-04-25', '19:00', '2022-04-25', '소하도서관', 35, 4);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'you16@gmail.com', '명지대학교 자연과학과 석좌교수', '유은지 교수', '자연을 담은 생태화 작품전시회', 
+'생태화 작품들을 감상하며 자연의 아름다움을 느껴볼 수 있습니다. 과학관은 본 수업을 통해 우리 주변에서 만날 수 있는 생물에 대한 
+이해의 폭을 넓히고 생물의 소중함을 알아가는데 함께합니다.', '2022-02-28', '19:00', '2022-02-28', '충현도서관', 25, 5);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'yang3454@gmail.com', '개인', '양지환 작가', '알아두면 쓸데있는 생활 속 독성학', 
+'독성학이 무엇인지 간단한 정의를 내립니다. 각 분석 기구들의 조작법을 알고, 우리 주변에 있는 화학제품과 유해물질의 분석활동을 합니다. 
+알쓸생독 활동이 끝나고 나면 간단한 퀴즈를 통해 경품을 드립니다!', '2022-03-06', '19:00', '2022-03-26', '연서도서관', 20, 5);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'jang2643@gmail.com', '개인', '장하은 소설가', '덩실덩실 AsIA문화축제', 
+'HK+ 사업단의 연구성과와 아시아연구소 각 지역연구센터의 사업성과를 다양한 계층과 연령대의 청자들과 공유하고 확산하기 위해
+운영되는 교육 목적 강의입니다. 아시아 각 지역의 축제, 민속, 전통문화에 관한 다양한 영상을 서비스할 것이며, 관련 토크또한 풍성하게
+준비될 예정입니다. 많은 관심 바라며, 한국연구재단의 제 15회 인문주간 행사에도 참여하게 된 만큼 한 마음으로 어우러지기를 바랍니다.',
+'2022-03-13', '19:00', '2022-03-20', '하얀도서관', 50, 3);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'na1634@gmail.com', '개인', '나영석 교수', '일상 속 사회적 경제', 
+'사회적경제. 단어가 많이 낯선데요, 사전에는 양극화 해소, 일자리 창출 등 공동이익과 사회적 가치의 실현을 위해 사회적 경제조직이 
+상호협력과 사회연대를 바탕으로 사업체를 통해 수행하는 모든 경제적 활동(네이버 지식백과, 한경 경제용어사전)이라고 나와있네요. 
+이번 행사를 통해 사람들이 사회적 경제 기업에 관심을 가질 수 있으면 좋겠습니다.',
+'2022-03-16', '19:00', '2022-03-16', '광명도서관', 15, 4);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'hyeondae1@gmail.com', '현대차 정몽구 재단', '미래 지식 포럼', '선택은 어떻게 세상을 바꾸는가', 
+'현재를 탐구하고 미래를 내다보는 석학들의 인사이트를 만날 수 있는 포럼이 진행합니다. 미래 지식 포럼은 2021년 코로나 시대의 키워드인
+연결을 주제로 진행했습니다. 2022년에는 불확실성의 시대를 맞이하여 선택의 어려움을 겪는 우리에게 삶의 통찰력을 주는 포럼을 
+만들고자 합니다. 이번 키워드는 선택입니다. ', '2022-03-24', '19:00', '2022-03-24', '철산도서관', 20, 2);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'kim3486@gmail.com', '카이스트 전기 및 전자공학과', '김대식 교수', '메타버스 특강', 
+'뉴웨이브 : 지금 우리가 알아야 할 지식, 메타버스 대항해시대', '2022-03-09', '19:00', '2022-03-09', '이프랜드', 30, 1);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'lee2853@gmail.com', '서울대학교 규장각한국학연구원', '이인숙 작가', '명사초청 특강', 
+'나의 멘토 : 새시작을 위한 정신적 멘토, 시대의 한계를 넘어 선 여인들', '2022-03-25', '19:00', '2022-03-25', '별마당 도서관', 20, 2);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'you4974@gmail.com', '명지대학교 미술사학과 석좌교수', '유흥준 교수', '명사초청 특강', 
+'나의 멘토 : 새시작을 위한 정신적 멘토, 한국문화의 정체성', '2022-03-04', '19:00', '2022-03-04', '별마당 도서관', 25, 1);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'yang5679@gmail.com', '한국예술종합학교 미술원 미술이론과', '양정무 교수', '메타버스 특강', 
+'뉴웨이브 : 지금 우리가 알아야 할 지식, 미술로 살아나다', '2022-03-16', '19:00', '2022-03-16', '이프랜드', 40, 1);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'jang8954@gmail.com', '개인', '장강명 소설가', '메타버스 특강', 
+'뉴웨이브 : 지금 우리가 알아야 할 지식, 책 중심 사회', '2022-03-23', '19:00', '2022-03-23', '이프랜드', 20, 1);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'na8563@gmail.com', '개인', '나태주 시인', '명사초청 특강', 
 '나의 멘토 : 새시작을 위한 정신적 멘토, 사람을 울리는 시, 사람을 응원하는 시, 사람을 살리는 시 ',
-'2022-02-11', '19:00', '2022-02-11', '별마당 도서관');
-insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place)
-values (event_seq.nextval, 'jung@gmail.com', '한양대학교 국어교육과', '정재찬 교수', '명사초청 특강', 
-'나의 멘토 : 새시작을 위한 정신적 멘토, 그대를 향한 시선(詩選)', '2022-02-04', '19:00', '2022-02-04', '별마당 도서관');
+'2022-03-11', '19:00', '2022-03-11', '별마당 도서관', 30, 1);
+insert into event(e_num, e_email, e_agency, e_instr, e_name, e_intro, e_start_d, e_start_t, e_finish_d, e_place, e_max_p, e_genre)
+values (event_seq.nextval, 'jung0567@gmail.com', '한양대학교 국어교육과', '정재찬 교수', '명사초청 특강', 
+'나의 멘토 : 새시작을 위한 정신적 멘토, 그대를 향한 시선(詩選)', '2022-03-04', '19:00', '2022-03-04', '별마당 도서관', 25, 1);
+
+commit;
+
+update event
+set e_read_cnt=19, e_result=1
+where e_num=1;
+update event
+set e_read_cnt=29, e_result=1
+where e_num=9;
+update event
+set e_read_cnt=12, e_result=1
+where e_num=3;
+update event
+set e_read_cnt=35, e_result=1
+where e_num=6;
+update event
+set e_read_cnt=21, e_result=1
+where e_num=7;
+update event
+set e_read_cnt=34, e_result=1
+where e_num=11;
+update event
+set e_read_cnt=16, e_result=1
+where e_num=12;
+
+commit;
+
+drop table event_join;
+
+create table event_join (
+ej_num number not null references event(e_num),
+ej_userid varchar2(50) not null references member(userid),
+ej_people number default 0
+);
+
+select * from event_join;
+
+insert into event_join (ej_num, ej_userid, ej_people) values (1, 'kim', (select nvl(max(ej_people)+1,1) from event_join where ej_num=1) );
+insert into event_join (ej_num, ej_userid, ej_people) values (1, 'lee', (select nvl(max(ej_people)+1,1) from event_join where ej_num=1) );
+insert into event_join (ej_num, ej_userid, ej_people) values (1, 'choi', (select nvl(max(ej_people)+1,1) from event_join where ej_num=1) );
+insert into event_join (ej_num, ej_userid, ej_people) values (9, 'lee', (select nvl(max(ej_people)+1,1) from event_join where ej_num=9) );
+insert into event_join (ej_num, ej_userid, ej_people) values (9, 'kim', (select nvl(max(ej_people)+1,1) from event_join where ej_num=9) );
+insert into event_join (ej_num, ej_userid, ej_people) values (3, 'kim', (select nvl(max(ej_people)+1,1) from event_join where ej_num=3) );
+insert into event_join (ej_num, ej_userid, ej_people) values (6, 'choi', (select nvl(max(ej_people)+1,1) from event_join where ej_num=6) );
+insert into event_join (ej_num, ej_userid, ej_people) values (6, 'lee', (select nvl(max(ej_people)+1,1) from event_join where ej_num=6) );
+insert into event_join (ej_num, ej_userid, ej_people) values (6, 'kim', (select nvl(max(ej_people)+1,1) from event_join where ej_num=6) );
+insert into event_join (ej_num, ej_userid, ej_people) values (7, 'kim', (select nvl(max(ej_people)+1,1) from event_join where ej_num=7) );
+insert into event_join (ej_num, ej_userid, ej_people) values (11, 'lee', (select nvl(max(ej_people)+1,1) from event_join where ej_num=11) );
+insert into event_join (ej_num, ej_userid, ej_people) values (11, 'choi', (select nvl(max(ej_people)+1,1) from event_join where ej_num=11) );
+insert into event_join (ej_num, ej_userid, ej_people) values (12, 'lee', (select nvl(max(ej_people)+1,1) from event_join where ej_num=12) );
+insert into event_join (ej_num, ej_userid, ej_people) values (12, 'kim', (select nvl(max(ej_people)+1,1) from event_join where ej_num=12) );
+
+commit;
+
+drop table event_reply;
+drop sequence event_reply_seq;
+
+create table event_reply (
+er_num number not null primary key,
+er_e_num references event(e_num),
+er_userid varchar2(50) not null references member(userid),
+er_content varchar(400) not null,
+er_date date default sysdate,
+er_change number default 0
+);
+
+create sequence event_reply_seq
+start with 1
+increment by 1;
+
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 1, 'kim', '와! 정말 기대됩니다. ㅎㅎ');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 1, 'kim', '이제 며칠 남지 않았네요!');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 9, 'lee', '오 이거 정말 참여해야겠네요!');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 9, 'choi', '전에 비슷한 행사에서 아주 좋은 경험 겪은 적이 있어요');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 9, 'choi', '엄청 유익해보여요');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 9, 'lee', '너무 기대되네요!!');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 3, 'admin', '많은 사랑과 관심 부탁드립니다 :)');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 6, 'admin', '많은 사랑과 관심 부탁드립니다 :)');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 6, 'choi', '다들 많이 참여하실까요.?');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 7, 'lee', '오 저 이런 행사 좋아해요ㅎㅎ');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 12, 'admin', '많은 사랑과 관심 부탁드립니다 :)');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 11, 'choi', '이번 행사는 엄청 알차보여요');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 11, 'kim', '이번 달은 유독 행사가 많네요');
+insert into event_reply (er_num, er_e_num, er_userid, er_content) values (event_reply_seq.nextval, 12, 'lee', '참여할 수 있는 행사가 많아 좋네요');
 
 commit;

@@ -88,11 +88,11 @@ increment by 1;
 - 반납일 : bday
 
 create table rent(
-bnum varchar2(50) not null primary key,
-id varchar2(50) not null,
-bname varchar2(50) not null,
+bnum number not null primary key,
+userid varchar2(50) not null,
+book_id varchar2(50) not null,
 aday  date default sysdate,
-bday date
+bday date default sysdate+7
 );
 
 ++ 시퀀스 rent_seq
@@ -100,6 +100,10 @@ create sequence rent_seq
 start with 1
 increment by 1;
 
+alter table rent add constraint rent_userid_fk
+foreign key(userid) references member(userid);
+alter table rent add constraint rent_bookid_fk
+foreign key(book_id) references book(book_id);
 
 
 4. 공지사항/QnA 테이블 (홍성범)---------------------------
@@ -133,10 +137,6 @@ re_level number default 0 not null
 create sequence notice_qna_seq
 start with 1
 increment by 1;
-
-
-
-
 
 
 5. 리뷰 테이블 (고인수)---------------------------------------
@@ -189,19 +189,22 @@ start with 1
 increment by 1;
 
 
-6. 행사 테이블 : event (이정선)--------------------------------------
-- 행사 번호 : e_num
-- 이메일 : e_email
-- 주최 기관 : e_agency
-- 강사 : e_instr
-- 행사명 : e_name
-- 행사소개 : e_intro
-- 행사시작일 : e_start_d
-- 행사시작시간 : e_start_t
-- 행사마감일 : e_finish_d
-- 행사장소 : e_place
-- 조회수 : e_read_cnt
-- 신청결과 : e_result
+6. 문화행사  (이정선)-----------------------------------
+- 문화행사 테이블 : event
+= 행사 번호 : e_num
+= 이메일 : e_email
+= 주최 기관 : e_agency
+= 강사 : e_instr
+= 행사명 : e_name
+= 행사소개 : e_intro
+= 행사시작일 : e_start_d
+= 행사시작시간 : e_start_t
+= 행사마감일 : e_finish_d
+= 행사장소 : e_place
+= 조회수 : e_read_cnt
+= 신청결과 : e_result
+= 최대 인원 : e_max_p
+= 행사 분야 : e_genre
 
 create table event(
 e_num number not null primary key,
@@ -215,10 +218,45 @@ e_start_t varchar2(10),
 e_finish_d date,
 e_place varchar2(50),
 e_read_cnt number default 0,
-e_result number default 0
+e_result number default 0,
+e_max_p number not null,
+e_genre number not null
 );
 
 ++ 행사 번호용 시퀀스 event_seq
 create sequence event_seq
+start with 1
+increment by 1;
+
+- 문화행사 참여 테이블 : event_join
+= 행사 번호 : ej_num
+= 행사 참여회원 : ej_userid
+= 행사 참여회원수 : ej_people
+
+create table event_join (
+ej_num number not null references event(e_num),
+ej_userid varchar2(50) not null references member(userid),
+ej_people number default 0
+);
+
+- 문화행사 댓글 테이블 : event_reply
+= 댓글 번호 : er_num
+= 행사 번호 : er_e_num
+= 등록 회원 : er_userid
+= 댓글 내용 : er_content
+= 등록일 : er_date
+= 수정 여부 : er_change
+
+create table event_reply (
+er_num number not null primary key,
+er_e_num references event(e_num),
+er_userid varchar2(50) not null references member(userid),
+er_content varchar(400) not null,
+er_date date default sysdate,
+er_change number default 0
+);
+
+++ 댓글 번호용 시퀀스 event_reply_seq
+create sequence event_reply_seq
 start with 1
 increment by 1;
