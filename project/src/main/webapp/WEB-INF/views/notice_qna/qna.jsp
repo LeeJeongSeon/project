@@ -101,7 +101,9 @@ a{text-decoration: none;}
 </div>
 
 <div>
-<button type="button" id="btnWrite">글쓰기</button>
+<c:if test="${sessionScope.userid != null }">
+ <button type="button" id="btnWrite">글쓰기</button>
+</c:if>
  <button type="button" id="btnList">목록</button>
 </div>
 
