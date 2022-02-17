@@ -18,6 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   (rent_seq.nextval, #{userid}, #{book_id},1)
  </insert>
  
+ <update id="extend">
+  update rent set bday=bday+7
+  where bnum=#{bnum}
+ </update>
+ 
  <update id="modifyRent">
   update rent
   where bnum=#{bnum}
