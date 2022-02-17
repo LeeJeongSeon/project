@@ -167,5 +167,14 @@ public class Notice_qnaController {
 		notice_qnaService.reply(dto);
 		return "redirect:/notice_qna/list.do?category=qna";
 	}
+	@RequestMapping("index.do")
+	public ModelAndView notice_index() throws Exception {
+		List<Notice_qnaDTO> noticeList=notice_qnaService.noticeList();
+		System.out.println("리스트뭐여"+noticeList);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("notice_qna/notice_index");
+		mav.addObject("noticeList", noticeList);
+		return mav;
+	}
 
 }
