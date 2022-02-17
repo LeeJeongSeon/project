@@ -174,7 +174,7 @@ public class Notice_qnaController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("notice_qna/notice_index");
 		mav.addObject("noticeList", noticeList);
-		return mav;
+		return mav ;
 	}
 
 }

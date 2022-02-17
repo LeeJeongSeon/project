@@ -34,6 +34,6 @@
       <td><fmt:formatDate value="${row2.reg_date }" pattern="yyyy-MM-dd"/></td>
 </tr>
 </c:forEach>
-</table>
+</table >
 </body>
 </html>
