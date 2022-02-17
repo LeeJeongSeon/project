@@ -63,19 +63,17 @@ header {
 			<tr>
 				<th id="title">${dto.e_name}</th>
 				<td align="right" style="width: 8%;">				
-					<span>조회수 ${dto.e_read_cnt}</span>
+					조회수 ${dto.e_read_cnt}<br>
+					댓글수 ${dto.e_reply_cnt}
 				</td>
 			</tr>
 		</table>
 		<table class="tb2">
-			<tr align="right">
-				<td colspan="2"></td>
-			</tr>
 			<tr align="left">
 				<td>
 					<b>강 사</b> | ${dto.e_instr} <br><br>
 					<b>주최 기관</b> | ${dto.e_agency} <br><br>
-					<b>참여 인원</b> | ${dto.e_join_p} <br><br>
+					<b>참여 인원</b> | ${dto.e_join_p} 명 <br><br>
 					<b>행사 분야</b> | 
 						<c:choose>
 							<c:when test="${dto.e_genre==1}">소설 시 희곡</c:when>
@@ -88,7 +86,8 @@ header {
 				<td>
 					<b>행사 장소</b> | ${dto.e_place} <br><br>
 					<b>시작 시간</b> | ${dto.e_start_t} <br><br>
-					<b>최대 인원</b> | ${dto.e_max_p}
+					<b>최대 인원</b> | ${dto.e_max_p} 명 <br><br>
+					<b>진행일</b> | ${dto.e_days} 일
 				</td>
 			</tr>
 			<tr>
@@ -115,12 +114,13 @@ header {
 			<c:otherwise>
 				<div align="center">
 					${sessionScope.userid}
-					<textarea style="width: 92%; height: 20px; vertical-align: bottom;"></textarea>
+					<textarea style="width: 92%; height: 20px; vertical-align: bottom;" id="content"></textarea>
 					<button type="button" id="btnSave">등록</button>
 				</div>
 			</c:otherwise>
 		</c:choose>
 	</fieldset>
+	
 	<div id="replyList"></div>
 	<footer align="center">
 	이미 신청한 행사의 내용을 수정하거나, 신청 취소를 희망하실 경우 클릭하세요 

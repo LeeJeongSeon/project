@@ -16,6 +16,8 @@ public class EventDTO {
 	private int e_join_p;
 	private int e_max_p;
 	private int e_genre;
+	private int e_reply_cnt;
+	private int e_days;
 
 	@Override
 	public String toString() {
@@ -23,47 +25,7 @@ public class EventDTO {
 				+ ", e_name=" + e_name + ", e_intro=" + e_intro + ", e_start_d=" + e_start_d + ", e_start_t="
 				+ e_start_t + ", e_finish_d=" + e_finish_d + ", e_place=" + e_place + ", e_read_cnt=" + e_read_cnt
 				+ ", e_result=" + e_result + ", e_join_p=" + e_join_p + ", e_max_p=" + e_max_p + ", e_genre=" + e_genre
-				+ "]";
-	}
-
-	public int getE_join_p() {
-		return e_join_p;
-	}
-
-	public void setE_join_p(int e_join_p) {
-		this.e_join_p = e_join_p;
-	}
-
-	public int getE_max_p() {
-		return e_max_p;
-	}
-
-	public void setE_max_p(int e_max_p) {
-		this.e_max_p = e_max_p;
-	}
-
-	public int getE_genre() {
-		return e_genre;
-	}
-
-	public void setE_genre(int e_genre) {
-		this.e_genre = e_genre;
-	}
-
-	public String getE_start_t() {
-		return e_start_t;
-	}
-
-	public void setE_start_t(String e_start_t) {
-		this.e_start_t = e_start_t;
-	}
-
-	public String getE_place() {
-		return e_place;
-	}
-
-	public void setE_place(String e_place) {
-		this.e_place = e_place;
+				+ ", e_reply_cnt=" + e_reply_cnt + ", e_days=" + e_days + "]";
 	}
 
 	public int getE_num() {
@@ -77,11 +39,11 @@ public class EventDTO {
 	public String getE_email() {
 		return e_email;
 	}
-	
+
 	public void setE_email(String e_email) {
 		this.e_email = e_email;
 	}
-	
+
 	public String getE_agency() {
 		return e_agency;
 	}
@@ -89,11 +51,11 @@ public class EventDTO {
 	public void setE_agency(String e_agency) {
 		this.e_agency = e_agency;
 	}
-	
+
 	public String getE_instr() {
 		return e_instr;
 	}
-	
+
 	public void setE_instr(String e_instr) {
 		this.e_instr = e_instr;
 	}
@@ -122,12 +84,28 @@ public class EventDTO {
 		this.e_start_d = e_start_d.substring(0, 10);
 	}
 
+	public String getE_start_t() {
+		return e_start_t;
+	}
+
+	public void setE_start_t(String e_start_t) {
+		this.e_start_t = e_start_t;
+	}
+
 	public String getE_finish_d() {
 		return e_finish_d;
 	}
 
 	public void setE_finish_d(String e_finish_d) {
 		this.e_finish_d = e_finish_d.substring(0, 10);
+	}
+
+	public String getE_place() {
+		return e_place;
+	}
+
+	public void setE_place(String e_place) {
+		this.e_place = e_place;
 	}
 
 	public int getE_read_cnt() {
@@ -144,5 +122,55 @@ public class EventDTO {
 
 	public void setE_result(int e_result) {
 		this.e_result = e_result;
+	}
+
+	public int getE_join_p() {
+		return e_join_p;
+	}
+
+	public void setE_join_p(int e_join_p) {
+		this.e_join_p = e_join_p;
+	}
+
+	public int getE_max_p() {
+		return e_max_p;
+	}
+
+	public void setE_max_p(int e_max_p) {
+		this.e_max_p = e_max_p;
+	}
+
+	public int getE_genre() {
+		return e_genre;
+	}
+
+	public void setE_genre(int e_genre) {
+		this.e_genre = e_genre;
+	}
+
+	public int getE_reply_cnt() {
+		return e_reply_cnt;
+	}
+
+	public void setE_reply_cnt(int e_reply_cnt) {
+		this.e_reply_cnt = e_reply_cnt;
+	}
+
+	public int getE_days() {
+		int start=Integer.parseInt(e_start_d.substring(9, 10));
+		int end=Integer.parseInt(e_finish_d.substring(9, 10));
+		int s_month=Integer.parseInt(e_start_d.substring(6, 7));
+		if(start-end+1<=0) {
+			if(s_month%2==1) {
+				start-=31;
+			} else {
+				if(s_month==2) {
+					start-=28;
+				}else {
+					start-=30;
+				}
+			}
+		}
+		return start-end+1;
 	}
 }

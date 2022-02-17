@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 function list(page) {
 	location.href="${path}/event/listAdmin.do?curPage="+page;
 } 
 </script>
-<%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="../include/event.css">
 <style type="text/css">
 #body {
