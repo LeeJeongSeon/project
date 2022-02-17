@@ -19,6 +19,7 @@ public class ReviewReplyController {
 	@Inject
 	ReviewReplyService reviewReplyService;
 	
+	//댓글 쓰기
 	@RequestMapping("insert.do")
 	public void insert(ReviewReplyDTO dto, HttpSession session) {
 		String userid=(String)session.getAttribute("userid");
@@ -27,7 +28,7 @@ public class ReviewReplyController {
 	}
 	
 	
-	
+	//댓글 
 	@RequestMapping("list.do")
 	public ModelAndView list(int review_bno, ModelAndView mav) {
 		List<ReviewReplyDTO> list=reviewReplyService.list(review_bno);
@@ -37,8 +38,7 @@ public class ReviewReplyController {
 	}
 	
 	
-	
-	
+	//댓글 쓰는 법 : json방식
 	@RequestMapping("list_json.do")
 	public List<ReviewReplyDTO> list_json(int review_bno){
 		return reviewReplyService.list(review_bno);
