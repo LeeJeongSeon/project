@@ -8,6 +8,7 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 $(function() {
+	comment_list();
 	$("#btnSave").click(function() {
 		var param = "er_e_num=${dto.e_num}&userid=${sessionScope.userid}"
 			+"&content=" + $("#content").val();
@@ -120,7 +121,6 @@ header {
 			</c:otherwise>
 		</c:choose>
 	</fieldset>
-	
 	<div id="replyList"></div>
 	<footer align="center">
 	이미 신청한 행사의 내용을 수정하거나, 신청 취소를 희망하실 경우 클릭하세요 
