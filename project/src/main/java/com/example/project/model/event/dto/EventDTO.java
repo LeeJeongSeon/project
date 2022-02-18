@@ -157,10 +157,11 @@ public class EventDTO {
 	}
 
 	public int getE_days() {
-		int start=Integer.parseInt(e_start_d.substring(9, 10));
-		int end=Integer.parseInt(e_finish_d.substring(9, 10));
-		int s_month=Integer.parseInt(e_start_d.substring(6, 7));
-		if(start-end+1<=0) {
+		int start=Integer.parseInt(e_start_d.substring(8, 10));
+		int end=Integer.parseInt(e_finish_d.substring(8, 10));
+		int s_month=Integer.parseInt(e_start_d.substring(5, 7));
+		int days=end-start+1;
+		if(!(days>0)) {
 			if(s_month%2==1) {
 				start-=31;
 			} else {
@@ -171,6 +172,7 @@ public class EventDTO {
 				}
 			}
 		}
-		return start-end+1;
+		days=end-start+1;
+		return days;
 	}
 }
