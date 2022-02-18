@@ -86,7 +86,6 @@ text-align: center;
 <a href="${path}">비밀번호찾기</a> |
 <a href="${path}/member/write.do">회원가입</a> |
 
-
 </div>
 
 

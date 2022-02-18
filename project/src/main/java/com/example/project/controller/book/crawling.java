@@ -29,88 +29,91 @@ public class crawling {
 	
 	@RequestMapping("example.do")
 	public void example() {
-		int num=1;
-		String yes24 = "http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&PageNumber="+num;
-        Connection conn = Jsoup.connect(yes24);
+		int num=10;
+		for(int j=0;j<=num;j++) {
+			System.out.println(j+"번");
+			String yes24 = "http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&PageNumber="+j;
+	        Connection conn = Jsoup.connect(yes24);
 
-        try {
-            Document document = conn.get();
-            Elements tag_name = document.select("td.goodsTxtInfo > p:nth-child(1) > a:nth-child(1)");
-            Elements tag_author = document.select("td.goodsTxtInfo > div > a:nth-child(1)");
-            Elements tag_publisher = document.select(" td.goodsTxtInfo > div > a:nth-child(2)");
-            String[] name = new String[tag_name.size()]; //책 제목
-            String[] url = new String[tag_name.size()]; //책 url
-            String[] author= new String[tag_name.size()]; //책 저자
-            String[] publisher=new String[tag_publisher.size()]; //책 출판사
-            String[] genre = new String[tag_name.size()]; //책 장르
-            String[] content= new String[tag_name.size()];//책 설명
-            String[] img= new String[tag_name.size()];//책 이미지
-            
-            int setindex=0;
-            for (Element e: tag_name) {
-            	url[setindex]=e.attr("href");
-            	name[setindex]=e.text();
-            	author[setindex]=e.text();
-            	setindex++;
-            }
-            setindex=0;
-            for (Element e: tag_author) {
-            	author[setindex]=e.text();
-            	setindex++;
-            }
-            setindex=0;
-            for (Element e: tag_publisher) {
-            	publisher[setindex]=e.text();
-            	setindex++;
-            }
-           
-            
-            //도서내부링크
-            for(int i=0;i<url.length;i++) {
-            	Connection innerConn = Jsoup.connect("http://www.yes24.com"+url[i]);
-            	Document innerDocument = innerConn.get();
-            	
-            	Elements tag_genre=innerDocument.select("div.infoSetCont_wrap > dl:nth-child(1) > dd > ul > li> a:nth-child(4)");
-            	Elements tag_content=innerDocument.getElementsByClass("txtContentText");
-            	Elements tag_img= innerDocument.select("div.topColLft > div > span > em > img");
-            			
-            	genre[i]=tag_genre.text();
-            	content[i]=tag_content.text();
-            	img[i]=tag_img.attr("src");
-            	int index=genre[i].indexOf(" ");
-            	if(index>0) {
-            		genre[i]=genre[i].substring(0,index);
-            	}
+	        try {
+	            Document document = conn.get();
+	            Elements tag_name = document.select("td.goodsTxtInfo > p:nth-child(1) > a:nth-child(1)");
+	            Elements tag_author = document.select("td.goodsTxtInfo > div > a:nth-child(1)");
+	            Elements tag_publisher = document.select(" td.goodsTxtInfo > div > a:nth-child(2)");
+	            String[] name = new String[tag_name.size()]; //책 제목
+	            String[] url = new String[tag_name.size()]; //책 url
+	            String[] author= new String[tag_name.size()]; //책 저자
+	            String[] publisher=new String[tag_publisher.size()]; //책 출판사
+	            String[] genre = new String[tag_name.size()]; //책 장르
+	            String[] content= new String[tag_name.size()];//책 설명
+	            String[] img= new String[tag_name.size()];//책 이미지
+	            
+	            int setindex=0;
+	            for (Element e: tag_name) {
+	            	url[setindex]=e.attr("href");
+	            	name[setindex]=e.text();
+	            	author[setindex]=e.text();
+	            	setindex++;
+	            }
+	            setindex=0;
+	            for (Element e: tag_author) {
+	            	author[setindex]=e.text();
+	            	setindex++;
+	            }
+	            setindex=0;
+	            for (Element e: tag_publisher) {
+	            	publisher[setindex]=e.text();
+	            	setindex++;
+	            }
+	           
+	            
+	            //도서내부링크
+	            for(int i=0;i<url.length;i++) {
+	            	Connection innerConn = Jsoup.connect("http://www.yes24.com"+url[i]);
+	            	Document innerDocument = innerConn.get();
+	            	
+	            	Elements tag_genre=innerDocument.select("div.infoSetCont_wrap > dl:nth-child(1) > dd > ul > li> a:nth-child(4)");
+	            	Elements tag_content=innerDocument.getElementsByClass("txtContentText");
+	            	Elements tag_img= innerDocument.select("div.topColLft > div > span > em > img");
+	            			
+	            	genre[i]=tag_genre.text();
+	            	content[i]=tag_content.text();
+	            	img[i]=tag_img.attr("src");
+	            	int index=genre[i].indexOf(" ");
+	            	if(index>0) {
+	            		genre[i]=genre[i].substring(0,index);
+	            	}
 
-            }
-            
-            for (int i=0;i<tag_name.size();i++) {
-//            	System.out.print(name[i]);
-//            	System.out.print(url[i]);
-//            	System.out.print(author[i]);
-//            	System.out.print(publisher[i]);
-//            	System.out.print("장르:"+genre[i]);
-            	System.out.println(img[i]);
-//            	System.out.print(content[i]);
-//            	System.out.println();
-            	
-            	bookDTO dto=new bookDTO();
-            	dto.setBook_name(name[i]);
-            	dto.setBook_author(author[i]);
-            	dto.setBook_publisher(publisher[i]);
-            	dto.setBook_img(img[i]);
-            	dto.setBook_content(content[i]);
-            	if(genre[i]=="")
-            		dto.setBook_genre("-");
-            	else
-            		dto.setBook_genre(genre[i]);
-            	
-//            	System.out.println(i+","+dto);
-            	bookService.insertBook(dto);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	            }
+	            
+	            for (int i=0;i<tag_name.size();i++) {
+//	            	System.out.print(name[i]);
+//	            	System.out.print(url[i]);
+//	            	System.out.print(author[i]);
+//	            	System.out.print(publisher[i]);
+//	            	System.out.print("장르:"+genre[i]);
+//	            	System.out.println(img[i]);
+//	            	System.out.print(content[i]);
+//	            	System.out.println();
+	            	
+	            	bookDTO dto=new bookDTO();
+	            	dto.setBook_name(name[i]);
+	            	dto.setBook_author(author[i]);
+	            	dto.setBook_publisher(publisher[i]);
+	            	dto.setBook_img(img[i]);
+	            	dto.setBook_content(content[i]);
+	            	if(genre[i]=="")
+	            		dto.setBook_genre("-");
+	            	else
+	            		dto.setBook_genre(genre[i]);
+	            	
+//	            	System.out.println(i+","+dto);
+	            	bookService.insertBook(dto);
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		}
 	}
 	
 	@RequestMapping("book_search.do")

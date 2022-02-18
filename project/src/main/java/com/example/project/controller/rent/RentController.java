@@ -95,7 +95,7 @@ public class RentController {
 	return "redirect:/rent/list.do";
 }
 	
-	//대출
+	//반납
 	@Transactional 
 	@RequestMapping("delete.do")
 	public String delete(@RequestParam int bnum) {
