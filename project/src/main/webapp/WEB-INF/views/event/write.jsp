@@ -43,6 +43,9 @@ $(function () {
 			
 		}else {
 			if(checkDate()) {
+				e_intro=$("#e_intro").val();
+				e_intro=e_intro.replace("<br>", "\n");
+				$("#e_intro").val(e_intro);
 				document.form1.submit();
 				alert("신청이 완료되었습니다.\n이메일을 확인해주세요!");
 			}
