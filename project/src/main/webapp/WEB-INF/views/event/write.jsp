@@ -83,60 +83,84 @@ function checkDate() {
 	}
 }
 </script>
+<link rel="stylesheet" href="../include/event.css">
+<style type="text/css">
+#body {
+	font-family: HYKANM;
+}
+
+header {
+	font-size: 25px;
+	font-weight: bold;
+	padding-left: 30px;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-행사신청 페이지
-	<form action="${path}/event/insert.do" name="form1" >
-		<table>
-			<tr>
-				<th>행사명</th>
-				<td colspan="3"><input name="e_name" id="e_name"></td>
-			</tr>
-			<tr>
-				<th>주최기관</th>
-				<td><input name="e_agency" id="e_agency"></td>
-				<th>강사</th>
-				<td><input name="e_instr" id="e_instr"></td>
-			</tr>
-			<tr>
-				<td colspan="4">
-					<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>희망 행사장소</th>
-				<td><input name="e_place" id="e_place"></td>
-				<th>시작 시간</th>
-				<td>
-					<select name="e_start_t" id="e_start_t">
-						<%
-						for(int i=8; i<20; i++) {
-						%>
-						<option value="<%=i%>:00"><%=i%>:00</option>
-						<%
-						}
-						%>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>행사 시작일</th>
-				<td><input type="date" name="e_start_d" id="e_start_d"></td>
-				<th>행사 마감일</th>
-				<td><input type="date" name="e_finish_d" id="e_finish_d"></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td colspan="3"><input type="email" name="e_email" id="e_email" placeholder="abc@abc.com"></td>
-			</tr>
-			<tr align="center">
-				<td colspan="4">
-					<input type="button" id="btnEnter" value="신청하기">
-				</td>
-			</tr>
-		</table>
-	</form>
-<%@ include file="../include/footer.jsp" %>
+<div id="body">
+	<header>
+		문화행사 신청
+	</header>
+		<form action="${path}/event/insert.do" name="form1">
+			<div id="table">
+				<table>
+					<tr>
+						<th>행사명</th>
+						<td colspan="3"><input name="e_name" id="e_name" style="width: 92.5%;"></td>
+					</tr>
+					<tr>
+						<th>주최기관</th>
+						<td><input name="e_agency" id="e_agency"></td>
+						<th>강사</th>
+						<td><input name="e_instr" id="e_instr"></td>
+					</tr>
+					<tr>
+						<th>소개말</th>
+						<td colspan="3">
+							<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!" style="width: 93%;"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>희망 행사장소</th>
+						<td><input name="e_place" id="e_place"></td>
+						<th>시작 시간</th>
+						<td>
+							<select name="e_start_t" id="e_start_t">
+								<%
+								for(int i=8; i<20; i++) {
+								%>
+								<option value="<%=i%>:00"><%=i%>:00</option>
+								<%
+								}
+								%>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>행사 시작일</th>
+						<td><input type="date" name="e_start_d" id="e_start_d"></td>
+						<th>행사 마감일</th>
+						<td><input type="date" name="e_finish_d" id="e_finish_d"></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td colspan="3"><input type="email" name="e_email" id="e_email" placeholder="abc@abc.com" style="width: 92.5%;"></td>
+					</tr>
+					<tr align="center">
+						<td colspan="4">
+							<button type="button" id="btnEnter">신청</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	<%@ include file="../include/footer.jsp" %>
+</div>
 </body>
 </html>

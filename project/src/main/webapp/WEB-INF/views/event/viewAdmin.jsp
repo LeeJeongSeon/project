@@ -50,29 +50,38 @@ td {
 <%@ include file="../include/menu.jsp" %>
 <div id="body">
 	<header>
-		행사 관리 상세보기 페이지
+		관리자용 문화행사 상세보기
 	</header>
 <div id="table">
 		<table class="tb2"> 
 			<tr>
 				<th id="title">${dto.e_name}</th>
 				<td align="right" style="width: 8%;">				
-					<span>조회수 ${dto.e_read_cnt}</span>
+					조회수 ${dto.e_read_cnt}<br>
+					댓글수 ${dto.e_reply_cnt}
 				</td>
 			</tr>
 		</table>
 		<table class="tb2">
-			<tr align="right">
-				<td colspan="2"></td>
-			</tr>
 			<tr align="left">
 				<td>
 					<b>강 사</b> | ${dto.e_instr} <br><br>
-					<b>주최 기관</b> | ${dto.e_agency}
+					<b>주최 기관</b> | ${dto.e_agency} <br><br>
+					<b>참여 인원</b> | ${dto.e_join_p} 명 <br><br>
+					<b>행사 분야</b> | 
+						<c:choose>
+							<c:when test="${dto.e_genre==1}">소설 시 희곡</c:when>
+							<c:when test="${dto.e_genre==2}">사회 정치</c:when>
+							<c:when test="${dto.e_genre==3}">인문</c:when>
+							<c:when test="${dto.e_genre==4}">경제 경영</c:when>
+							<c:when test="${dto.e_genre==5}">자연과학</c:when>
+						</c:choose>
 				</td>
 				<td>
 					<b>행사 장소</b> | ${dto.e_place} <br><br>
-					<b>시작 시간</b> | ${dto.e_start_t}
+					<b>시작 시간</b> | ${dto.e_start_t} <br><br>
+					<b>최대 인원</b> | ${dto.e_max_p} 명 <br><br>
+					<b>진행일</b> | ${dto.e_days} 일
 				</td>
 			</tr>
 			<tr>
