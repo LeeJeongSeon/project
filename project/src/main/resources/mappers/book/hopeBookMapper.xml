@@ -53,9 +53,9 @@ where member.userid=hope_book.hopeBook_userid
 </select>
 
 <insert id="insertBook">
-insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level)
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level,filename)
 values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_userid},#{hopeBook_content},#{hopeBook_author}
-,HopeBook_seq.nextval,1,0)
+,HopeBook_seq.nextval,1,0,#{filename})
 </insert>
 
 <insert id="reply">
@@ -75,9 +75,11 @@ where book_name=#{hopeBook_bookname} and book_author=#{hopeBook_author}
 </select>
 
 <select id="view" resultType="com.example.project.model.book.dto.hopeBookDTO">
-select *
-from hope_book
-where ref=(select ref from hope_book where hopebook_id=#{hopeBook_id})
+select h.hopebook_id,h.hopebook_title,h.hopebook_bookname,h.hopebook_author,h.hopebook_userid,h.hopebook_content,h.ref,h.re_level,h.re_step,m.name,h.filename
+from hope_book h,member m
+where h.hopebook_userid=m.userid
+and ref=(select ref from hope_book where hopebook_id=#{hopebook_id})
+order by hopebook_id
 </select>
 </mapper>
 
