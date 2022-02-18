@@ -43,7 +43,7 @@ a:link, a:visited {
 <%@ include file="../include/menu.jsp" %>
 <div id="body">
 	<header>
-		문화행사
+		문화행사 목록
 	</header>
 	<fieldset> 
 		<legend>Search Zone</legend>

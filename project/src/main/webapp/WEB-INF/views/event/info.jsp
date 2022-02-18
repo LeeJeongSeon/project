@@ -36,7 +36,6 @@ header {
 	<header>
 		문화행사 내용 수정/삭제
 	</header>
-	<marquee style="color: red;">※ 대기, 승인, 반려, 취소 상태의 행사는 신청자가 변경 가능하며 관리자가 삭제 처리한 행사는 열람/변경이 불가능합니다.</marquee>
 	<div id="table">
 		<table>
 			<tr>
@@ -63,6 +62,7 @@ header {
 			</c:forEach>
 		</table>
 	</div>
+	<marquee style="color: red;">※ 대기, 승인, 반려, 취소 상태의 행사는 신청자가 변경 가능하며 관리자가 삭제 처리한 행사는 열람/변경이 불가능합니다.</marquee>
 	<hr>
 	<div style="width: 100%;" id="div1"></div>
 </div>

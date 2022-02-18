@@ -147,7 +147,6 @@ public class EventController {
 	/* 행사변경, 메일 전송 후 행사페이지로 이동 */
 	@RequestMapping("update.do")
 	public String update(@ModelAttribute EventDTO dto) throws Exception {
-		System.out.println(dto);
 		eventService.update(dto);
 		emailService.sendUpdateMail(dto.getE_name(), dto.getE_email());
 		return "redirect:/event/list.do";
