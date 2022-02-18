@@ -85,7 +85,12 @@ text-align: center;
 <a href="${path}">아이디찾기</a> |
 <a href="${path}">비밀번호찾기</a> |
 <a href="${path}/member/write.do">회원가입</a> |
+<<<<<<< HEAD
 
+=======
+<a href="${path}/google/google_login.do">구글 로그인</a>
+<a href="${path}/google/google_sign.do">구글 로그인</a>
+>>>>>>> jongyi
 </div>
 
 
