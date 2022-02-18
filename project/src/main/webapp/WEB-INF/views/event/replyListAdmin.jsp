@@ -54,7 +54,10 @@ a:link, a:visited {
 					<td>${dto.er_e_num}</td>
 					<td>${dto.er_userid}</td>
 					<td>${dto.er_content}</td>
-					<td>${dto.er_change}</td>
+					<td>
+						<c:if test="${dto.er_change==0}">N</c:if>
+						<c:if test="${dto.er_change==1}">Y</c:if>
+					</td>
 					<td>${dto.er_date}</td>
 					<td><button onclick="r_delete(${dto.er_num})">삭제</button></td>
 				</tr>

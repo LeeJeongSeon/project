@@ -24,10 +24,6 @@ public class ReplyDAOImpl implements ReplyDAO {
 	
 	@Override
 	public List<ReplyDTO> listAdmin() {
-		for(int i=0; i<5; i++) {
-			
-			System.out.println("여기까지 오긴 하니?");
-		}
 		return sqlSession.selectList("reply.listAdmin");
 	}
 
