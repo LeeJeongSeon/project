@@ -171,13 +171,13 @@
                         <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
                     </ul>
                 </li>
-                <li id="mList" style="right:449px;">
+                <li id="mList" style="right:449px;">문화행사
                     <ul id="sListUl" >
                         <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/event/write.do">신청</a></li>
                         <li id="sList"><a class="menuLink" href="#">행사 참여</a></li>
-                        <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">관리</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
                     </ul>
                 </li>
                 <li id="mList" style="right:298px;">리뷰 게시판으로 이동
@@ -238,11 +238,11 @@
                     </ul>
                 </li>
 
-                <li id="bigMenu"><a style="padding-bottom: 45px;">행사</a>
+                <li id="bigMenu"><a style="padding-bottom: 45px;">문화행사</a>
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
-                        <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">신청</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">행사 참여</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">참여신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/listAdmin.do" style=" padding-right: 40px;">관리</a></li>
                     </ul>
                 </li>

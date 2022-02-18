@@ -112,25 +112,19 @@ a:link, a:visited {
 				<table>
 					<tr>
 						<th>행사명</th>
-						<td colspan="3"><input name="e_name" id="e_name" style="width: 92.5%;"></td>
+						<td colspan="3"><input name="e_name" id="e_name" style="width: 93%;"></td>
+					</tr>
+					<tr>
+						<th>강사</th>
+						<td><input name="e_instr" id="e_instr"></td>
+						<th>희망 행사장소</th>
+						<td><input name="e_place" id="e_place"></td>
 					</tr>
 					<tr>
 						<th>주최기관</th>
 						<td><input name="e_agency" id="e_agency"></td>
-						<th>강사</th>
-						<td><input name="e_instr" id="e_instr"></td>
-					</tr>
-					<tr>
-						<th>소개말</th>
-						<td colspan="3">
-							<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!" style="width: 93%;"></textarea>
-						</td>
-					</tr>
-					<tr>
-						<th>희망 행사장소</th>
-						<td><input name="e_place" id="e_place"></td>
 						<th>시작 시간</th>
-						<td>
+						<td align="left">
 							<select name="e_start_t" id="e_start_t">
 								<%
 								for(int i=8; i<20; i++) {
@@ -143,6 +137,26 @@ a:link, a:visited {
 						</td>
 					</tr>
 					<tr>
+						<th>행사 분야</th>
+						<td align="left">
+							<select name="e_genre" id="e_genre" style="width: 100px;">
+								<option value="1">소설 시 희곡</option>
+								<option value="2">사회 정치</option>
+								<option value="3">인문</option>
+								<option value="4">경제 경영</option>
+								<option value="5">자연과학</option>
+							</select>
+						</td>
+						<th>최대 참여 인원</th>
+						<td><input type="number" name="e_max_p" id="e_max_p" min="0" max="50"></td>
+					</tr>
+					<tr>
+						<th style="vertical-align: top">소개말</th>
+						<td colspan="3">
+							<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!" style="width: 93%;"></textarea>
+						</td>
+					</tr>
+					<tr>
 						<th>행사 시작일</th>
 						<td><input type="date" name="e_start_d" id="e_start_d"></td>
 						<th>행사 마감일</th>
@@ -150,7 +164,7 @@ a:link, a:visited {
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td colspan="3"><input type="email" name="e_email" id="e_email" placeholder="abc@abc.com" style="width: 92.5%;"></td>
+						<td colspan="3"><input type="email" name="e_email" id="e_email" placeholder="abc@abc.com" style="width: 93%;"></td>
 					</tr>
 					<tr align="center">
 						<td colspan="4">

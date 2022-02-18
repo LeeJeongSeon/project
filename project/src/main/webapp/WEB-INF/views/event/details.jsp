@@ -43,28 +43,26 @@
 
 		} else {
 			if (checkDate()) {
-				if(${dto.e_result!=0}) {
-					var result="";
-					switch (${dto.e_result}) {
-					case 1:
-						result="승인";
-						break;
-					case 2:
-						result="반려";
-						break;
-					case 3:
-						result="취소";
-						break;
-					}
-					if(${dto.e_result>0}) {
-						if(confirm("해당 행사는 [ "+result+" ] 상태입니다. \n변경하실 경우 [ 대기 ] 상태로 변경됩니다. 동의하십니까?")) {
-							document.form1.submit();
-							alert("변경이 완료되었습니다.\n이메일을 확인해주세요!");						
-						}	
-					} else {
+				var result="";
+				switch (${dto.e_result}) {
+				case 1:
+					result="승인";
+					break;
+				case 2:
+					result="반려";
+					break;
+				case 3:
+					result="취소";
+					break;
+				}
+				if(${dto.e_result>0}) {
+					if(confirm("해당 행사는 [ "+result+" ] 상태입니다. \n변경하실 경우 [ 대기 ] 상태로 변경됩니다. 동의하십니까?")) {
 						document.form1.submit();
-						alert("변경이 완료되었습니다.\n이메일을 확인해주세요!");
-					}
+						alert("변경이 완료되었습니다.\n이메일을 확인해주세요!");						
+					}	
+				} else {
+					document.form1.submit();
+					alert("변경이 완료되었습니다.\n이메일을 확인해주세요!");
 				}
 			}
 		}
@@ -118,36 +116,49 @@
 			<table>
 				<tr>
 					<th>행사명</th>
-					<td colspan="3"><input name="e_name" id="e_name" value="${dto.e_name}" style="width: 92.5%;"></td>
+					<td colspan="3"><input name="e_name" id="e_name" style="width: 93%;" value="${dto.e_name}"></td>
+				</tr>
+				<tr>
+					<th>강사</th>
+					<td><input name="e_instr" id="e_instr" value="${dto.e_instr}"></td>
+					<th>희망 행사장소</th>
+					<td><input name="e_place" id="e_place" value="${dto.e_place}"></td>
 				</tr>
 				<tr>
 					<th>주최기관</th>
 					<td><input name="e_agency" id="e_agency" value="${dto.e_agency}"></td>
-					<th>강사</th>
-					<td><input name="e_instr" id="e_instr" value="${dto.e_instr}"></td>
-				</tr>
-				<tr>
-					<th style="vertical-align: top;">행사 설명</th>
-					<td colspan="4">
-						<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!" style="width: 92.5%;">${dto.e_intro}</textarea>
-					</td>
-				</tr>
-				<tr>
-					<th>희망 행사장소</th>
-					<td><input name="e_place" id="e_place" value="${dto.e_place}"></td>
 					<th>시작 시간</th>
-					<td><select name="e_start_t" id="e_start_t">
+					<td align="left"><select name="e_start_t" id="e_start_t">
 							<%
 							for (int i = 8; i < 20; i++) {
 							%>
-							<option value="<%=i%>:00" 
-								<c:if test="${dto.e_start_t}==i+':00'">
-								selected</c:if>
-							><%=i%>:00</option>
+							<option value="<%=i%>:00"><%=i%>:00
+								<c:if test="'<%=i%>:00'==${dto.e_start_t}">selected</c:if>
+							</option>
 							<%
 							}
 							%>
 					</select></td>
+				</tr>
+				<tr>
+					<th>행사 분야</th>
+					<td align="left">
+						<select name="e_genre" id="e_genre" style="width: 100px;">
+							<option value="1" <c:if test="${dto.e_genre==1}">selected</c:if>>소설 시 희곡</option>
+							<option value="2" <c:if test="${dto.e_genre==2}">selected</c:if>>사회 정치</option>
+							<option value="3" <c:if test="${dto.e_genre==3}">selected</c:if>>인문</option>
+							<option value="4" <c:if test="${dto.e_genre==4}">selected</c:if>>경제 경영</option>
+							<option value="5" <c:if test="${dto.e_genre==5}">selected</c:if>>자연과학</option>
+						</select>
+					</td>
+					<th>최대 참여 인원</th>
+					<td><input type="number" name="e_max_p" id="e_max_p" min="0" max="50" value="${dto.e_max_p}"></td>
+				</tr>
+				<tr>
+					<th style="vertical-align: top">소개말</th>
+					<td colspan="3">
+						<textarea name="e_intro" id="e_intro" placeholder="행사에 대해 소개해주세요!" style="width: 93%;">${dto.e_intro}</textarea>
+					</td>
 				</tr>
 				<tr>
 					<th>행사 시작일</th>
@@ -157,7 +168,9 @@
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td colspan="3"><input type="email" name="e_email" id="e_email" value="${dto.e_email}" style="width: 92.5%;"></td>
+					<td colspan="3">
+						<input type="email" name="e_email" id="e_email" placeholder="abc@abc.com" style="width: 93%;" value="${dto.e_email}">
+					</td>
 				</tr>
 				<tr align="center">
 					<td colspan="4">
