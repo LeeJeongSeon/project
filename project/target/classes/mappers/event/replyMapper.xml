@@ -11,4 +11,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by er_date
 	</select>
 	
+	<select id="viewDetail" resultType="replyDTO">
+		select * from event_reply
+		where er_num=#{target}
+	</select>
+	
+	<update id="update">
+		update event_reply
+		set er_content=#{er_content}, er_date=sysdate, er_change=1
+		where er_num=#{er_num}
+	</update>
+	
+	<delete id="delete">
+		delete event_reply
+		where er_num=#{er_num}
+	</delete>
 </mapper>
