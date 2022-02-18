@@ -84,8 +84,9 @@ public class EventServiceImpl implements EventService {
 		eventDao.cancel(e_num);
 	}
 
-	
-
-
+	@Override
+	public void delete(int e_num) throws Exception {
+		eventDao.delete(e_num);
+	}
 
 }

@@ -96,4 +96,9 @@ public class EventDAOImpl implements EventDAO {
 		sqlSession.update("event.cancel", e_num);
 	}
 
+	@Override
+	public void delete(int e_num) {
+		sqlSession.delete("event.delete", e_num);
+	}
+
 }
