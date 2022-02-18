@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
-function r_update(er_num) {
-	alert("content"+er_num);
-}
-
 function r_delete(er_num, er_e_num) {
 	if(confirm("정말 삭제하시겠습니까?")) {
 		location.href="${path}/event_reply/delete.do?er_num="+er_num+"&er_e_num="+er_e_num;
@@ -38,7 +34,7 @@ function r_delete(er_num, er_e_num) {
 			<c:if test="${sessionScope.userid==dto.er_userid}">
 				<tr>
 					<td colspan="4">
-						<button type="button" onclick="r_update(${dto.er_num})">수정</button>
+						<button type="button" onclick="location.href='${path}/event_reply/change.do?target=${dto.er_num}&er_e_num=${dto.er_e_num}'">수정</button>
 						<button type="button" onclick="r_delete(${dto.er_num}, ${dto.er_e_num})">삭제</button>
 					</td>
 				</tr>
