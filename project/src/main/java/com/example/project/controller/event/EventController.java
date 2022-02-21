@@ -191,9 +191,11 @@ public class EventController {
 	
 	/* 행사 참여 신청 화면으로 이동 */
 	@RequestMapping("joinEvent.do")
-	public String viewJoin(int e_num) throws Exception {
-		return "event/joinEvent";
+	public ModelAndView viewJoin(int e_num) throws Exception {
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("dto", joinService.joinDetail(e_num));
+		mav.setViewName("event/joinEvent");
+		return mav;
 	}
-	
 	
 } 

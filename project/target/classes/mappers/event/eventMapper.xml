@@ -144,7 +144,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="eventJoinList" resultType="eventDTO">
 		<include refid="pagerHeader"/>
-		select e_num, e_name, e_instr, e_max_p
+		select e_num, e_name, e_instr, e_max_p, e_genre
 		from event
 		where e_result=1
 		<include refid="pagerFooter"/>

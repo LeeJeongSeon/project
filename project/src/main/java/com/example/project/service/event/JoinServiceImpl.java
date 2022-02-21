@@ -19,4 +19,9 @@ public class JoinServiceImpl implements JoinService {
 	public List<JoinDTO> joinList() throws Exception {
 		return joinDao.joinList();
 	}
+
+	@Override
+	public List<JoinDTO> joinDetail(int ej_num) throws Exception {
+		return joinDao.joinDetail(ej_num);
+	}
 }

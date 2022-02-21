@@ -19,4 +19,9 @@ public class JoinDAOImpl implements JoinDAO {
 	public List<JoinDTO> joinList() {
 		return sqlSession.selectList("join.joinList");
 	}
+
+	@Override
+	public List<JoinDTO> joinDetail(int ej_num) {
+		return sqlSession.selectList("join.joinDetail", ej_num);
+	}
 }

@@ -31,5 +31,6 @@ a:link, a:visited {
 		문화행사 참여신청하기
 	</header>
 </div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

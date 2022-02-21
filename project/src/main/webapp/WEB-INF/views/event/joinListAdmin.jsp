@@ -8,7 +8,7 @@
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
 function list(page) {
-	location.href="${path}/event/joinList.do?curPage="+page;
+	location.href="${path}/event/listAdmin.do?curPage="+page;
 } 
 </script>
 <link rel="stylesheet" href="../include/event.css">
@@ -33,45 +33,47 @@ a:link, a:visited {
 <%@ include file="../include/menu.jsp" %>
 <div id="body">
 	<header>
-		문화행사 참여신청
+		관리자용 문화행사 목록
 	</header>
+	<fieldset>
+		<legend>선택 조회</legend>
+		<form name="form1" method="post" action="${path}/event/listAdmin.do">
+			<select name="list_option">
+				<option value="waiting" <c:if test="${map.list_option == 'waiting'}">selected</c:if>>대기</option>
+				<option value="reject" <c:if test="${map.list_option == 'reject'}">selected</c:if>>반려</option>
+				<option value="approve" <c:if test="${map.list_option == 'approve'}">selected</c:if>>승인</option>
+				<option value="cancel" <c:if test="${map.list_option == 'cancel'}">selected</c:if>>취소</option>
+				<option value="all" <c:if test="${map.list_option == 'all'}">selected</c:if>>전체</option>
+			</select> 
+			이미 끝난 행사는 제외하시겠습니까? <input type="checkbox" name="past" style="width: 30px; vertical-align: middle;"
+			<c:if test="${map.past == 'on'}">checked</c:if>>
+			<button>확인</button>
+		</form>
+	</fieldset>
 	<div id="table">
 		<table>
 			<tr>
 				<th>번호</th>
+				<th>기관명</th>
 				<th>행사명</th>
-				<th>강사</th>
-				<th>참여 인원</th>
-				<th>최대 인원</th>
-				<th>행사 분야</th>
-				<th>신청</th>
-				<th> </th>
+				<th>신청상태</th>
 			</tr>
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
 					<td>${dto.e_num}</td>
+					<td>${dto.e_agency}</td>
 					<td>${dto.e_name}</td>
-					<td>${dto.e_instr}</td>
 					<td>
-						<c:forEach var="dto2" items="${map.list2}">
-							<c:if test="${dto.e_num==dto2.ej_num}">${dto2.ej_join_p}명</c:if>
-						</c:forEach>
+						<c:if test="${dto.e_result==0}">대기</c:if>
+						<c:if test="${dto.e_result==1}">승인</c:if>
+						<c:if test="${dto.e_result==2}">반려</c:if>
+						<c:if test="${dto.e_result==3}">취소</c:if>
 					</td>
-					<td>${dto.e_max_p}명</td>
-					<td>
-						<c:choose>
-							<c:when test="${dto.e_genre==1}">소설 / 시 / 희곡</c:when>
-							<c:when test="${dto.e_genre==2}">사회 / 정치</c:when>
-							<c:when test="${dto.e_genre==3}">인문</c:when>
-							<c:when test="${dto.e_genre==4}">경제 / 경영</c:when>
-							<c:when test="${dto.e_genre==5}">자연과학</c:when>
-						</c:choose>
-					</td>
-					<td><button type="button" onclick="location.href='${path}/event/joinEvent.do?e_num=${dto.e_num}'">이동</button></td>
+					<td><button type="button" onclick="location.href='${path}/event/viewAdmin.do?e_num=${dto.e_num}'">이동</button></td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="8" align="center">
+				<td colspan="5" align="center">
 					<c:if test="${map.pager.curBlock > 1}">
 						<a href="#" onclick="list('1')">[처음]</a>
 					</c:if>
@@ -101,9 +103,9 @@ a:link, a:visited {
 					</c:if>
 				</td>
 			</tr>
-		</table><br>
-		<span>참여인원이 뜨지 않는 행사는 참여한 인원이 아직 없는 행사입니다.</span>
+		</table>
 	</div>
+	<span style="color: red;">※ 관리자가 행사 삭제 처리 시 데이터가 완전히 지워지게 됩니다.</span>
 </div>
 <%@ include file="../include/footer.jsp" %>
 </body>

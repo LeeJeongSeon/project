@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.service.event.JoinService;
 
@@ -14,5 +16,10 @@ public class JoinController {
 	@Inject
 	JoinService joinService;
 	
-	
+	@RequestMapping("list.do")
+	public ModelAndView list(@RequestParam(defaultValue = "1") int curPage) {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("joinListAdmin");
+		return mav;
+	}
 }
