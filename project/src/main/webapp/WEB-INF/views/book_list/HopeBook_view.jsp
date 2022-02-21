@@ -69,7 +69,9 @@ $(function(){
     <tr>
      <td>신청사유</td>
      <td>${row.hopeBook_content}
+     <c:if test="${row.filename!=null}">
 		<img src="../images/${row.filename}">
+	 </c:if>
 	 </td>
     </tr>
    </c:if>

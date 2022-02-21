@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="shortcut icon" href="#">
 <link rel="stylesheet" href="../include/event.css">
 <script type="text/javascript">
 $(function(){
@@ -20,7 +21,7 @@ $(function(){
 		var param="name_book="+$("#name_book").val();
 		
 		$.ajax({
-			url: "${path}/crawling/book_search.do",
+			url:"${path}/crawling/book_search.do", //"${path}/crawling/example2.do", 
 			type: "post",
 			data: param,
 			success: function(result){

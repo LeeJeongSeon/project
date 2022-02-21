@@ -1,0 +1,42 @@
+-- 테이블
+create table hope_book(
+hopeBook_id number not null primary key, 
+hopeBook_title varchar2(500) not null, --게시판 제목 
+hopeBook_bookname varchar2(500) not null, -- 희망도서이름
+hopeBook_author varchar2(500), --저자이름
+hopeBook_userid varchar2(50) references member(userid), --유저아이디
+hopeBook_content clob, --도서신청사유
+filename varchar2(500),
+ref number not null,		--게시물그룹 
+re_step number not null,		--게시물그룹의 순번 
+re_level number not null	--답변 단계
+);
+
+-- 시퀀스
+create sequence HopeBook_seq
+start with 1
+increment by 1;
+
+-- 예시
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,ref,re_step,re_level)
+values(HopeBook_seq.nextval,'휴머니즘 도서 자전거 도둑, 희망도서로 신청합니다.','자전거 도둑','박완서','kim','<p>청소년 필독도서인데 도서관에 없어 신청합니다.</p>',HopeBook_seq.nextval,1,0);
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,ref,re_step,re_level)
+values(HopeBook_seq.nextval,'신과 함께 신화편 신청합니다.','신과함께','주호민','kim','<p>앞부분은 있는데 신화편은 도서관에 없어서 신청합니다.</p>',HopeBook_seq.nextval,1,0);
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,ref,re_step,re_level)
+values(HopeBook_seq.nextval,'데미안 신청합니다.','데미안','허르만 허세','kim','<p>도서관에 없어서 신청합니다.</p>',HopeBook_seq.nextval,1,0);
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,ref,re_step,re_level)
+values(HopeBook_seq.nextval,'Re: 휴머니즘 도서 자전거 도둑 희망도서로 신청합니다.','자전거 도둑','박완서','admin','
+<p>청소년 필독도서인데 도서관에 없어 신청합니다.</p>
+<p><br />
+===게시물의 내용===<br />
+kim님, 해당도서 주문완료하였습니다. </p>
+',(select ref from hope_book where hopebook_bookname='자전거 도둑'),1,1);
+insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,ref,re_step,re_level)
+values(HopeBook_seq.nextval,'Re: 신과 함께 신화편 신청합니다.','신과함께','주호민','admin','
+<p>앞부분은 있는데 신화편은 도서관에 없어서 신청합니다.</p>
+<p><br />
+===게시물의 내용===<br />
+kim님, 해당도서는 희망도서로 신청 부적합합니다.</p>
+<p>저희 도서관은 최근 몇년 간 급격한 자료구입예산 감축으로 인하여 대학도서관 장서로서 우선적으로 수집하기 어려운 만화, 판타지소설, 무협지, 그래픽노블 등은 구입하고 있지 않습니다.이때문에 과거&nbsp;구입 되었던 도서류라고 할지라도 현재는 자료구입규정 및 예산 상황등을 고려하여 구입해 드리기 어렵다는 점을 양해하여 주시기 바랍니다.</p>
+<p>감사합니다.</p>
+',(select ref from hope_book where hopebook_bookname='신과함께'),1,1);

@@ -55,7 +55,7 @@ where member.userid=hope_book.hopeBook_userid
 <insert id="insertBook">
 insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level,filename)
 values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_userid},#{hopeBook_content},#{hopeBook_author}
-,HopeBook_seq.nextval,1,0,#{filename})
+,HopeBook_seq.nextval,1,0,#{filename, jdbcType=VARCHAR})
 </insert>
 
 <insert id="reply">
