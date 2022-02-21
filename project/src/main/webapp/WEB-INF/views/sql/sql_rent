@@ -17,4 +17,26 @@ foreign key(userid) references member(userid);
 alter table rent add constraint rent_bookid_fk
 foreign key(book_id) references book(book_id);
 
+--샘플데이터
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',1,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',2,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',3,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',4,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',5,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',6,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',7,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',8,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',9,1,'y');
+insert into rent (bnum,userid,book_id,rent_check,show)
+values(rent_seq.nextval,'kim',10,1,'y');
+
 commit;
