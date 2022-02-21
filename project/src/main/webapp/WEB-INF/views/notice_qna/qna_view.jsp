@@ -55,6 +55,7 @@ a{text-decoration: none;}
 #footer{clear:both;}
 
 </style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -86,7 +87,7 @@ a{text-decoration: none;}
 </form>
 <div>
  <c:if test="${adminCk == 1 && dto.ref_step <= 0}" >
- <button type="button" id="btnReply">답하기</button>
+ <button type="button" id="btnReply">답글</button>
  </c:if>
  <!--위 관리자만  -->
  <c:if test="${sessionScope.userid ==dto.id}">

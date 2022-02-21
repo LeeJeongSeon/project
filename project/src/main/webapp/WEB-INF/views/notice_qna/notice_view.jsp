@@ -61,6 +61,7 @@ a{text-decoration: none;}
 #footer{clear:both;}
 
 </style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -89,8 +90,8 @@ a{text-decoration: none;}
 </table>
 <div>
  <c:if test="${adminCk == 1 }">
- <input type="button" id="noticeY" onclick="noticeY()" value=" 공지고정헤체">
- <input type="button" id="noticeN" onclick="noticeN()" value="공지고정">
+ <button type="button" id="noticeY" onclick="noticeY()" >헤제</button>
+ <button type="button" id="noticeN" onclick="noticeN()" >고정</button>
  <button type="button" id="btnDelete">삭제</button>
  <button type="button" id="btnUpdate">수정</button>
  </c:if>

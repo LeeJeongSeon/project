@@ -50,6 +50,7 @@ a{text-decoration: none;}
 #footer{clear:both;}
 
 </style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -102,7 +103,7 @@ a{text-decoration: none;}
 
 <div>
 <c:if test="${sessionScope.userid != null }">
- <button type="button" id="btnWrite">글쓰기</button>
+ <button type="button" id="btnWrite">질문</button>
 </c:if>
  <button type="button" id="btnList">목록</button>
 </div>
@@ -155,7 +156,7 @@ a{text-decoration: none;}
 	</select>
 	<input type="hidden" name="category" id="category" value="qna">
 	<input name="keyword" value="${map.keyword}">
-	<input type="submit" value="조회">
+	<button >검색</button>
 </form>
 </div>
 </div>

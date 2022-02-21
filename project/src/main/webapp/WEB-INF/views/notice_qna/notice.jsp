@@ -50,6 +50,7 @@ a{text-decoration: none;}
 #footer{clear:both;}
 
 </style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -99,7 +100,7 @@ a{text-decoration: none;}
 <div>
 <!-- 관리자일때만 -->
 <c:if test="${adminCk==1 }">
-<button type="button" id="btnWrite">공지쓰기</button>
+<button type="button" id="btnWrite">공지</button>
  </c:if>
  <button type="button" id="btnList">목록</button>
 </div>
@@ -148,7 +149,7 @@ a{text-decoration: none;}
 	</select>
 	<input type="hidden" name="category" id="category" value="notice">
 	<input name="keyword" value="${map.keyword}">
-	<input type="submit" value="조회">
+	<button>검색</button>
 </form>
 </div>
 </div>
