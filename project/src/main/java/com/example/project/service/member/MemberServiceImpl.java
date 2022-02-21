@@ -20,7 +20,6 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
 	MemberDAO memberDAO;
 	
-
 	@Override//로그인체크
 	public boolean loginCheck(MemberDTO dto, HttpSession session) {
 		boolean result = memberDAO.loginCheck(dto);

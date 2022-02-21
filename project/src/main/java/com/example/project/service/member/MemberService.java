@@ -25,6 +25,5 @@ public interface MemberService {
 	public MemberDTO readMember(String userid) throws Exception;
 	public int adminCheck(String userid);
 	
-	
 
 }
