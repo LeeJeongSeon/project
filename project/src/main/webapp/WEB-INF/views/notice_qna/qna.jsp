@@ -21,9 +21,32 @@ function list(page){
 }
 </script>
 <style type="text/css">
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+table{ border-collapse:collapse; 
+    background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;}
+th,td{border-bottom: 1px solid gray;
+padding: 5px;}
 #pageNv{
  display: inline;
+ margin-left: 430px;
 }
+#btn{text-align: right;}
 #main{width: 100%; }
 #side{
 float:left;
@@ -48,9 +71,18 @@ a{text-decoration: none;}
 	color: white;
 }
 #footer{clear:both;}
-
+button {
+	width: 50px;
+	height: 25px;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #999;
+	font-weight: bold;
+	margin: 5px;
+}
+#search{margin-left: 300px;}
 </style>
-<link rel="stylesheet" href="../include/event.css">
+
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -67,7 +99,7 @@ a{text-decoration: none;}
 <h2>묻고답하기</h2>
 전체<strong>${map.count}</strong> 개
 
-<table>
+<table style="border-top: 3px solid black;">
  <tr>
   <th>번호</th>
   <th>제목</th>
@@ -101,7 +133,7 @@ a{text-decoration: none;}
 </table>
 </div>
 
-<div>
+<div id="btn">
 <c:if test="${sessionScope.userid != null }">
  <button type="button" id="btnWrite">질문</button>
 </c:if>
@@ -139,7 +171,7 @@ a{text-decoration: none;}
 			</c:if>
 </div>
 
-<div >
+<div id="search">
 <form name="form1" method="post"
 	action="${path}/notice_qna/list.do">
 		<select name="search_option">
