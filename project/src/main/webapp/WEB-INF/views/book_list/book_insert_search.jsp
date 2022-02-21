@@ -35,7 +35,7 @@ $(function(){
 <body>
 <%@ include file="../include/menu.jsp" %>
 <input name="name_book" id="name_book"> <button id="searchbtn">검색</button>
-<!-- <button type="button" id="exbtn">확인</button> -->
+<button type="button" id="exbtn">확인</button>
 <div id="result"></div>
 </body>
 </html>

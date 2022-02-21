@@ -29,8 +29,8 @@ public class crawling {
 	
 	@RequestMapping("example.do")
 	public void example() {
-		int num=10;
-		for(int j=0;j<=num;j++) {
+		int num=9;
+		for(int j=1;j<=num;j++) {
 			System.out.println(j+"번");
 			String yes24 = "http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&PageNumber="+j;
 	        Connection conn = Jsoup.connect(yes24);
