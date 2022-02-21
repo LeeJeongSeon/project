@@ -22,9 +22,9 @@
  <c:forEach var="row2" items="${noticeList}">
 <tr>
    <c:choose>
-    <c:when test="${fn:length(row2.subject) > 15}">
+    <c:when test="${fn:length(row2.subject) > 20}">
       <td>[공지] <a class="notice" href="${path}/notice_qna/view.do?num=${row2.num}&category=${row2.category}">
-      ${fn:substring(row2.subject,0,14)}</a>...</td>
+      ${fn:substring(row2.subject,0,19)}</a>...</td>
      </c:when>
      <c:otherwise>
        <td>[공지]<a class="notice" href="${path}/notice_qna/view.do?num=${row2.num}&category=${row2.category}">
