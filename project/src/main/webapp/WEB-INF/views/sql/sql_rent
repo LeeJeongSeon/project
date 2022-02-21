@@ -12,12 +12,14 @@ increment by 1;
 
 alter table rent add rent_check int default 0;
 
+alter table rent add show char(1) default 'y';
+
 alter table rent add constraint rent_userid_fk
 foreign key(userid) references member(userid);
 alter table rent add constraint rent_bookid_fk
 foreign key(book_id) references book(book_id);
 
---샘플데이터
+--샘플데이터 (show추가해서 써야함)
 insert into rent (bnum,userid,book_id,rent_check,show)
 values(rent_seq.nextval,'kim',1,1,'y');
 insert into rent (bnum,userid,book_id,rent_check,show)
