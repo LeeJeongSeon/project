@@ -22,4 +22,10 @@ public class JoinController {
 		mav.setViewName("joinListAdmin");
 		return mav;
 	}
+	
+	@RequestMapping("insert.do")
+	public String insert(int ej_num, String ej_userid) throws Exception {
+		joinService.insert(ej_num, ej_userid);
+		return "event/joinList";
+	}
 }

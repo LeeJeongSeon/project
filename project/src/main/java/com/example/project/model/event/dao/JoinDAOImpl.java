@@ -1,6 +1,8 @@
 package com.example.project.model.event.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -21,7 +23,11 @@ public class JoinDAOImpl implements JoinDAO {
 	}
 
 	@Override
-	public List<JoinDTO> joinDetail(int ej_num) {
-		return sqlSession.selectList("join.joinDetail", ej_num);
+	public void insert(int ej_num, String ej_userid) {
+		Map<String, Object> map=new HashMap<>();
+		map.put("ej_num", ej_num);
+		map.put("ej_userid", ej_userid);
+		sqlSession.insert("join.joinInsert", map);
 	}
+
 }

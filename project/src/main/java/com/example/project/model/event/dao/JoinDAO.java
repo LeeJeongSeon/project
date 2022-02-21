@@ -7,6 +7,6 @@ import com.example.project.model.event.dto.JoinDTO;
 public interface JoinDAO {
 
 	public List<JoinDTO> joinList();
-	public List<JoinDTO> joinDetail(int ej_num);
+	public void insert(int ej_num, String ej_userid);
 
 }

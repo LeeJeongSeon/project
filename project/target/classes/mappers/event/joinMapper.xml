@@ -11,10 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by ej_num
 	</select>
 	
-	<select id="joinDetail" resultType="joinDTO">
-		select e_num ej_num, e_instr ej_instr, e_name ej_name, e_max_p ej_max_p, e_genre ej_genre
-		, (select max(ej_people) from event_join where ej_num=#{ej_num}) e_join_p
-		from event
-		where e_num=#{ej_num}
-	</select>
+	<insert id="joinInsert">
+		insert into event_join (ej_num, ej_userid, ej_people) 
+		values (#{ej_num}, #{ej_userid}
+		, (select nvl(max(ej_people)+1,1) from event_join where ej_num=#{ej_num}) )
+	</insert>
 </mapper>

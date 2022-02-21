@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
+if(${sessionScope.userid==null}) {
+	if(confirm("로그인 후 사용할 수 있는 서비스입니다. \n로그인 페이지로 이동하시겠습니까?")) {
+		location.href="${path}/member/login.do";
+	}
+}
+
+if(location.href.indexOf("event_join/insert.do")!=-1) {
+	location.replace("${path}/event/joinList.do");
+}
+
 function list(page) {
 	location.href="${path}/event/joinList.do?curPage="+page;
 } 

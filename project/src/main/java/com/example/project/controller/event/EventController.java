@@ -193,7 +193,7 @@ public class EventController {
 	@RequestMapping("joinEvent.do")
 	public ModelAndView viewJoin(int e_num) throws Exception {
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto", joinService.joinDetail(e_num));
+		mav.addObject("dto", eventService.eventViewDetail(e_num));
 		mav.setViewName("event/joinEvent");
 		return mav;
 	}
