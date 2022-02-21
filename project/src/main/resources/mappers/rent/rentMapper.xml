@@ -10,7 +10,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  book.book_name, rent.aday, rent.bday,rent.rent_check
  from member, book, rent
  where member.userid=rent.userid and book.book_id=rent.book_id
- and member.userid=#{userid}
+ and member.userid=#{userid} and show='y'
+ </select>
+ 
+ <select id="listRentN"
+ resultType="com.example.project.model.rent.DTO.RentDTO">
+ select rent.bnum, member.userid, member.name, book.book_id,
+ book.book_name, rent.aday, rent.bday,rent.rent_check
+ from member, book, rent
+ where member.userid=rent.userid and book.book_id=rent.book_id
+ and member.userid=#{userid} and show='n'
  </select>
  
  <insert id="insert">
@@ -28,8 +37,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   where bnum=#{bnum}
  </update>
  
- <update id="delete">
- update rent set rent_check=0
+ <update id="show">
+  update rent set show='n' 
+  where bnum=#{bnum}
+ </update>
+ 
+ <delete id="delete">
+  delete from rent
+  where bnum=#{bnum}
+ </delete>
+ 
+ <update id="re">
+ update rent set rent_check=0, bday=sysdate
  where bnum=#{bnum}
  </update>
 </mapper>
