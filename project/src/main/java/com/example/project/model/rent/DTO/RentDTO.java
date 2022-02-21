@@ -11,6 +11,7 @@ public class RentDTO {
 	private Date aday;
 	private Date bday;
 	private int rent_check;
+	private String show;
 	
 	public int getBnum() {
 		return bnum;
@@ -60,12 +61,17 @@ public class RentDTO {
 	public void setRent_check(int rent_check) {
 		this.rent_check = rent_check;
 	}
+	public String getShow() {
+		return show;
+	}
+	public void setShow(String show) {
+		this.show = show;
+	}
 	
 	@Override
 	public String toString() {
 		return "RentDTO [bnum=" + bnum + ", userid=" + userid + ", name=" + name + ", book_id=" + book_id
-				+ ", book_name=" + book_name + ", aday=" + aday + ", bday=" + bday + ", rent_check=" + rent_check + "]";
+				+ ", book_name=" + book_name + ", aday=" + aday + ", bday=" + bday + ", rent_check=" + rent_check
+				+ ", show=" + show + "]";
 	}
-	
-	
 }
