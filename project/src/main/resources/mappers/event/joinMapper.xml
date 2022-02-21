@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="join">
 	<select id="joinList" resultType="joinDTO">
-		select ej_num, max(ej_people) e_join_p 
+		select ej_num, max(ej_people) ej_join_p 
 		from event_join 
 		group by ej_num
 		order by ej_num

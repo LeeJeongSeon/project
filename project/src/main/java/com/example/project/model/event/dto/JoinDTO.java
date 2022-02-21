@@ -4,12 +4,12 @@ public class JoinDTO {
 	private int ej_num;
 	private String ej_userid;
 	private int ej_people;
-	private int e_join_p;
+	private int ej_join_p;
 
 	@Override
 	public String toString() {
-		return "JoinDTO [ej_num=" + ej_num + ", ej_userid=" + ej_userid + ", ej_people=" + ej_people + ", e_join_p="
-				+ e_join_p + "]";
+		return "JoinDTO [ej_num=" + ej_num + ", ej_userid=" + ej_userid + ", ej_people=" + ej_people + ", ej_join_p="
+				+ ej_join_p + "]";
 	}
 
 	public int getEj_num() {
@@ -36,11 +36,11 @@ public class JoinDTO {
 		this.ej_people = ej_people;
 	}
 
-	public int getE_join_p() {
-		return e_join_p;
+	public int getEj_join_p() {
+		return ej_join_p;
 	}
 
-	public void setE_join_p(int e_join_p) {
-		this.e_join_p = e_join_p;
+	public void setEj_join_p(int ej_join_p) {
+		this.ej_join_p = ej_join_p;
 	}
 }

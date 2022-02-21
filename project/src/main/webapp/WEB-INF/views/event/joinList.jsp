@@ -38,6 +38,7 @@ a:link, a:visited {
 	<div id="table">
 		<table>
 			<tr>
+				<th>번호</th>
 				<th>행사명</th>
 				<th>강사</th>
 				<th>참여인원</th>
@@ -47,10 +48,13 @@ a:link, a:visited {
 			</tr>
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
+					<td>${dto.e_num}</td>
 					<td>${dto.e_name}</td>
 					<td>${dto.e_instr}</td>
-					
-					<td>${dto.e_max_p}</td>
+					<td>
+						명
+					</td>
+					<td>${dto.e_max_p}명</td>
 					<td><button type="button" onclick="location.href='${path}/event/viewJoin.do?e_num=${dto.e_num}'">이동</button></td>
 				</tr>
 			</c:forEach>
@@ -87,7 +91,6 @@ a:link, a:visited {
 			</tr>
 		</table>
 	</div>
-	<span style="color: red;">※ 관리자가 행사 삭제 처리 시 데이터가 완전히 지워지게 됩니다.</span>
 </div>
 <%@ include file="../include/footer.jsp" %>
 </body>
