@@ -171,7 +171,7 @@ public class EventController {
 		return "redirect:/event/list.do";
 	}
 	
-	/* 행사페이지로 이동 & 행사리스트 출력 */
+	/* 행사 참여신청 페이지로 이동 & 리스트 출력 */
 	@RequestMapping("joinList.do")
 	public ModelAndView joinList(@RequestParam(defaultValue = "1") int curPage) throws Exception {
 		int count=eventService.countEventJoin();
@@ -188,4 +188,12 @@ public class EventController {
 		mav.addObject("map", map);
 		return mav;
 	}
+	
+	/* 행사 참여 신청 화면으로 이동 */
+	@RequestMapping("joinEvent.do")
+	public String viewJoin(int e_num) throws Exception {
+		return "event/joinEvent";
+	}
+	
+	
 } 

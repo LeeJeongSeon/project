@@ -52,14 +52,16 @@ a:link, a:visited {
 					<td>${dto.e_name}</td>
 					<td>${dto.e_instr}</td>
 					<td>
-						명
+						<c:forEach var="dto2" items="${map.list2}">
+							<c:if test="${dto.e_num==dto2.ej_num}">${dto2.ej_join_p}명</c:if>
+						</c:forEach>
 					</td>
 					<td>${dto.e_max_p}명</td>
-					<td><button type="button" onclick="location.href='${path}/event/viewJoin.do?e_num=${dto.e_num}'">이동</button></td>
+					<td><button type="button" onclick="location.href='${path}/event/joinEvent.do?e_num=${dto.e_num}'">이동</button></td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="6" align="center">
+				<td colspan="7" align="center">
 					<c:if test="${map.pager.curBlock > 1}">
 						<a href="#" onclick="list('1')">[처음]</a>
 					</c:if>
@@ -89,7 +91,8 @@ a:link, a:visited {
 					</c:if>
 				</td>
 			</tr>
-		</table>
+		</table><br>
+		<span>참여인원이 뜨지 않는 행사는 참여한 인원이 아직 없는 행사입니다.</span>
 	</div>
 </div>
 <%@ include file="../include/footer.jsp" %>
