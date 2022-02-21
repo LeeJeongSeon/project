@@ -20,8 +20,6 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
 	MemberDAO memberDAO;
 	
-	@Inject
-	RentDAO rentDao;
 
 	@Override//로그인체크
 	public boolean loginCheck(MemberDTO dto, HttpSession session) {
@@ -94,9 +92,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.adminCheck(userid);
 	}
 
-	@Override
-	public List<RentDTO> listRent(String userid) {
-		return rentDao.listRent(userid);
-	}
+	
+
 	
 }

@@ -174,23 +174,6 @@ public class MemberController {
 		return mav; //board/view.jsp로 포워딩
 		
 	}
-	
-	//회원정보 중 도서대출 목록 가져오기
-	@RequestMapping("adminList.do")
-	public ModelAndView adminList(String userid, ModelAndView mav)
-			throws Exception {
-		
-		Map<String, Object> map = new HashMap<>();
-		List<RentDTO> list = memberService.listRent(userid);
-		
-		map.put("list", list);
-		map.put("count", list.size());
-		mav.setViewName("member/admin_view");
-		mav.addObject("map", map);
-		return mav;
-
-		
-	}
 		
 	
 

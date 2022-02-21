@@ -3,6 +3,7 @@ package com.example.project.model.member.DAO;
 import java.util.List;
 
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 
 public interface MemberDAO {
 

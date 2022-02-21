@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 
 
 
