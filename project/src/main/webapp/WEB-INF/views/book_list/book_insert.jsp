@@ -15,6 +15,8 @@
 }
 </style>
 <script>
+img_check=0;
+
 function checkImageType(fileName){
 	var pattern=/jpg|png|gif/i; //정규표현식(i는 대소문자 무시)
 	return fileName.match(pattern);// 규칙에 맞으면 true가 리턴
@@ -70,6 +72,7 @@ $(function(){
 		formData.append("file", file);//폼에 file변수 추가
 		
 		//서버에 파일 업로드(백그라운드에서 실행)
+		if(img_check==0){
 		$.ajax({
 			type: "post",
 			url: "${path}/book/uploadAjax",
@@ -92,9 +95,13 @@ $(function(){
 				
 				html+="<span data-src="+data+">[삭제]</span></div>";
 				$(".uploadedList").append(html);
-				
+				img_check=1;
 			}
 		});
+		}else{
+			alert("이미 이미지가 업로드 되었습니다.");
+		}
+		
 	});//end $(".fileDrop")
 	
 	//첨부파일 삭제 함수
@@ -109,6 +116,7 @@ $(function(){
 				if(result=="deleted"){
 					that.parent("div").remove();//파일삭제되면 행전체<div>를 삭제 처리
 					//that은 span태그를 의미하는데 그 부모인 div태그를 지운다는 뜻
+					img_check=0;
 				}
 			}
 		});

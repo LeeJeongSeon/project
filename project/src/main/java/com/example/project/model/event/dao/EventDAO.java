@@ -18,5 +18,6 @@ public interface EventDAO {
 	public List<EventDTO> eventApplyList(String e_email);
 	public void update(EventDTO dto);
 	public void cancel(int e_num);
+	public void delete(int e_num);
 
 }

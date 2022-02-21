@@ -21,6 +21,11 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public List<ReplyDTO> list(int er_e_num) {
 		return sqlSession.selectList("reply.list", er_e_num);
 	}
+	
+	@Override
+	public List<ReplyDTO> listAdmin() {
+		return sqlSession.selectList("reply.listAdmin");
+	}
 
 	@Override
 	public ReplyDTO viewDetail(int target) {

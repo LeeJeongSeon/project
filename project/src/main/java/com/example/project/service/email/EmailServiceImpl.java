@@ -59,4 +59,15 @@ public class EmailServiceImpl implements EmailService {
 		mailSender.send(msg);
 	}
 
+	@Override
+	public void sendDeleteMail(String e_name, String e_email) throws Exception {
+		EmailDTO dto=new EmailDTO();
+		MimeMessage msg = mailSender.createMimeMessage();
+		msg.addRecipient(RecipientType.TO, new InternetAddress(e_email));
+		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), "행사관리자") });
+		msg.setSubject("안녕하세요 도서관입니다.", "utf-8");
+		msg.setText("\'"+e_name+"\' 행사 신청내역 삭제처리가 완료되었으며 해당 메일은 확인용 메일입니다. 관련된 모든 정보가 삭제되었으며, 수정이 불가능함을 알려드립니다. 감사합니다. 좋은 하루 되세요:)", "utf-8");
+		mailSender.send(msg);
+	}
+
 }

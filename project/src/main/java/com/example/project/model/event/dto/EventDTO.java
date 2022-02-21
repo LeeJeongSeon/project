@@ -69,7 +69,7 @@ public class EventDTO {
 	}
 
 	public String getE_intro() {
-		return e_intro;
+		return e_intro.replace("\n", "<br>");
 	}
 
 	public void setE_intro(String e_intro) {

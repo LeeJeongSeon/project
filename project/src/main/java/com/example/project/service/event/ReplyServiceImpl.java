@@ -21,6 +21,11 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public List<ReplyDTO> listAdmin() throws Exception {
+		return replyDao.listAdmin();
+	}
+
+	@Override
 	public ReplyDTO viewDetail(int target) throws Exception {
 		return replyDao.viewDetail(target);
 	}
@@ -34,5 +39,4 @@ public class ReplyServiceImpl implements ReplyService {
 	public void delete(int er_num) throws Exception {
 		replyDao.delete(er_num);
 	}
-
 }

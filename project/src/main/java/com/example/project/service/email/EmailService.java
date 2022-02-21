@@ -8,4 +8,5 @@ public interface EmailService {
 	public void sendResultMail(EmailDTO dto) throws Exception;
 	public void sendUpdateMail(String e_name, String e_email) throws Exception;
 	public void sendCancelMail(String e_name, String e_email) throws Exception;
+	public void sendDeleteMail(String e_name, String e_email) throws Exception;
 }

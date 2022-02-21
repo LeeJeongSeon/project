@@ -113,7 +113,7 @@ td {
 				] 상태입니다. 
 				<c:if test="${dto.e_result>1}">
 					신청 내역을 삭제하시겠습니까? 
-					<button type="button" onclick="location.href='${path}/event/delete.do?e_num=${dto.e_num}'">확인</button>
+					<button type="button" onclick="location.href='${path}/event/delete.do?e_num=${dto.e_num}&e_name=${dto.e_name}&e_email=${dto.e_email}'">확인</button>
 				</c:if>
 			</div>
 		</c:if>

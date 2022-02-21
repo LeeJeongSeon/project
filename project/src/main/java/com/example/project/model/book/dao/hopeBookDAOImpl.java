@@ -74,4 +74,5 @@ public class hopeBookDAOImpl implements hopeBookDAO {
 		return sqlSession.selectList("hopeBook.view",hopeBook_id);
 	}
 
+
 }

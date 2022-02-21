@@ -80,7 +80,6 @@ public class HopeBookController {
 	public ModelAndView view(int hopeBook_id, HttpSession session) 
 			throws Exception{
 		List<hopeBookDTO> list=hopeBookSercvie.view(hopeBook_id);
-		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("book_list/HopeBook_view");
 		mav.addObject("list", list);
@@ -94,51 +93,66 @@ public class HopeBookController {
 		return mav;
 	}
 	
-	@RequestMapping("imageUpload.do")
-	public void imageUpload(HttpServletRequest request, 
-			HttpServletResponse response, @RequestParam 
-			MultipartFile upload) throws Exception {
-		
-		OutputStream out = null;
-		PrintWriter printWriter = null;
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		try {
-			//업로드한 파일 이름
-			String fileName=upload.getOriginalFilename();
-			//파일을 바이트 배열로 변환
-			byte[] bytes=upload.getBytes();
-			//이미지를 업로드할 디렉토리(배포 디렉토리 설정)
-			String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\";
-			out=new FileOutputStream(new File(uploadPath+fileName));
-			//서버로 업로드
-			out.write(bytes);
-			//클라이언트에 결과 표시
-			String callback=request.getParameter("CKEditorFuncNum");
-			//서버=>클라이언트로 텍스트 전송(자바스크립트 실행)
-			printWriter=response.getWriter();
-			String fileUrl=request.getContextPath()+"/images/"+fileName;
-			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
-			printWriter.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(out != null) {
-					out.close();
-				}
-				if(printWriter != null) {
-					printWriter.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return;
-	}
 	
-	//이미지 ajax로 받음
+		@RequestMapping("insert.do")
+		public String insert(@ModelAttribute hopeBookDTO dto) {
+			System.out.println("임시:"+dto);
+			hopeBookSercvie.insertBook(dto);
+			return "redirect:/HopeBook/list.do";
+		}
+		
+		@RequestMapping("reply.do")
+		public ModelAndView reply(@ModelAttribute hopeBookDTO dto) {
+			System.out.println("실행:"+dto);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("book_list/HopeBook_reply");
+			mav.addObject("dto", dto); 
+			return mav;
+		}
+		
+		@RequestMapping("insertReply.do")
+		public String insertReply(@ModelAttribute hopeBookDTO dto) {
+			hopeBookDTO dto2=hopeBookSercvie.read(dto.getHopeBook_id());
+			dto2.setHopeBook_content(dto.getHopeBook_content());
+			dto2.setHopeBook_title(dto.getHopeBook_title());
+			dto2.setHopeBook_userid(dto.getHopeBook_userid());
+			dto2.setName("관리자");
+			
+			int ref=hopeBookSercvie.ref(dto.getRef());//답변그룹번호
+			int re_step=dto.getRe_step()+1;//출력순번
+			int re_level=dto.getRe_level()+1;//답변단계
+			
+			dto2.setRef(ref);
+			dto2.setRe_step(re_step);
+			dto2.setRe_level(re_level);
+			
+			
+			hopeBookSercvie.reply(dto2);
+			System.out.println("답변:"+dto2);
+			
+			return "redirect:/HopeBook/list.do";
+		}
+		
+	
+		@RequestMapping("hopeBook_check.do")
+		@ResponseBody
+		public int hopeBook_check(
+				@RequestParam String hopeBook_author,
+				@RequestParam String hopeBook_bookname
+				) {
+			System.out.println(hopeBook_author+","+hopeBook_bookname);
+			int check=0;
+			
+			String check_val=hopeBookSercvie.check(hopeBook_author,hopeBook_bookname);
+			if(check_val==null) { //중복 존재하지 않음
+				check=0;
+			}else {	//중복 존재 
+				check=1;
+			}
+			return check;
+		}
+		
+		//이미지 ajax로 받음
 		@ResponseBody //객체를 json형식으로 데이터 리턴(서버=>클라이언트)
 		@RequestMapping(value = "/HopeBook/uploadAjax", 
 		method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
@@ -188,59 +202,24 @@ public class HopeBookController {
 			}
 			return entity;
 		}//displayFile()
-	
-		@RequestMapping("insert.do")
-		public String insert(@ModelAttribute hopeBookDTO dto) {
-			hopeBookSercvie.insertBook(dto);
-			return "redirect:/HopeBook/list.do";
-		}
 		
-		@RequestMapping("reply.do")
-		public ModelAndView reply(@ModelAttribute hopeBookDTO dto) {
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("book_list/HopeBook_reply");
-			mav.addObject("dto", dto); 
-			return mav;
-		}
-		
-		@RequestMapping("insertReply.do")
-		public String insertReply(@ModelAttribute hopeBookDTO dto) {
-			hopeBookDTO dto2=hopeBookSercvie.read(dto.getHopeBook_id());
-			dto2.setHopeBook_content(dto.getHopeBook_content());
-			dto2.setHopeBook_title(dto.getHopeBook_title());
-			dto2.setHopeBook_userid(dto.getHopeBook_userid());
-			dto2.setName("관리자");
-			
-			int ref=hopeBookSercvie.ref(dto.getRef());//답변그룹번호
-			int re_step=dto.getRe_step()+1;//출력순번
-			int re_level=dto.getRe_level()+1;//답변단계
-			
-			dto2.setRef(ref);
-			dto2.setRe_step(re_step);
-			dto2.setRe_level(re_level);
-			
-			
-			hopeBookSercvie.reply(dto2);
-			System.out.println("답변:"+dto2);
-			
-			return "redirect:/HopeBook/list.do";
-		}
-		
-	
-		@RequestMapping("hopeBook_check.do")
+		//이미지 삭제
 		@ResponseBody
-		public int hopeBook_check(
-				@RequestParam String hopeBook_author,
-				@RequestParam String hopeBook_bookname
-				) {
-			int check=0;
+		@RequestMapping(value = "/HopeBook/deleteFile")
+		public ResponseEntity<String> deleteFile(String fileName,HttpServletRequest request){
+			String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images");
 			
-			String check_val=hopeBookSercvie.check(hopeBook_author,hopeBook_bookname);
-			if(check_val==null) { //중복 존재하지 않음
-				check=0;
-			}else {	//중복 존재 
-				check=1;
+			//확장자 검사
+			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+			MediaType mType=MediaUtils.getMediaType(formatName);
+			if(mType != null) {//이미지 파일의 원본이미지 삭제
+				String front=fileName.substring(0, 12);
+				String end=fileName.substring(14);//14~끝까지
+				//File.separatorChar : 유닉스 / 윈도우즈 \
+				new File(uploadPath+(front+end).replace('/', File.separatorChar)).delete();
 			}
-			return check;
+
+			return new ResponseEntity<String>("deleted", HttpStatus.OK);
+			//uploadAjax.jsp의 if(result=="deleted"){와 연결
 		}
 }

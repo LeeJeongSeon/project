@@ -1,5 +1,7 @@
 package com.example.project.model.book.dto;
 
+import java.util.Arrays;
+
 public class hopeBookDTO {
 	private int hopeBook_id; 
 	private String hopeBook_title;
@@ -12,6 +14,7 @@ public class hopeBookDTO {
 	private int re_level;
 	private String name; //join해서 받아올 속성 
 	private String userid;
+	private String filename;
 	
 	public hopeBookDTO() {
 		super();
@@ -19,14 +22,29 @@ public class hopeBookDTO {
 	}
 
 	
+
+
 	@Override
 	public String toString() {
 		return "hopeBookDTO [hopeBook_id=" + hopeBook_id + ", hopeBook_title=" + hopeBook_title + ", hopeBook_bookname="
 				+ hopeBook_bookname + ", hopeBook_author=" + hopeBook_author + ", hopeBook_userid=" + hopeBook_userid
 				+ ", hopeBook_content=" + hopeBook_content + ", ref=" + ref + ", re_step=" + re_step + ", re_level="
-				+ re_level + ", name=" + name + ", userid=" + userid + "]";
+				+ re_level + ", name=" + name + ", userid=" + userid + ", filename=" + filename + "]";
 	}
 
+
+
+
+	public String getFilename() {
+		return filename;
+	}
+
+
+
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
 
 

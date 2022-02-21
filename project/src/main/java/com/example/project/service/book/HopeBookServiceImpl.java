@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.project.model.book.dao.hopeBookDAO;
 import com.example.project.model.book.dto.bookDTO;
@@ -29,7 +30,6 @@ public class HopeBookServiceImpl implements HopeBookService {
 	@Override
 	public void insertBook(hopeBookDTO dto) {
 		hopeBookDao.insertBook(dto);
-
 	}
 
 	@Override

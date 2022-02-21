@@ -91,7 +91,7 @@ increment by 1;
 create table rent(
 bnum number not null primary key,
 userid varchar2(50) not null,
-book_id varchar2(50) not null,
+book_id number not null,
 aday  date default sysdate,
 bday date default sysdate+7,
 rent_check number default 0

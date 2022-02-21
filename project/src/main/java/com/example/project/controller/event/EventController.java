@@ -159,4 +159,12 @@ public class EventController {
 		emailService.sendCancelMail(e_name, e_email);
 		return "redirect:/event/list.do";
 	}
+	
+	/* 행사삭제, 메일 전송 후 행사페이지로 이동 */
+	@RequestMapping("delete.do")
+	public String delete(int e_num, String e_name, String e_email) throws Exception {
+		eventService.delete(e_num);
+		emailService.sendDeleteMail(e_name, e_email);
+		return "redirect:/event/list.do";
+	}
 } 
