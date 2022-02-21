@@ -101,4 +101,17 @@ public class EventDAOImpl implements EventDAO {
 		sqlSession.delete("event.delete", e_num);
 	}
 
+	@Override
+	public int countEventJoin() {
+		return sqlSession.selectOne("event.countEventJoin");
+	}
+
+	@Override
+	public List<EventDTO> eventJoinList(int start, int end) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("event.eventJoinList", map);
+	}
+
 }

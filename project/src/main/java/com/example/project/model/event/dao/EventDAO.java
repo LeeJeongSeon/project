@@ -19,5 +19,7 @@ public interface EventDAO {
 	public void update(EventDTO dto);
 	public void cancel(int e_num);
 	public void delete(int e_num);
+	public int countEventJoin();
+	public List<EventDTO> eventJoinList(int start, int end);
 
 }

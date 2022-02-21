@@ -1,7 +1,9 @@
 package com.example.project.controller.book;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.book.dto.bookDTO;
@@ -29,8 +32,8 @@ public class crawling {
 	
 	@RequestMapping("example.do")
 	public void example() {
-		int num=10;
-		for(int j=0;j<=num;j++) {
+		int num=9;
+		for(int j=1;j<=num;j++) {
 			System.out.println(j+"번");
 			String yes24 = "http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&PageNumber="+j;
 	        Connection conn = Jsoup.connect(yes24);
@@ -52,7 +55,6 @@ public class crawling {
 	            for (Element e: tag_name) {
 	            	url[setindex]=e.attr("href");
 	            	name[setindex]=e.text();
-	            	author[setindex]=e.text();
 	            	setindex++;
 	            }
 	            setindex=0;
@@ -116,6 +118,107 @@ public class crawling {
 		}
 	}
 	
+	@RequestMapping("example2.do")
+	public ModelAndView example2(@RequestParam(defaultValue = "") String name_book) {
+			String yes24="http://www.yes24.com/Product/Search?domain=ALL&query="+name_book;
+	        Connection conn = Jsoup.connect(yes24);
+	        
+	        ModelAndView mav=new ModelAndView();
+	        List<bookDTO> list=new ArrayList();
+	        Map<String,Object> map=new HashMap<>();
+	        
+	        try {
+	            Document document = conn.get();
+	            Elements tag_name = document.select("div > div.item_info > div.info_row.info_name > a.gd_name");          
+	            Elements tag_author = document.select("div > div.item_info > div.info_row.info_pubGrp > span.authPub.info_auth > a:nth-child(1)");
+	            Elements tag_publisher = document.select("div > div.item_info > div.info_row.info_pubGrp > span.authPub.info_pub > a:nth-child(2)");
+	            String[] name = new String[tag_name.size()]; //책 제목
+	            String[] url = new String[tag_name.size()]; //책 url
+	            String[] author= new String[tag_name.size()]; //책 저자
+	            String[] publisher=new String[tag_publisher.size()]; //책 출판사
+	            String[] genre = new String[tag_name.size()]; //책 장르
+	            String[] content= new String[tag_name.size()];//책 설명
+	            String[] img= new String[tag_name.size()];//책 이미지
+	            	          
+	           //System.out.println("임시:"+tag_name);	            
+	           // System.out.println("임시2:"+tag_author);	 
+	           // System.out.println("임시3:"+tag_publisher);	 
+	            
+	            int setindex=0;
+	            for (Element e: tag_name) {
+	            	url[setindex]=e.attr("href");
+	            	name[setindex]=e.text();
+	            	setindex++;
+	            }
+	            setindex=0;
+	            for (Element e: tag_author) {
+	            	author[setindex]=e.text();
+	            	setindex++;
+	            }
+	            setindex=0;
+	            for (Element e: tag_publisher) {
+	            	publisher[setindex]=e.text();
+	            	setindex++;
+	            }
+	            
+
+//	            for(int i=0;i<10;i++) {
+//	            	if(url[i].indexOf("http")!=-1) {
+//	            		url[i]=null;
+//	            	}
+//	            	System.out.println(i+"번째");
+//	            	System.out.print(" 임시:"+url[i]);
+//	            	System.out.print(" 임시:"+name[i]);
+//	            	System.out.print(" 임시:"+author[i]);
+//	            	System.out.println(" 임시:"+publisher[i]);
+//	            }
+	            
+	            
+	            for(int i=0;i<10;i++) {
+	            //도서 내부링크
+	            Connection innerConn = Jsoup.connect("http://www.yes24.com"+url[i]);
+            	Document innerDocument = innerConn.get();
+            	Elements tag_genre=innerDocument.select("div.infoSetCont_wrap > dl:nth-child(1) > dd > ul > li> a:nth-child(4)");
+            	Elements tag_content=innerDocument.getElementsByClass("txtContentText");
+            	Elements tag_img= innerDocument.select("div.topColLft > div > span > em > img");	
+            	genre[i]=tag_genre.text();
+            	content[i]=tag_content.text();
+            	img[i]=tag_img.attr("src");
+            	int index=genre[i].indexOf(" ");
+	            	if(index>0) {
+	            		genre[i]=genre[i].substring(0,index);
+	            	}
+	
+	            }
+	            
+	            
+	            for (int i=0;i<10;i++) {  
+	            	bookDTO dto=new bookDTO();
+	            	dto.setBook_name(name[i]);
+	            	dto.setBook_author(author[i]);
+	            	dto.setBook_publisher(publisher[i]);
+	            	dto.setBook_img(img[i]);
+	            	dto.setBook_content(content[i]);
+	            	if(genre[i]=="")
+	            		dto.setBook_genre("-");
+	            	else
+	            		dto.setBook_genre(genre[i]);
+	            	
+	            	//System.out.println(i+","+dto);
+	            	list.add(dto);
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        System.out.println("리스트:"+list);
+	        mav.setViewName("book_list/book_insert_search_result2");
+	   		mav.addObject("list", list);
+	        
+	        return mav;
+	}
+	
+	
 	@RequestMapping("book_search.do")
 	public ModelAndView book_search(@RequestParam(defaultValue = "") String name_book) {
 		String yes24="http://www.yes24.com/Product/Search?domain=ALL&query="+name_book;
@@ -158,6 +261,34 @@ public class crawling {
 	        }
 		 
 
+		return mav;
+	}
+	
+	@RequestMapping("book_insert_search_result")
+	@ResponseBody
+	public ModelAndView book_insert_search_result(@RequestParam String book_name,@RequestParam(defaultValue = "") String book_img,
+			@RequestParam String book_author,@RequestParam String book_content,
+			@RequestParam String book_publisher,@RequestParam String book_genre) {
+		System.out.println("실행중:"+book_name);
+		System.out.println("실행중:"+book_author);
+		//System.out.println("실행중:"+book_content);
+		System.out.println("실행중:"+book_publisher);
+		System.out.println("실행중:"+book_genre);
+		System.out.println("실행중:"+book_img);
+				
+		ModelAndView mav=new ModelAndView();
+
+		 Map<String,Object> map=new HashMap<>();
+		 map.put("name", book_name);
+		 map.put("content", book_content);
+		 map.put("author", book_author);
+		 map.put("publisher", book_publisher);
+		 map.put("genre", book_genre);
+		 map.put("img", book_img);
+		
+		mav.addObject("map", map); 
+		mav.setViewName("book_list/book_insert_search_result");
+		//System.out.println(mav);
 		return mav;
 	}
 

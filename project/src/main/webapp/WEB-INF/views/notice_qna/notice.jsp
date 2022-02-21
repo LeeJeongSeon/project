@@ -21,9 +21,33 @@ function list(page){
 }
 </script>
 <style type="text/css">
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+table{ border-collapse:collapse; 
+    background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;}
+th,td{border-bottom: 1px solid gray;
+padding: 5px;}
 #pageNv{
  display: inline;
+ margin-left: 430px;
 }
+#btn{ text-align: right;}
+#search{margin-left: 300px;}
 #main{width: 100%; }
 #side{
 float:left;
@@ -38,7 +62,6 @@ padding: 0px;
  border-bottom: 1px solid gray;
 }
 #content{
-
 float:right;
 width: 80%;
 }
@@ -48,8 +71,17 @@ a{text-decoration: none;}
 	color: white;
 }
 #footer{clear:both;}
-
+button {
+	width: 50px;
+	height: 25px;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #999;
+	font-weight: bold;
+	margin: 5px;
+}
 </style>
+
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -65,8 +97,8 @@ a{text-decoration: none;}
 <div id="article" >
 <h2>공지사항</h2 >
 전체<strong>${map.count}</strong> 개
-<table>
-<tr>
+<table style="border-top: 3px solid black;">
+<tr >
  <th>번호</th>
  <th>제목</th>
  <th>글쓴이</th>
@@ -84,7 +116,7 @@ a{text-decoration: none;}
 </c:forEach>
 
  <c:forEach var="row" items="${map.list}">
- <tr>
+ <tr >
   <td>${row.num}</td>
   <td>
   <a href="${path}/notice_qna/view.do?num=${row.num}&category=${row.category}"> ${row.subject}</a></td>
@@ -96,10 +128,10 @@ a{text-decoration: none;}
 </table >
 </div>
 
-<div>
+<div id="btn">
 <!-- 관리자일때만 -->
-<c:if test="${map.adminCk==1 }">
-<button type="button" id="btnWrite">공지쓰기</button>
+<c:if test="${adminCk==1 }">
+<button type="button" id="btnWrite">공지</button>
  </c:if>
  <button type="button" id="btnList">목록</button>
 </div>
@@ -134,7 +166,7 @@ a{text-decoration: none;}
 				onclick="list('${map.pager.totPage}')">[끝]</a>
 			</c:if>
 </div>
-<div>
+<div id="search">
 <form name="form1" method="post"
 	action="${path}/notice_qna/list.do">
 		<select name="search_option">
@@ -148,7 +180,7 @@ a{text-decoration: none;}
 	</select>
 	<input type="hidden" name="category" id="category" value="notice">
 	<input name="keyword" value="${map.keyword}">
-	<input type="submit" value="조회">
+	<button>검색</button>
 </form>
 </div>
 </div>

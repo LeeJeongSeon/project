@@ -242,7 +242,7 @@
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style=" padding-right: 40px;">참여신청</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/event/joinList.do" style=" padding-right: 40px;">참여신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/listAdmin.do" style=" padding-right: 40px;">행사관리</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event_reply/listAdmin.do" style=" padding-right: 40px;">댓글관리</a></li>
                     </ul>
