@@ -105,5 +105,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
  </select>
  
  
+  <select id="listRent" resultType="com.example.project.model.rent.DTO.RentDTO">
+  select book.book_id, book.book_name, rent.aday, rent.bday,rent.rent_check
+  from member, book, rent
+  where member.userid=rent.userid and book.book_id=rent.book_id
+  and member.userid=#{userid};
+ </select>
+ 
+ 
+ 
  
 </mapper>

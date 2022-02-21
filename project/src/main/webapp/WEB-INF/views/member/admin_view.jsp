@@ -5,6 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 보기</title>
+
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url: "${path}/member/adminList.do?userid=${dto.userid}",
+		type: "post",
+		 
+		success: function(result){
+			$("#result1").html(result);
+		}
+	});
+	
+});
+</script>
+
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -19,9 +34,6 @@
   <td>이름</td>
   <td><input name="name" value="${dto.name}"> </td>
  </tr>
- 
- 
- 
  
  <tr>
   <td>이메일</td>
@@ -48,8 +60,13 @@
    </c:if>
   </td>
  </tr>
+  
 </table>
 </form>
+
+<h2>도서 대출 정보</h2>
+<div id="result1"></div>
+
 
 </body>
 </html>

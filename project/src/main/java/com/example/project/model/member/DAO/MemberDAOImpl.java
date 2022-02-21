@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 
 
 
@@ -101,6 +102,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("member.adminCheck",userid);
 	}
 	
+	@Override
+	public List<RentDTO> listRent(String userid){
+		return sqlSession.selectList("member.listRent", userid);
+	}
 	
     
 

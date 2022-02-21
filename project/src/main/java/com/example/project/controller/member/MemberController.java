@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 import com.example.project.service.member.MemberService;
 import com.example.project.service.member.Pager;
 
@@ -171,6 +172,23 @@ public class MemberController {
 		mav.setViewName("member/admin_view");//포워딩할 뷰의 이름
 		mav.addObject("dto", memberService.readMember(userid));//자료저장
 		return mav; //board/view.jsp로 포워딩
+		
+	}
+	
+	//회원정보 중 도서대출 목록 가져오기
+	@RequestMapping("adminList.do")
+	public ModelAndView adminList(String userid, ModelAndView mav)
+			throws Exception {
+		
+		Map<String, Object> map = new HashMap<>();
+		List<RentDTO> list = memberService.listRent(userid);
+		
+		map.put("list", list);
+		map.put("count", list.size());
+		mav.setViewName("member/admin_view");
+		mav.addObject("map", map);
+		return mav;
+
 		
 	}
 		
