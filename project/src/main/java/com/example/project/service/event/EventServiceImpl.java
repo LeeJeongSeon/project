@@ -89,4 +89,14 @@ public class EventServiceImpl implements EventService {
 		eventDao.delete(e_num);
 	}
 
+	@Override
+	public int countEventJoin() throws Exception {
+		return eventDao.countEventJoin();
+	}
+
+	@Override
+	public List<EventDTO> eventJoinList(int start, int end) {
+		return eventDao.eventJoinList(start, end);
+	}
+
 }

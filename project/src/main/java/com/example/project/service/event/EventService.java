@@ -21,5 +21,7 @@ public interface EventService {
 	public void update(EventDTO dto) throws Exception;
 	public void cancel(int e_num) throws Exception;
 	public void delete(int e_num) throws Exception;
+	public int countEventJoin() throws Exception;
+	public List<EventDTO> eventJoinList(int start, int end);
 
 }

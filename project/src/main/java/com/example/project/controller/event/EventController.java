@@ -17,6 +17,7 @@ import com.example.project.model.event.dto.EventDTO;
 import com.example.project.service.email.EmailService;
 import com.example.project.service.event.EventPager;
 import com.example.project.service.event.EventService;
+import com.example.project.service.event.JoinService;
 
 @Controller
 @RequestMapping("event/*")
@@ -26,6 +27,8 @@ public class EventController {
 	EventService eventService;
 	@Inject
 	EmailService emailService;
+	@Inject
+	JoinService joinService;
 	
 	/* 행사페이지로 이동 & 행사리스트 출력 */
 	@RequestMapping("list.do")
@@ -166,5 +169,23 @@ public class EventController {
 		eventService.delete(e_num);
 		emailService.sendDeleteMail(e_name, e_email);
 		return "redirect:/event/list.do";
+	}
+	
+	/* 행사페이지로 이동 & 행사리스트 출력 */
+	@RequestMapping("joinList.do")
+	public ModelAndView joinList(@RequestParam(defaultValue = "1") int curPage) throws Exception {
+		int count=eventService.countEventJoin();
+		EventPager pager=new EventPager(count, curPage);
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", eventService.eventJoinList(start, end));
+		map.put("list2", joinService.joinList());
+		map.put("count", count);
+		map.put("pager", pager);
+		mav.setViewName("event/joinList");
+		mav.addObject("map", map);
+		return mav;
 	}
 } 
