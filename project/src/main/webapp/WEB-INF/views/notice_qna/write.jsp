@@ -29,16 +29,21 @@ function notice_qna_write(){
 
 
 </script>
+<style type="text/css">
+
+#btn{text-align: right; padding: 5px;}
+</style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>${map.cate}</h2>
-
+<div id="body">
 <form id="form1" name="form1" method="post">
-	<div>제목 <input name="subject" id="subject" size="80" placeholder="제목을 입력하세요">
+	제목 <input name="subject" id="subject" size="80" placeholder="제목을 입력하세요">
 	<input type="hidden" name="category" id="category" value="${map.tab}">
-	</div>
-	<div style="width:800px;">
+	
+	<div style="width:100%;">
 		내용 <textarea id="content" name="content"
 rows="3" cols="80" placeholder="내용을 입력하세요"></textarea>
 <script>
@@ -48,8 +53,11 @@ CKEDITOR.replace("content",{
 });// ImageUploadController.java 에서 처리
 </script>
 	</div>
-	<input type="button" value="등록" onclick="notice_qna_write()">
 </form>
+<div id="btn">
+	<button type="button" onclick="notice_qna_write()">등록</button>
+	</div>
+</div>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>
