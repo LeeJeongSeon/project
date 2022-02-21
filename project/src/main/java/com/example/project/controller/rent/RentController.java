@@ -46,21 +46,43 @@ public class RentController {
 		
 	}
 	
+	@RequestMapping("nlist.do")
+	   public ModelAndView listN(HttpSession session, ModelAndView mav) {
+	      Map<String, Object> map = new HashMap<>();
+	      String userid=(String)session.getAttribute("userid");
+	      
+	      if(userid != null) {
+	         List<RentDTO> list = rentService.listRentN(userid);
+	         
+	         map.put("list", list);
+	         map.put("count", list.size());
+	         map.put("show", "n");
+	         mav.setViewName("rent/list");
+	         mav.addObject("map", map);
+	         return mav;
+	      }else {
+	         return new ModelAndView("member/login", "", null);
+	      }
+	      
+	   }
+	
 	@Transactional //트랜잭션 사용
 	@RequestMapping("insert.do")
 	public String insert(HttpSession session, 
 			@ModelAttribute RentDTO dto) {
 		String userid = (String)session.getAttribute("userid");
-		if(userid == null) {
-			return "redirect:/member/login.do";
-		}
+		
+		  if(userid == null) { return "redirect:/member/login.do"; }
+		
 		dto.setUserid(userid);
 		rentService.insert(dto);
 		
 		//대출횟수 증가와 대출중인지 체크
-		int book_id=dto.getBook_id();
-		System.out.println("북 아이디:"+book_id);
-		bookService.book_increase(book_id); 
+		
+		  int book_id=dto.getBook_id();
+		  System.out.println("북 아이디:"+book_id);
+		  bookService.book_increase(book_id);
+		 
 		return "redirect:/rent/list.do";
 	}
 	
@@ -69,7 +91,6 @@ public class RentController {
 		String userid=(String)session.getAttribute("userid");
 		if(userid != null) {
 			for(int i=0; i<bnum.length; i++) {
-				rentService.delete(bnum[i]);
 				RentDTO dto=new RentDTO();
 				dto.setUserid(userid);
 				dto.setBnum(bnum[i]);
@@ -81,7 +102,7 @@ public class RentController {
 				rentService.modifyRent(dto);*/
 			}
 		}
-		return "redirect:/shop/rent/list.do";
+		return "redirect:/rent/list.do";
 	}
 	
 	@RequestMapping("extend.do")
@@ -95,15 +116,36 @@ public class RentController {
 	return "redirect:/rent/list.do";
 }
 	
-	//반납
-	@Transactional 
 	@RequestMapping("delete.do")
-	public String delete(@RequestParam int bnum) {
-		rentService.delete(bnum);
-		//book테이블 도서대출가능으로 바꾸기
-		bookService.update(bnum);
-		
+	public String delete(@RequestParam int bnum, HttpSession session) {
+		if(session.getAttribute("userid") != null) {
+			rentService.delete(bnum);
+		}
 		return "redirect:/rent/list.do";
 	}
 	
+	//대출
+	@Transactional 
+	@RequestMapping("re.do")
+	public String re(@RequestParam int[] bnum,HttpSession session) {
+		String userid=(String)session.getAttribute("userid");
+		if(userid != null) {
+			   for(int i=0; i<bnum.length; i++) {
+			    rentService.re(bnum[i]);
+			    bookService.update(bnum[i]);
+			}
+		/* rentService.delete(bnum); */
+		//book테이블 도서대출가능으로 바꾸기
+		/* bookService.update(bnum[i]); */
+		}
+		return "redirect:/rent/list.do";
+	}
+	
+	@RequestMapping("show.do")
+	public String hide(@RequestParam int bnum, HttpSession session) {
+		if(session.getAttribute("userid") != null) {
+			rentService.show(bnum);
+		}
+		return "redirect:/rent/list.do";
+	}
 }
