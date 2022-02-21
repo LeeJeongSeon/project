@@ -20,5 +20,6 @@ public interface EventService {
 	public List<EventDTO> eventApplyList(String e_email) throws Exception;
 	public void update(EventDTO dto) throws Exception;
 	public void cancel(int e_num) throws Exception;
+	public void delete(int e_num) throws Exception;
 
 }
