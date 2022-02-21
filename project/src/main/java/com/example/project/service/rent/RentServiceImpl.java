@@ -26,13 +26,23 @@ public class RentServiceImpl implements RentService {
 	}
 	
 	@Override
-	public void delete(int bnum) {
-		rentDao.delete(bnum);
+	public List<RentDTO> listRentN(String userid) {
+		return rentDao.listRent(userid);
+	}
+	
+	@Override
+	public void re(int bnum) {
+		rentDao.re(bnum);
 	}
 	
 	@Override
 	public void update(int bnum) {
 		
+	}
+	
+	@Override
+	public void delete(int bnum) {
+		rentDao.delete(bnum);
 	}
 	
 	@Override
@@ -48,5 +58,10 @@ public class RentServiceImpl implements RentService {
 	@Override
 	public void extend(int bnum) {
 		rentDao.extend(bnum);
+	}
+	
+	@Override
+	public void show(int bnum) {
+		rentDao.show(bnum);
 	}
 }
