@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="com.example.project.model.event.dto.EventDTO" alias="eventDTO"/>
 		<typeAlias type="com.example.project.model.event.dto.ReplyDTO" alias="replyDTO"/>
+		<typeAlias type="com.example.project.model.event.dto.JoinDTO" alias="joinDTO"/>
 	</typeAliases>
 
 </configuration>
