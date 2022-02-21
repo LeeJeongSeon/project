@@ -39,16 +39,17 @@ $(function(){
  </tr>
  <tr>
   <td>작성일 <fmt:formatDate value="${dto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-  <td>작성자 ${dto.id}</td>
+  <td>작성자 ${dto.id} </td>
   <td>조회 ${dto.readcount}</td>
  </tr>
  <tr>
   <td>${dto.content}</td>
+  
  </tr>
 </table>
 </form>
 <div>
- <c:if test="${adminCk == 1 }">
+ <c:if test="${adminCk == 1 && dto.ref_step <= 0}" >
  <button type="button" id="btnReply">답하기</button>
  </c:if>
  <!--위 관리자만  -->
