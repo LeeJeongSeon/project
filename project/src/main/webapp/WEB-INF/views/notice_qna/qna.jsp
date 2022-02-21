@@ -43,7 +43,7 @@ float:right;
 width: 80%;
 }
 a{text-decoration: none;}
-.qnamenu:hover {
+.noticemenu:hover {
 	background: #ff8533;
 	color: white;
 }
