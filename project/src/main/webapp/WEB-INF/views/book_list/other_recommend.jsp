@@ -28,6 +28,7 @@ table{
   <td>
    <c:choose>
   <c:when test="${row.book_img==null}">
+  
   <img src="../images/etc.jpg" width="100px" height="100px">
   </c:when>
   <c:when test="${fn:contains(row.book_img,'http')}">
