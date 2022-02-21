@@ -62,7 +62,7 @@ public class Notice_qnaController {
 		map.put("noticeList", noticeList);
 		map.put("keyword", keyword);
 		map.put("search_option", search_option);
-		map.put("adminCk", adminCk);
+		mav.addObject("adminCk", adminCk);
 		mav.addObject("map",map);
 		return mav;
 	}
