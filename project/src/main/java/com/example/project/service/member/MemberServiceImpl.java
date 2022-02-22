@@ -55,6 +55,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	
 	@Override//회원정보 삭제
 	public void deleteMember(String userid) {
 		memberDAO.deleteMember(userid);

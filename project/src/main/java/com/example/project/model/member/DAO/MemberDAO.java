@@ -7,6 +7,7 @@ import com.example.project.model.rent.DTO.RentDTO;
 
 public interface MemberDAO {
 
+
 	public boolean loginCheck(MemberDTO dto);//로그인체크
 	public void insertMember(MemberDTO dto);//회원가입
 	public MemberDTO viewMember(String userid);//회원정보 수정

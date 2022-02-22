@@ -25,7 +25,7 @@ public interface MemberService {
 
 	
 	
-	
+
 	
 	
 	//관리자 단
