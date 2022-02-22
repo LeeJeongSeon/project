@@ -6,6 +6,62 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<style type="text/css">
+.input {
+	margin: 0px 10px;
+	width: 82%; 
+	height: 20px;
+}
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+fieldset {
+	margin: 10px 20px 0 20px;
+	border: 2px solid #666;
+	padding-right: 40px; 
+	vertical-align: middle;
+}
+.search{
+	width: 50px;
+	height: 25px;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #999;
+	font-weight: bold;
+}
+select {
+	margin-left: 30px;
+	width: 80px;
+	height: 25px;
+}
+table {
+	background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+}
+th, td {
+	padding: 1px 2px;
+}
+.book{
+	text-decoration: none;
+	color: black;
+}
+.book:hover{
+	text-decoration: underline;
+}
+</style>
 <script type="text/javascript">
 function list(page){
 	location.href="${path}/book/popularity_list.do.do?curPage="+page;

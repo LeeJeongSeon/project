@@ -100,7 +100,7 @@ public class BookController {
 		book_check check=new book_check();
 		check.setChecklist(checklist);
 			
-		//레코드 갯수 10개로 설정 계산
+		//레코드 갯수 100개로 설정 계산
 		int count=10;
 		//페이지 관련 설정
 		Pager pager=new Pager(count, curPage);
@@ -308,10 +308,15 @@ public class BookController {
 		@RequestMapping("book_other_recommend.do")
 		public ModelAndView book_other_recommend(HttpSession session) {
 			String userid=(String)session.getAttribute("userid");
-			List<bookDTO> list=bookService.book_other_recommend(userid);
-			System.out.print("리스트:"+list);
-			
 			ModelAndView mav=new ModelAndView();
+			
+			if(userid == null || userid=="") {
+				mav.setViewName("book_list/other_recommend");
+				return mav;
+			}
+			
+			List<bookDTO> list=bookService.book_other_recommend(userid);
+			
 			Map<String, Object> map=new HashMap<>();
 			map.put("list", list);
 			mav.setViewName("book_list/other_recommend");

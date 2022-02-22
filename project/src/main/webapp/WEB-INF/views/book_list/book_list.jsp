@@ -72,7 +72,7 @@ function list(page){
 		+"&search_option="+$("#search_option").val();
 	}else{
 	location.href="${path}/book/list.do?curPage="+page;
-}
+	}
 }
 
 </script>
