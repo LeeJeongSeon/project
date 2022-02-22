@@ -35,6 +35,7 @@ public class RentServiceImpl implements RentService {
 		rentDao.re(bnum);
 	}
 	
+	
 	@Override
 	public void update(int bnum) {
 		

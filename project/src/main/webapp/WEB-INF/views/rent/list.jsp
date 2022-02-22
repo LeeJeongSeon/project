@@ -17,6 +17,7 @@ $(function(){
 		location.href="${path}/book/list.do";
 	});
 });
+
 $(function(){
 	$("#show").click(function() {
 		if("${map.show}"=="n") {
