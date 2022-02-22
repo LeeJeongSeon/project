@@ -100,10 +100,12 @@ a:link, a:visited {
 				</td>
 			</tr>
 		</table><br>
-		<div align="center">
-			더 자세한 행사 내용을 알고 싶으신가요? <button type="button">이동</button>
-		</div>
-		<c:if test="${dto.e_max_p!=e_join_p}">
+	</div>
+	<div align="center">
+		더 자세한 행사 내용을 알고 싶으신가요? <button type="button">이동</button>
+	</div>
+	<c:if test="${dto.e_max_p!=e_join_p}">
+		<div id="table">
 			<br><table>
 				<tr><td style="padding: 30px;">
 					<b style="font-size: 18px;">이용약관 및 개인정보 수집/활용 동의</b>
@@ -250,8 +252,8 @@ a:link, a:visited {
 			<div align="center">
 				<button type="button" onclick="agreeChk()">신청</button>
 			</div> <br>
-		</c:if>
-	</div>
+		</div>
+	</c:if>
 </div>
 <%@ include file="../include/footer.jsp" %>
 </body>

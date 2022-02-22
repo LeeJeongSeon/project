@@ -14,17 +14,22 @@ function btnUpdate(){
 	document.form1.submit();
 }
 </script>
+<style type="text/css">
 
+#btn{text-align: right; padding: 5px;}
+</style>
+<link rel="stylesheet" href="../include/event.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>수정</h2>
+<div id="body">
 <form id="form1" name="form1" method="post">
 	<div>제목 <input name="subject" id="subject" size="80" value="${dto.subject}">
 	<input type="hidden" name="num" id="num" value="${dto.num} ">
 	<input type="hidden" name="category" id="category" value="${dto.category}">
 	</div>
-	<div style="width:800px;">
+	<div style="width:100%;">
 		내용 <textarea id="content" name="content"
 rows="3" cols="80" >${dto.content}</textarea>
 <script>
@@ -34,8 +39,11 @@ CKEDITOR.replace("content",{
 });// ImageUploadController.java 에서 처리
 </script>
 	</div>
-	<input type="button" value="수정" onclick="btnUpdate()">
 </form>
+<div id="btn">
+	<button type="button"  onclick="btnUpdate()">수정</button>
+	</div>
+	</div>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

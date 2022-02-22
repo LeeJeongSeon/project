@@ -104,6 +104,10 @@ header {
 			</tr>
 		</table>
 	</div>
+	<div align="center">
+		해당 행사에 참여하시겠습니까? 
+		<button type="button" onclick="location.href='${path}/event/joinEvent.do?e_num=${dto.e_num}'">이동</button>
+	</div>
 	<fieldset>
 		<legend>
 			<b>댓글 달기</b>

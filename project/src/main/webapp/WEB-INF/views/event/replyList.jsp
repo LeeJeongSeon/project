@@ -19,6 +19,11 @@ function r_delete(er_num, er_e_num) {
 	<header style="font-size: 18px;">
 		댓글 목록
 	</header><br>
+	<table>
+		<tr>
+			<td>댓글을 작성해보세요!</td>
+		</tr>
+	</table>
 	<c:forEach var="dto" items="${list2}">
 		<table>
 			<tr>
