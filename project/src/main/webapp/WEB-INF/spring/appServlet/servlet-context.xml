@@ -57,7 +57,6 @@
    <mapping path="/book/book_delete.do"/>
    <mapping path="/HopeBook/write.do"/>
    <mapping path="/HopeBook/insertReply.do"/>
-   <mapping path="/crawling/insert_page.do"/>  
    <mapping path="/review/write.do"/>
    <mapping path="/review_reply/insert.do"/>
    <beans:ref bean="loginInterceptor" />

@@ -77,8 +77,7 @@ public class RentController {
 		dto.setUserid(userid);
 		rentService.insert(dto);
 		
-		//대출횟수 증가와 대출중인지 체크
-		
+		 //대출횟수 증가와 대출중인지 체크
 		  int book_id=dto.getBook_id();
 		  System.out.println("북 아이디:"+book_id);
 		  bookService.book_increase(book_id);
