@@ -176,8 +176,16 @@
                         <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/event/write.do">행사신청</a></li>
                         <li id="sList"><a class="menuLink" href="#">참여신청</a></li>
-                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        <c:if test="${adminCk==1}">
+	                        <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">행사관리</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/event_reply/listAdmin.do">댓글관리</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/event_join/list.do">참여관리</a></li>
+                        </c:if>
+                        <c:if test="${adminCk!=1}">
+                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       		<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
+                       
                     </ul>
                 </li>
                 <li id="mList" style="right:298px;">리뷰 게시판으로 이동
