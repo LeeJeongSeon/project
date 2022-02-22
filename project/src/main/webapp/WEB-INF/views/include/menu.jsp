@@ -234,7 +234,7 @@
                     </ul>
                 </li>
 
-                <li id="bigMenu"><a href="${path}/review/list.do" style=" padding-bottom: 45px;">이용자마당</a>
+                <li id="bigMenu"><a href="${path}/review/list.do" style=" padding-bottom: 45px;">이용자마당 </a>
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/notice_qna/list.do?category=notice" style=" padding-right: 40px;">공지사항</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/notice_qna/list.do?category=qna" style=" padding-right: 40px;">묻고답하기</a></li>
