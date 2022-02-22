@@ -285,7 +285,7 @@
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
 
-<c:if test="${adminCk == 1 }"> 
+<c:if test="${sessionScope.userid eq 'admin' }"> 
 <a href="${path}/member/list.do">회원 리스트</a> |                         
 <a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
 <a href="${path}/book/book_write.do">도서 추가</a> |                     
