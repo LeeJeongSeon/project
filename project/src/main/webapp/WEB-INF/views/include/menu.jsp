@@ -162,7 +162,7 @@
 <nav id="topMenu" style="z-index: 2;" >
 <!-- 햄버거바 메뉴영역 -->
         <ul id="allmenuList" style="z-index: 2;">
-                <li id="mList" style="right:600px;">
+                <li id="mList" style="right:600px;">도서
                     <ul id="sListUl" >
                         <li id="sList" style="z-index: 2;"><a class="menuLink" href="${path}/book/list.do">도서목록</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/book/popularity_list.do">도서목록 인기순</a></li>
