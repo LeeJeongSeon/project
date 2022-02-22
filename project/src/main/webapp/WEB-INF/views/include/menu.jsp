@@ -203,19 +203,29 @@
                         <li id="sList"><a class="menuLink" href="${path}/review/list.do">리뷰</a></li>
                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       	<c:if test="${sessionScope.adminCk == 1}">
+	                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
                     </ul>
                 </li>
                 <li id="mList" style="right:147px;">회원
                     <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
-                        <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
-                        <li id="sList"><a class="menuLink" href="#">이벤트</a></li>
-                        <li id="sList" style="z-index: 3;"><a class="menuLink" href="#">고객불편사항</a></li>
+                        <c:if test="${sessionScope.userid==null}">
+	                        <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
+                       		<li id="sList"><a class="menuLink" href="${path}/member/write.do">회원가입</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userid!=null}">
+	                        <li id="sList"><a class="menuLink" href="${path}/member/view.do?userid=${sessionScope.userid}">회원정보</a></li>
+                       		<li id="sList"><a class="menuLink" href="${path}/member/logout.do">로그아웃</a></li>
+                        </c:if>
                         <c:if test="${sessionScope.adminCk == 1}">
-	                        <li id="sList"><a class="menuLink" href="${path}/member/list.do">회원리스트</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/member/list.do">회원 리스트</a></li>
+                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                         </c:if>
                         <c:if test="${sessionScope.adminCk != 1}">
                         	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                         </c:if>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                     </ul>
                 </li>
@@ -273,11 +283,16 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/review/list.do" style=" padding-right: 40px;">리뷰</a></li>
                     </ul>
                 </li>
-                <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">member</a>
+                <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">회원</a>
                     <ul class="secondMenu">
-                        <li style="margin-bottom: 10px;"><a href="${path}/member/login.do""  style=" padding-right: 40px;">로그인</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../soonhyeon/eventnotice.html"  style=" padding-right: 40px;">member</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../chanwoo/customerComplaints.html"  style=" padding-right: 40px;">member</a></li>
+                        <c:if test="${sessionScope.userid==null}">
+	                        <li style="margin-bottom: 10px;"><a href="${path}/member/login.do"  style=" padding-right: 40px;">로그인</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/member/write.do"  style=" padding-right: 40px;">로그인</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userid!=null}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/member/view.do?userid=${sessionScope.userid}"  style=" padding-right: 40px;">회원정보</a></li>
+                        	<li style="margin-bottom: 10px;"><a href="${path}/member/logout.do"  style=" padding-right: 40px;">로그아웃</a></li>
+                        </c:if>
                         <c:if test="${sessionScope.adminCk==1}">
                         	<li style="margin-bottom: 10px;"><a href="${path}/member/list.do" style=" padding-right: 40px;">회원 리스트</a></li>
                         </c:if>
@@ -303,21 +318,8 @@
         </li>
    
     </ul>
-
-<div style="text-align: center;"> 
-<div style="text-align: right;">
-  <c:choose>
-   <c:when test="${sessionScope.userid == null}">
-    <!-- 로그인 하지 않은 상태 -->
-    <a href="${path}/member/write.do">회원가입</a> |
-    <a href="${path}/member/login.do">로그인</a> |
-   </c:when>
-   <c:otherwise>
-    <!-- 로그인한 상태 -->
-    ${sessionScope.name}님이 로그인중입니다.
-    <a href="${path}/member/view.do?userid=${sessionScope.userid}">회원정보</a> |
-    <a href="${path}/member/logout.do">로그아웃</a>
-   </c:otherwise>
-  </c:choose>
- </div>
+<div align="right">
+	<c:if test="${sessionScope.userid!=null}">
+		${sessionScope.name}님이 로그인중입니다. 
+	</c:if>
 </div>
