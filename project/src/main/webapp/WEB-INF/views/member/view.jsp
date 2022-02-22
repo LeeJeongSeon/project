@@ -58,6 +58,7 @@
     
 $(function(){
 	$("#btnUpdate").click(function(){
+		
 		document.form1.action="${path}/member/update.do";
 		document.form1.submit();
 	});
@@ -67,14 +68,16 @@ $(function(){
 			document.form1.submit();
 		}
 	});
+
 });    
 </script>
 <style type="text/css">
 table{
- width: 100%;
+ width: 70%;
+ margin:auto;
  border: solid;
  border-color: green;
- border-width: 4px;
+ border-width: 2px;
  
 }
 
@@ -87,21 +90,37 @@ text-align: center;
  text-align: left;
 }
 
+#join_date{
+ text-align: left;
+}
+
 </style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>회원정보 수정</h2>
+<h2 align="center">회원정보 수정</h2>
 <form name="form1" method="post">
 <table>
  <tr>
-  <td>ID</td>
+  <td>아이디</td>
   <td><input name="userid" value="${dto.userid}" readonly class="form-control"> </td>
  </tr>
  <tr>
-  <td>pw</td>
-  <td><input type="password" name="passwd" class="form-control"> </td>
+  <td>비밀번호</td>
+  <td><input type="password" name="passwd" id="passwd" class="form-control"> </td>
  </tr>
+ 
+ <!-- <tr>
+  <td>뉴 비밀번호</td>
+  <td><input type="password" name="passwd1" id="passwd1" class="form-control"> </td>
+ </tr>
+ <tr>
+  <td>비밀번호</td>
+  <td><input type="password" name="passwd2" id="passwd2" class="form-control"> </td>
+ </tr> -->
+ 
+ 
+ 
  <tr>
   <td>이름</td>
   <td><input name="name" value="${dto.name}" class="form-control"> </td>
@@ -130,7 +149,7 @@ text-align: center;
  </tr>
  <tr>
   <td>회원가입일자</td>
-  <td>
+  <td id="join_date">
    
     <fmt:formatDate value="${join_date}" 
     pattern="yyyy-MM-dd"/>
@@ -139,10 +158,15 @@ text-align: center;
   </td>
  </tr>
  <tr>
+ <td colspan="2"><div style="color: red;">${message}</div><br></td>
+ </tr>
+ 
+ <tr>
   <td colspan="2" align="center">
+  <a href="${path}/member/pwUpdateView.do"> <button type="button" class="btn btn-lg btn-success btn-block">비밀번호 수정</button></a>
    <input type="button" value="회원정보 수정" id="btnUpdate" class="btn btn-lg btn-success btn-block" >
    <input type="button" value="회원탈퇴" id="btnDelete" class="btn btn-lg btn-success btn-block" >
-   <div style="color: red;">${message}</div>
+  
   </td>
  </tr>
 </table>
