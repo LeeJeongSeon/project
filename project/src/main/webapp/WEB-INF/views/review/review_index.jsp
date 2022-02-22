@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-<h3 style="text-align: right">리뷰 게시판</h3>
+<h3 style="text-align: right"><a href="${path}/review/list.do">리뷰 게시판</a></h3>
 <table style="width: 100%; text-align: left;">
  <c:forEach var="row2" items="${reviewList}">
 <tr>
