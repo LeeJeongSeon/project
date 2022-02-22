@@ -283,7 +283,10 @@
 <c:if test="${adminCk == 1 }"> 
 <a href="${path}/member/list.do">회원 리스트</a> |                         
 <a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
-<a href="${path}/book/book_write.do">도서 추가</a> |                          
+<a href="${path}/book/book_write.do">도서 추가</a> |    
+<a href="${path}/event/listAdmin.do">행사관리</a> | 
+<a href="${path}/event_reply/listAdmin.do">댓글관리</a> | 
+<a href="${path}/event_join/list.do">참여관리</a> |                       
 </c:if> 
                            
 <a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
