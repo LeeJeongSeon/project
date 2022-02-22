@@ -93,26 +93,18 @@ public class BookController {
 	//도서목록 인기순
 	@RequestMapping("popularity_list.do")
 	public ModelAndView popularity_list(
-			@RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue="",value="check",required=true) List<String> checkbox
 			) throws Exception{
 		String checklist[]=checkbox.toArray(new String[checkbox.size()]);
 		book_check check=new book_check();
 		check.setChecklist(checklist);
 			
-		//레코드 갯수 100개로 설정 계산
-		int count=10;
-		//페이지 관련 설정
-		Pager pager=new Pager(count, curPage);
-		int start=pager.getPageBegin();
-		int end=pager.getPageEnd();
+
 		
-		List<bookDTO> list=bookService.popularity_listAll(start,end,check);
+		List<bookDTO> list=bookService.popularity_listAll(check);
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> map=new HashMap<>();
 		map.put("list", list);
-		map.put("count", count);
-		map.put("pager", pager);
 		
 		mav.setViewName("book_list/popularity_list");
 		mav.addObject("map", map); 

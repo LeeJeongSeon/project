@@ -66,6 +66,9 @@ $(function(){
 #button{
 	width:100px;
 }
+/* table{
+	table-layout: fixed;
+} */
 </style>
 </head>
 <body>
@@ -83,16 +86,16 @@ $(function(){
  <c:forEach var="row" items="${list}">
  <tr>
   <td>${row.book_name}</td>
-  <td>${row.book_img}
+  <td>${row.book_img} <br>
   <c:choose>
   <c:when test="${row.book_img==null}">
-  <img src="../images/etc.jpg" width="100px" height="100px">
+  <img src="../images/etc.jpg" width="300px">
   </c:when>
   <c:when test="${fn:contains(row.book_img,'http')}">
-  <img src="${row.book_img}" width="100px" height="100px">
+  <img src="${row.book_img}" width="300px">
   </c:when>
   <c:otherwise>
-  <img src="../images/${row.book_img}" width="100px" height="100px">
+  <img src="../images/${row.book_img}" width="300px">
   </c:otherwise>
   </c:choose>
   </td>

@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	</if>
           order by book_counter desc	
   			 ) A
-  ) where rn between #{start} and #{end}
+  ) <![CDATA[where rownum<=100]]> 
  </select>
  
  <!-- 도서추가 -->

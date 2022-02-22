@@ -187,7 +187,7 @@ $(function(){
 		</tr>
 		<tr>
 			<th>설명</th>
-			<td colspan="3"><input name="book_content" id="book_content"></td>
+			<td colspan="3"><textarea name="book_content" id="book_content" style="width: 82%; " rows="200"></textarea></td>
 		</tr>
 		<tr>
 			<th>출판사</th>

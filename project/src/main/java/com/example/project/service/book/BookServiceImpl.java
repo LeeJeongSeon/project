@@ -38,8 +38,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<bookDTO> popularity_listAll(int start, int end, book_check check) {
-		return bookDao.popularity_listAll(start, end,check);
+	public List<bookDTO> popularity_listAll(book_check check) {
+		return bookDao.popularity_listAll(check);
 	}
 
 	@Override

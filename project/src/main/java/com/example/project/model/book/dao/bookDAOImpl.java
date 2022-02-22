@@ -50,10 +50,8 @@ public class bookDAOImpl implements bookDAO {
 	}
 
 	@Override
-	public List<bookDTO> popularity_listAll(int start, int end, book_check check) {
+	public List<bookDTO> popularity_listAll( book_check check) {
 		Map<String,Object> map=new HashMap<>();
-		map.put("start", start);
-		map.put("end", end);
 		map.put("checklist", check.getChecklist());
 		return sqlSession.selectList("book.popularity_listAll",map);
 	}
