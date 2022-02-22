@@ -16,3 +16,5 @@ public interface RentDAO {
 	public void extend(int bnum);
 	public void show(int bnum);
 }
+
+
