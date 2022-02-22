@@ -144,9 +144,7 @@ public class crawling {
 	            String[] content= new String[tag_name.size()];//책 설명
 	            String[] img= new String[tag_name.size()];//책 이미지
 	            	          
-	           //System.out.println("임시:"+tag_name);	            
-	           // System.out.println("임시2:"+tag_author);	 
-	           // System.out.println("임시3:"+tag_publisher);	 
+
 	            
 	            int setindex=0;
 	            for (Element e: tag_name) {
@@ -165,17 +163,6 @@ public class crawling {
 	            	setindex++;
 	            }
 	            
-
-//	            for(int i=0;i<10;i++) {
-//	            	if(url[i].indexOf("http")!=-1) {
-//	            		url[i]=null;
-//	            	}
-//	            	System.out.println(i+"번째");
-//	            	System.out.print(" 임시:"+url[i]);
-//	            	System.out.print(" 임시:"+name[i]);
-//	            	System.out.print(" 임시:"+author[i]);
-//	            	System.out.println(" 임시:"+publisher[i]);
-//	            }
 	            
 	            
 	            for(int i=0;i<10;i++) {
@@ -216,7 +203,7 @@ public class crawling {
 	        }
 	        
 	        //System.out.println("리스트:"+list);
-	        mav.setViewName("book_list/book_insert_search_result2");
+	        mav.setViewName("book_list/book_insert_search_list");
 	   		mav.addObject("list", list);
 	        
 	        return mav;
@@ -273,12 +260,6 @@ public class crawling {
 	public ModelAndView book_insert_search_result(@RequestParam(defaultValue = "") String book_name,@RequestParam(defaultValue = "") String book_img,
 			@RequestParam(defaultValue = "") String book_author,@RequestParam(defaultValue = "") String book_content,
 			@RequestParam(defaultValue = "") String book_publisher,@RequestParam(defaultValue = "") String book_genre) {
-		System.out.println("실행중:"+book_name);
-		System.out.println("실행중:"+book_author);
-		//System.out.println("실행중:"+book_content);
-		System.out.println("실행중:"+book_publisher);
-		System.out.println("실행중:"+book_genre);
-		System.out.println("실행중:"+book_img);
 				
 		ModelAndView mav=new ModelAndView();
 
@@ -292,7 +273,6 @@ public class crawling {
 		
 		mav.addObject("map", map); 
 		mav.setViewName("book_list/book_insert_search_result");
-		//System.out.println(mav);
 		return mav;
 	}
 

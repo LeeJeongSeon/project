@@ -25,7 +25,7 @@ font-family: "Trebuchet MS", Dotum, Arial;
 			EMAIL | librarynum5@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;
 			TEL | 02-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;
 			FAX | 02-0000-0000 <br><br>
-			&copy; OO도서관.ALL RIGHTS RESERVED.
+			&copy; 미래도서관.ALL RIGHTS RESERVED.
 		</fieldset>
 	</div>
 </body>

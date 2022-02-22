@@ -65,6 +65,41 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 	
+	@Override//아아디 찾기
+	public MemberDTO find_id(String email, String name) throws Exception {
+		Map<String,String> map=new HashMap<>();
+		map.put("email", email);
+		map.put("name", name);
+		return sqlSession.selectOne("member.find_id", map);
+	}
+
+	@Override//비밀번호찾기
+	public String pwChange(String userid, String email) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("userid", userid);
+		map.put("email", email);
+
+		return sqlSession.selectOne("member.pwChange",map);
+	}
+
+	@Override//아이디 중복검사
+	public int idCheck(String userid) {
+		int cnt = sqlSession.selectOne("member.idCheck", userid);
+		return cnt;
+	}
+
+	@Override//비밀번호 변경
+	public void pwUpdate(String userid, String passwd) throws Exception {
+		Map<String,Object> map = new HashMap<>(); 
+		map.put("userid", userid);
+		map.put("passwd", passwd);
+		sqlSession.update("member.pwUpdate", map);
+
+	}
+	
+	
+	
+	
 	//여기서부터 관리자 단
 	
 	//회원수

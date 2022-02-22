@@ -231,11 +231,18 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/joinList.do" style=" padding-right: 40px;">참여신청</a></li>
+                        <c:if test="${adminCk==1}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/event/listAdmin.do" style=" padding-right: 40px;">행사관리</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/event_reply/listAdmin.do" style=" padding-right: 40px;">댓글관리</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/event_join/list.do" style=" padding-right: 40px;">참여관리</a></li>
+                        </c:if>
                     </ul>
                 </li>
 
-                <li id="bigMenu"><a href="${path}/review/list.do" style=" padding-bottom: 45px;">리뷰</a>
+                <li id="bigMenu"><a href="${path}/review/list.do" style=" padding-bottom: 45px;">이용자마당 </a>
                     <ul class="secondMenu">
+                        <li style="margin-bottom: 10px;"><a href="${path}/notice_qna/list.do?category=notice" style=" padding-right: 40px;">공지사항</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/notice_qna/list.do?category=qna" style=" padding-right: 40px;">묻고답하기</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/review/list.do" style=" padding-right: 40px;">리뷰</a></li>
                     </ul>
                 </li>
@@ -276,15 +283,12 @@
 </c:if>    
 <a href="${path}/HopeBook/list.do">희망도서신청</a> |
 <a href="${path}/book/book_recommend.do">도서추천</a> |
-<a href="${path}/event/list.do">행사</a> | 
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-<c:if test="${adminCk == 1 }"> 
+
+<c:if test="${sessionScope.userid eq 'admin' }"> 
 <a href="${path}/member/list.do">회원 리스트</a> |                         
 <a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
-<a href="${path}/book/book_write.do">도서 추가</a> |    
-<a href="${path}/event/listAdmin.do">행사관리</a> | 
-<a href="${path}/event_reply/listAdmin.do">댓글관리</a> | 
-<a href="${path}/event_join/list.do">참여관리</a> |                       
+<a href="${path}/book/book_write.do">도서 추가</a> |                     
 </c:if> 
                            
 <a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |

@@ -1,16 +1,16 @@
 package com.example.project.service.member;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import com.example.project.model.member.DAO.MemberDAO;
 import com.example.project.model.member.DTO.MemberDTO;
-import com.example.project.model.rent.DAO.RentDAO;
-import com.example.project.model.rent.DTO.RentDTO;
 
 
 
@@ -55,6 +55,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	
 	@Override//회원정보 삭제
 	public void deleteMember(String userid) {
 		memberDAO.deleteMember(userid);
@@ -65,6 +66,45 @@ public class MemberServiceImpl implements MemberService {
 	public boolean checkPw(String userid, String passwd) {
 		return memberDAO.checkPw(userid, passwd);
 	}
+	
+	@Override//아이디 찾기
+	public MemberDTO find_id(HttpServletResponse response, String email, String name) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		MemberDTO id = memberDAO.find_id(email, name);
+
+		if (id == null) {
+			out.println("<script>");
+			out.println("alert('가입된 아이디가 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			return id;
+		}
+	}
+
+	@Override//비밀번호찾기
+	public String pwChange(String userid, String email) {
+		return memberDAO.pwChange(userid,email);
+
+
+	}
+
+	@Override//아이디 중복검사
+	public int idCheck(String userid) {
+		int cnt = memberDAO.idCheck(userid);
+		return cnt;
+	}
+	
+	@Override//비밀번호 변경
+	public void pwUpdate(String userid, String passwd) throws Exception {
+		memberDAO.pwUpdate(userid, passwd);
+		
+	}
+	
+	
 	
 	//여기서부터 관리자 단
 	

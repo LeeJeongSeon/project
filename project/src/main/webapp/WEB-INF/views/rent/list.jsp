@@ -17,6 +17,7 @@ $(function(){
 		location.href="${path}/book/list.do";
 	});
 });
+<<<<<<< HEAD
 
 
 $(function(){
@@ -40,6 +41,29 @@ $(function(){
 	$("#btndelete").click(function() {
 		if(confirm("삭제하시겠습니까?")){
 		 document.form1.action="${path}/rent/delete.do?bnum="+$(this).val();
+=======
+$(function(){
+	$("#show").click(function() {
+		if("${map.show}"=="n") {
+			location.href="${path}/rent/list.do";
+		} else {
+			location.href="${path}/rent/nlist.do"
+		}
+	});
+});
+$(function(){
+	if("${map.show}"=="n") {
+		$("#show").text("대여 목록으로 돌아가기");
+	} else {
+		$("#show").text("숨겨진 목록 보기");
+	}
+});
+
+$(function(){
+	$("#btndelete").click(function() {
+		if(confirm("삭제하시겠습니까?")){
+		 document.form1.action="${path}/rent/delete.do";
+>>>>>>> branch 'master' of https://github.com/LeeJeongSeon/project.git
 		 document.form1.submit();
 		}
 	});
