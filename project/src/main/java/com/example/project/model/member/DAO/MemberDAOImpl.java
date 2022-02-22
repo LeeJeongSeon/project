@@ -14,6 +14,7 @@ import com.example.project.model.rent.DTO.RentDTO;
 
 
 
+
 @Repository//DAO선언
 public class MemberDAOImpl implements MemberDAO {
 	

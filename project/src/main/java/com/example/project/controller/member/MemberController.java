@@ -238,6 +238,7 @@ public class MemberController {
 
 	}
 	
+
 	
 	//관리자가 회원 리스트 보기
 	@RequestMapping("list.do")
