@@ -6,8 +6,6 @@
 <title>글 상세보기</title>
 <%@ include file="../include/header.jsp" %>
 
-<link rel="stylesheet" href="../include/event.css">
-
 <script src="${path}/include/common.js"></script>
 <!-- ckeditor의 라이브러리 -->
 <script src="${path}/ckeditor/ckeditor.js"></script>
@@ -203,7 +201,6 @@ function listReply2(){
 
 
 
-
 //첨부파일 리스트를 출력하는 함수
 function listAttach(){
 	$.ajax({
@@ -229,27 +226,104 @@ function listAttach(){
 }
 
 </script>
-<style>
-.fileDrop {
-	width: 600px;
-	height: 100px;
-	border: 1px dotted gray;
-	background-color: gray;
+<style type="text/css">
+@charset "UTF-8";
+
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
 }
+
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+fieldset {
+	margin: 10px 20px 10px 20px;
+	border: 2px solid #666;
+	padding-right: 40px; 
+	vertical-align: middle;
+}
+
+table {
+	background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+}
+
+th, td {
+	padding: 1px 2px;
+}
+
+.tb1_col1 {
+	width: 280px;
+}
+
+.tb1_col2 {
+	width: 260px;
+}
+
+.tb1_col3 {
+	width: 258px;
+}
+
+.tb1_col4 {
+	width: 86px;
+}
+
+.tb1_col5 {
+	width: 86px;
+}
+
+.tb1_col6 {
+	width: 176px;
+}
+
+.tb1_col7 {
+	width: 60px;
+}
+
+.tb2 td {
+	padding: 10px;
+}
+
+#table {
+	background-color: #fff2e6;
+	border-radius: 30px;
+	padding: 2% 2% 3% 2%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+select {
+	margin-left: 30px;
+	width: 60px;
+	height: 25px;
+}
+
 </style>
 
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<div id="body">
 <h2>게시물 보기</h2>
 
  <form id="form1" name="form1" method="post" action="${path}/review/insert.do">
 	<div>제목 <input name="review_title" id="review_title" size="80" value="${dto.review_title}" placeholder="제목을 입력하세요"></div>
 	<div>조회수 : ${dto.review_viewcnt}	</div>
 	
-	<div align="center" style="width:800px;">
-	내용 <textarea id="review_content" name="review_content" rows="3" cols="80" placeholder="내용을 입력하세요">${dto.review_content}</textarea>
+	<hr>
+	
+	<div id="main_text" style="width:1260px;" align="center">
+	 <textarea id="review_content" name="review_content" rows="3" cols="80" placeholder="내용을 입력하세요">${dto.review_content}</textarea>
 	<script>
 	// ckeditor 적용
 	CKEDITOR.replace("review_content",{
@@ -259,19 +333,16 @@ function listAttach(){
 	</script>
 	</div>
 	
-	<hr>
-	
 	<!-- <div> 
 		첨부파일을 등록하세요
 		<div class="fileDrop"></div>
 		<div id="uploadedList"></div>
 	</div> -->
 	
-	
-	<div style="width:700px; text-align:center;">
+	<hr>
+	<div style="width:1260px; text-align:center;" align="center">
 	<!-- 수정,삭제에 필요한 글번호를 hidden 태그에 저장 -->	
 		<input type="hidden" name="review_bno" value="${dto.review_bno}">
-		
 		<!-- 본인만 수정,삭제 버튼 표시 -->
 		<c:if test="${sessionScope.userid == dto.review_writer}">
 			<button type="button" id="btnUpdate">수정</button>
@@ -280,11 +351,14 @@ function listAttach(){
 		
 		<button type="button" id="btnList">목록</button>
 	</div>
+	<hr>
 </form>
 
-<hr>
+
+
+
 <!-- 댓글 작성 -->
-<div style="width:700px; text-align:center;" align="center">
+<div style="width:1260px; text-align:center;" align="center">
 	 <c:if test="${sessionScope.userid != null }">
 	 	<textarea rows="5" cols="80" id="review_replytext" placeholder="댓글을 작성하세요"></textarea>
 	 	<br>
@@ -295,7 +369,9 @@ function listAttach(){
 
 <!-- 댓글 목록 -->
 <div id="listReply"></div>
-</div>
+
+<%@ include file="../include/footer.jsp" %>
+
 </body>
 </html>
 
