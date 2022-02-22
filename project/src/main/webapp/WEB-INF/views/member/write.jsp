@@ -147,6 +147,20 @@
 	};
 </script>
 <style type="text/css">
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
 .id_ok {
 	color: blue;
 	display: none;

@@ -9,8 +9,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
-<title>Insert title here</title>
+<title>로그인</title>
 <%@ include file="../include/header.jsp" %>
+
 
 <script type="text/javascript">
 $(function(){
@@ -38,6 +39,20 @@ if(passwd==""){
 </script>
 
 <style type="text/css">
+
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
 
 table{
  width: 300px;
