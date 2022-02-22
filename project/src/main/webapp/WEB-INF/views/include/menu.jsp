@@ -168,35 +168,65 @@
                         <li id="sList"><a class="menuLink" href="${path}/book/popularity_list.do">도서목록 인기순</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/book/book_recommend.do">도서추천</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/HopeBook/list.do">희망도서 신청</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <c:if test="${sessionScope.userid != null}">
+                        	<li id="sList"><a class="menuLink" href="${path}/rent/list.do">도서대출</a></li>
+						</c:if>
+                        <c:if test="${sessionScope.adminCk == 1}">
+	                        <li id="sList"><a class="menuLink" href="${path}/crawling/insert_page.do">도서 검색하여 추가</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/book/book_write.do">도서 추가</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.adminCk != 1}">
+                       		<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
                     </ul>
                 </li>
                 <li id="mList" style="right:449px;">문화행사
                     <ul id="sListUl" >
                         <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
-                        <li id="sList"><a class="menuLink" href="${path}/event/write.do">신청</a></li>
-                        <li id="sList"><a class="menuLink" href="#">행사 참여</a></li>
-                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/write.do">행사신청</a></li>
+                        <li id="sList"><a class="menuLink" href="#">참여신청</a></li>
+                        <c:if test="${sessionScope.adminCk == 1}">
+	                        <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">행사관리</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/event_reply/listAdmin.do">댓글관리</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/event_join/list.do">참여관리</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.adminCk != 1}">
+                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       		<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
                     </ul>
                 </li>
-                <li id="mList" style="right:298px;">리뷰 게시판으로 이동
-                    <ul id="sListUl" >
-                        <li id="sList"><a class="menuLink" href="${path}/review/list.do">리뷰 게시판으로 이동</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        
+                <li id="mList" style="right:298px;">이용자마당
+                    <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
+                        <li id="sList"><a class="menuLink" href="${path}/notice_qna/list.do?category=notice">공지사항</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/notice_qna/list.do?category=qna">묻고답하기</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/review/list.do">리뷰</a></li>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       	<c:if test="${sessionScope.adminCk == 1}">
+	                        <li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
                     </ul>
                 </li>
                 <li id="mList" style="right:147px;">회원
                     <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
-                        <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
-                        <li id="sList"><a class="menuLink" href="#">이벤트</a></li>
-                        <li id="sList" style="z-index: 3;"><a class="menuLink" href="#">고객불편사항</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <c:if test="${sessionScope.userid==null}">
+	                        <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
+                       		<li id="sList"><a class="menuLink" href="${path}/member/write.do">회원가입</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userid!=null}">
+	                        <li id="sList"><a class="menuLink" href="${path}/member/view.do?userid=${sessionScope.userid}">회원정보</a></li>
+                       		<li id="sList"><a class="menuLink" href="${path}/member/logout.do">로그아웃</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.adminCk == 1}">
+	                        <li id="sList"><a class="menuLink" href="${path}/member/list.do">회원 리스트</a></li>
+                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.adminCk != 1}">
+                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                     </ul>
                 </li>
         </ul>
@@ -216,12 +246,19 @@
         <nav id="menuBar" style=" width: 79%; margin-right: auto; margin-left: auto;"> <!--메뉴 리스트-->
             <ul style="margin-left: 5%;">
                 <li id="bigMenu"><a href="${path}" style=" padding-bottom: 45px;">HOME</a></li>
-                <li id="bigMenu"><a href="${path}/book/list.do" style=" padding-bottom: 45px;">도서목록</a>
+                <li id="bigMenu"><a style=" padding-bottom: 45px;">도서</a>
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/book/list.do" style=" padding-right: 40px;">도서목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">도서목록 인기순</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/book/book_recommend.do" style=" padding-right: 40px;">도서추천</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/HopeBook/list.do" style=" padding-right: 40px;">희망도서신청</a></li>
+                        <c:if test="${sessionScope.userid != null}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/rent/list.do" style=" padding-right: 40px;">도서대출</a></li>
+						</c:if>
+                        <c:if test="${sessionScope.adminCk==1}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/crawling/insert_page.do" style=" padding-right: 40px;">도서 검색하여 추가</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/book/book_write.do" style=" padding-right: 40px;">도서 추가</a></li>
+                        </c:if>
                         <!-- <li><a href="">사회공헌활동</a></li> -->
                     </ul>
                 </li>
@@ -231,7 +268,7 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/joinList.do" style=" padding-right: 40px;">참여신청</a></li>
-                        <c:if test="${adminCk==1}">
+                        <c:if test="${sessionScope.adminCk==1}">
                         	<li style="margin-bottom: 10px;"><a href="${path}/event/listAdmin.do" style=" padding-right: 40px;">행사관리</a></li>
 	                        <li style="margin-bottom: 10px;"><a href="${path}/event_reply/listAdmin.do" style=" padding-right: 40px;">댓글관리</a></li>
 	                        <li style="margin-bottom: 10px;"><a href="${path}/event_join/list.do" style=" padding-right: 40px;">참여관리</a></li>
@@ -246,11 +283,19 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/review/list.do" style=" padding-right: 40px;">리뷰</a></li>
                     </ul>
                 </li>
-                <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">member</a>
+                <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">회원</a>
                     <ul class="secondMenu">
-                        <li style="margin-bottom: 10px;"><a href="${path}/member/login.do""  style=" padding-right: 40px;">로그인</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../soonhyeon/eventnotice.html"  style=" padding-right: 40px;">member</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../chanwoo/customerComplaints.html"  style=" padding-right: 40px;">member</a></li>
+                        <c:if test="${sessionScope.userid==null}">
+	                        <li style="margin-bottom: 10px;"><a href="${path}/member/login.do"  style=" padding-right: 40px;">로그인</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/member/write.do"  style=" padding-right: 40px;">로그인</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userid!=null}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/member/view.do?userid=${sessionScope.userid}"  style=" padding-right: 40px;">회원정보</a></li>
+                        	<li style="margin-bottom: 10px;"><a href="${path}/member/logout.do"  style=" padding-right: 40px;">로그아웃</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.adminCk==1}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/member/list.do" style=" padding-right: 40px;">회원 리스트</a></li>
+                        </c:if>
                     </ul>
                 </li>
 
@@ -273,39 +318,8 @@
         </li>
    
     </ul>
-
-<div style="text-align: center;"> 
-<a href="${path}">Home</a> |
-<a href="${path}/book/list.do">책목록</a> | 
-<a href="${path}/book/popularity_list.do">책목록(인기순)</a> | 
-<c:if test="${sessionScope.userid != null}">
- <a href="${path}/rent/list.do">도서대출</a> |
-</c:if>    
-<a href="${path}/HopeBook/list.do">희망도서신청</a> |
-<a href="${path}/book/book_recommend.do">도서추천</a> |
-<a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-
-<c:if test="${sessionScope.userid eq 'admin' }"> 
-<a href="${path}/member/list.do">회원 리스트</a> |                         
-<a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
-<a href="${path}/book/book_write.do">도서 추가</a> |                     
-</c:if> 
-                           
-<a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
-<a href="${path}/notice_qna/list.do?category=qna">묻고답하기</a> |
-<div style="text-align: right;">
-  <c:choose>
-   <c:when test="${sessionScope.userid == null}">
-    <!-- 로그인 하지 않은 상태 -->
-    <a href="${path}/member/write.do">회원가입</a> |
-    <a href="${path}/member/login.do">로그인</a> |
-   </c:when>
-   <c:otherwise>
-    <!-- 로그인한 상태 -->
-    ${sessionScope.name}님이 로그인중입니다.
-    <a href="${path}/member/view.do?userid=${sessionScope.userid}">회원정보</a> |
-    <a href="${path}/member/logout.do">로그아웃</a>
-   </c:otherwise>
-  </c:choose>
- </div>
+<div align="right">
+	<c:if test="${sessionScope.userid!=null}">
+		${sessionScope.name}님이 로그인중입니다. 
+	</c:if>
 </div>

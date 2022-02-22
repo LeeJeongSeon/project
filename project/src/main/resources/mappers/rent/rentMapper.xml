@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  where member.userid=rent.userid and book.book_id=rent.book_id
  and member.userid=#{userid} and show='y'
  </select>
+
  
  <select id="listRentN"
  resultType="com.example.project.model.rent.DTO.RentDTO">

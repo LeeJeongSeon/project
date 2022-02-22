@@ -158,5 +158,6 @@ textarea {
 <h2>도서 대출 정보</h2>
 <div id="result1"></div>
 
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

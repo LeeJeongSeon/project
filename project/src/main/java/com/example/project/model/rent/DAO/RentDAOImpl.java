@@ -30,6 +30,7 @@ public class RentDAOImpl implements RentDAO {
 		sqlSession.insert("rent.insert", dto);
 	}
 	
+	
 	@Override
 	public void re(int bnum) {
 		sqlSession.update("rent.re", bnum);
