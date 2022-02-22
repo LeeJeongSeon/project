@@ -20,6 +20,97 @@ $(function(){
 });
 </script>
 
+<style type="text/css">
+@charset "UTF-8";
+
+
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+fieldset {
+	margin: 10px 20px 10px 20px;
+	border: 2px solid #666;
+	padding-right: 40px; 
+	vertical-align: middle;
+}
+
+
+table {
+	background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+}
+
+th, td {
+	padding: 1px 2px;
+}
+
+.tb1_col1 {
+	width: 280px;
+}
+
+.tb1_col2 {
+	width: 260px;
+}
+
+.tb1_col3 {
+	width: 258px;
+}
+
+.tb1_col4 {
+	width: 86px;
+}
+
+.tb1_col5 {
+	width: 86px;
+}
+
+.tb1_col6 {
+	width: 176px;
+}
+
+.tb1_col7 {
+	width: 60px;
+}
+
+.tb2 td {
+	padding: 10px;
+}
+
+#table {
+	background-color: #fff2e6;
+	border-radius: 30px;
+	padding: 2% 2% 3% 2%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+select {
+	margin-left: 30px;
+	width: 60px;
+	height: 25px;
+}
+
+
+textarea {
+	height: 200px;
+}
+
+</style>
+
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -66,7 +157,6 @@ $(function(){
 
 <h2>도서 대출 정보</h2>
 <div id="result1"></div>
-
 
 </body>
 </html>
