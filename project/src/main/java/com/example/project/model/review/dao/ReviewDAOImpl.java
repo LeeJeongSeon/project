@@ -94,5 +94,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public ReviewDTO read(int review_bno) throws Exception {
 		return sqlSession.selectOne("review.read", review_bno);
 	}
+	
+	@Override
+	public List<ReviewDTO> reviewList() throws Exception {
+		return sqlSession.selectList("review.reviewList");
+	}
 
 }
