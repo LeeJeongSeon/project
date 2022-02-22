@@ -69,14 +69,91 @@ $(function(){
 
 
 
-<style>
-.fileDrop {
-	width: 600px;
-	height: 100px;
-	border: 1px dotted gray;
-	background-color: gray;
+<style type="text/css">
+@charset "UTF-8";
+
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
 }
+
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+fieldset {
+	margin: 10px 20px 10px 20px;
+	border: 2px solid #666;
+	padding-right: 40px; 
+	vertical-align: middle;
+}
+
+table {
+	background-color: #fff;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+}
+
+th, td {
+	padding: 1px 2px;
+}
+
+.tb1_col1 {
+	width: 280px;
+}
+
+.tb1_col2 {
+	width: 260px;
+}
+
+.tb1_col3 {
+	width: 258px;
+}
+
+.tb1_col4 {
+	width: 86px;
+}
+
+.tb1_col5 {
+	width: 86px;
+}
+
+.tb1_col6 {
+	width: 176px;
+}
+
+.tb1_col7 {
+	width: 60px;
+}
+
+.tb2 td {
+	padding: 10px;
+}
+
+#table {
+	background-color: #fff2e6;
+	border-radius: 30px;
+	padding: 2% 2% 3% 2%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+select {
+	margin-left: 30px;
+	width: 60px;
+	height: 25px;
+}
+
 </style>
+
 
 </head>
 <body>
@@ -88,7 +165,9 @@ $(function(){
 	
 	<div>제목 <input name="review_title" id="review_title" size="80" placeholder="제목을 입력하세요"> </div>
 	
-	<div style="width:800px;">
+	<hr>
+	
+	<div style="width:1260px;">
 		내용 <textarea id="review_content" name="review_content" rows="3" cols="80" placeholder="내용을 입력하세요"></textarea>
 	
 	<script>
@@ -101,17 +180,21 @@ $(function(){
 	
 	</div>
 	
+	<hr>
+	
 	<!-- <div> 첨부파일을 등록하세요
 		<div class="fileDrop"></div>
 		<div id="uploadedList"></div>
 	</div> -->
 	
-	<div style="width:700px; text-align:center;">
-		<button type="button" id="btnSave">확인</button>
+	<div style="width:1260px; text-align:center;">
+		<button type="button" id="btnSave">완료</button>
 	</div>
 	
 </form>
 
+
+<%@ include file="../include/footer.jsp" %>
 
 </body>
 </html>

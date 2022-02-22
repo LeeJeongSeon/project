@@ -190,16 +190,7 @@
                         
                     </ul>
                 </li>
-                <li id="mList" style="right:-4px;">회원
-                    <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
-                        <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
-                        <li id="sList"><a class="menuLink" href="#">이벤트</a></li>
-                        <li id="sList" style="z-index: 3;"><a class="menuLink" href="#">고객불편사항</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                    </ul>
-                </li>
-                <li id="mList" style="right:-4px;">회원
+                <li id="mList" style="right:147px;">회원
                     <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
                         <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
                         <li id="sList"><a class="menuLink" href="#">이벤트</a></li>
@@ -240,7 +231,6 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/joinList.do" style=" padding-right: 40px;">참여신청</a></li>
-                        <li style="margin-bottom: 10px;"><a href="${path}/event_join/list.do" style=" padding-right: 40px;">참여관리</a></li>
                     </ul>
                 </li>
 
