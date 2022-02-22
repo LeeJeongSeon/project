@@ -190,15 +190,6 @@
                         
                     </ul>
                 </li>
-                <li id="mList" style="right:147px;">쿠우쿠우창업
-                    <ul id="sListUl" >
-                        <li id="sList"><a class="menuLink" href="../soonhyeon/openstep.html">개설절차</a></li>
-                        <li id="sList"><a class="menuLink" href="../soonhyeon/consultation.html">가맹상담신청</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                    </ul>
-                </li>
                 <li id="mList" style="right:-4px;">회원
                     <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
                         <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
@@ -243,20 +234,12 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/joinList.do" style=" padding-right: 40px;">참여신청</a></li>
-                        <li style="margin-bottom: 10px;"><a href="${path}/event/listAdmin.do" style=" padding-right: 40px;">행사관리</a></li>
-                        <li style="margin-bottom: 10px;"><a href="${path}/event_reply/listAdmin.do" style=" padding-right: 40px;">댓글관리</a></li>
                     </ul>
                 </li>
 
                 <li id="bigMenu"><a href="${path}/review/list.do" style=" padding-bottom: 45px;">리뷰</a>
                     <ul class="secondMenu">
                         <li style="margin-bottom: 10px;"><a href="${path}/review/list.do" style=" padding-right: 40px;">리뷰</a></li>
-                    </ul>
-                </li>
-                <li id="bigMenu"><a href="../soonhyeon/openstep.html" style=" padding-bottom: 45px;">쿠우쿠우창업</a>
-                    <ul class="secondMenu">
-                        <li style="margin-bottom: 10px;"><a href="../soonhyeon/openstep.html" style=" padding-right: 40px;">개설절차</a></li>
-                        <li style="margin-bottom: 10px;"><a href="../soonhyeon/consultation.html" style=" padding-right: 40px;">가맹상담신청</a></li>
                     </ul>
                 </li>
                 <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">member</a>
