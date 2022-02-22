@@ -28,6 +28,17 @@
 			<version>1.18.12</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Logback --> 
+         <dependency>                                    
+                  <groupId>org.slf4j</groupId>                
+                  <artifactId>jcl-over-slf4j</artifactId>     
+                  <version>${jcloverslf4j.version}</version>  
+         </dependency>
+         <dependency>
+                  <groupId>ch.qos.logback</groupId>
+                  <artifactId>logback-classic</artifactId>
+                  <version>${logback.version}</version>
+         </dependency>
 		<!-- jackson --> 
 		<dependency> 
 		<groupId>com.fasterxml.jackson.core</groupId> 

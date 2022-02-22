@@ -13,8 +13,7 @@
 </style>
 </head>
 <body>
-안녕하세요.
-<%-- <form id="form1" name="form1" method="post" action="${path}/crawling/insert.do" >
+<form id="form1" name="form1" method="post" action="${path}/crawling/insert.do" >
 <table>
  <tr>
   <td>도서 이름</td>
@@ -44,6 +43,6 @@
  </tr>
 </table>
 <button id="button">도서추가</button>
-</form> --%>
+</form>
 </body>
 </html>

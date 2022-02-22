@@ -16,7 +16,7 @@ button{
 $(function(){
 	$(".checkBtn").click(function(){
 		var str = ""
-		var tdArr = new Array();	// 배열 선언
+		var tdArr = new Array();	
 		var checkBtn = $(this);
 		
 		var tr = checkBtn.parent().parent();
@@ -36,7 +36,6 @@ $(function(){
 		//});
 		
 		//console.log("배열에 담긴 값 : "+tdArr);
-		//console.log("이미지 : "+book_img);
 		//console.log("내용 : "+book_content);
 		
 		var param="book_name="+book_name
@@ -53,7 +52,10 @@ $(function(){
 		$.ajax({
 			url: "${path}/crawling/book_insert_search_result.do",
 			type: "post",
-			data: param
+			data: param,
+			success: function(result){
+				$("#result").html(result);
+			}
 		});
 			
 		
@@ -67,7 +69,7 @@ $(function(){
 </style>
 </head>
 <body>
-<table border="1">
+<table border="1" id="table">
  <tr>
   <th>제목</th>
   <th>&nbsp;</th>
@@ -96,7 +98,7 @@ $(function(){
   <td>${row.book_genre}</td>
   <td>${row.book_author}</td>
   <td>${row.book_content}</td>
- <%--  <c:choose>
+  <%-- <c:choose>
   <c:when test="${fn:length(row.book_content)>100}">
   <td>${fn:substring(row.book_content,0,100)}... </td>
   </c:when>
@@ -105,12 +107,13 @@ $(function(){
   </c:otherwise>
   </c:choose> --%>
   <td>${row.book_publisher}</td>
-  <td><%-- <input type="hidden" value="<c:out value="${row.book_content}" escapeXml="true" />" > --%> </td>
+  <td><input type="hidden" value="<c:out value="${row.book_content}" escapeXml="true" />" > </td>
   <td><button type="button" class="checkBtn">도서추가</button></td>
  </tr>
  </c:forEach>
  </table>
  <div class="col-lg-12" id="ex2_Result1" ></div> 
- <div class="col-lg-12" id="ex2_Result2" ></div> 
+ <div class="col-lg-12" id="ex2_Result2" ></div>
+<div id="result"></div>
 </body>
 </html>

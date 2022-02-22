@@ -51,13 +51,11 @@ public class HopeBookController {
 		
 		//레코드 갯수 계산
 		int count=hopeBookSercvie.countArticle(search_option,keyword);
-		System.out.println("레코드 갯수:"+count);
 		
 		//페이지 관련 설정
 		Pager pager=new Pager(count, curPage);
 		int start=pager.getPageBegin();
-		int end=pager.getPageEnd();
-		System.out.print("게시물결과:"+start+","+end+"\n");		
+		int end=pager.getPageEnd();	
 		
 		List<hopeBookDTO> list=hopeBookSercvie.listAll(search_option,keyword,start,end);
 		Map<String, Object> map=new HashMap<>();
@@ -67,7 +65,6 @@ public class HopeBookController {
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
 		
-		System.out.println("임시:"+map);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("book_list/HopeBook_list");
@@ -96,14 +93,12 @@ public class HopeBookController {
 	
 		@RequestMapping("insert.do")
 		public String insert(@ModelAttribute hopeBookDTO dto) {
-			System.out.println("임시:"+dto);
 			hopeBookSercvie.insertBook(dto);
 			return "redirect:/HopeBook/list.do";
 		}
 		
 		@RequestMapping("reply.do")
 		public ModelAndView reply(@ModelAttribute hopeBookDTO dto) {
-			System.out.println("실행:"+dto);
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("book_list/HopeBook_reply");
 			mav.addObject("dto", dto); 

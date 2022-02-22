@@ -29,7 +29,7 @@ $(function(){
 			data: param,
 			success : function(){
 				alert("대출되었습니다");
-				location.href="${path}/rent/list.do";
+				location.href="${path}/rent/nlist.do";
 			}
 		}); 
 	});

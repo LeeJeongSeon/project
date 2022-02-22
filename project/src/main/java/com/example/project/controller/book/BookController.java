@@ -292,7 +292,8 @@ public class BookController {
 	
 	//도서 랜덤 추천
 	@RequestMapping("book_random_recommend.do")
-	public ModelAndView book_random_recommend(@RequestParam(defaultValue = "") String userid) {
+	public ModelAndView book_random_recommend(HttpSession session) {
+		String userid=(String)session.getAttribute("userid");
 		List<bookDTO> list=bookService.book_random_recommend(userid);
 		
 		ModelAndView mav=new ModelAndView();
@@ -305,7 +306,8 @@ public class BookController {
 	
 	//도서 추천
 		@RequestMapping("book_other_recommend.do")
-		public ModelAndView book_other_recommend(@RequestParam(defaultValue = "") String userid) {
+		public ModelAndView book_other_recommend(HttpSession session) {
+			String userid=(String)session.getAttribute("userid");
 			List<bookDTO> list=bookService.book_other_recommend(userid);
 			System.out.print("리스트:"+list);
 			

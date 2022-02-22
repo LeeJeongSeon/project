@@ -15,7 +15,6 @@ $(function(){
 		url: "${path}/book/book_random_recommend.do",
 		type: "post",
 		async: false, 
-		data: userid,
 		success: function(result){
 			$("#result").html(result);
 		}
@@ -25,7 +24,6 @@ $(function(){
 		url: "${path}/book/book_other_recommend.do",
 		type: "post",
 		async: false, 
-		data: userid,
 		success: function(result){
 			$("#result2").html(result);
 		}
@@ -36,7 +34,6 @@ $(function(){
 <body>
 <%@ include file="../include/menu.jsp" %>
 
-<input type="hidden" value="${sessionScope.userid}" name="userid" id="userid">
 <h2>오늘의 도서추천</h2>
 <div id="result"></div>
 <h2>다른사람의 도서추천</h2>

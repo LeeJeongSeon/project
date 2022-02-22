@@ -13,6 +13,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,8 @@ public class crawling {
 
 	@Inject
 	BookService bookService;
+	
+	private static final Logger logger=LoggerFactory.getLogger(crawling.class);
 	
 	@RequestMapping("example.do")
 	public void example() {
@@ -266,9 +270,9 @@ public class crawling {
 	
 	@RequestMapping("book_insert_search_result.do")
 	@ResponseBody
-	public ModelAndView book_insert_search_result(@RequestParam String book_name,@RequestParam String book_img,
-			@RequestParam String book_author,@RequestParam String book_content,
-			@RequestParam String book_publisher,@RequestParam String book_genre) {
+	public ModelAndView book_insert_search_result(@RequestParam(defaultValue = "") String book_name,@RequestParam(defaultValue = "") String book_img,
+			@RequestParam(defaultValue = "") String book_author,@RequestParam(defaultValue = "") String book_content,
+			@RequestParam(defaultValue = "") String book_publisher,@RequestParam(defaultValue = "") String book_genre) {
 		System.out.println("실행중:"+book_name);
 		System.out.println("실행중:"+book_author);
 		//System.out.println("실행중:"+book_content);

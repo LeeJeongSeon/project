@@ -21,7 +21,7 @@ $(function(){
 		var param="name_book="+$("#name_book").val();
 		
 		$.ajax({
-			url:"${path}/crawling/book_search.do", //"${path}/crawling/example2.do",   
+			url:"${path}/crawling/example2.do",   //"${path}/crawling/book_search.do",
 			type: "post",
 			data: param,
 			success: function(result){
