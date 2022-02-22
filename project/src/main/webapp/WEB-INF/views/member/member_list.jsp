@@ -150,7 +150,7 @@ ${map.count}명의 회원들이 있습니다.
 				[이전]</a>
 			</c:if>
 			<c:forEach var="num" 
-				begin="${map.pager.blockStart}"
+				begin="${map.pager.blockBegin}"
 				end="${map.pager.blockEnd}">
 				<c:choose>
 					<c:when test="${num == map.pager.curPage}">
