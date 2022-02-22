@@ -19,6 +19,7 @@ import com.example.project.service.book.BookService;
 import com.example.project.service.rent.RentService;
 
 
+
 @Controller
 @RequestMapping("/rent/*")
 public class RentController {
