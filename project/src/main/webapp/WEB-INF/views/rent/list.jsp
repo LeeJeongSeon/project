@@ -18,6 +18,7 @@ $(function(){
 	});
 });
 
+
 $(function(){
 	$("#show").click(function() {
 		if("${map.show}"=="n") {
