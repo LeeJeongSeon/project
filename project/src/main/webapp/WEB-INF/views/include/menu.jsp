@@ -168,6 +168,9 @@
                         <li id="sList"><a class="menuLink" href="${path}/book/popularity_list.do">도서목록 인기순</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/book/book_recommend.do">도서추천</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/HopeBook/list.do">희망도서 신청</a></li>
+                        <c:if test="${sessionScope.userid != null}">
+                        	<li id="sList"><a class="menuLink" href="${path}/rent/list.do">도서대출</a></li>
+						</c:if>
                         <c:if test="${adminCk==1}">
 	                        <li id="sList"><a class="menuLink" href="${path}/crawling/insert_page.do">도서 검색하여 추가</a></li>
 	                        <li id="sList"><a class="menuLink" href="${path}/book/book_write.do">도서 추가</a></li>
@@ -193,14 +196,13 @@
                         </c:if>
                     </ul>
                 </li>
-                <li id="mList" style="right:298px;">리뷰 게시판으로 이동
-                    <ul id="sListUl" >
-                        <li id="sList"><a class="menuLink" href="${path}/review/list.do">리뷰 게시판으로 이동</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        
+                <li id="mList" style="right:298px;">이용자마당
+                    <ul id="sListUl" style="border-right: 1px solid rgba(196, 194, 194, 0.767);">
+                        <li id="sList"><a class="menuLink" href="${path}/notice_qna/list.do?category=notice">공지사항</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/notice_qna/list.do?category=qna">묻고답하기</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/review/list.do">리뷰</a></li>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                     </ul>
                 </li>
                 <li id="mList" style="right:147px;">회원
@@ -240,6 +242,13 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">도서목록 인기순</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/book/book_recommend.do" style=" padding-right: 40px;">도서추천</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/HopeBook/list.do" style=" padding-right: 40px;">희망도서신청</a></li>
+                        <c:if test="${sessionScope.userid != null}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/rent/list.do" style=" padding-right: 40px;">도서대출</a></li>
+						</c:if>
+                        <c:if test="${adminCk==1}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/crawling/insert_page.do" style=" padding-right: 40px;">도서 검색하여 추가</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/book/book_write.do" style=" padding-right: 40px;">도서 추가</a></li>
+                        </c:if>
                         <!-- <li><a href="">사회공헌활동</a></li> -->
                     </ul>
                 </li>
@@ -269,6 +278,9 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/member/login.do""  style=" padding-right: 40px;">로그인</a></li>
                         <li style="margin-bottom: 10px;"><a href="../soonhyeon/eventnotice.html"  style=" padding-right: 40px;">member</a></li>
                         <li style="margin-bottom: 10px;"><a href="../chanwoo/customerComplaints.html"  style=" padding-right: 40px;">member</a></li>
+                        <c:if test="${adminCk==1}">
+                        	<li style="margin-bottom: 10px;"><a href="${path}/member/list.do" style=" padding-right: 40px;">회원 리스트</a></li>
+                        </c:if>
                     </ul>
                 </li>
 
@@ -299,12 +311,6 @@
 <c:if test="${sessionScope.userid != null}">
  <a href="${path}/rent/list.do">도서대출</a> |
 </c:if>    
-<a href="${path}/HopeBook/list.do">희망도서신청</a> |
-<a href="${path}/book/book_recommend.do">도서추천</a> |
-<a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-                           
-<a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
-<a href="${path}/notice_qna/list.do?category=qna">묻고답하기</a> |
 <div style="text-align: right;">
   <c:choose>
    <c:when test="${sessionScope.userid == null}">
