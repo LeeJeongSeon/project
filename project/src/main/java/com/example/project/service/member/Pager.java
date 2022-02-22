@@ -1,81 +1,64 @@
 package com.example.project.service.member;
 
 public class Pager {
-	public static final int PAGE_SCALE=10;//페이지당 게시물수(10개)
-	public static final int BLOCK_SCALE=10;//페이지 블록 갯수
-	private int curPage; //현재 페이지 
+	public static final int PAGE_SCALE=10; //페이지당 게시물수
+	public static final int BLOCK_SCALE=10;//화면당 페이지수
+	
+	private int curPage; //현재 페이지
 	private int prevPage; //이전 페이지
 	private int nextPage; //다음 페이지
 	private int totPage; //전체 페이지 갯수
 	private int totBlock; //전체 페이지블록 갯수
-	private int curBlock; //현재 페이지블록  
-	private int prevBlock; //이전 페이지블록
-	private int nextBlock; //다음 페이지블록
-	private int pageBegin; // #{start}에 전달될 값
-	private int pageEnd; // #{end}에 전달될 값
-	private int blockStart; //페이지블록의 시작페이지 번호
-	private int blockEnd; //페이지블록의 끝페이지 번호
+	private int curBlock; //현재 블록
+	private int prevBlock; //이전 블록
+	private int nextBlock; //다음 블록
+	private int pageBegin; // #{start} 변수에 전달될 값
+	private int pageEnd; // #{end} 변수에 전달될 값
+	private int blockBegin; //블록의 시작페이지 번호
+	private int blockEnd; //블록의 끝페이지 번호
 	
-	//getter,setter만 생성, 단 상수2개는(PAGE_SCALE,BLOCK_SCALE)빼고 만듦
-	
-	//1)setTotPage(int count)수정,
-	//2)setPageRange()수정
-	//3)setTotBlock()수정
-	//4)setBlockRange()새로작성
-	
-	// Pager(레코드갯수, 보여줄페이지번호) 
-	public Pager(int count, int curPage){
-		curBlock=1; //페이지블록을 1로 초기화
-		this.curPage=curPage; 
+	//getter,setter(상수2개는 제외)우선만들고 수정함, 생성자
+	// Pager(레코드갯수, 출력할페이지번호)
+	public Pager(int count, int curPage) {
+		curBlock = 1; //현재블록 번호
+		this.curPage = curPage; //현재 페이지 번호
 		setTotPage(count); //전체 페이지 갯수 계산
 		setPageRange(); // #{start}, #{end} 값 계산
-		setTotBlock(); // 페이지블록의 갯수 계산
-		setBlockRange(); //페이지블록의 범위 설정
-	}//일단 여기까지 작성후 위 1)2)3)4)순서대로 수정 및 생성작성
-	//페이지블록의 범위 설정 
-	
-	
-	
-	
-	
-	
-	
-	
-	public void setBlockRange(){
-		//현재페이지가 몇번째 페이지블록에 속하는지 계산
-		//(현재페이지-1)/페이지블록단위 + 1
-		curBlock=(int)Math.ceil((curPage-1) / BLOCK_SCALE)+1;
-		//(현재블록-1)*블록단위+1
-		blockStart=(curBlock-1) * BLOCK_SCALE + 1;
-		//블록시작번호+(페이지블록단위-1)
-		blockEnd=blockStart + (BLOCK_SCALE-1);
-		//블록의 마지막 페이지번호가 범위를 초과하지 않도록 처리
-		if(blockEnd > totPage){
+		setTotBlock(); // 전체 블록 갯수 계산
+		setBlockRange(); //블록의 시작,끝 번호 계산
+	}
+	public void setBlockRange() {
+		//원하는 페이지가 몇번째 블록에 속하는지 계산
+		curBlock=(curPage-1)/BLOCK_SCALE + 1;
+		//블록의 시작페이지,끝페이지 번호 계산
+		blockBegin=(curBlock-1)*BLOCK_SCALE+1;
+		blockEnd=blockBegin+BLOCK_SCALE-1;
+		//마지막 블록 번호가 범위를 초과하지 않도록 처리
+		if(blockEnd > totPage) {
 			blockEnd = totPage;
 		}
-		//[이전] 11 12 13 14 15 16 17 18 19 20 [다음]
-		//[이전]을 눌렀을 때 이동할 페이지, 현재블럭이 1이면 1로감,[이전]이란표시는 빼야함
-		prevPage=curBlock==1 ? 1 : (curBlock-1) * BLOCK_SCALE;
-		//[다음]을 눌렀을 때 이동할 페이지
-		nextPage=curBlock>totBlock 
-				? (curBlock*BLOCK_SCALE) : (curBlock*BLOCK_SCALE)+1;
-		if(nextPage >= totPage){//다음페이지가 토탈페이지보다 크면 [다음]표시뺌
-			nextPage = totPage;
+		//[이전][다음]을 눌렀을 때 이동할 페이지 번호
+		prevPage=(curBlock==1) ? 1 : (curBlock-1)*BLOCK_SCALE;
+		nextPage=curBlock>totBlock ? (curBlock*BLOCK_SCALE)
+				: (curBlock*BLOCK_SCALE)+1;
+		//마지막 페이지가 범위를 초과하지 않도록 처리
+		if(nextPage >= totPage) {
+			nextPage=totPage;
 		}
 	}
-	public void setPageRange(){
-		//시작번호=(현재페이지 - 1 ) * 페이지당게시물수 + 1
-		pageBegin = (curPage - 1) * PAGE_SCALE + 1;
-		//끝번호=시작번호 + ( 페이지당게시물수 – 1 )
-		pageEnd = pageBegin + (PAGE_SCALE - 1);
+	
+	//블록의 갯수 계산
+	public void setTotBlock() {
+		totBlock = (int)Math.ceil(totPage*1.0 / BLOCK_SCALE);
 	}
 	
-	
-	
-	
-	
-	
-	
+// where rn between #{start} and #{end}에 입력될 값		
+	public void setPageRange() {
+// 시작번호=(현재페이지-1)x페이지당 게시물수 + 1
+// 끝번호=시작번호 + 페이지당 게시물수 - 1		
+		pageBegin = (curPage-1) * PAGE_SCALE + 1;
+		pageEnd = pageBegin + PAGE_SCALE - 1;
+	}
 	
 	public int getCurPage() {
 		return curPage;
@@ -100,29 +83,18 @@ public class Pager {
 	}
 	//전체 페이지 갯수 계산
 	public void setTotPage(int count) {
-		// 991 / 10 => 99.1 올림 => 100
-		// 991/10 => 99
-		// 991.0/10 => 99.1
-		//ceil() 올림, round() 반올림, floor() 버림 
-		totPage = (int)Math.ceil(count * 1.0 / PAGE_SCALE);
+// Math.ceil() 올림		
+		totPage = (int)Math.ceil(count*1.0 / PAGE_SCALE);
 	}
 	public int getTotBlock() {
 		return totBlock;
 	}
-	//페이지블록의 갯수 계산
-	public void setTotBlock() {
-		// 991페이지 : 991/10 => 99, 한페이지 누락이기때문에 올림(ceil)처리함
-		totBlock = (int)Math.ceil(totPage * 1.0 / BLOCK_SCALE);
+	public void setTotBlock(int totBlock) {
+		this.totBlock = totBlock;
 	}
 	public int getCurBlock() {
 		return curBlock;
 	}
-	
-	
-	
-	
-	
-	
 	public void setCurBlock(int curBlock) {
 		this.curBlock = curBlock;
 	}
@@ -150,11 +122,11 @@ public class Pager {
 	public void setPageEnd(int pageEnd) {
 		this.pageEnd = pageEnd;
 	}
-	public int getBlockStart() {
-		return blockStart;
+	public int getBlockBegin() {
+		return blockBegin;
 	}
-	public void setBlockStart(int blockStart) {
-		this.blockStart = blockStart;
+	public void setBlockBegin(int blockBegin) {
+		this.blockBegin = blockBegin;
 	}
 	public int getBlockEnd() {
 		return blockEnd;
@@ -162,7 +134,6 @@ public class Pager {
 	public void setBlockEnd(int blockEnd) {
 		this.blockEnd = blockEnd;
 	}
+	
 }
-
-
 
