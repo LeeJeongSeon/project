@@ -214,7 +214,13 @@
 <!-- main menu영역-->
     <div  style="position: relative; width: 100%; height: 95px;"> 
         <div id="logo">
-            <img id="logoimg" src="../images/logo.png" width="230px" height="60px"> 
+        	<script type="text/javascript">
+        		if(location.href.indexOf('.do')!=-1) {
+					document.write("<img id='logoimg' src='../images/logo.png' width='230px' height='60px'>");
+        		} else {
+        			document.write("<img id='logoimg' src='images/logo.png' width='230px' height='60px'>");
+        		}
+        	</script>
         </div>
         <nav id="menuBar" style=" width: 79%; margin-right: auto; margin-left: auto;"> <!--메뉴 리스트-->
             <ul style="margin-left: 5%;">
