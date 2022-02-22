@@ -109,18 +109,6 @@ text-align: center;
   <td>비밀번호</td>
   <td><input type="password" name="passwd" id="passwd" class="form-control"> </td>
  </tr>
- 
- <!-- <tr>
-  <td>뉴 비밀번호</td>
-  <td><input type="password" name="passwd1" id="passwd1" class="form-control"> </td>
- </tr>
- <tr>
-  <td>비밀번호</td>
-  <td><input type="password" name="passwd2" id="passwd2" class="form-control"> </td>
- </tr> -->
- 
- 
- 
  <tr>
   <td>이름</td>
   <td><input name="name" value="${dto.name}" class="form-control"> </td>

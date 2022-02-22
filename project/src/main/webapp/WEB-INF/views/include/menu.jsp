@@ -287,7 +287,7 @@
                     <ul class="secondMenu">
                         <c:if test="${sessionScope.userid==null}">
 	                        <li style="margin-bottom: 10px;"><a href="${path}/member/login.do"  style=" padding-right: 40px;">로그인</a></li>
-	                        <li style="margin-bottom: 10px;"><a href="${path}/member/write.do"  style=" padding-right: 40px;">로그인</a></li>
+	                        <li style="margin-bottom: 10px;"><a href="${path}/member/write.do"  style=" padding-right: 40px;">회원가입</a></li>
                         </c:if>
                         <c:if test="${sessionScope.userid!=null}">
                         	<li style="margin-bottom: 10px;"><a href="${path}/member/view.do?userid=${sessionScope.userid}"  style=" padding-right: 40px;">회원정보</a></li>
