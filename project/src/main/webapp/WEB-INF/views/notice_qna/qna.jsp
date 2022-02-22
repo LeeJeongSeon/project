@@ -81,6 +81,11 @@ button {
 	margin: 5px;
 }
 #search{margin-left: 300px;}
+#th_1{width: 7%;}
+#th_2{width: 70%;}
+#th_3{width: 6%;}
+#th_4{width: 10%;}
+#th_5{width: 5%; }
 </style>
 
 </head>
@@ -101,11 +106,11 @@ button {
 
 <table style="border-top: 3px solid black;">
  <tr>
-  <th>번호</th>
-  <th>제목</th>
-  <th>글쓴이</th>
-  <th>등록일</th>
-  <th>조회</th>
+   <th id="th_1">번호</th>
+ <th id="th_2">제목</th>
+ <th id="th_3">글쓴이</th>
+ <th id="th_4">등록일</th>
+ <th id="th_5">조회</th>
  </tr>
  <c:forEach var="row2" items="${map.noticeList}">
 <tr>
@@ -113,7 +118,7 @@ button {
  <td><a href="${path}/notice_qna/view.do?num=${row2.num}&category=${row2.category}">${row2.subject}</a></td>
  <td>${row2.id }</td>
   <td><fmt:formatDate value="${row2.reg_date }" pattern="yyyy.MM.dd"/></td>
-  <td>${row2.readcount}</td>
+  <td style="text-align: center;">${row2.readcount}</td>
 </tr>
 </c:forEach>
 
@@ -127,7 +132,7 @@ button {
   <a href="${path}/notice_qna/view.do?num=${row.num}&category=${row.category}"> ${row.subject}</a></td>
   <td>${row.id }</td>
   <td><fmt:formatDate value="${row.reg_date }" pattern="yyyy.MM.dd"/></td>
-  <td>${row.readcount}</td>
+  <td style="text-align: center;">${row.readcount}</td>
  </tr>
  </c:forEach>
 </table>

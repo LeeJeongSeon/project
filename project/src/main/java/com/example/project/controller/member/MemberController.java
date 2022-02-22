@@ -253,7 +253,7 @@ public class MemberController {
 		Pager pager=new Pager(count, curPage);
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
-		
+
 		List<MemberDTO> list=memberService.listMember(search_option,keyword,start,end);
 		logger.info(list.toString());
 		ModelAndView mav = new ModelAndView();

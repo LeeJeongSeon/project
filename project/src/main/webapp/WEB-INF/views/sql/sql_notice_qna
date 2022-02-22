@@ -1,0 +1,61 @@
+create table notice_qna (
+num number not null primary key,
+category varchar2(50) not null, 
+id varchar2(50) not null , 
+subject varchar2(50) not null, 
+reg_date  date default sysdate, 
+readcount number default 0,  
+content varchar2(4000) , 
+filename varchar2(200) ,
+notice varchar2(1) default 'y',
+ref number default 0 not null,
+ref_step number default 0 not null,
+re_level number default 0 not null
+);
+
+++ 글번호용 시퀀스 notice_qna_seq
+create sequence notice_qna_seq
+start with 1
+increment by 1;
+
+--공지글추가
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '코로나바이러스감염증-19 확산 방지를 위한 성동구립(분관포함) 도서관 임시휴관에 따른 프로그램 안내',
+    '코로나', 'admin', 'notice', notice_qna_seq.nextval,0,0);
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '2022년 제3차 희망도서 처리결과 안내[신청일: 2022. 1. 11.~2022. 1. 17.] ',
+    '공지글내용', 'admin', 'notice', notice_qna_seq.nextval,0,0);
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '설 연휴에 따른 희망도서 처리 안내 ',
+    '1월 31일(월)~2월 2일(수) 은 설날 연휴에 따른 성동구립도서관(성동구립, 금호, 무지개, 용답, 성수, 청계, 숲속) 휴관일로
+1월 25일(화)~1월 28일(월) 에 신청된 5차 희망도서는 2월8일(화)에 선정 및 공지되오니, 
+이용에 참고하시기 바랍니다.
+건강하고 무탈한 설 연휴 보내시길 바라겠습니다.
+감사합니다.', 'admin', 'notice', notice_qna_seq.nextval,0,0); 
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '3·1절 법정공휴일에 따른 희망도서 처리 안내 NEW(새글) ',
+    '공지글내용', 'admin', 'notice', notice_qna_seq.nextval,0,0);
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '2022년 제3-5차 희망도서 입수안내[2022. 1. 11. ~ 2022. 1. 31. 신청분] ',
+    '공지글내용', 'admin', 'notice', notice_qna_seq.nextval,0,0);    
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '2021 청계도서관 12월 이달의 포커스(신착도서 추천) ',
+    '공지글내용', 'admin', 'notice', notice_qna_seq.nextval,0,0);  
+
+
+--질문글추가
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '대출문의 ',
+    '대출문의', 'kim', 'qna', notice_qna_seq.nextval,0,0);
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '휴관일 조정 문의 ',
+    '휴관일 조정 문의', 'kim', 'qna', notice_qna_seq.nextval,0,0);  
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '반납 관련 문의 ',
+    '반납 관련 문의', 'park', 'qna', notice_qna_seq.nextval,0,0);   
+insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
+   (notice_qna_seq.nextval, '반납 관련 문의 ',
+    '반납 관련 문의', 'hong', 'qna', notice_qna_seq.nextval,0,0) ;        
+
+       
+  
