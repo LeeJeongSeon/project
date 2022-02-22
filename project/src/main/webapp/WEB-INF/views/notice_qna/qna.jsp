@@ -83,9 +83,9 @@ button {
 #search{margin-left: 300px;}
 #th_1{width: 7%;}
 #th_2{width: 70%;}
-#th_3{width: 7%;}
+#th_3{width: 6%;}
 #th_4{width: 10%;}
-#th_5{width: 5%;}
+#th_5{width: 5%; }
 </style>
 
 </head>
