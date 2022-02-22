@@ -55,7 +55,6 @@ a:link, a:visited {
 				<th>최대 인원</th>
 				<th>행사 분야</th>
 				<th>신청</th>
-				<th> </th>
 			</tr>
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
