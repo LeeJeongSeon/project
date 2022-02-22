@@ -55,7 +55,7 @@ insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) v
     '반납 관련 문의', 'park', 'qna', notice_qna_seq.nextval,0,0);   
 insert into notice_qna (num,subject,content,id,category,ref,ref_step,re_level) values 
    (notice_qna_seq.nextval, '반납 관련 문의 ',
-    '반납 관련 문의', 'hong', 'qna', notice_qna_seq.nextval,0,0);        
+    '반납 관련 문의', 'hong', 'qna', notice_qna_seq.nextval,0,0) ;        
 
        
   
