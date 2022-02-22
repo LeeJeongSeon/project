@@ -79,7 +79,7 @@ function list(page){
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>게시판</h2>
+<h2>도서목록</h2>
 <section style="text-align: center;">
 <!-- 검색폼 -->
 <fieldset>

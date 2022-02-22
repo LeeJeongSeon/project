@@ -24,6 +24,13 @@ select {
 button{
 	width: 70px;
 }
+.book{
+	text-decoration: none;
+	color: black;
+}
+.book:hover{
+	text-decoration: underline;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -91,7 +98,7 @@ ${map.count}개의 게시물이 있습니다.
  </tr>
  <c:forEach var="row" items="${map.list}">
  <tr>
-  <td><a href="${path}/HopeBook/view.do?hopeBook_id=${row.hopeBook_id}">${row.hopeBook_title}</a></td>
+  <td><a href="${path}/HopeBook/view.do?hopeBook_id=${row.hopeBook_id}" class="book">${row.hopeBook_title}</a></td>
   <td>${row.hopeBook_userid}</td>
   <td>${row.name}</td>
   <td>${row.hopeBook_bookname}</td>
