@@ -216,6 +216,7 @@
 			<div class="form-group" align="center">
 				<input type="button" class="btn btn-lg btn-success btn-block"
 					onclick="check()" value="가입하기">
+				<a href="${path}/member/login.do"><button type="button" class="btn btn-lg btn-success btn-block">로그인</button></a>	
 			</div>
 
 		</form>
