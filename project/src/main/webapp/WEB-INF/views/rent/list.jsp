@@ -94,7 +94,7 @@ button {
   <td><fmt:formatDate value="${row.aday}" 
   pattern="yyyy-MM-dd HH시 mm분"/></td>
   <td><fmt:formatDate value="${row.bday}" 
-  pattern="yyyy-MM-dd HH시 mm분"/></td>
+  pattern="yyyy-MM-dd"/></td>
   <td>
   <c:choose>
    <c:when test="${row.rent_check==1}">
