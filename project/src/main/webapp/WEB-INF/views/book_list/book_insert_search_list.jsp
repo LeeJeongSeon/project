@@ -16,7 +16,7 @@ button{
 $(function(){
 	$(".checkBtn").click(function(){
 		var str = ""
-		var tdArr = new Array();	
+		//var tdArr = new Array();	
 		var checkBtn = $(this);
 		
 		var tr = checkBtn.parent().parent();
@@ -29,7 +29,7 @@ $(function(){
 		var book_genre= td.eq(2).text();
 		var book_author = td.eq(3).text();
 		var book_content = td.eq(4).text();
-		var book_publisher = td.eq(5).text();
+		var book_publisher = td.eq(5).text();		
 		
 		//td.each(function(i){	
 		//	tdArr.push(td.eq(i).text());
@@ -69,7 +69,8 @@ $(function(){
 </style>
 </head>
 <body>
-<table border="1" id="table">
+<section>
+<table border="1">
  <tr>
   <th>제목</th>
   <th>&nbsp;</th>
@@ -107,7 +108,7 @@ $(function(){
   </c:otherwise>
   </c:choose> --%>
   <td>${row.book_publisher}</td>
-  <td><input type="hidden" value="<c:out value="${row.book_content}" escapeXml="true" />" > </td>
+  <td><input type="hidden" value="<c:out value="${row.book_content}" escapeXml="true" />" name="example"> </td>
   <td><button type="button" class="checkBtn">도서추가</button></td>
  </tr>
  </c:forEach>
@@ -115,5 +116,6 @@ $(function(){
  <div class="col-lg-12" id="ex2_Result1" ></div> 
  <div class="col-lg-12" id="ex2_Result2" ></div>
 <div id="result"></div>
+</section>
 </body>
 </html>

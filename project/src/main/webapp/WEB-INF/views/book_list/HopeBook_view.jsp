@@ -26,10 +26,6 @@ $(function(){
 		document.form1.submit(); 
 	}); 
 	
-	/* $("#hopeBook_content").summernote({
-		width: 500,
-		height: 200
-	}); */
 });
 </script>
 <style type="text/css">
