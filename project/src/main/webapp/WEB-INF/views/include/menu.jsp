@@ -174,8 +174,8 @@
                 <li id="mList" style="right:449px;">문화행사
                     <ul id="sListUl" >
                         <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
-                        <li id="sList"><a class="menuLink" href="${path}/event/write.do">신청</a></li>
-                        <li id="sList"><a class="menuLink" href="#">행사 참여</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/write.do">행사신청</a></li>
+                        <li id="sList"><a class="menuLink" href="#">참여신청</a></li>
                         <li id="sList"><a class="menuLink">&nbsp;</a></li>
                         <li id="sList"><a class="menuLink">&nbsp;</a></li>
                     </ul>
@@ -284,7 +284,6 @@
 <a href="${path}/HopeBook/list.do">희망도서신청</a> |
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-
 <c:if test="${sessionScope.userid eq 'admin' }"> 
 <a href="${path}/member/list.do">회원 리스트</a> |                         
 <a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
