@@ -240,6 +240,7 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/event/list.do" style=" padding-right: 40px;">목록</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/write.do" style=" padding-right: 40px;">행사신청</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/event/joinList.do" style=" padding-right: 40px;">참여신청</a></li>
+                        <li style="margin-bottom: 10px;"><a href="${path}/event_join/list.do" style=" padding-right: 40px;">참여관리</a></li>
                     </ul>
                 </li>
 

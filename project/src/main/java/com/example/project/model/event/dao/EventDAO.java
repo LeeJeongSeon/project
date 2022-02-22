@@ -21,5 +21,6 @@ public interface EventDAO {
 	public void delete(int e_num);
 	public int countEventJoin();
 	public List<EventDTO> eventJoinList(int start, int end);
+	public List<EventDTO> eventList();
 
 }

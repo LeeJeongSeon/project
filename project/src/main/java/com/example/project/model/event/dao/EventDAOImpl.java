@@ -114,4 +114,9 @@ public class EventDAOImpl implements EventDAO {
 		return sqlSession.selectList("event.eventJoinList", map);
 	}
 
+	@Override
+	public List<EventDTO> eventList() {
+		return sqlSession.selectList("event.listALL");
+	}
+
 }

@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.project.model.event.dto.JoinDTO;
+import com.example.project.model.member.DTO.MemberDTO;
 
 @Repository
 public class JoinDAOImpl implements JoinDAO {
@@ -28,6 +29,11 @@ public class JoinDAOImpl implements JoinDAO {
 		map.put("ej_num", ej_num);
 		map.put("ej_userid", ej_userid);
 		sqlSession.insert("join.joinInsert", map);
+	}
+
+	@Override
+	public List<MemberDTO> joinMember(int ej_num) {
+		return sqlSession.selectList("join.joinMember", ej_num);
 	}
 
 }

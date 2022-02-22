@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.model.event.dao.JoinDAO;
 import com.example.project.model.event.dto.JoinDTO;
+import com.example.project.model.member.DTO.MemberDTO;
 
 @Service
 public class JoinServiceImpl implements JoinService {
@@ -23,6 +24,11 @@ public class JoinServiceImpl implements JoinService {
 	@Override
 	public void insert(int ej_num, String ej_userid) throws Exception {
 		joinDao.insert(ej_num, ej_userid);
+	}
+
+	@Override
+	public List<MemberDTO> joinMember(int ej_num) throws Exception {
+		return joinDao.joinMember(ej_num);
 	}
 
 }

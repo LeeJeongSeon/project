@@ -95,8 +95,13 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<EventDTO> eventJoinList(int start, int end) {
+	public List<EventDTO> eventJoinList(int start, int end) throws Exception {
 		return eventDao.eventJoinList(start, end);
+	}
+
+	@Override
+	public List<EventDTO> eventList() throws Exception {
+		return eventDao.eventList();
 	}
 
 }
