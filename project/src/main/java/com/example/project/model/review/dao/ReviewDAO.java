@@ -27,5 +27,7 @@ public interface ReviewDAO {
 	public int countArticle(String search_option, String keyword) throws Exception;//레코드 갯수 계산
 	
 	public ReviewDTO read(int review_bno) throws Exception;//레코드 조회
+	
+	public List<ReviewDTO> reviewList() throws Exception;
 
 }

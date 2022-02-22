@@ -141,7 +141,14 @@ public class ReviewController {
 		
 	}				
 	
-	
+	@RequestMapping("index.do")
+	public ModelAndView review_index() throws Exception {
+		List<ReviewDTO> reviewList=reviewService.reviewList();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("review/review_index");
+		mav.addObject("reviewList", reviewList);
+		return mav ;
+	}
 	
 	
 	

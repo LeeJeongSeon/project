@@ -140,6 +140,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   update review set review_show='N' where review_bno=#{review_bno}
  </delete>
 	
+  <select id="reviewList" resultType="com.example.project.model.review.dto.ReviewDTO">
+   select review_bno,review_title,review_writer,review_regdate,review_viewcnt from review
+   where <![CDATA[ rownum<=5]]> and review_show='Y'
+   order by review_bno desc
+      
+ </select>
+	
 </mapper>
 
 

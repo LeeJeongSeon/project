@@ -33,11 +33,29 @@ $(function(){
 	});
 	
 });
+
+$(function(){
+	$.ajax({
+		url: "${path}/review/index.do",
+		type: "post",
+		 
+		success: function(result){
+			$("#result2").html(result);
+		}
+	});
+	
+});
+
+
 </script>
 <style type="text/css">
 #result{
  	border: 1px solid black;
 }
+#result1{width: 50%;  }
+#result2{width: 50%; }
+#result3{display: flex;}
+
 </style>
 <title>Home</title>
 <link rel="stylesheet" href="include/event.css">
@@ -47,7 +65,10 @@ $(function(){
 <h1>Hello world!</h1>
 <P>The time on the server is ${serverTime}. </P>
 <div id="result"></div>
+<div id="result3">
 <div id="result1"></div>
+<div id="result2"></div>
+</div>
 <div></div>
 <%@ include file="include/footer.jsp" %>
 </body>
