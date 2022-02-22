@@ -103,9 +103,9 @@ $(function(){
     <input type="button" value="답변" id="btnReply" class="button">
    </c:if>
    
-    <c:if test="${sessionScope.userid eq userid}">
+<%--     <c:if test="${sessionScope.userid eq userid}">
     <input type="button" value="답변" id="btnReply" class="button">
-   </c:if>
+   </c:if> --%>
    
    <input type="button" value="목록" id="btnList" class="button">  
    </form>

@@ -56,6 +56,13 @@ table {
 th, td {
 	padding: 1px 2px;
 }
+.book{
+	text-decoration: none;
+	color: black;
+}
+.book:hover{
+	text-decoration: underline;
+}
 </style>
 <script type="text/javascript">
 function list(page){
@@ -112,7 +119,7 @@ ${map.count}개의 도서가 있습니다.
  </tr>
  <c:forEach var="row" items="${map.list}">
  <tr>
-  <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
+  <td><a href="${path}/book/view.do?book_id=${row.book_id}" class="book">${row.book_name}</a></td>
   <td>
   <c:choose>
   <c:when test="${row.book_img==null}">

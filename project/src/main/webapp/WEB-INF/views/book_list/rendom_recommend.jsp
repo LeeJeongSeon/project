@@ -10,6 +10,13 @@
 table{
 	table-layout: fixed;
 }
+.book{
+	text-decoration: none;
+	color: black;
+}
+.book:hover{
+	text-decoration: underline;
+}
 </style>
 <link rel="stylesheet" href="../include/event.css">
 </head>
@@ -24,7 +31,7 @@ table{
  </tr>
  <c:forEach var="row" items="${map.list}">
  <tr>
-  <td><a href="${path}/book/view.do?book_id=${row.book_id}">${row.book_name}</a></td>
+  <td><a href="${path}/book/view.do?book_id=${row.book_id}" class="book">${row.book_name}</a></td>
   <td>
    <c:choose>
   <c:when test="${row.book_img==null}">
