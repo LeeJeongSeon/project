@@ -53,8 +53,7 @@ $(function(){
 		$.ajax({
 			url: "${path}/crawling/book_insert_search_result.do",
 			type: "post",
-			data: param,
-			async: false
+			data: param
 		});
 			
 		

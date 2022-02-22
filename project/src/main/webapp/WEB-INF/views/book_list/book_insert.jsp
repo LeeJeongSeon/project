@@ -176,8 +176,10 @@ $(function(){
 			<td><input type="file" id="file" name="file"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><div class="fileDrop"></div></td>
-			<td colspan="2"><div class="uploadedList"></div></td>
+			<td colspan="4"><div class="fileDrop"></div></td>
+		</tr>
+		<tr>
+			<td colspan="4"><div class="uploadedList"></div></td>
 		</tr>
 		<tr>
 			<th>장르</th>

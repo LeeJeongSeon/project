@@ -211,7 +211,7 @@ public class crawling {
 	            e.printStackTrace();
 	        }
 	        
-	        System.out.println("리스트:"+list);
+	        //System.out.println("리스트:"+list);
 	        mav.setViewName("book_list/book_insert_search_result2");
 	   		mav.addObject("list", list);
 	        
@@ -264,9 +264,9 @@ public class crawling {
 		return mav;
 	}
 	
-	@RequestMapping("book_insert_search_result")
+	@RequestMapping("book_insert_search_result.do")
 	@ResponseBody
-	public ModelAndView book_insert_search_result(@RequestParam String book_name,@RequestParam(defaultValue = "") String book_img,
+	public ModelAndView book_insert_search_result(@RequestParam String book_name,@RequestParam String book_img,
 			@RequestParam String book_author,@RequestParam String book_content,
 			@RequestParam String book_publisher,@RequestParam String book_genre) {
 		System.out.println("실행중:"+book_name);
@@ -292,7 +292,7 @@ public class crawling {
 		return mav;
 	}
 
-	@RequestMapping("insert_page")
+	@RequestMapping("insert_page.do")
 	public ModelAndView insert_page() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("book_list/book_insert_search");
