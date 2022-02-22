@@ -122,7 +122,7 @@ public class RentController {
 		if(session.getAttribute("userid") != null) {
 			rentService.delete(bnum);
 		}
-		return "redirect:/rent/list.do";
+		return "redirect:/rent/nlist.do";
 	}
 	
 	//대출

@@ -17,7 +17,6 @@ $(function(){
 		location.href="${path}/book/list.do";
 	});
 });
-<<<<<<< HEAD
 
 
 $(function(){
@@ -31,44 +30,35 @@ $(function(){
 });
 $(function(){
 	if("${map.show}"=="n") {
-		$("#show").text("대여 목록으로 돌아가기");
+		$("#show").text("대여 목록");
 	} else {
-		$("#show").text("숨겨진 목록 보기");
+		$("#show").text("숨김 목록");
 	}
 });
 
 $(function(){
 	$("#btndelete").click(function() {
-		if(confirm("삭제하시겠습니까?")){
-		 document.form1.action="${path}/rent/delete.do?bnum="+$(this).val();
-=======
-$(function(){
-	$("#show").click(function() {
-		if("${map.show}"=="n") {
-			location.href="${path}/rent/list.do";
-		} else {
-			location.href="${path}/rent/nlist.do"
-		}
-	});
-});
-$(function(){
-	if("${map.show}"=="n") {
-		$("#show").text("대여 목록으로 돌아가기");
-	} else {
-		$("#show").text("숨겨진 목록 보기");
-	}
-});
-
-$(function(){
-	$("#btndelete").click(function() {
-		if(confirm("삭제하시겠습니까?")){
-		 document.form1.action="${path}/rent/delete.do";
->>>>>>> branch 'master' of https://github.com/LeeJeongSeon/project.git
-		 document.form1.submit();
-		}
-	});
+		var num=$("#num").val();
+		if(confirm("삭제시 서비스 제공에 어려움이 있을 수 있습니다.\n정말 삭제하시겠습니까?")){
+			location.href="${path}/rent/delete.do?bnum="+num;
+			}else{
+				return;
+			}
+			});
 });
 </script>
+<link rel="stylesheet" href="../include/event.css">
+
+<style type="text/css">
+button {
+	width: 100px;
+	height: 25px;
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #999;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
@@ -127,7 +117,8 @@ $(function(){
      <a href="${path}/rent/delete.do?bnum=${row.bnum}">삭제</a>
      </c:if> --%>
      <c:if test="${map.show=='n'}">
-     <button type="button" id="btndelete" value="${row.bnum}">삭제</button>
+     <input type="hidden" value="${row.bnum}" id="num">
+     <button type="button" id="btndelete">삭제</button>
      </c:if>
     </c:if>
   </td>
