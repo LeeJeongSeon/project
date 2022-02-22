@@ -98,5 +98,6 @@ text-align: center;
 </table>
 </form>
 
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
