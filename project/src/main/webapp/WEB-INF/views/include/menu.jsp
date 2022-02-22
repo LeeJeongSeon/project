@@ -283,7 +283,7 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/review/list.do" style=" padding-right: 40px;">리뷰</a></li>
                     </ul>
                 </li>
-                <li id="bigMenu"><a href="${path}/member/login.do" style=" padding-bottom: 45px;">회원</a>
+                <li id="bigMenu"><a href="${path}" style=" padding-bottom: 45px;">회원</a>
                     <ul class="secondMenu">
                         <c:if test="${sessionScope.userid==null}">
 	                        <li style="margin-bottom: 10px;"><a href="${path}/member/login.do"  style=" padding-right: 40px;">로그인</a></li>

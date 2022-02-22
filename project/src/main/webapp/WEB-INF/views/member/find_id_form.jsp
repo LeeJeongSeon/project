@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
 
 
 <link
@@ -24,6 +24,20 @@
 <%@ include file="../include/header.jsp"%>
 
 <style type="text/css">
+body {
+	color: #444; 
+	width: 1260px;
+	margin-left: 5px;
+}
+
+@media screen and (min-width: 1270px) {
+	body {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
 #find_id{
  width: 500px;
  margin: auto;
