@@ -26,6 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		if(result) {//세션변수 저장
 			MemberDTO dto2=viewMember(dto.getUserid());
 			session.setAttribute("userid", dto.getUserid());
+			session.setAttribute("adminCk", dto2.getAdminCk());
 			session.setAttribute("name", dto2.getName());
 			
 		}
