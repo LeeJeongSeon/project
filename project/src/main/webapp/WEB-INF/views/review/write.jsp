@@ -101,10 +101,10 @@ $(function(){
 	
 	</div>
 	
-	<div> 첨부파일을 등록하세요
+	<!-- <div> 첨부파일을 등록하세요
 		<div class="fileDrop"></div>
 		<div id="uploadedList"></div>
-	</div>
+	</div> -->
 	
 	<div style="width:700px; text-align:center;">
 		<button type="button" id="btnSave">확인</button>

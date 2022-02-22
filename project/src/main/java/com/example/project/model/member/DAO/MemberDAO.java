@@ -3,6 +3,7 @@ package com.example.project.model.member.DAO;
 import java.util.List;
 
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 
 public interface MemberDAO {
 
@@ -18,7 +19,6 @@ public interface MemberDAO {
 	public List<MemberDTO> listMember(String search_option, String keyword, int start, int end);
 	public MemberDTO readMember(String userid) throws Exception;
 	public int adminCheck(String userid);
-	
 	
 	
 	

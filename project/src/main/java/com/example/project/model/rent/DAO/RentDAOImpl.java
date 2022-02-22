@@ -19,6 +19,11 @@ public class RentDAOImpl implements RentDAO {
 	public List<RentDTO> listRent(String userid){
 		return sqlSession.selectList("rent.listRent", userid);
 	}
+	
+	@Override
+	public List<RentDTO> listRentN(String userid){
+		return sqlSession.selectList("rent.listRentN", userid);
+	}
 
 	@Override
 	public void insert(RentDTO dto) {
@@ -26,8 +31,8 @@ public class RentDAOImpl implements RentDAO {
 	}
 	
 	@Override
-	public void delete(int bnum) {
-		sqlSession.delete("rent.delete", bnum);
+	public void re(int bnum) {
+		sqlSession.update("rent.re", bnum);
 	}
 	
 	@Override
@@ -36,7 +41,11 @@ public class RentDAOImpl implements RentDAO {
 	}
 	
 	@Override
+	public void delete(int bnum) {
+		sqlSession.delete("rent.delete", bnum);
+	}
 	
+	@Override
 	public int countRent(String userid, String book_id) {
 		return 0;
 	}
@@ -48,7 +57,11 @@ public class RentDAOImpl implements RentDAO {
 	
 	@Override
 	public void extend(int bnum) {
-		System.out.println("연장:"+bnum);
 		sqlSession.update("rent.extend", bnum);
+	}
+	
+	@Override
+	public void show(int bnum) {
+		sqlSession.update("rent.show", bnum);
 	}
 }

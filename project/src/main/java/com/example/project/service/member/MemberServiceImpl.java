@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.model.member.DAO.MemberDAO;
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DAO.RentDAO;
+import com.example.project.model.rent.DTO.RentDTO;
 
 
 
@@ -17,7 +19,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Inject
 	MemberDAO memberDAO;
-
+	
 	@Override//로그인체크
 	public boolean loginCheck(MemberDTO dto, HttpSession session) {
 		boolean result = memberDAO.loginCheck(dto);
@@ -90,5 +92,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	
+
 	
 }

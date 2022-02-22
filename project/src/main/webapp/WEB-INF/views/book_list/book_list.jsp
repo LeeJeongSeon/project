@@ -119,6 +119,7 @@ ${map.count}개의 도서가 있습니다.
   <img src="../images/etc.jpg" width="100px" height="100px">
   </c:when>
   <c:when test="${fn:contains(row.book_img,'http')}">
+  
   <img src="${row.book_img}" width="100px" height="100px">
   </c:when>
   <c:otherwise>

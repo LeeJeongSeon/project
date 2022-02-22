@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.member.DTO.MemberDTO;
+import com.example.project.model.rent.DTO.RentDTO;
 import com.example.project.service.member.MemberService;
 import com.example.project.service.member.Pager;
 
@@ -174,7 +175,6 @@ public class MemberController {
 		
 	}
 		
-	
 
 
 }

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>리뷰 게시판</title>
 <%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="../include/event.css">
 <script type="text/javascript">
 $(function(){
 	$("#btnWrite").click(function() {
@@ -21,7 +22,8 @@ function list(page){
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>게시판</h2>
+<div id="body">
+<h2>리뷰 게시판</h2>
 <!-- 검색폼 -->
 <form name="form1" method="post" action="${path}/review/list.do">
 	<select name="search_option">
@@ -31,18 +33,17 @@ function list(page){
 		
 		<!-- 여기 좀 이상함 -->
 		<option value="all" <c:if test="${map.search_option == 'all'}">selected</c:if>>아이디+내용+제목</option>
-		
-		
 	</select>
-	<input name="keyword" value="${map.keyword}">
-	<input type="submit" value="조회">
+	
+	<input name="keyword" value="${map.keyword}"> <input type="submit" value="조회"  align="right">
 </form>
 <button type="button" id="btnWrite">글쓰기</button>
 
 ${map.count}개의 게시물이 있습니다.
 
+<div id="table">
 <table border="1">
- <tr> <th>번호</th> <th>제목</th> <th>아이디</th> <th>내용</th> <th>날짜</th> <th>조회수</th> </tr>
+ <tr> <th>번호</th> <th>제목</th> <th>아이디</th> <!-- <th>내용</th> --> <th>날짜</th> <th>조회수</th> </tr>
 
  <!-- for 반복문 -->
  <c:forEach var="row" items="${map.list}">
@@ -52,7 +53,7 @@ ${map.count}개의 게시물이 있습니다.
    <c:if test="${row.review_cnt > 0}"> <span style="color: red;">(${row.review_cnt})</span> </c:if>
   </td>
   <td>${row.review_writer}</td>
-  <td>${row.review_content}</td>
+  <%-- <td>${row.review_content}</td> --%>
   <td><fmt:formatDate value="${row.review_regdate}" 
   pattern="yyyy-MM-dd HH:mm:ss" /> </td>
   <td>${row.review_viewcnt}</td>
@@ -95,5 +96,7 @@ ${map.count}개의 게시물이 있습니다.
 
  
 </table>
+</div>
+</div>
 </body>
 </html>

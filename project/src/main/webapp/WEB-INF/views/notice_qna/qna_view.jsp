@@ -29,6 +29,9 @@ $(function(){
 
 </script>
 <style type="text/css">
+button{margin: 5px;}
+table{ border-collapse:collapse; }
+th,td{border-bottom: 1px solid gray;}
 #main{width: 100%; }
 #side{
 float:left;
@@ -53,7 +56,7 @@ a{text-decoration: none;}
 	color: white;
 }
 #footer{clear:both;}
-
+#btn{ text-align: right;}
 </style>
 <link rel="stylesheet" href="../include/event.css">
 </head>
@@ -70,14 +73,13 @@ a{text-decoration: none;}
 <div id="content">
 <h2>묻고답하기</h2>
 <form name="form1" method="post" >
-<table>
+<table style="border-top: 3px solid black;">
  <tr>
-  <th>${dto.subject}</th>
+  <th colspan="3">${dto.subject}</th>
  </tr>
  <tr>
-  <td>작성일 <fmt:formatDate value="${dto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-  <td>작성자 ${dto.id} </td>
-  <td>조회 ${dto.readcount}</td>
+  <td>작성일 <fmt:formatDate value="${dto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/> | 작성자 ${dto.id} | 조회 ${dto.readcount}</td>
+ 
  </tr>
  <tr>
   <td>${dto.content}</td>
@@ -85,7 +87,7 @@ a{text-decoration: none;}
  </tr>
 </table>
 </form>
-<div>
+<div id="btn">
  <c:if test="${adminCk == 1 && dto.ref_step <= 0}" >
  <button type="button" id="btnReply">답글</button>
  </c:if>

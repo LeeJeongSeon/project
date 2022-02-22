@@ -35,6 +35,9 @@ function noticeY(){
 }
 </script>
 <style type="text/css">
+button{margin: 5px;}
+table{ border-collapse:collapse; }
+th,td{border-bottom: 1px solid gray;}
 #main{width: 100%; }
 #side{
 float:left;
@@ -59,7 +62,7 @@ a{text-decoration: none;}
 	color: white;
 }
 #footer{clear:both;}
-
+#btn{text-align: right;}
 </style>
 <link rel="stylesheet" href="../include/event.css">
 </head>
@@ -75,20 +78,19 @@ a{text-decoration: none;}
 </div>
 <div id="content">
 <h2>공지사항</h2>
-<table>
+<table style="border-top: 3px solid black;">
  <tr>
-  <th>${dto.subject}</th>
+  <th colspan="3">${dto.subject}</th>
  </tr>
  <tr>
-  <td>작성일 <fmt:formatDate value="${dto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-  <td>작성자 ${dto.id}</td>
-  <td>조회 ${dto.readcount}</td>
+  <td>작성일 <fmt:formatDate value="${dto.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/> | 작성자 ${dto.id} 조회 ${dto.readcount}</td>
+ 
  </tr>
  <tr>
-  <td>${dto.content}</td>
+  <td >${dto.content}</td>
  </tr>
 </table>
-<div>
+<div id="btn">
  <c:if test="${adminCk == 1 }">
  <button type="button" id="noticeY" onclick="noticeY()" >헤제</button>
  <button type="button" id="noticeN" onclick="noticeN()" >고정</button>

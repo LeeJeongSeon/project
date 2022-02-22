@@ -5,6 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 상세보기</title>
 <%@ include file="../include/header.jsp" %>
+
+<link rel="stylesheet" href="../include/event.css">
+
 <script src="${path}/include/common.js"></script>
 <!-- ckeditor의 라이브러리 -->
 <script src="${path}/ckeditor/ckeditor.js"></script>
@@ -238,13 +241,14 @@ function listAttach(){
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
+<div id="body">
 <h2>게시물 보기</h2>
 
  <form id="form1" name="form1" method="post" action="${path}/review/insert.do">
 	<div>제목 <input name="review_title" id="review_title" size="80" value="${dto.review_title}" placeholder="제목을 입력하세요"></div>
 	<div>조회수 : ${dto.review_viewcnt}	</div>
 	
-	<div style="width:800px;">
+	<div align="center" style="width:800px;">
 	내용 <textarea id="review_content" name="review_content" rows="3" cols="80" placeholder="내용을 입력하세요">${dto.review_content}</textarea>
 	<script>
 	// ckeditor 적용
@@ -255,11 +259,15 @@ function listAttach(){
 	</script>
 	</div>
 	
-	<div> 
+	<hr>
+	
+	<!-- <div> 
 		첨부파일을 등록하세요
 		<div class="fileDrop"></div>
 		<div id="uploadedList"></div>
-	</div>
+	</div> -->
+	
+	
 	<div style="width:700px; text-align:center;">
 	<!-- 수정,삭제에 필요한 글번호를 hidden 태그에 저장 -->	
 		<input type="hidden" name="review_bno" value="${dto.review_bno}">
@@ -273,8 +281,10 @@ function listAttach(){
 		<button type="button" id="btnList">목록</button>
 	</div>
 </form>
+
+<hr>
 <!-- 댓글 작성 -->
-<div style="width:700px; text-align:center;">
+<div style="width:700px; text-align:center;" align="center">
 	 <c:if test="${sessionScope.userid != null }">
 	 	<textarea rows="5" cols="80" id="review_replytext" placeholder="댓글을 작성하세요"></textarea>
 	 	<br>
@@ -285,7 +295,7 @@ function listAttach(){
 
 <!-- 댓글 목록 -->
 <div id="listReply"></div>
-
+</div>
 </body>
 </html>
 
