@@ -38,16 +38,17 @@ $(function(){
 
 $(function(){
 	$("#btndelete").click(function() {
-		if(confirm("정말 삭제하시겠습니까?")){
-			location.href="${path}/rent/delete.do?bnum=$"+{dto.bnum};
+		var num=$("#num").val();
+		if(confirm("삭제시 서비스 제공에 어려움이 있을 수 있습니다.\n정말 삭제하시겠습니까?")){
+			location.href="${path}/rent/delete.do?bnum="+num;
 			}else{
 				return;
 			}
 			});
-}); 
-/* ${path}/rent/delete.do?bnum=${row.bnum} */
+});
 </script>
 <link rel="stylesheet" href="../include/event.css">
+
 <style type="text/css">
 button {
 	width: 100px;
@@ -116,7 +117,8 @@ button {
      <a href="${path}/rent/delete.do?bnum=${row.bnum}">삭제</a>
      </c:if> --%>
      <c:if test="${map.show=='n'}">
-     <button type="button" id="btndelete" <%-- value="${row.bnum}" --%>>삭제</button>
+     <input type="hidden" value="${row.bnum}" id="num">
+     <button type="button" id="btndelete">삭제</button>
      </c:if>
     </c:if>
   </td>
