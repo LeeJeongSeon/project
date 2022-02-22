@@ -17,16 +17,42 @@ $(function(){
 		location.href="${path}/book/list.do";
 	});
 });
+$(function(){
+	$("#show").click(function() {
+		if("${map.show}"=="n") {
+			location.href="${path}/rent/list.do";
+		} else {
+			location.href="${path}/rent/nlist.do"
+		}
+	});
+});
+$(function(){
+	if("${map.show}"=="n") {
+		$("#show").text("대여 목록으로 돌아가기");
+	} else {
+		$("#show").text("숨겨진 목록 보기");
+	}
+});
+
+$(function(){
+	$("#btndelete").click(function() {
+		if(confirm("삭제하시겠습니까?")){
+		 document.form1.action="${path}/rent/delete.do";
+		 document.form1.submit();
+		}
+	});
+});
 </script>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2 align="center">도서대여</h2>
+<h2>도서대여</h2>
 <button type="button" id="btnList">도서목록</button>
+<button type="button" id="show"></button>
 <br>
 <c:choose>
  <c:when test="${map.count == 0}">
-  <h2 align="center">대여목록이 없습니다.</h2>
+  대여목록이 없습니다.
  </c:when>
 <c:otherwise>
  <form name="form1" action="post" action="${path}/rent/update.do">
@@ -36,7 +62,14 @@ $(function(){
   <th>대출일</th>
   <th>반납일</th>
   <th>반납여부</th>
-  <th>반납/삭제</th>
+  <c:choose>
+  <c:when test="${map.show==y}">
+  <th>반납/숨김</th>
+  </c:when>
+  <c:otherwise>
+  <th>삭제</th>
+  </c:otherwise>
+  </c:choose>
   <th>대출 연장</th>
  </tr>
  <c:forEach var="row" items="${map.list}">
@@ -61,11 +94,14 @@ $(function(){
      <c:if test="${row.rent_check==1}">
      <a href="${path}/rent/re.do?bnum=${row.bnum}">반납</a>
      </c:if>
-     <c:if test="${row.rent_check==0}">
-     <a href="${path}/rent/show.do?bnum=${row.bnum}">대출기록삭제</a>
+     <c:if test="${row.rent_check=='0' and map.show==y}">
+     <a href="${path}/rent/show.do?bnum=${row.bnum}">숨김</a>
      </c:if>
-     <c:if test="${row.rent_check==0}">
+    <%-- <c:if test="${map.show=='n'}">
      <a href="${path}/rent/delete.do?bnum=${row.bnum}">삭제</a>
+     </c:if> --%>
+     <c:if test="${map.show=='n'}">
+     <button type="button" id="btndelete" value="${row.bnum}">삭제</button>
      </c:if>
     </c:if>
   </td>
