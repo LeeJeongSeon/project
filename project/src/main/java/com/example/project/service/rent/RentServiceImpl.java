@@ -27,7 +27,7 @@ public class RentServiceImpl implements RentService {
 	
 	@Override
 	public List<RentDTO> listRentN(String userid) {
-		return rentDao.listRent(userid);
+		return rentDao.listRentN(userid);
 	}
 	
 	@Override
