@@ -168,7 +168,13 @@
                         <li id="sList"><a class="menuLink" href="${path}/book/popularity_list.do">도서목록 인기순</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/book/book_recommend.do">도서추천</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/HopeBook/list.do">희망도서 신청</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <c:if test="${adminCk==1}">
+	                        <li id="sList"><a class="menuLink" href="${path}/crawling/insert_page.do">도서 검색하여 추가</a></li>
+	                        <li id="sList"><a class="menuLink" href="${path}/book/book_write.do">도서 추가</a></li>
+                        </c:if>
+                        <c:if test="${adminCk!=1}">
+                       		<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
                     </ul>
                 </li>
                 <li id="mList" style="right:449px;">문화행사
@@ -185,7 +191,6 @@
                         	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                        		<li id="sList"><a class="menuLink">&nbsp;</a></li>
                         </c:if>
-                       
                     </ul>
                 </li>
                 <li id="mList" style="right:298px;">리뷰 게시판으로 이동
@@ -203,8 +208,13 @@
                         <li id="sList"><a class="menuLink" href="${path}/member/login.do">로그인</a></li>
                         <li id="sList"><a class="menuLink" href="#">이벤트</a></li>
                         <li id="sList" style="z-index: 3;"><a class="menuLink" href="#">고객불편사항</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
-                        <li id="sList"><a class="menuLink" href="">&nbsp;</a></li>
+                        <c:if test="${adminCk==1}">
+	                        <li id="sList"><a class="menuLink" href="${path}/member/list.do">회원리스트</a></li>
+                        </c:if>
+                        <c:if test="${adminCk!=1}">
+                        	<li id="sList"><a class="menuLink">&nbsp;</a></li>
+                        </c:if>
+                       	<li id="sList"><a class="menuLink">&nbsp;</a></li>
                     </ul>
                 </li>
         </ul>
@@ -292,11 +302,6 @@
 <a href="${path}/HopeBook/list.do">희망도서신청</a> |
 <a href="${path}/book/book_recommend.do">도서추천</a> |
 <a href="${path}/review/list.do">리뷰 게시판으로 이동</a> |
-<c:if test="${sessionScope.userid eq 'admin' }"> 
-<a href="${path}/member/list.do">회원 리스트</a> |                         
-<a href="${path}/crawling/insert_page.do">도서 검색하여 추가</a> |
-<a href="${path}/book/book_write.do">도서 추가</a> |                     
-</c:if> 
                            
 <a href="${path}/notice_qna/list.do?category=notice">공지사항</a> |
 <a href="${path}/notice_qna/list.do?category=qna">묻고답하기</a> |
