@@ -7,12 +7,15 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <style type="text/css">
-.notice{
- text-decoration: none;
- color: black;
+.review{
+	color: black;
 }
 
-.notice:hover {
+a {
+	text-decoration-line: none;
+}
+
+.review:hover {
 	text-decoration: underline;
 }
 </style>
