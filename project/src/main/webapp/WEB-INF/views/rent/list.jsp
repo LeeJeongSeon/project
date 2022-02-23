@@ -135,13 +135,13 @@ button {
      </c:if>
     </c:if>
   </td>
-  <td>
    <c:if test="${sessionScope.userid != null}">
     <c:if test="${row.rent_check==1}">
+    <td>
     <a href="${path}/rent/extend.do?bnum=${row.bnum}">연장</a>
+    </td>
     </c:if>
    </c:if>
-   </td>
  </tr>
  </c:forEach>
  </table>
