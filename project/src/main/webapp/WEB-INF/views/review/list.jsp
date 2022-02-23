@@ -106,6 +106,11 @@ textarea {
 	height: 200px;
 }
 
+a {
+	text-decoration-line: none;
+	color: black;
+}
+
 </style>
 
 </head>
