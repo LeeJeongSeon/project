@@ -30,9 +30,9 @@ $(function(){
 });
 $(function(){
 	if("${map.show}"=="n") {
-		$("#show").text("대여 목록");
+		$("#show").text("대여목록보기");
 	} else {
-		$("#show").text("숨김 목록");
+		$("#show").text("숨김목록보기");
 	}
 });
 
@@ -68,7 +68,7 @@ button {
 <br>
 <c:choose>
  <c:when test="${map.count == 0}">
-  대여목록이 없습니다.
+  목록이 없습니다.
  </c:when>
 <c:otherwise>
  <form name="form1" action="post" action="${path}/rent/update.do">
