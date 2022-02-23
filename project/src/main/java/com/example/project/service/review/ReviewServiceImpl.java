@@ -110,5 +110,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewDTO read(int review_bno) throws Exception {
 		return reviewDao.read(review_bno);
 	}
+	
+	@Override
+	public List<ReviewDTO> reviewList() throws Exception {
+		return reviewDao.reviewList();
+	}
+
 
 }

@@ -21,6 +21,13 @@ table{
 </style>
 </head>
 <body>
+<c:choose>
+<c:when test="${map.list==null}">
+로그인을 해야 다른사람의 추천도서를 볼 수 있습니다.
+</c:when>
+<c:otherwise>
+
+
 <table border="1">
  <tr>
   <th>제목</th>
@@ -59,5 +66,7 @@ table{
  </tr>
  </c:forEach>
  </table>
+ </c:otherwise>
+</c:choose>
 </body>
 </html>

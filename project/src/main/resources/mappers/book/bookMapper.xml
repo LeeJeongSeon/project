@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	</if>
           order by book_counter desc	
   			 ) A
-  ) where rn between #{start} and #{end}
+  ) <![CDATA[where rownum<=100]]> 
  </select>
  
  <!-- 도서추가 -->
@@ -142,7 +142,7 @@ select book_id,book_name,book_img,book_genre,book_content,
 select * from book
 where book_id not in(
     select book_id from rent
-    where userid=#{userid}
+    where userid=#{userid, jdbcType=VARCHAR}
 )
 order by dbms_random.value)
 <![CDATA[where rownum<=5]]>
@@ -152,7 +152,7 @@ order by dbms_random.value)
 select book_id
 from rent
 group by book_id
-having book_id not in (select book_id from rent where userid=#{userid})
+having book_id not in (select book_id from rent where userid=#{userid, jdbcType=VARCHAR})
 order by count(*) desc
 </select>
 

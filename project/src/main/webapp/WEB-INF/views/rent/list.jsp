@@ -30,9 +30,9 @@ $(function(){
 });
 $(function(){
 	if("${map.show}"=="n") {
-		$("#show").text("대여 목록");
+		$("#show").text("대여목록보기");
 	} else {
-		$("#show").text("숨김 목록");
+		$("#show").text("숨김목록보기");
 	}
 });
 
@@ -62,13 +62,13 @@ button {
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>도서대여</h2>
+<h2 align="center">도서대여</h2>
 <button type="button" id="btnList">도서목록</button>
 <button type="button" id="show"></button>
 <br>
 <c:choose>
  <c:when test="${map.count == 0}">
-  대여목록이 없습니다.
+  <h2 align="center">목록이 없습니다.</h2>
  </c:when>
 <c:otherwise>
  <form name="form1" action="post" action="${path}/rent/update.do">
@@ -94,7 +94,7 @@ button {
   <td><fmt:formatDate value="${row.aday}" 
   pattern="yyyy-MM-dd HH시 mm분"/></td>
   <td><fmt:formatDate value="${row.bday}" 
-  pattern="yyyy-MM-dd HH시 mm분"/></td>
+  pattern="yyyy-MM-dd"/></td>
   <td>
   <c:choose>
    <c:when test="${row.rent_check==1}">

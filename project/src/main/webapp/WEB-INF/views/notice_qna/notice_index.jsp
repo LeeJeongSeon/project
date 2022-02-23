@@ -18,7 +18,7 @@
 </head>
 <body>
 <h3>공지사항</h3>
-<table style="width: 50%; text-align: left;">
+<table style="width: 100%; text-align: left; border-right: 1px solid black;">
  <c:forEach var="row2" items="${noticeList}">
 <tr>
    <c:choose>

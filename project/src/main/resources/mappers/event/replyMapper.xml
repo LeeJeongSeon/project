@@ -21,6 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where er_num=#{target}
 	</select>
 	
+	<insert id="insert">
+		insert into event_reply (er_num, er_e_num, er_userid, er_content) 
+		values (event_reply_seq.nextval, #{er_e_num}, #{er_userid}, #{er_content})
+	</insert>
+	
 	<update id="update">
 		update event_reply
 		set er_content=#{er_content}, er_date=sysdate, er_change=1
