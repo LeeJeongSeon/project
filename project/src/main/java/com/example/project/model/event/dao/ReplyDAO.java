@@ -9,6 +9,7 @@ public interface ReplyDAO {
 	public List<ReplyDTO> list(int er_e_num);
 	public List<ReplyDTO> listAdmin();
 	public ReplyDTO viewDetail(int target);
+	public void insert(String er_userid, String er_content, int er_e_num);
 	public void update(int er_num, String er_content);
 	public void delete(int er_num);
 

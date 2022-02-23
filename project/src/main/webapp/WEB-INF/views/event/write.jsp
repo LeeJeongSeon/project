@@ -151,7 +151,7 @@ a:link, a:visited {
 							</select>
 						</td>
 						<th>최대 참여 인원</th>
-						<td><input type="number" name="e_max_p" id="e_max_p" min="0" max="50"></td>
+						<td><input type="number" name="e_max_p" id="e_max_p" min="10" max="50" value="10"></td>
 					</tr>
 					<tr>
 						<th style="vertical-align: top">소개말</th>

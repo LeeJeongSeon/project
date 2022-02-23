@@ -168,9 +168,7 @@
                         <li id="sList"><a class="menuLink" href="${path}/book/popularity_list.do">도서목록 인기순</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/book/book_recommend.do">도서추천</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/HopeBook/list.do">희망도서 신청</a></li>
-                        <c:if test="${sessionScope.userid != null}">
-                        	<li id="sList"><a class="menuLink" href="${path}/rent/list.do">도서대출</a></li>
-						</c:if>
+                        <li id="sList"><a class="menuLink" href="${path}/rent/list.do">도서대출</a></li>
                         <c:if test="${sessionScope.adminCk == 1}">
 	                        <li id="sList"><a class="menuLink" href="${path}/crawling/insert_page.do">도서 검색하여 추가</a></li>
 	                        <li id="sList"><a class="menuLink" href="${path}/book/book_write.do">도서 추가</a></li>
@@ -252,9 +250,7 @@
                         <li style="margin-bottom: 10px;"><a href="${path}/book/popularity_list.do" style=" padding-right: 40px;">도서목록 인기순</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/book/book_recommend.do" style=" padding-right: 40px;">도서추천</a></li>
                         <li style="margin-bottom: 10px;"><a href="${path}/HopeBook/list.do" style=" padding-right: 40px;">희망도서신청</a></li>
-                        <c:if test="${sessionScope.userid != null}">
-                        	<li style="margin-bottom: 10px;"><a href="${path}/rent/list.do" style=" padding-right: 40px;">도서대출</a></li>
-						</c:if>
+                        <li style="margin-bottom: 10px;"><a href="${path}/rent/list.do" style=" padding-right: 40px;">도서대출</a></li>
                         <c:if test="${sessionScope.adminCk==1}">
                         	<li style="margin-bottom: 10px;"><a href="${path}/crawling/insert_page.do" style=" padding-right: 40px;">도서 검색하여 추가</a></li>
 	                        <li style="margin-bottom: 10px;"><a href="${path}/book/book_write.do" style=" padding-right: 40px;">도서 추가</a></li>

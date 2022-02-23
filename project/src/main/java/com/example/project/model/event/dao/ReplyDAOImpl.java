@@ -31,6 +31,15 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public ReplyDTO viewDetail(int target) {
 		return sqlSession.selectOne("reply.viewDetail", target);
 	}
+	
+	@Override
+	public void insert(String er_userid, String er_content, int er_e_num) {
+		Map<String, Object> map=new HashMap<>();
+		map.put("er_userid", er_userid);
+		map.put("er_content", er_content);
+		map.put("er_e_num", er_e_num);
+		sqlSession.update("reply.insert", map);
+	}
 
 	@Override
 	public void update(int er_num, String er_content) {
