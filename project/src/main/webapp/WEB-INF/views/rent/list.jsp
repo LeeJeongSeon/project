@@ -81,20 +81,28 @@ button {
   <c:choose>
   <c:when test="${map.show==y}">
   <th>반납/숨김</th>
+  <th>대출 연장</th>
   </c:when>
   <c:otherwise>
   <th>삭제</th>
   </c:otherwise>
   </c:choose>
-  <th>대출 연장</th>
  </tr>
  <c:forEach var="row" items="${map.list}">
  <tr>
   <td>${row.book_name}</td>
   <td><fmt:formatDate value="${row.aday}" 
   pattern="yyyy-MM-dd HH시 mm분"/></td>
+  <c:choose>
+  <c:when test="${row.rent_check==1}">
   <td><fmt:formatDate value="${row.bday}" 
   pattern="yyyy-MM-dd"/></td>
+  </c:when>
+  <c:otherwise>
+  <td><fmt:formatDate value="${row.bday}" 
+  pattern="yyyy-MM-dd HH시 mm분"/></td>
+  </c:otherwise>
+  </c:choose>
   <td>
   <c:choose>
    <c:when test="${row.rent_check==1}">
@@ -121,14 +129,21 @@ button {
      <button type="button" id="btndelete">삭제</button>
      </c:if>
     </c:if>
+    <c:choose>
+   <c:when test="${row.rent_check==1}">
+   	<a href="${path}/rent/extend.do?bnum=${row.bnum}">연장</a>
+   </c:when>
+   <c:otherwise>
+   </c:otherwise>
+  </c:choose>
   </td>
-  <td>
+  <%-- <td>
    <c:if test="${sessionScope.userid != null}">
     <c:if test="${row.rent_check==1}">
     <a href="${path}/rent/extend.do?bnum=${row.bnum}">연장</a>
     </c:if>
    </c:if>
-  </td>
+  </td> --%>
  </tr>
  </c:forEach>
  </table>
