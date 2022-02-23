@@ -10,8 +10,7 @@
 $(function() {
 	comment_list();
 	$("#btnSave").click(function() {
-		var param = "er_e_num=${dto.e_num}&userid=${sessionScope.userid}"
-			+"&content=" + $("#content").val();
+		var param = "er_e_num=${dto.e_num}&er_userid=${sessionScope.userid}&er_content=" + $("#content").val();
 		$.ajax({
 			type : "post",
 			url : "${path}/event_reply/insert.do",

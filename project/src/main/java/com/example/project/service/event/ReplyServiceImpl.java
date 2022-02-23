@@ -31,6 +31,11 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public void insert(String er_userid, String er_content, int er_e_num) throws Exception {
+		replyDao.insert(er_userid, er_content, er_e_num);
+	}
+
+	@Override
 	public void update(int er_num, String er_content) throws Exception {
 		replyDao.update(er_num, er_content);
 	}
@@ -39,4 +44,5 @@ public class ReplyServiceImpl implements ReplyService {
 	public void delete(int er_num) throws Exception {
 		replyDao.delete(er_num);
 	}
+
 }

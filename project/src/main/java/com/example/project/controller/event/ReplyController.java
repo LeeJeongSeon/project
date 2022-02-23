@@ -53,6 +53,13 @@ public class ReplyController {
 		return mav;
 	}
 	
+	/* 댓글 입력 & 댓글 달린 문화행사의 세부사항 페이지로 이동 */
+	@RequestMapping("insert.do")
+	public String insert(String er_userid, String er_content, int er_e_num) throws Exception {
+		replyService.insert(er_userid, er_content, er_e_num);
+		return "redirect:/event/view.do?e_num="+er_e_num;
+	}
+	
 	/* 댓글 수정 & 댓글 달린 문화행사의 세부사항 페이지로 이동 */
 	@RequestMapping("update.do")
 	public String update(int er_num, String er_content, int er_e_num) throws Exception {
