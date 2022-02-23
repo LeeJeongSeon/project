@@ -270,18 +270,28 @@ public class MemberController {
 	}
 	
 	
-	//회원 리스트에서 이름 클릭시 회원 정보 보기
-	@RequestMapping("admin_view.do")
-	public ModelAndView view(String userid, HttpSession session) 
-			throws Exception{
-		
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("member/admin_view");//포워딩할 뷰의 이름
-		mav.addObject("dto", memberService.readMember(userid));//자료저장
-		return mav; //board/view.jsp로 포워딩
-		
-	}
-		
+	/*
+	 * //회원 리스트에서 이름 클릭시 회원 정보 보기
+	 * 
+	 * @RequestMapping("admin_view.do") public ModelAndView view(String userid,
+	 * HttpSession session) throws Exception{
+	 * 
+	 * ModelAndView mav=new ModelAndView();
+	 * mav.setViewName("member/admin_view");//포워딩할 뷰의 이름 mav.addObject("dto",
+	 * memberService.readMember(userid));//자료저장 return mav; //board/view.jsp로 포워딩
+	 * 
+	 * }
+	 */
+	
+	// 회원수정관련
+		@RequestMapping("admin_view.do")
+		public String admin_view(@RequestParam String userid, Model model, MemberDTO dto,HttpSession session) {
+			model.addAttribute("dto", memberService.viewMember(userid));
+			model.addAttribute("join_date", memberService.viewMember(dto.getUserid()).getJoin_date());
+			return "member/admin_view";
+		}
+	
+	
 
 
 }

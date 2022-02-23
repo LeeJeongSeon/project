@@ -4,6 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
 <title>회원 리스트</title>
 
 
@@ -23,77 +34,17 @@ body {
 		transform: translateX(-50%);
 	}
 }
-
-fieldset {
-	margin: 10px 20px 10px 20px;
-	border: 2px solid #666;
-	padding-right: 40px; 
-	vertical-align: middle;
+select{
+ width: 100px;
+ text-align: center;
 }
 
-
-table {
-	background-color: #fff;
-	width: 100%;
-	border-top: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
-	text-align: center;
+table{
+ width: 80%;
+ margin: auto;
+ text-align: center;
 }
 
-th, td {
-	padding: 1px 2px;
-}
-
-.tb1_col1 {
-	width: 280px;
-}
-
-.tb1_col2 {
-	width: 260px;
-}
-
-.tb1_col3 {
-	width: 258px;
-}
-
-.tb1_col4 {
-	width: 86px;
-}
-
-.tb1_col5 {
-	width: 86px;
-}
-
-.tb1_col6 {
-	width: 176px;
-}
-
-.tb1_col7 {
-	width: 60px;
-}
-
-.tb2 td {
-	padding: 10px;
-}
-
-#table {
-	background-color: #fff2e6;
-	border-radius: 30px;
-	padding: 2% 2% 3% 2%;
-	margin-top: 30px;
-	margin-bottom: 30px;
-}
-
-select {
-	margin-left: 30px;
-	width: 60px;
-	height: 25px;
-}
-
-
-textarea {
-	height: 200px;
-}
 
 </style>
 
@@ -125,7 +76,7 @@ textarea {
 ${map.count}명의 회원들이 있습니다.
 
 <hr>
-<table border="1">
+<table border="1" >
  <tr> <th>아이디</th> <th>이름</th> <th>핸드폰 번호</th> <th>우편번호</th> <th>이메일</th></tr>
 
  <!-- for 반복문 -->
@@ -171,10 +122,16 @@ ${map.count}명의 회원들이 있습니다.
 				onclick="list('${map.pager.totPage}')">[끝]</a>
 			</c:if>
 		</td>
-	</tr>
+	
 
  
 </table>
+<br>
+	<div align="center">
+	<a href="${path}"><button type="button"
+								class="btn btn-lg btn-success btn-block">메인</button></a>
+	
+	</div>
 
 <%@ include file="../include/footer.jsp" %>
 </body>
