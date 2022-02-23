@@ -17,7 +17,8 @@ alter table rent add show char(1) default 'y';
 alter table rent add constraint rent_userid_fk
 foreign key(userid) references member(userid);
 alter table rent add constraint rent_bookid_fk
-foreign key(book_id) references book(book_id);
+foreign key(book_id) references book(book_id)
+on delete cascade; 
 
 --샘플데이터 (show추가해서 써야함)
 insert into rent (bnum,userid,book_id,rent_check,show)
