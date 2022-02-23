@@ -62,13 +62,13 @@ button {
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>도서대여</h2>
+<h2 align="center">도서대여</h2>
 <button type="button" id="btnList">도서목록</button>
 <button type="button" id="show"></button>
 <br>
 <c:choose>
  <c:when test="${map.count == 0}">
-  목록이 없습니다.
+  <h2 align="center">목록이 없습니다.</h2>
  </c:when>
 <c:otherwise>
  <form name="form1" action="post" action="${path}/rent/update.do">
