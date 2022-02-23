@@ -68,7 +68,12 @@ button {
 <br>
 <c:choose>
  <c:when test="${map.count == 0}">
-  <h2 align="center">목록이 없습니다.</h2>
+ <c:if test="${map.show==y}">
+  <h2 align="center">대출중인 항목이 없습니다.</h2>
+  </c:if>
+  <c:if test="${map.show=='n'}">
+  <h2 align="center">숨겨둔 기록이 없습니다.</h2>
+  </c:if>
  </c:when>
 <c:otherwise>
  <form name="form1" action="post" action="${path}/rent/update.do">
@@ -130,13 +135,13 @@ button {
      </c:if>
     </c:if>
   </td>
+  <td>
    <c:if test="${sessionScope.userid != null}">
     <c:if test="${row.rent_check==1}">
-    <td>
     <a href="${path}/rent/extend.do?bnum=${row.bnum}">연장</a>
-    </td>
     </c:if>
    </c:if>
+   </td>
  </tr>
  </c:forEach>
  </table>
