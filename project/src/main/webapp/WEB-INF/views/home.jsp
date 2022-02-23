@@ -62,8 +62,6 @@ $(function(){
 </head>
 <body>
 <%@ include file="include/menu.jsp" %>
-<h1>Hello world!</h1>
-<P>The time on the server is ${serverTime}. </P>
 <div id="result"></div>
 <div id="result3">
 <div id="result1"></div>

@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: mr05-10
-=======
-Built-By: mr05-05
->>>>>>> f199f6cc82066b97edd68cb2c5b4323aae079608
 Build-Jdk: 15.0.2
 Created-By: Maven Integration for Eclipse
 
