@@ -100,7 +100,7 @@ $(function(){
 	</c:if>
 	<c:if test="${sessionScope.userid eq 'admin'}">
 		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
-		<button type="button" id="updatebtn">수정</button>
+		<!-- <button type="button" id="updatebtn">수정</button> -->
 	</c:if>
 	</section>
 <%@ include file="../include/footer.jsp" %>
