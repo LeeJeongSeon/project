@@ -154,6 +154,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="listALL" resultType="eventDTO">
 		select * from event
-		
+		order by e_num
 	</select>
 </mapper>
