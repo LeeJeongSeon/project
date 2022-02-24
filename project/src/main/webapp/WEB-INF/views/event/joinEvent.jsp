@@ -27,6 +27,7 @@ $(function () {
 
 function agreeChk() {
 	if($("#agreeChk").val()=="on") {
+		alert("참여 신청이 완료되었습니다.");
 		location.href="${path}/event_join/insert.do?ej_num=${dto.e_num}&ej_userid=${sessionScope.userid}";
 	}else {
 		alert("이용약관 및 개인정보 수집/활용에 동의해주세요.");
