@@ -23,15 +23,23 @@ $(function(){
 	$("#rent_btn").click(function(){
  		var param="book_id="+$("#book_id").val(); 
  		
-		$.ajax({
+ 		if(${sessionScope.userid==null}){
+ 			if(confirm("로그인 후 대출가능합니다.")) {
+ 				location.href="${path}/member/login.do";
+ 			}
+ 		}else if(${dto.book_check!=0}){
+ 			alert("대출불가능한 도서입니다.");
+ 		}else{
+ 			$.ajax({
 			type: "post",
 			url: "${path}/rent/insert.do",
 			data: param,
 			success : function(){
 				alert("대출되었습니다");
 				location.href="${path}/rent/list.do";
-			}
-		}); 
+				}
+			}); 
+ 		}
 	});
 });
 </script>
@@ -93,11 +101,8 @@ $(function(){
 
 	<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
 	
-	<c:if test="${sessionScope.userid!=null}">
-	  <c:if test="${dto.book_check==0}">
-	   <button type="button" id="rent_btn">대출</button>
-	  </c:if>
-	</c:if>
+	<button type="button" id="rent_btn">대출</button>
+
 	<c:if test="${sessionScope.userid eq 'admin'}">
 		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
 		<!-- <button type="button" id="updatebtn">수정</button> -->

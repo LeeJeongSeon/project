@@ -234,7 +234,7 @@ public class crawling {
             	Elements tag_img= innerDocument.select("div.topColLft > div > span > em > img");	
             	String genre=tag_genre.text(); //책 장르
             	String content=tag_content.text(); //책 내용
-            	String img=tag_img.attr("src"); //책 이미지
+            	String img=tag_img.attr("src"); //책 이미지__
 	                
 	            Map<String,Object> map=new HashMap<>();
 	   		 	map.put("name", name);
