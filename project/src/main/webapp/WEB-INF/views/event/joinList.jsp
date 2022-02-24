@@ -46,9 +46,10 @@ a:link, a:visited {
 		문화행사 참여신청
 	</header>
 	<div id="table">
+		신청이 승인된 행사 목록입니다.<br>
+		해당 목록은 행사마감일 순으로 정렬되어있습니다.<br><br>
 		<table>
 			<tr>
-				<th>번호</th>
 				<th>행사명</th>
 				<th>강사</th>
 				<th>참여 인원</th>
@@ -58,7 +59,6 @@ a:link, a:visited {
 			</tr>
 			<c:forEach var="dto" items="${map.list}">
 				<tr>
-					<td>${dto.e_num}</td>
 					<td>${dto.e_name}</td>
 					<td>${dto.e_instr}</td>
 					<td>

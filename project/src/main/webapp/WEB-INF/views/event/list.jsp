@@ -59,6 +59,8 @@ a:link, a:visited {
 		</form>
 	</fieldset>
 	<div id="table">
+		신청이 승인된 행사 목록입니다.<br>
+		해당 목록은 행사마감일 순으로 정렬되어있습니다.<br><br>
 		<table>
 			<tr>
 				<th class="tb1_col1">기관명</th>
