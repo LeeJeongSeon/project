@@ -45,7 +45,7 @@ a:link, a:visited {
 <%@ include file="../include/menu.jsp" %>
 <div id="body">
 	<header>
-		문화행사 참여신청
+		문화행사 참여신청 목록
 	</header>
 	<div id="table">
 		신청이 승인된 행사 목록입니다.<br>

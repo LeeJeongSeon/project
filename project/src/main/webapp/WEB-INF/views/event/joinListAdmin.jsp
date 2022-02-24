@@ -40,7 +40,7 @@ a:link, a:visited {
 <%@ include file="../include/menu.jsp" %>
 <div id="body">
 	<header>
-		문화행사 참여신청
+		관리자용 문화행사 참여신청 목록
 	</header>
 	<div id="table">
 		<table>
