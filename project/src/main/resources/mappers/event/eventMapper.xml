@@ -93,9 +93,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="pagerHeader"/>
 		select e_num, e_agency, e_name, e_result 
 		from event
+		order by e_num
 		<include refid="listForAdmin"/>
 		<include refid="pagerFooter"/>
-		order by e_num
 	</select>
 	
 	<update id="result">
