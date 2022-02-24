@@ -237,7 +237,7 @@ increment by 1;
 
 create table event_join (
 ej_num number not null references event(e_num),
-ej_userid varchar2(50) not null references member(userid),
+ej_userid varchar2(50) not null references member(userid) on delete cascade,
 ej_people number default 0
 );
 
@@ -252,7 +252,7 @@ ej_people number default 0
 create table event_reply (
 er_num number not null primary key,
 er_e_num references event(e_num),
-er_userid varchar2(50) not null references member(userid),
+er_userid varchar2(50) not null references member(userid) on delete cascade,
 er_content varchar(400) not null,
 er_date date default sysdate,
 er_change number default 0
