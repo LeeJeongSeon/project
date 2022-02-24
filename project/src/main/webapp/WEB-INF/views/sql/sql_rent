@@ -15,7 +15,8 @@ alter table rent add rent_check int default 0;
 alter table rent add show char(1) default 'y';
 
 alter table rent add constraint rent_userid_fk
-foreign key(userid) references member(userid);
+foreign key(userid) references member(userid)
+on delete cascade; 
 alter table rent add constraint rent_bookid_fk
 foreign key(book_id) references book(book_id)
 on delete cascade; 

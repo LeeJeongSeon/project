@@ -55,7 +55,7 @@ public class EmailServiceImpl implements EmailService {
 		msg.addRecipient(RecipientType.TO, new InternetAddress(e_email));
 		msg.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), "행사관리자") });
 		msg.setSubject("안녕하세요 도서관입니다.", "utf-8");
-		msg.setText("\'"+e_name+"\' 행사 신청 취소가 완료되었으며 해당 메일은 확인용 메일입니다. 더불어 취소 상태의 행사는 관리자가 무통보 삭제 처리할 수 있음을 알려드립니다. 감사합니다. 좋은 하루 되세요:)", "utf-8");
+		msg.setText("\'"+e_name+"\' 행사 신청 취소가 완료되었으며 해당 메일은 확인용 메일입니다. 더불어 취소 상태의 행사는 영업일 기준 7일 내 관리자가 삭제 처리할 수 있음을 알려드립니다. 감사합니다. 좋은 하루 되세요:)", "utf-8");
 		mailSender.send(msg);
 	}
 

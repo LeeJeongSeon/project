@@ -4,7 +4,7 @@ hopeBook_id number not null primary key,
 hopeBook_title varchar2(500) not null, --게시판 제목 
 hopeBook_bookname varchar2(500) not null, -- 희망도서이름
 hopeBook_author varchar2(500), --저자이름
-hopeBook_userid varchar2(50) references member(userid), --유저아이디
+hopeBook_userid varchar2(50) references member(userid) on delete cascade, --유저아이디
 hopeBook_content clob, --도서신청사유
 filename varchar2(500),
 ref number not null,		--게시물그룹 
