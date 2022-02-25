@@ -16,7 +16,10 @@ $(function(){
 		$.ajax({
 			type: "post",
 			url: "${path}/book/book_edit.do",
-			data: param
+			data: param,
+			success: function(){
+				location.href="${path}/book/book_edit.do?id="+$("#book_id").val();
+			}
 		}); 
 	});
 	
@@ -104,10 +107,10 @@ $(function(){
 	<button type="button" id="rent_btn">대출</button>
 
 	<c:if test="${sessionScope.userid eq 'admin'}">
-		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
-		<!-- <button type="button" id="updatebtn">수정</button> -->
+		<button type="button" id="updatebtn">수정</button>
 	</c:if>
 	</section>
+	<div id="result"></div>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

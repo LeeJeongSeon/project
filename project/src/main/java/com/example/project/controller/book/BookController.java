@@ -195,6 +195,7 @@ public class BookController {
 		//베포디렉토리는 컴퓨터마다 이미지폴더가 초기화됨. 
 		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
 
+		//이미지처리
 		if(dto.getBook_img()=="") {
 			String filename="-";
 			dto.setBook_img(filename);
@@ -210,7 +211,9 @@ public class BookController {
 			}
 		}
 		dto.setBook_img(filename);
-
+		
+		
+		
 		bookService.insertBook(dto);
 		return "redirect:/book/list.do";
 	}

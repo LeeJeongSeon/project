@@ -135,7 +135,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  where book_id=#{book_id}
  </delete>
  
- <!-- 랜덤한 도서추천 -->
+ <!-- 랜덤 도서추천 -->
 <select id="random_recommend" resultType="com.example.project.model.book.dto.bookDTO">
 select book_id,book_name,book_img,book_genre,book_content,
 		  book_publisher,book_author from  (
@@ -148,6 +148,7 @@ order by dbms_random.value)
 <![CDATA[where rownum<=5]]>
 </select>
 
+<!-- 다른사람의 도서추천 -->
 <select id="other_recommend" resultType="String">
 select book_id
 from rent
