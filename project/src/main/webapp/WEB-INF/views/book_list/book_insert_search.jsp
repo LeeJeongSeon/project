@@ -21,7 +21,7 @@ $(function(){
 		var param="name_book="+$("#name_book").val();
 		
 		$.ajax({
-			url:"${path}/crawling/example2.do",  
+			url:"${path}/crawling/book_search_list.do",  
 			type: "post",
 			data: param,
 			success: function(result){
@@ -36,7 +36,7 @@ $(function(){
 <body>
 <%@ include file="../include/menu.jsp" %>
 <input name="name_book" id="name_book"> <button id="searchbtn">검색</button>
-<!-- <button type="button" id="exbtn">확인</button> -->
+<button type="button" id="exbtn">예시</button>
 <div id="result"></div>
 </body>
 </html>

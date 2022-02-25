@@ -31,12 +31,11 @@ public class crawling {
 
 	@Inject
 	BookService bookService;
-	
-	private static final Logger logger=LoggerFactory.getLogger(crawling.class);
+
 	
 	@RequestMapping("example.do")
 	public void example() {
-		int num=9;
+		int num=20;
 		for(int j=1;j<=num;j++) {
 			System.out.println(j+"번");
 			String yes24 = "http://www.yes24.com/24/category/bestseller?CategoryNumber=001&sumgb=06&PageNumber="+j;
@@ -50,7 +49,7 @@ public class crawling {
 	            String[] name = new String[tag_name.size()]; //책 제목
 	            String[] url = new String[tag_name.size()]; //책 url
 	            String[] author= new String[tag_name.size()]; //책 저자
-	            String[] publisher=new String[tag_publisher.size()]; //책 출판사
+	            String[] publisher=new String[tag_name.size()]; //책 출판사 //tag_publisher.size()하면 오류
 	            String[] genre = new String[tag_name.size()]; //책 장르
 	            String[] content= new String[tag_name.size()];//책 설명
 	            String[] img= new String[tag_name.size()];//책 이미지
@@ -72,7 +71,6 @@ public class crawling {
 	            	setindex++;
 	            }
 	           
-	            
 	            //도서내부링크
 	            for(int i=0;i<url.length;i++) {
 	            	Connection innerConn = Jsoup.connect("http://www.yes24.com"+url[i]);
@@ -91,7 +89,7 @@ public class crawling {
 	            	}
 
 	            }
-	            
+
 	            for (int i=0;i<tag_name.size();i++) {
 //	            	System.out.print(name[i]);
 //	            	System.out.print(url[i]);
@@ -113,7 +111,10 @@ public class crawling {
 	            	else
 	            		dto.setBook_genre(genre[i]);
 	            	
-//	            	System.out.println(i+","+dto);
+	            	//청구번호
+	            	String CallName=bookService.create_callName(dto.getBook_genre(),dto.getBook_author()); //청구번호처리
+	        		dto.setBook_callName(CallName);
+	            	//System.out.println(i+","+dto);
 	            	bookService.insertBook(dto);
 	            }
 	        } catch (IOException e) {
@@ -122,7 +123,7 @@ public class crawling {
 		}
 	}
 	
-	@RequestMapping("example2.do")
+	@RequestMapping("book_search_list.do")
 	public ModelAndView example2(@RequestParam(defaultValue = "") String name_book) {
 			String yes24="http://www.yes24.com/Product/Search?domain=ALL&query="+name_book;
 	        Connection conn = Jsoup.connect(yes24);
