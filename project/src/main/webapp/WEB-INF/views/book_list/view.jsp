@@ -43,7 +43,7 @@ $(function(){
 	<h2>책 상세정보</h2>
 	<table>
 		<tr height="50">
-		<td rowspan="5" width="30%;">
+		<td rowspan="6" width="30%;">
 			<c:choose>
 			<c:when test="${dto.book_img==null}">
 			<img src="../images/etc.jpg" style="width:300px;">
@@ -70,6 +70,10 @@ $(function(){
 		<tr height="50">
 			<td>출판사</td>
 			<td>${dto.book_publisher}</td>
+		</tr>
+		<tr>
+			<td>청구기호</td>
+			<td>${dto.book_callName}</td>
 		</tr>
 		<tr >
 				<td>대출가능여부</td>

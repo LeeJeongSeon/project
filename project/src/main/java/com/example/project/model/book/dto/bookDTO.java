@@ -13,15 +13,29 @@ public class bookDTO {
 	private String  book_author;
 	private int  book_counter;
 	private int book_check;
+	private String book_callName;
 	private MultipartFile file; //첨부파일
+	
 	
 	@Override
 	public String toString() {
 		return "bookDTO [book_id=" + book_id + ", book_name=" + book_name + ", book_img=" + book_img + ", book_genre="
 				+ book_genre + ", book_content=" + book_content + ", book_publisher=" + book_publisher
 				+ ", book_author=" + book_author + ", book_counter=" + book_counter + ", book_check=" + book_check
-				+ ", file=" + file + "]";
+				+ ", book_callName=" + book_callName + ", file=" + file + "]";
 	}
+	
+	
+	public String getBook_callName() {
+		return book_callName;
+	}
+
+
+	public void setBook_callName(String book_callName) {
+		this.book_callName = book_callName;
+	}
+
+
 	public MultipartFile getFile() {
 		return file;
 	}

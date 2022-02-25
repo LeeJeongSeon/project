@@ -86,6 +86,11 @@ public class BookServiceImpl implements BookService {
 		
 	}
 
+	@Override
+	public String create_callName(String book_genre,String book_author) {
+		return bookDao.create_callName(book_genre,book_author);
+	}
+
 
 
 

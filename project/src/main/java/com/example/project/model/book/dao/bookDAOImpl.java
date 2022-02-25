@@ -101,6 +101,60 @@ public class bookDAOImpl implements bookDAO {
 		
 	}
 
+	@Override
+	//장르로 청구기호생성
+	public String create_callName(String book_genre,String book_author) {
+		String callName="";
+		float random=(float) (Math.random()*99+1); //랜덤생성
+		random = (float) (Math.round(random*100.0)/100.0);//소수점 둘째자리수까지
+		
+		switch(book_genre) {
+			case "철학":
+				callName="1"; break;
+			case "종교":
+				callName="2"; break;
+			case "경제":
+			case "경영":
+			case "자기계발":
+				callName="3"; break;
+			case "자연과학":
+				callName="4"; break;
+			case "it":
+				callName="5"; break;
+			case "예술":
+				callName="6"; break;
+			case "인문":
+			case "국어":
+				callName="7"; break;
+			case "만화/라이트노벨":
+			case "에세이":
+			case "판타지/무협":
+			case "어린이":
+			case "소설/시/희곡":
+			case "청소년":
+			case "유아":
+				callName="8"; break;
+			case "역사":
+				callName="9"; break;
+			default:
+				callName="0"; break;	
+		}
+		String char_author=book_author.substring(0,1); //지은이 성만 가져오기
+		
+		callName=callName+random+char_author;
+		
+		System.out.println("청구번호:"+callName);
+		
+		//중복체크
+		String check_callName=sqlSession.selectOne("book.check_callName",callName);
+		System.out.println("중복체크:"+check_callName);
+		
+		if(check_callName!=null)
+			create_callName(book_genre,book_author); //함수 다시실행
+		
+		return callName;
+	}
+
 
 	
 	

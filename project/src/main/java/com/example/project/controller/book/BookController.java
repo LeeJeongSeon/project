@@ -211,8 +211,11 @@ public class BookController {
 			}
 		}
 		dto.setBook_img(filename);
-		
-		
+
+		//청구번호 처리
+		String CallName=bookService.create_callName(dto.getBook_genre(),dto.getBook_author()); //청구번호처리
+		System.out.println("컨트롤러단의 청구번호:"+CallName);
+		dto.setBook_callName(CallName);
 		
 		bookService.insertBook(dto);
 		return "redirect:/book/list.do";

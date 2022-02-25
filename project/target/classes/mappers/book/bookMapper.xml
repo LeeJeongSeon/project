@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="read" 
  resultType="com.example.project.model.book.dto.bookDTO">
   select book_id,book_name,book_img,book_genre,book_content,
-		  book_publisher,book_author,book_counter,book_check
+		  book_publisher,book_author,book_counter,book_check,book_callName
   from book
   where book_id=#{book_id}
  </select>
@@ -112,8 +112,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- 도서추가 -->
  <insert id="book_insert">
- insert into book(book_id,book_name,book_img,book_genre,book_content,book_publisher,book_author) 
- values(BOOK_SEQ.nextval,#{book_name},#{book_img},#{book_genre},#{book_content},#{book_publisher},#{book_author})
+ insert into book(book_id,book_name,book_img,book_genre,book_content,book_publisher,book_author,book_callName) 
+ values(BOOK_SEQ.nextval,#{book_name},#{book_img},#{book_genre},#{book_content},#{book_publisher},#{book_author},#{book_callName})
  </insert>
  
  <!--도서수정  -->
@@ -189,6 +189,12 @@ from rent
 where bnum=#{bnum}
 )
 </update>
+
+<select id="check_callName" resultType="String">
+select book_callName
+from book
+where book_callName=#{callName}
+</select>
 </mapper>
 
 

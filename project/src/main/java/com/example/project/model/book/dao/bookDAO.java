@@ -33,5 +33,7 @@ public interface bookDAO {
 
 	public void update(int book_id);
 
+	public String create_callName(String book_genre, String book_author);
+
 
 }

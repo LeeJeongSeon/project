@@ -34,4 +34,6 @@ public interface BookService {
 
 	public List<bookDTO> popularity_listAll(book_check check);
 
+	public String create_callName(String book_genre,String book_author);
+
 }
