@@ -13,7 +13,7 @@ button{
 }
 </style>
 <script type="text/javascript">
-$(function(){
+$(function(){	
 	$(".checkBtn").click(function(){
 		var str = ""
 		//var tdArr = new Array();	
@@ -28,7 +28,7 @@ $(function(){
 		var book_img = td.eq(1).text();
 		var book_genre= td.eq(2).text();
 		var book_author = td.eq(3).text();
-		var book_content = td.eq(4).text();
+		var book_content = td.eq(4).html();
 		var book_publisher = td.eq(5).text();		
 		
 		//td.each(function(i){	
@@ -36,7 +36,6 @@ $(function(){
 		//});
 		
 		//console.log("배열에 담긴 값 : "+tdArr);
-		//console.log("내용 : "+book_content);
 		
 		var param="book_name="+book_name
 		+"&book_img="+book_img
@@ -56,7 +55,7 @@ $(function(){
 			success: function(result){
 				$("#result").html(result);
 			}
-		});
+		}); 
 			
 		
 	});
@@ -101,7 +100,7 @@ $(function(){
   </td>
   <td>${row.book_genre}</td>
   <td>${row.book_author}</td>
-  <td>${row.book_content}</td>
+  <td><div class="content" name="content">${row.book_content}</div></td>
   <%-- <c:choose>
   <c:when test="${fn:length(row.book_content)>100}">
   <td>${fn:substring(row.book_content,0,100)}... </td>
