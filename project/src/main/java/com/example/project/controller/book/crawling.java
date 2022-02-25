@@ -144,8 +144,6 @@ public class crawling {
 	            String[] genre = new String[tag_name.size()]; //책 장르
 	            String[] content= new String[tag_name.size()];//책 설명
 	            String[] img= new String[tag_name.size()];//책 이미지
-	            	          
-
 	            
 	            int setindex=0;
 	            for (Element e: tag_name) {
