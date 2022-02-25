@@ -36,7 +36,7 @@ button{
 $(function(){
 	$("#btnWrite").click(function(){
 		if(${sessionScope.userid==null}){
- 			if(confirm("로그인 후 대출가능합니다.")) {
+ 			if(confirm("로그인 후 게시물 작성이 가능합니다.")) {
  				location.href="${path}/member/login.do";
  			}
 		}else{
