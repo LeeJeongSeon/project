@@ -168,7 +168,7 @@ public class EventController {
 	public String delete(int e_num, String e_name, String e_email) throws Exception {
 		eventService.delete(e_num);
 		emailService.sendDeleteMail(e_name, e_email);
-		return "redirect:/event/list.do";
+		return "redirect:/event/listAdmin.do";
 	}
 	
 	/* 행사 참여신청 페이지로 이동 & 리스트 출력 */
