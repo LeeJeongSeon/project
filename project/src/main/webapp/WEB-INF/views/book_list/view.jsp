@@ -10,17 +10,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#updatebtn").click(function(){
- 		var param="id="+$("#book_id").val(); 
-		console.log(param);
- 		
-		$.ajax({
-			type: "post",
-			url: "${path}/book/book_edit.do",
-			data: param,
-			success: function(){
-				location.href="${path}/book/book_edit.do?id="+$("#book_id").val();
-			}
-		}); 
+		location.href="${path}/book/book_edit.do?id="+$("#book_id").val();
 	});
 	
 	$("#rent_btn").click(function(){
