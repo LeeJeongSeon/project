@@ -174,7 +174,7 @@ select {
 	// ckeditor 적용
 	CKEDITOR.replace("review_content",{
 	filebrowserUploadUrl: "${path}/imageUpload.do",
-	height: "300px"
+	height: "600px"
 	});// ImageUploadController.java 에서 처리
 	</script>
 	
