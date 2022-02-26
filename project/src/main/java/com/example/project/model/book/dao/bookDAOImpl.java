@@ -19,6 +19,7 @@ public class bookDAOImpl implements bookDAO {
 	@Inject
 	SqlSession sqlSession;
 
+	//레코드 수 카운트
 	@Override
 	public int countArticle(String search_option, String keyword,book_check check) {
 		Map<String,Object> map=new HashMap<>();
@@ -28,6 +29,7 @@ public class bookDAOImpl implements bookDAO {
 		return sqlSession.selectOne("book.countArticle",map);
 	}
 
+	//도서상세페이지
 	@Override
 	public bookDTO read(int book_id) {
 		return sqlSession.selectOne("book.read", book_id);
@@ -38,6 +40,7 @@ public class bookDAOImpl implements bookDAO {
 		return sqlSession.selectList("book.check",check);
 	}
 
+	//도서목록
 	@Override
 	public List<bookDTO> listAll(String search_option, String keyword, int start, int end, book_check check) {
 		Map<String,Object> map=new HashMap<>();
@@ -49,6 +52,7 @@ public class bookDAOImpl implements bookDAO {
 		return sqlSession.selectList("book.listAll", map);
 	}
 
+	//도서목록 인기순
 	@Override
 	public List<bookDTO> popularity_listAll( book_check check) {
 		Map<String,Object> map=new HashMap<>();
@@ -56,53 +60,61 @@ public class bookDAOImpl implements bookDAO {
 		return sqlSession.selectList("book.popularity_listAll",map);
 	}
 
+	//도서추가
 	@Override
 	public void insertBook(bookDTO dto) {
 		sqlSession.selectList("book.book_insert",dto);
 	}
 
+	//도서수정
 	@Override
 	public void updateBook(bookDTO dto) {
 		sqlSession.update("book.book_update",dto);
 		
 	}
 
+	//도서삭제
 	@Override
 	public void deleteBook(int book_id) {
 		sqlSession.delete("book.book_delete",book_id);
 		
 	}
 
+	//도서 랜덤추천
 	@Override
 	public List<bookDTO> book_random_recommend(String userid) {
 		return sqlSession.selectList("book.random_recommend",userid);
 	}
 
+	//다른사람의 도서추천
 	@Override
 	public List<bookDTO> book_other_recommend(String userid) {
 		List<String> list=sqlSession.selectList("book.other_recommend",userid);
 		return sqlSession.selectList("book.other_recommend2",list);
 	}
 
+	//메인페이지
 	@Override
 	public List<bookDTO> book_index() {
 		return sqlSession.selectList("book.book_index");
 	}
 
+	//도서대출수 증가,도서대출불가능체크
 	@Override
 	public void book_increase(int book_id) {
 		sqlSession.update("book.book_increase",book_id);
 		
 	}
 
+	//도서 대출 가능 체크
 	@Override
 	public void update(int book_id) {
 		sqlSession.update("book.update",book_id);
 		
 	}
 
-	@Override
 	//장르로 청구기호생성
+	@Override
 	public String create_callName(String book_genre,String book_author) {
 		String callName="";
 		float random=(float) (Math.random()*99+1); //랜덤생성

@@ -13,6 +13,9 @@ input{
 	width:500px;
 	height:50px;
 }
+textarea{
+	width:500px;
+}
 .fileDrop {
 	width: 100%;
 	height: 200px;
@@ -176,8 +179,7 @@ function book_update(){
     </tr>
     <tr>
      <td>내용</td>
-     <td><input name="book_content" id="book_content" value="${dto.book_content}" style="height:200px;"> </td>
-    </tr>
+     <td><textarea cols="300" name="book_content" id="book_content" >${dto.book_content}</textarea> </td>
     <tr>
      <td>대출가능여부</td>
      <td>

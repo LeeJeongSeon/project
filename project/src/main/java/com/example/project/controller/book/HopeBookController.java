@@ -40,6 +40,7 @@ public class HopeBookController {
 	@Inject
 	HopeBookService hopeBookSercvie;
 	
+	//게시판 목록
 	@RequestMapping("list.do")
 	public ModelAndView list(
 			@RequestParam(defaultValue = "hopeBook_bookname") String search_option,
@@ -83,6 +84,7 @@ public class HopeBookController {
 		return mav;
 	}
 	
+	//게시물 작성 페이지 이동
 	@RequestMapping("write.do")
 	public ModelAndView write() {
 		ModelAndView mav = new ModelAndView();
@@ -90,13 +92,14 @@ public class HopeBookController {
 		return mav;
 	}
 	
+	//게시물 작성
+	@RequestMapping("insert.do")
+	public String insert(@ModelAttribute hopeBookDTO dto) {
+		hopeBookSercvie.insertBook(dto);
+		return "redirect:/HopeBook/list.do";
+	}
 	
-		@RequestMapping("insert.do")
-		public String insert(@ModelAttribute hopeBookDTO dto) {
-			hopeBookSercvie.insertBook(dto);
-			return "redirect:/HopeBook/list.do";
-		}
-		
+	//답변 페이지로 이동
 		@RequestMapping("reply.do")
 		public ModelAndView reply(@ModelAttribute hopeBookDTO dto) {
 			ModelAndView mav = new ModelAndView();
@@ -104,31 +107,32 @@ public class HopeBookController {
 			mav.addObject("dto", dto); 
 			return mav;
 		}
-		
-		@RequestMapping("insertReply.do")
-		public String insertReply(@ModelAttribute hopeBookDTO dto) {
-			hopeBookDTO dto2=hopeBookSercvie.read(dto.getHopeBook_id());
-			dto2.setHopeBook_content(dto.getHopeBook_content());
-			dto2.setHopeBook_title(dto.getHopeBook_title());
-			dto2.setHopeBook_userid(dto.getHopeBook_userid());
-			dto2.setName("관리자");
+	
+	//답변달기
+	@RequestMapping("insertReply.do")
+	public String insertReply(@ModelAttribute hopeBookDTO dto) {
+		hopeBookDTO dto2=hopeBookSercvie.read(dto.getHopeBook_id());
+		dto2.setHopeBook_content(dto.getHopeBook_content());
+		dto2.setHopeBook_title(dto.getHopeBook_title());
+		dto2.setHopeBook_userid(dto.getHopeBook_userid());
+		dto2.setName("관리자");
 			
-			int ref=hopeBookSercvie.ref(dto.getRef());//답변그룹번호
-			int re_step=dto.getRe_step()+1;//출력순번
-			int re_level=dto.getRe_level()+1;//답변단계
+		int ref=hopeBookSercvie.ref(dto.getRef());//답변그룹번호
+		int re_step=dto.getRe_step()+1;//출력순번
+		int re_level=dto.getRe_level()+1;//답변단계
 			
-			dto2.setRef(ref);
-			dto2.setRe_step(re_step);
-			dto2.setRe_level(re_level);
+		dto2.setRef(ref);
+		dto2.setRe_step(re_step);
+		dto2.setRe_level(re_level);
 			
 			
-			hopeBookSercvie.reply(dto2);
-			System.out.println("답변:"+dto2);
+		hopeBookSercvie.reply(dto2);
+		System.out.println("답변:"+dto2);
 			
-			return "redirect:/HopeBook/list.do";
+		return "redirect:/HopeBook/list.do";
 		}
 		
-	
+		//도서중복체크
 		@RequestMapping("hopeBook_check.do")
 		@ResponseBody
 		public int hopeBook_check(

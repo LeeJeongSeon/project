@@ -32,7 +32,7 @@ public class crawling {
 	@Inject
 	BookService bookService;
 
-	
+	//베스트셀러 도서 예시로 가져오기
 	@RequestMapping("example.do")
 	public void example() {
 		int num=20;
@@ -123,6 +123,7 @@ public class crawling {
 		}
 	}
 	
+	//검색어로 도서목록 가져오기
 	@RequestMapping("book_search_list.do")
 	public ModelAndView example2(@RequestParam(defaultValue = "") String name_book) {
 			String yes24="http://www.yes24.com/Product/Search?domain=ALL&query="+name_book;
@@ -254,6 +255,7 @@ public class crawling {
 		return mav;
 	}
 	
+	//검색된 도서목록 상세페이지로 이동
 	@RequestMapping("book_insert_search_result.do")
 	@ResponseBody
 	public ModelAndView book_insert_search_result(@RequestParam(defaultValue = "") String book_name,@RequestParam(defaultValue = "") String book_img,
@@ -275,6 +277,7 @@ public class crawling {
 		return mav;
 	}
 
+	//페이지이동
 	@RequestMapping("insert_page.do")
 	public ModelAndView insert_page() {
 		ModelAndView mav=new ModelAndView();

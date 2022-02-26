@@ -86,6 +86,7 @@ public class BookController {
 			throws Exception{
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("book_list/view");
+		System.out.println("상세보기:"+bookService.read(book_id));
 		mav.addObject("dto", bookService.read(book_id));
 		return mav;
 	}
@@ -191,10 +192,10 @@ public class BookController {
 		return "redirect:/book/list.do";		
 	}
 	
+	//도서삭제
 	@RequestMapping("book_delete.do")
 	public String book_delete(HttpServletRequest request,@RequestParam int book_id) {
 		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
-		System.out.println("삭제넘버:"+book_id);
 		//첨부파일 삭제
 		bookDTO dto=bookService.read(book_id);
 		String filename=dto.getBook_img();
@@ -210,6 +211,7 @@ public class BookController {
 		return "redirect:/book/list.do";	
 	}
 	
+	//페이지이동
 	@RequestMapping("book_recommend.do")
 	public ModelAndView book_recommend() {
 		ModelAndView mav=new ModelAndView();

@@ -13,6 +13,10 @@ $(function(){
 		location.href="${path}/book/book_edit.do?id="+$("#book_id").val();
 	});
 	
+	$("#back_btn").click(function(){
+		history.go(-1);
+	});
+	
 	$("#rent_btn").click(function(){
  		var param="book_id="+$("#book_id").val(); 
  		
@@ -43,7 +47,7 @@ $(function(){
 	<h2>책 상세정보</h2>
 	<table>
 		<tr height="50">
-		<td rowspan="6" width="30%;">
+		<td rowspan="7" width="30%;">
 			<c:choose>
 			<c:when test="${dto.book_img==null}">
 			<img src="../images/etc.jpg" style="width:300px;">
@@ -92,6 +96,12 @@ $(function(){
 					</td>
 		</tr>
 		<tr>
+		 <td>반납예정일</td>
+		 <c:if test="${dto.bday!=null}">
+		 <td><fmt:formatDate value="${dto.bday}" pattern="yyyy-MM-dd HH시 mm분"/></td>
+		 </c:if>
+		</tr>
+		<tr>
 			<td  colspan="3">${dto.book_content}</td>
 		</tr>	
 		</table>
@@ -99,12 +109,12 @@ $(function(){
 	<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
 	
 	<button type="button" id="rent_btn">대출</button>
-
+	<button type="button" id="back_btn">목록</button>
+	
 	<c:if test="${sessionScope.userid eq 'admin'}">
 		<button type="button" id="updatebtn">수정</button>
 	</c:if>
 	</section>
-	<div id="result"></div>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>
