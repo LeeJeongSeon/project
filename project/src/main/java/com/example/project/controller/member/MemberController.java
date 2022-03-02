@@ -125,10 +125,11 @@ public class MemberController {
 
 	// 회원삭제
 	@RequestMapping("delete.do")
-	public String delete(String userid, String passwd, Model model) {
+	public String delete(String userid, String passwd, Model model,HttpSession session) {
+		String userid1 = (String)session.getAttribute("userid");
 		boolean result = memberService.checkPw(userid, passwd);
 		if (result) {// 비번이 맞으면 삭제
-			memberService.deleteMember(userid);
+			memberService.deleteMember(userid1);
 			return "home";
 		} else {
 			model.addAttribute("message", "비밀번호를 확인하세요");

@@ -63,7 +63,7 @@ $(function(){
 		document.form1.submit();
 	});
 	$("#btnDelete").click(function(){
-		if(confirm("삭제하시겠습니까?")){
+		if(confirm("탈퇴하시겠습니까?")){
 			document.form1.action="${path}/member/delete.do";
 			document.form1.submit();
 		}
