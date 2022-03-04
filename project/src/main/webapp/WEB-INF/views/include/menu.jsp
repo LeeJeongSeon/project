@@ -182,7 +182,7 @@
                     <ul id="sListUl" >
                         <li id="sList"><a class="menuLink" href="${path}/event/list.do">목록</a></li>
                         <li id="sList"><a class="menuLink" href="${path}/event/write.do">행사신청</a></li>
-                        <li id="sList"><a class="menuLink" href="#">참여신청</a></li>
+                        <li id="sList"><a class="menuLink" href="${path}/event/joinList.do">참여신청</a></li>
                         <c:if test="${sessionScope.adminCk == 1}">
 	                        <li id="sList"><a class="menuLink" href="${path}/event/listAdmin.do">행사관리</a></li>
 	                        <li id="sList"><a class="menuLink" href="${path}/event_reply/listAdmin.do">댓글관리</a></li>

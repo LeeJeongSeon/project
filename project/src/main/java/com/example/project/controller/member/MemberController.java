@@ -174,8 +174,8 @@ public class MemberController {
 
 			String setfrom = "librarynum5@gmail.com";
 			String tomail = email;// 받는 사람 이메일
-			String title = "쿠우쿠우 비밀번호 입니다.";// 제목
-			String content = userid + "님의 비밀번호는 " + pw + "입니다."; // 내용
+			String title = "미래도서관 비밀번호 입니다.";// 제목
+			String content = userid + "님의 비밀번호는 " + pw + "입니다. 비밀번호를 변경해주세요"; // 내용
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
@@ -271,18 +271,7 @@ public class MemberController {
 	}
 	
 	
-	/*
-	 * //회원 리스트에서 이름 클릭시 회원 정보 보기
-	 * 
-	 * @RequestMapping("admin_view.do") public ModelAndView view(String userid,
-	 * HttpSession session) throws Exception{
-	 * 
-	 * ModelAndView mav=new ModelAndView();
-	 * mav.setViewName("member/admin_view");//포워딩할 뷰의 이름 mav.addObject("dto",
-	 * memberService.readMember(userid));//자료저장 return mav; //board/view.jsp로 포워딩
-	 * 
-	 * }
-	 */
+	
 	
 	// 회원수정관련
 		@RequestMapping("admin_view.do")

@@ -20,6 +20,6 @@ public class EmailController {
 	@RequestMapping("sendEventResult.do")
 	public String send(@ModelAttribute EmailDTO dto) throws Exception {
 		emailService.sendResultMail(dto);
-		return "redirect:/event/viewAdmin.do?e_num"+dto.getSenderName();
+		return "redirect:/event/viewAdmin.do?e_num="+dto.getSenderName();
 	}
 }

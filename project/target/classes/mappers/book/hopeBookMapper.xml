@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="hopeBook"> 
+<!-- 게시물 count -->
 <select id="countArticle" resultType="int">
 select count(*)
   from hope_book
@@ -20,6 +21,7 @@ select count(*)
   	</choose>
 </select>
 
+<!-- 게시물 list -->
 <select id="listAll" resultType="com.example.project.model.book.dto.hopeBookDTO">
  select *
   from (
@@ -44,6 +46,7 @@ select count(*)
   ) where rn between #{start} and #{end}
 </select>
 
+<!-- 게시물 상세페이지 -->
 <select id="read" resultType="com.example.project.model.book.dto.hopeBookDTO">
 select hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_author,hopeBook_userid,hopeBook_content,name
 ,ref,re_step,re_level
@@ -52,12 +55,14 @@ where member.userid=hope_book.hopeBook_userid
  and hopeBook_id=#{hopeBook_id}
 </select>
 
+<!-- 게시물 작성 -->
 <insert id="insertBook">
 insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level,filename)
 values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_userid},#{hopeBook_content},#{hopeBook_author}
 ,HopeBook_seq.nextval,1,0,#{filename, jdbcType=VARCHAR})
 </insert>
 
+<!-- 게시물 답변  -->
 <insert id="reply">
 insert into hope_book(hopeBook_id,hopeBook_title,hopeBook_bookname,hopeBook_userid,hopeBook_content,hopeBook_author,ref,re_step,re_level)
 values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_userid},#{hopeBook_content},#{hopeBook_author}
@@ -68,12 +73,14 @@ values(HopeBook_seq.nextval,#{hopeBook_title},#{hopeBook_bookname},#{hopeBook_us
 select distinct ref from hope_book where ref=#{ref}
 </select>
 
+<!-- 도서중복체크 -->
 <select id="check" resultType="String">
 select book_name
 from book
 where book_name=#{hopeBook_bookname} and book_author=#{hopeBook_author}
 </select>
 
+<!-- 게시물 보기 -->
 <select id="view" resultType="com.example.project.model.book.dto.hopeBookDTO">
 select h.hopebook_id,h.hopebook_title,h.hopebook_bookname,h.hopebook_author,h.hopebook_userid,h.hopebook_content,h.ref,h.re_level,h.re_step,m.name,h.filename
 from hope_book h,member m

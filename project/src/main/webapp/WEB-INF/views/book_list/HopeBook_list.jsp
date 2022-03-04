@@ -35,7 +35,13 @@ button{
 <script type="text/javascript">
 $(function(){
 	$("#btnWrite").click(function(){
-		location.href="${path}/HopeBook/write.do";
+		if(${sessionScope.userid==null}){
+ 			if(confirm("로그인 후 게시물 작성이 가능합니다.")) {
+ 				location.href="${path}/member/login.do";
+ 			}
+		}else{
+			location.href="${path}/HopeBook/write.do";
+		}
 	});
 });
 
@@ -78,14 +84,7 @@ function list(page){
  </form>
 </fieldset>
  
-<c:choose>
-<c:when test="${sessionScope.userid!=null}">
-<button type="button" id="btnWrite">글쓰기</button>
-</c:when>
-<c:otherwise>
-글쓰기기능은 로그인이 필요한 기능입니다. <br>
-</c:otherwise>
-</c:choose>
+ <button type="button" id="btnWrite">글쓰기</button>
 
 ${map.count}개의 게시물이 있습니다.
 

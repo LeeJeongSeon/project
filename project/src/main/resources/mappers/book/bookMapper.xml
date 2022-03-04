@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="book"> 
+<!-- 도서 개수 count -->
  <select id="countArticle" resultType="int">
   select count(*)
   from book
@@ -25,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      </if>
  </select>
  
+ <!-- 도서목록 -->
   <select id="listAll" resultType="com.example.project.model.book.dto.bookDTO">
  select *
   from (
@@ -52,6 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   ) where rn between #{start} and #{end}
  </select>
  
+ <!-- 도서목록 검색 -->
  <sql id="search">
   <choose>
    <when test="search_option != 'all' ">
@@ -70,10 +73,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   ) where rn between #{start} and #{end}
  </sql>
  
+ <!-- 도서 상세보기 -->
   <select id="read" 
  resultType="com.example.project.model.book.dto.bookDTO">
-  select book_id,book_name,book_img,book_genre,book_content,
-		  book_publisher,book_author,book_counter,book_check
+select book_id,book_name,book_img,book_genre,book_content,
+		  book_publisher,book_author,book_counter,book_check,book_callName,(select r.bday from book b,rent r
+  where b.book_id=r.book_id and b.book_id=#{book_id} and r.rent_check=1 ) as bday
   from book
   where book_id=#{book_id}
  </select>
@@ -112,8 +117,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- 도서추가 -->
  <insert id="book_insert">
- insert into book(book_id,book_name,book_img,book_genre,book_content,book_publisher,book_author) 
- values(BOOK_SEQ.nextval,#{book_name},#{book_img},#{book_genre},#{book_content},#{book_publisher},#{book_author})
+ insert into book(book_id,book_name,book_img,book_genre,book_content,book_publisher,book_author,book_callName) 
+ values(BOOK_SEQ.nextval,#{book_name},#{book_img},#{book_genre},#{book_content, jdbcType=VARCHAR},#{book_publisher, jdbcType=VARCHAR},#{book_author, jdbcType=VARCHAR},#{book_callName})
  </insert>
  
  <!--도서수정  -->
@@ -135,7 +140,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  where book_id=#{book_id}
  </delete>
  
- <!-- 랜덤한 도서추천 -->
+ <!-- 랜덤 도서추천 -->
 <select id="random_recommend" resultType="com.example.project.model.book.dto.bookDTO">
 select book_id,book_name,book_img,book_genre,book_content,
 		  book_publisher,book_author from  (
@@ -148,6 +153,7 @@ order by dbms_random.value)
 <![CDATA[where rownum<=5]]>
 </select>
 
+<!-- 다른사람의 도서추천 -->
 <select id="other_recommend" resultType="String">
 select book_id
 from rent
@@ -175,11 +181,13 @@ where <![CDATA[ rownum<=5]]>
 order by book_id desc
 </select>
 
+<!-- 대출횟수증가와 대출중처리 -->
 <update id="book_increase">
 update book set book_counter=book_counter+1,book_check=1
 where book_id=#{book_id}
 </update>
 
+<!-- 반납중처리 -->
 <update id="update">
 update book set book_check=0
 where book_id=(
@@ -188,6 +196,13 @@ from rent
 where bnum=#{bnum}
 )
 </update>
+
+<!-- 청구기호 중복체크 -->
+<select id="check_callName" resultType="String">
+select book_callName
+from book
+where book_callName=#{callName}
+</select>
 </mapper>
 
 

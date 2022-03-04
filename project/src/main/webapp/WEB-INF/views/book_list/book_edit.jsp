@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" href="../include/event.css">
+<script src="${path}/include/common.js"></script>
 <style>
 input{
 	width:500px;
 	height:50px;
+}
+textarea{
+	width:500px;
 }
 .fileDrop {
 	width: 100%;
@@ -20,45 +24,6 @@ input{
 </style>
 <script type="text/javascript">
 img_check=0;
-
-function checkImageType(fileName){
-	var pattern=/jpg|png|gif/i; //정규표현식(i는 대소문자 무시)
-	return fileName.match(pattern);// 규칙에 맞으면 true가 리턴
-}
-function getOriginalName(fileName){
-	if(checkImageType(fileName)){//이미지 파일이면 skip
-		return;
-	}
-	var idx=fileName.indexOf("_")+1;//uuid를 제외한 파일이름만 뽑음
-	return fileName.substr(idx);
-}
-function getImageLink(fileName){
-	if(!checkImageType(fileName)){//이미지 파일이 아니면 skip
-		return;
-	}
-	var front=fileName.substr(0,12);//(0~11번째까지 자르고)
-	var end=fileName.substr(14);//14번째 문자열 앞의 s_제거
-	return front+end;
-}
-function getFileInfo(fullName){
-	var fileName, imgsrc, getLink, fileLink;
-	if(checkImageType(fullName)){ //이미지 파일인 경우
-		imgsrc="/project/book/displayFile?fileName="
-			+fullName;
-		fileLink=fullName.substr(14); //14 인덱스~끝
-		var front=fullName.substr(0,12); //0~11
-		var end=fullName.substr(14);
-		getLink="/project/book/displayFile?fileName="+front+end;
-	}else{ //이미지가 아닌 경우
-		fileLink=fullName.substr(12);
-		getLink="/project/book/displayFile?fileName="+fullName;
-	}
-	// uuid_filename (+1은 _ 다음의 filename을 뽑아냄)
-	fileName=fileLink.substr(fileLink.indexOf("_")+1);
-	//json 리턴
-	return {fileName: fileName, imgsrc: imgsrc,
-			getLink: getLink, fullName:fullName };
-}
 
 $(function(){
 	//드래그알때 기본효과를 막음
@@ -80,7 +45,7 @@ $(function(){
 		if(img_check==0){
 		$.ajax({
 			type: "post",
-			url: "${path}/book/uploadAjax",
+			url: "${path}/uploadBook/uploadAjax",
 			data: formData,
 			dataType: "text",
 			processData: false,//파일전송시 자동으로 쿼리스트링형식으로 전송되지 않도록 막는 처리
@@ -92,7 +57,7 @@ $(function(){
 				
 				var fileInfo=getFileInfo(data);
 				//console.log(fileInfo);
-				var html="<a href='"+fileInfo.getLink+"'>"+fileInfo.fileName+"</a><br>";
+				var html="<div><a href='"+fileInfo.getLink+"'>"+fileInfo.fileName+"</a>";
 				html += "<input type='hidden' class='book_img' name='book_img' value='"+fileInfo.fullName+"'>";
 				
 				console.log("파일이름:"+data);
@@ -103,6 +68,8 @@ $(function(){
 				img_check=1;
 			}
 		});
+		}else{
+			alert("이미 이미지가 업로드 되었습니다.");
 		}
 	});//end $(".fileDrop")
 	
@@ -110,7 +77,7 @@ $(function(){
 	$(".uploadedList").on("click","span", function(event){//내부적으로 span태그가 클릭되면 삭제
 		var that=$(this);//this는 현재 클릭한 태그, 즉 span태그
 		$.ajax({
-			url: "${path}/book/deleteFile",
+			url: "${path}/uploadBook/deleteFile",
 			type: "post",
 			data: {fileName: $(this).attr("data-src")},
 			dataType: "text",
@@ -129,7 +96,7 @@ $(function(){
 		$("#book_check").prop("checked", true);
 	}
 });
-//상품 삭제
+//도서 삭제
 function book_delete() {
 	if(confirm("삭제하시겠습니까?")){
 		document.form1.action="${path}/book/book_delete.do";;
@@ -138,7 +105,7 @@ function book_delete() {
 	
 }
 
-//상품 수정
+//도서 수정
 function book_update(){
 	var book_name=$("#book_name").val();
 	var book_genre=$("#book_genre").val();
@@ -191,8 +158,9 @@ function book_update(){
  </tr>
  <tr>
   <td colspan="2"><div class="fileDrop"></div></td>
-  <td colspan="2"><div class="uploadedList"></div></td>
   </tr>
+  <tr>
+  <td colspan="2"><div class="uploadedList"></div></td>
     <tr>
      <td width="width:30%;">제목</td>
      <td><input name="book_name" id="book_name" value="${dto.book_name}"></td>
@@ -211,8 +179,7 @@ function book_update(){
     </tr>
     <tr>
      <td>내용</td>
-     <td><input name="book_content" id="book_content" value="${dto.book_content}" style="height:200px;"> </td>
-    </tr>
+     <td><textarea cols="300" name="book_content" id="book_content" >${dto.book_content}</textarea> </td>
     <tr>
      <td>대출가능여부</td>
      <td>

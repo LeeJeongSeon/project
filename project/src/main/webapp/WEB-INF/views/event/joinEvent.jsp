@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
 <script type="text/javascript">
+if(${sessionScope.userid==null}) {
+	if(confirm("로그인 후 사용할 수 있는 서비스입니다. \n로그인 페이지로 이동하시겠습니까?")) {
+		location.href="${path}/member/login.do";
+	}else {
+		location.href="${path}";
+	}
+}
+
 $(function () {
 	$("#agreeChk").click(function () {
 		if($("#agreeChk").val()=="off") {
@@ -19,6 +27,7 @@ $(function () {
 
 function agreeChk() {
 	if($("#agreeChk").val()=="on") {
+		alert("참여 신청이 완료되었습니다.");
 		location.href="${path}/event_join/insert.do?ej_num=${dto.e_num}&ej_userid=${sessionScope.userid}";
 	}else {
 		alert("이용약관 및 개인정보 수집/활용에 동의해주세요.");
@@ -102,7 +111,7 @@ a:link, a:visited {
 		</table><br>
 	</div>
 	<div align="center">
-		더 자세한 행사 내용을 알고 싶으신가요? <button type="button">이동</button>
+		더 자세한 행사 내용을 알고 싶으신가요? <button type="button" onclick="location.href='${path}/event/view.do?e_num=${dto.e_num}'">이동</button>
 	</div>
 	<c:if test="${dto.e_max_p!=e_join_p}">
 		<div id="table">

@@ -10,9 +10,8 @@ public interface HopeBookService {
 	public List<hopeBookDTO> listAll(String search_option, String keyword, int start, int end); //list
 	public void insertBook(hopeBookDTO dto); //게시판추가
 	public hopeBookDTO read(int hopeBook_id); //읽기
-	public void updateStep(int ref, int re_step);
-	public void reply(hopeBookDTO dto2);
-	public int ref(int ref);
-	public String check(String hopeBook_author, String hopeBook_bookname);
-	public List<hopeBookDTO> view(int hopeBook_id);
+	public void reply(hopeBookDTO dto2); //게시물 답변
+	public int ref(int ref); //단계조절
+	public String check(String hopeBook_author, String hopeBook_bookname); //도서중복체크
+	public List<hopeBookDTO> view(int hopeBook_id); //읽기
 }

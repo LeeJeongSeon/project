@@ -1,5 +1,7 @@
 package com.example.project.model.book.dto;
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class bookDTO {
@@ -13,15 +15,39 @@ public class bookDTO {
 	private String  book_author;
 	private int  book_counter;
 	private int book_check;
+	private String book_callName;
 	private MultipartFile file; //첨부파일
-	
+	private Date bday; //rent테이블과 join할 속성
+
 	@Override
 	public String toString() {
 		return "bookDTO [book_id=" + book_id + ", book_name=" + book_name + ", book_img=" + book_img + ", book_genre="
 				+ book_genre + ", book_content=" + book_content + ", book_publisher=" + book_publisher
 				+ ", book_author=" + book_author + ", book_counter=" + book_counter + ", book_check=" + book_check
-				+ ", file=" + file + "]";
+				+ ", book_callName=" + book_callName + ", file=" + file + ", bday=" + bday + "]";
 	}
+
+
+	public Date getBday() {
+		return bday;
+	}
+
+
+	public void setBday(Date bday) {
+		this.bday = bday;
+	}
+
+
+	public String getBook_callName() {
+		return book_callName;
+	}
+
+
+	public void setBook_callName(String book_callName) {
+		this.book_callName = book_callName;
+	}
+
+
 	public MultipartFile getFile() {
 		return file;
 	}

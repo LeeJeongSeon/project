@@ -86,6 +86,7 @@ public class BookController {
 			throws Exception{
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("book_list/view");
+		System.out.println("상세보기:"+bookService.read(book_id));
 		mav.addObject("dto", bookService.read(book_id));
 		return mav;
 	}
@@ -117,77 +118,6 @@ public class BookController {
 		return "book_list/book_insert";
 	}
 	
-	//이미지 ajax로 받음
-	@ResponseBody //객체를 json형식으로 데이터 리턴(서버=>클라이언트)
-	@RequestMapping(value = "/book/uploadAjax", 
-	method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public ResponseEntity<String> uploadAjax(MultipartFile file,HttpServletRequest request)
-			throws Exception {
-		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images");
-		System.out.print("상대경로:"+uploadPath+"\n");
-		
-		return new ResponseEntity<String>(
-				UploadFileUtils.uploadFile(uploadPath, 
-						file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
-		
-	}
-	
-	//이미지 이름 출력
-	@ResponseBody //view가 아닌 data리턴
-	@RequestMapping("/book/displayFile")
-	public ResponseEntity<byte[]> displayFile(String fileName,HttpServletRequest request) 
-			throws Exception {
-		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images");
-		
-		//서버의 파일을 다운로드하기 위한 스트림
-		InputStream in = null; //java.io
-		ResponseEntity<byte[]> entity = null;
-		try {
-			//확장자 검사
-			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-			MediaType mType = MediaUtils.getMediaType(formatName);
-			//헤더 구성 객체
-			HttpHeaders headers = new HttpHeaders();
-			//InputStream 생성
-			in = new FileInputStream(uploadPath + fileName);
-			fileName = fileName.substring(fileName.indexOf("_")+1);
-			//다운로드용 컨텐츠 타입
-			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-			//iso-8859-1 서유럽언어
-			headers.add("Content-Disposition", "attachment; filename=\"" 
-					+ new String(fileName.getBytes("utf-8"), "iso-8859-1") + "\"");
-			//바이트배열, 헤더, 상태코드 3개를 묶어서 전달
-			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		} finally {
-			if(in != null)
-				in.close();
-		}
-		return entity;
-	}//displayFile()
-	
-	//이미지 삭제
-	@ResponseBody
-	@RequestMapping(value = "/book/deleteFile")
-	public ResponseEntity<String> deleteFile(String fileName,HttpServletRequest request){
-		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images");
-		
-		//확장자 검사
-		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-		MediaType mType=MediaUtils.getMediaType(formatName);
-		if(mType != null) {//이미지 파일의 원본이미지 삭제
-			String front=fileName.substring(0, 12);
-			String end=fileName.substring(14);//14~끝까지
-			//File.separatorChar : 유닉스 / 윈도우즈 \
-			new File(uploadPath+(front+end).replace('/', File.separatorChar)).delete();
-		}
-
-		return new ResponseEntity<String>("deleted", HttpStatus.OK);
-		//uploadAjax.jsp의 if(result=="deleted"){와 연결
-	}
-	
 	//도서추가
 	@RequestMapping("book_insert.do")
 	public String insert(@ModelAttribute bookDTO dto,HttpServletRequest request) {
@@ -195,6 +125,7 @@ public class BookController {
 		//베포디렉토리는 컴퓨터마다 이미지폴더가 초기화됨. 
 		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
 
+		//이미지처리
 		if(dto.getBook_img()=="") {
 			String filename="-";
 			dto.setBook_img(filename);
@@ -211,6 +142,11 @@ public class BookController {
 		}
 		dto.setBook_img(filename);
 
+		//청구번호 처리
+		String CallName=bookService.create_callName(dto.getBook_genre(),dto.getBook_author()); //청구번호처리
+		System.out.println("컨트롤러단의 청구번호:"+CallName);
+		dto.setBook_callName(CallName);
+		
 		bookService.insertBook(dto);
 		return "redirect:/book/list.do";
 	}
@@ -256,10 +192,10 @@ public class BookController {
 		return "redirect:/book/list.do";		
 	}
 	
+	//도서삭제
 	@RequestMapping("book_delete.do")
 	public String book_delete(HttpServletRequest request,@RequestParam int book_id) {
 		String uploadPath=request.getServletContext().getRealPath("WEB-INF/views/images")+"\\"; //베포디렉토리
-		System.out.println("삭제넘버:"+book_id);
 		//첨부파일 삭제
 		bookDTO dto=bookService.read(book_id);
 		String filename=dto.getBook_img();
@@ -275,6 +211,7 @@ public class BookController {
 		return "redirect:/book/list.do";	
 	}
 	
+	//페이지이동
 	@RequestMapping("book_recommend.do")
 	public ModelAndView book_recommend() {
 		ModelAndView mav=new ModelAndView();

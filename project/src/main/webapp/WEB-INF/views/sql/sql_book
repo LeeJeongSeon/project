@@ -9,7 +9,7 @@ book_author varchar2(500),
 book_counter number default 0, -- 대출횟수
 book_check number default 0 -- 대출중인지 체크
 );
-
+alter table book ADD(book_callName varchar2(100)); -- 청구기호 컬럼 추가
 --시퀀스 
 create sequence book_seq
 start with 1

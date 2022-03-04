@@ -10,28 +10,33 @@
 <script type="text/javascript">
 $(function(){
 	$("#updatebtn").click(function(){
- 		var param="id="+$("#book_id").val(); 
-		console.log(param);
- 		
-		$.ajax({
-			type: "post",
-			url: "${path}/book/book_edit.do",
-			data: param
-		}); 
+		location.href="${path}/book/book_edit.do?id="+$("#book_id").val();
+	});
+	
+	$("#back_btn").click(function(){
+		history.go(-1);
 	});
 	
 	$("#rent_btn").click(function(){
  		var param="book_id="+$("#book_id").val(); 
  		
-		$.ajax({
+ 		if(${sessionScope.userid==null}){
+ 			if(confirm("로그인 후 대출가능합니다.")) {
+ 				location.href="${path}/member/login.do";
+ 			}
+ 		}else if(${dto.book_check!=0}){
+ 			alert("대출불가능한 도서입니다.");
+ 		}else{
+ 			$.ajax({
 			type: "post",
 			url: "${path}/rent/insert.do",
 			data: param,
 			success : function(){
 				alert("대출되었습니다");
-				location.href="${path}/rent/nlist.do";
-			}
-		}); 
+				location.href="${path}/rent/list.do";
+				}
+			}); 
+ 		}
 	});
 });
 </script>
@@ -42,7 +47,7 @@ $(function(){
 	<h2>책 상세정보</h2>
 	<table>
 		<tr height="50">
-		<td rowspan="5" width="30%;">
+		<td rowspan="7" width="30%;">
 			<c:choose>
 			<c:when test="${dto.book_img==null}">
 			<img src="../images/etc.jpg" style="width:300px;">
@@ -70,6 +75,10 @@ $(function(){
 			<td>출판사</td>
 			<td>${dto.book_publisher}</td>
 		</tr>
+		<tr>
+			<td>청구기호</td>
+			<td>${dto.book_callName}</td>
+		</tr>
 		<tr >
 				<td>대출가능여부</td>
 				<td>
@@ -87,20 +96,23 @@ $(function(){
 					</td>
 		</tr>
 		<tr>
+		 <td>반납예정일</td>
+		 <c:if test="${dto.bday!=null}">
+		 <td><fmt:formatDate value="${dto.bday}" pattern="yyyy-MM-dd HH시 mm분"/></td>
+		 </c:if>
+		</tr>
+		<tr>
 			<td  colspan="3">${dto.book_content}</td>
 		</tr>	
 		</table>
 
 	<input type="hidden" id="book_id" name="book_id" value="${dto.book_id}">
 	
-	<c:if test="${sessionScope.userid!=null}">
-	  <c:if test="${dto.book_check==0}">
-	   <button type="button" id="rent_btn">대출</button>
-	  </c:if>
-	</c:if>
+	<button type="button" id="rent_btn">대출</button>
+	<button type="button" id="back_btn">목록</button>
+	
 	<c:if test="${sessionScope.userid eq 'admin'}">
-		<a href="${path}/book/book_edit.do?id=${dto.book_id}">수정</a>
-		<!-- <button type="button" id="updatebtn">수정</button> -->
+		<button type="button" id="updatebtn">수정</button>
 	</c:if>
 	</section>
 <%@ include file="../include/footer.jsp" %>

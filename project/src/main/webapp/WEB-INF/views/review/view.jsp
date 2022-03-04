@@ -328,7 +328,7 @@ select {
 	// ckeditor 적용
 	CKEDITOR.replace("review_content",{
 	filebrowserUploadUrl: "${path}/imageUpload.do",
-	height: "300px"
+	height: "600px"
 	});
 	</script>
 	</div>

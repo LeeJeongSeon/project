@@ -38,12 +38,6 @@ public class HopeBookServiceImpl implements HopeBookService {
 	}
 
 	@Override
-	public void updateStep(int ref, int re_step) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void reply(hopeBookDTO dto) {
 		hopeBookDao.reply(dto);
 		
